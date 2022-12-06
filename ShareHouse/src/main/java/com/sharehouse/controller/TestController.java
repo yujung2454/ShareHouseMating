@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TestController {
 
 	@GetMapping("/viewtest")
-	public String viewtest() {
+	public String viewtest() {    
 		return "viewtest";
 	}
 }
