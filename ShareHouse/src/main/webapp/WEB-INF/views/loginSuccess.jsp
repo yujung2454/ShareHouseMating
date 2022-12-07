@@ -11,6 +11,6 @@
 	<h5><a href="/">INDEX 페이지로 이동</a></h5>
 	<h5><a href="/member">Member 페이지로 이동</a></h5>
 	<h5><a href="/manager">Manager 전용 페이지로 이동</a></h5>
-	<h5><a href="/admin">Admin 전용 페이지로 이동</a></h5>	
+	<h5><a href="/manager">Admin 전용 페이지로 이동</a></h5>	
 </body>
 </html>
