@@ -26,7 +26,7 @@ public class SecurityConfig{
 		security.authorizeRequests().antMatchers("/").permitAll();
 		security.authorizeRequests().antMatchers("/member/**").authenticated();
 		security.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN");
-
+   
 		security.csrf().disable();
 		security.formLogin().loginPage("/login").defaultSuccessUrl("/loginSuccess", true);
 		security.exceptionHandling().accessDeniedPage("/accessDenied"); //403 오류 처리

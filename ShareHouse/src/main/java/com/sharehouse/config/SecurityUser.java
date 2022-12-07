@@ -13,7 +13,7 @@ public class SecurityUser extends User {
 	
 	public SecurityUser(Users users) { 
 		super(users.getId(),
-				/* "{noop}"+ */users.getPwd(), //noop은 암호화되지 않은 비밀번호를 받아옴
+				 "{noop}"+ users.getPwd(), //noop은 암호화되지 않은 비밀번호를 받아옴
 				AuthorityUtils.createAuthorityList(users.getStatus().toString()));
 		// id, pwd, status를 권한 리스트(createAuthorityList)에 추가
 		this.users = users; //로그인 성공했을 때 정보를 users객체 에 저장

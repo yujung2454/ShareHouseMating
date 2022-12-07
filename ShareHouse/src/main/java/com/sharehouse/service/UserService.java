@@ -22,7 +22,7 @@ public class UserService {
 		//암호화(BCrypt 알고리즘 )
 		users.setPwd(encoder.encode(users.getPwd())); // 암호화된 pwd를 다시 set(저장)
 	
-		users.setStatus(Role.회원);
+		users.setStatus(Role.ROLE_MEMBER);
 		
 		int i = dao.insertUser(users);
 		System.out.println(i);

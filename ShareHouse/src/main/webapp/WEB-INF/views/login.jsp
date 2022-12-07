@@ -22,7 +22,7 @@
 		<td colspan="2" align="center">
 			<input type="submit" value="로그인"/>
 			<input type="button" value="가입"
-			onclick="location.href="'/insert'" />
+			onclick="location.href='/insert'" />
 		</td>
 	</tr>
 </table>
