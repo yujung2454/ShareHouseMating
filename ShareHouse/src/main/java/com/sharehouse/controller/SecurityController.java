@@ -16,45 +16,55 @@ public class SecurityController {
 	@Autowired
 	UserService service;
 	
-	@GetMapping("/")
+	@GetMapping("/baesoeun/index")
 	public String index() {
 		System.out.println("index 요청입니다.");
-		return "index";
+		return "/baesoeun/index";
 	}
-	@GetMapping("/member")
-	public void forMember() {
+	@GetMapping("/baesoeun/member")
+	public String forMember() {
 		System.out.println("Member 요청입니다.");
+		return "/baesoeun/member";
 		
 	}
-	@GetMapping("/manager")
-	public void formamger() {
+	@GetMapping("/baesoeun/manager")
+	public String formamger() {
 		System.out.println("Manager 요청입니다.");
+		return "/baesoeun/manager";
 	}
-	@GetMapping("/admin")
-	public void forAdmin(@AuthenticationPrincipal SecurityUser user) { // 세션에 저장된 정보 꺼내쓰기
+	
+	@GetMapping("/baesoeun/admin")
+	public String forAdmin(@AuthenticationPrincipal SecurityUser user) { // 세션에 저장된 정보 꺼내쓰기
 		System.out.println("user.getUsername() :" +user.getUsername());
 		System.out.println("Admin 요청입니다.");
+		return "/baesoeun/admin";
 	}
 	
-	@GetMapping("/login")
-	public void login() {
+	@GetMapping("/baesoeun/login")
+	public String login() {
+		return "/baesoeun/login";
 		
 	}
-	@GetMapping("/loginSuccess")
-	public void loginSuccess() {
-		
+	@GetMapping("/baesoeun/loginSuccess")
+	public String loginSuccess() {
+		return "/baesoeun/loginSuccess";
 	}
-	@GetMapping("/accessDenied")
-	public void accessDenied() {		
+	@GetMapping("/baesoeun/accessDenied")
+	public String accessDenied() {	
+		return "/baesoeun/accessDenied";
 	}
 	
-	@GetMapping("/insert")
-	public void insert() {
-		
+	@GetMapping("/baesoeun/insert")
+	public String insert() {
+		return "/baesoeun/insert";
 	}
-	@PostMapping("/insert")
+	@PostMapping("/baesoeun/insert")
 	public String insert(Users users) { //받아올 정보가 여러개니까 dto객체로 //오버로딩
 		service.insertUser(users);
-		return "redirect:/";
+		return "redirect:baesoeun/index";
+	}
+	@GetMapping("/baesoeun/find")
+	public String find() {
+		return "/baesoeun/find";
 	}
 }

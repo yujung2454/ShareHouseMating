@@ -12,9 +12,9 @@ import com.sharehouse.domain.Users;
 @Mapper
 public interface UserDao {
 @Select
-("select * from user where id = #{Id}")
+("select * from user where id = #{id}")
 Users findById(String id);
 
-@Insert("insert into user values(#{Id}, #{Pwd}, #{Name}, #{Email}, #{Tel}, #{Gender}, #{User_add}, #{User_add2}, #{User_Img}, #{Status})")
+@Insert("insert into user values(#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{gender}, #{user_add}, #{user_add2}, #{user_Img}, #{status})")
 int insertUser(Users user);
 }
