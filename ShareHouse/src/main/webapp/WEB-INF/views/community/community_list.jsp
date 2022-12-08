@@ -69,6 +69,7 @@
 	<!-- 검색창 -->
 	<div id = "search" align="left">
 		<form action="search">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<input type="text" name="search" size="20" maxlength="225" placeholder = "검색어를 입력하세요">
 			<input type='submit' value="검색">
 		</form>

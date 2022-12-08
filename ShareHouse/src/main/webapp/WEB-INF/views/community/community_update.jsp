@@ -56,6 +56,7 @@
 	<h2>글 수정</h2>
 </div>
 <form method="" id="" action="">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<table border="1">
 		<tr>
 			<td class="subject">제목 :
