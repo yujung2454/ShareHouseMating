@@ -17,4 +17,8 @@ Users findById(String id);
 
 @Insert("insert into user values(#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{gender}, #{user_add}, #{user_add2}, #{user_Img}, #{status})")
 int insertUser(Users user);
+
+@Select
+("select id from member where email = #{email}")
+List<String> findByEmail(String email);
 }
