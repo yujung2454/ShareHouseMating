@@ -67,4 +67,9 @@ public class SecurityController {
 	public String find() {
 		return "/baesoeun/find";
 	}
+	@GetMapping("/baesoeun/pwd_find")
+	public String pwd_find() {
+		return "/baesoeun/pwd_find";
+	}
+
 }
