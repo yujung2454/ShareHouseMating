@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharehouse.dao.CommentDao">
+
+	<insert id="insertComment" parameterType="com.sharehouse.dto.CommentDto">
+		insert into comm_comment(id, comm_comment_con, comm_comment_date, comm_comment_no) values(#{id}, #{comm_comment_con}, now(), #{comm_comment_no})
+	</insert>
+
+</mapper>

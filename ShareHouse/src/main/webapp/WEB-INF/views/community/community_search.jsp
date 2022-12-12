@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
+
 </head>
 <body>
 <header>
@@ -21,7 +21,7 @@
 	<!-- 검색창 -->
 	<div id = "search" align="left">
 		<form action="community_search">
-		<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> -->
+		<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 			<input type="text" name="search" size="20" maxlength="225" placeholder = "검색어를 입력하세요">
 			<button type='submit' value="검색" class="search"></button>
 		</form>
@@ -70,7 +70,7 @@
 							<tr>
 								<td><a href="">${comm.comm_no}</a></td>
 								<td><a href="">${comm.comm_title}</a></td>
-								<td>${user.user_img} ${comm.id}</td>
+								<td>${comm.id}</td>
 								<td><fmt:formatDate value="${comm.comm_date}" dateStyle="short" /></td>
 								<td>${comm.comm_v_cnt}</td>
 							</tr>
@@ -82,22 +82,22 @@
 
 		<div id="paging" align="center">
 			<c:if test="${begin > pageNum}">
-				<a href="community_list?p=${begin-1}">[이전]</a>
+				<a href="community_search?p=${begin-1}&search=${search}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${begin}" end = "${end}" var='i'>
-				<a href="community_list?p=${i}" class="page">${i}</a>
+				<a href="community_search?p=${i}&search=${search}" class="page">${i}</a>
 			</c:forEach>
 			<c:if test="${end < totalPages}">
-				<a href="community_list?p=${end+1}">[다음]</a>
+				<a href="community_search?p=${end+1}&search=${search}">[다음]</a>
 			</c:if>
 		</div>
-	</div>	
+		
 		<div id="write" align="right">
 			<button type = "button" class="community_write">
-				<a href="community_write" class="community_write">글 쓰기</a>
+				<a href="community_write" id="button" class="community_write">글 쓰기</a>
 			</button>
 		</div>
-	
+	</div>
 </div>
 
 <div>
@@ -106,6 +106,5 @@
 
 <footer>
 </footer>
-
 </body>
 </html>

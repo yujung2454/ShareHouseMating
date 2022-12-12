@@ -82,13 +82,13 @@
 
 		<div id="paging" align="center">
 			<c:if test="${begin > pageNum}">
-				<a href="community_list?p=${begin-1}">[이전]</a>
+				<a href="community_sort?p=${begin-1}&sort=${sort}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${begin}" end = "${end}" var='i'>
-				<a href="community_list?p=${i}" class="page">${i}</a>
+				<a href="community_sort?p=${begin-1}&sort=${sort}" class="page">${i}</a>
 			</c:forEach>
 			<c:if test="${end < totalPages}">
-				<a href="community_list?p=${end+1}">[다음]</a>
+				<a href="community_sort?p=${begin-1}&sort=${sort}">[다음]</a>
 			</c:if>
 		</div>
 	</div>	
@@ -106,6 +106,5 @@
 
 <footer>
 </footer>
-
 </body>
 </html>

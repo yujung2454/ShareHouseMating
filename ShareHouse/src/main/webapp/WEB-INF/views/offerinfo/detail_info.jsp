@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 
@@ -15,12 +16,13 @@
 		<div id = "room_button_list"><!-- Livingroom, Kitchen, roomA, roomB,... --></div>
 		
 		<div id="slide_img">
-			<div class="main_img"><!-- 화면에 나타날 이미지 --></div>
-			<div class="left_btn"><!-- 이전사진 버튼 --></div>
-			<div class="right_btn"><!-- 다음사진 버튼 --></div>
-			<div class="report"><!-- 신고 --></div>
-			<div class="favorite"><!-- 찜 --></div>
-			<div class="chat"><!-- 채팅신청 --></div>
+			<div class="main_img"><!-- 화면에 나타날 이미지 -->
+				<div class="left_btn"><!-- 이전사진 버튼 --></div>
+				<div class="right_btn"><!-- 다음사진 버튼 --></div>
+				<div class="report"><!-- 신고 --></div>
+				<div class="favorite"><!-- 찜 --></div>
+				<div class="chat"><!-- 채팅신청 --></div>
+			</div>
 		</div>
 		<div id="info_btn_list">
 			<div class="info_btn">
