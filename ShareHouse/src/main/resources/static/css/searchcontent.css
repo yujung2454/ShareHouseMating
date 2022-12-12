@@ -1,0 +1,60 @@
+@charset "UTF-8";
+.detail_con {
+	width: 50;
+	height: 100;
+	display: inline-block;
+	margin: 5px;;
+}
+
+.btn_region{
+	display:hidden;
+}
+
+.roomtoilet{
+display: inline-block;
+}
+
+#select_boxes{
+	margin:0 auto;
+	width:50%;
+}
+
+.scroll_frame{
+overflow-x:auto;
+overflow-y:scroll;
+display:inline-block;
+border:solid;
+border-color:#000;
+border-width: 1px;
+width:133px;
+height:400px;
+position: relative;
+left: 27%;
+}
+
+.content_frame{
+	margin-left: 7px;
+}
+
+.search_menu{
+	margin: 0 8px;
+}
+
+.select_frame{
+	position: absolute;
+}
+
+#selected_loc{
+	border: solid;
+	position: relative;
+	width: 200px;
+	height: 100px;
+	float:left;
+	left: 70%;
+}
+
+.roomtoilet{
+	display:inline-block;
+	position: relative;
+	left: 50%;
+}
