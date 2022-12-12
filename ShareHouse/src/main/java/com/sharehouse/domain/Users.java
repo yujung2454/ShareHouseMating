@@ -1,10 +1,12 @@
 package com.sharehouse.domain;
 
+
 import lombok.Data;
 
 @Data
 public class Users { 
 	
+
 	private String id; 
 	private String pwd;
 	private String name;

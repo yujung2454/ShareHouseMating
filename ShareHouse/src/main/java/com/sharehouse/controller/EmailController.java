@@ -3,6 +3,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,9 +38,11 @@ public class EmailController {
 
 		Boolean result = emailService.sendMail(email);
 
-		return new String[] {number, result.toString()};
+		return new String[] {content, result.toString()};
 
 	}
+	
+	
 	private String makeRandom() {
 		Random r = new Random();
 		String number = "";

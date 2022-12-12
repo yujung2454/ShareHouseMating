@@ -15,7 +15,7 @@
 		<td colspan="2" align="center">
 			<input type="button" value="로그인"/>
 			<input type="submit" value="가입"
-			onclick="location.href='/login/insert'" />
+			onclick="location.href='/insert'" />
 		</td>
 		</tr>
 	</table>

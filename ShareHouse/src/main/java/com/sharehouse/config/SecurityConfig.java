@@ -23,14 +23,14 @@ public class SecurityConfig{
 	
 		
 		
-		security.authorizeRequests().antMatchers("/login/").permitAll();
-		security.authorizeRequests().antMatchers("/login/member/**").authenticated();
-		security.authorizeRequests().antMatchers("/login/admin/**").hasAnyRole("ADMIN");
+		security.authorizeRequests().antMatchers("/").permitAll();
+		security.authorizeRequests().antMatchers("/member/**").authenticated();
+		security.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN");
    
 		security.csrf().disable();
-		security.formLogin().loginPage("/login/login").defaultSuccessUrl("/login/loginSuccess", true);
-		security.exceptionHandling().accessDeniedPage("/login/accessDenied"); //403 오류 처리
-		security.logout().invalidateHttpSession(true).logoutSuccessUrl("/login/login"); //로그아웃 성공 시 로그인 페이지로 이동
+		security.formLogin().loginPage("/login").defaultSuccessUrl("/main", true);
+		security.exceptionHandling().accessDeniedPage("/accessDenied"); //403 오류 처리
+		security.logout().invalidateHttpSession(true).logoutSuccessUrl("/login"); //로그아웃 성공 시 로그인 페이지로 이동
 		
 		security.userDetailsService(boardUserDetailsService); // 주입받은 객체 넘겨줌 //db정보와 비교하면서 처리->로그인되면 로그인 페이지로 이동시켜줌
 		return security.build();
