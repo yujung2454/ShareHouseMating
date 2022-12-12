@@ -11,7 +11,7 @@
 <sec:authorize access="hasRole('ROLE_ADMIN')">
 	<h1>관리자 권한을 가진 사용자를 위한 화면입니다.</h1>
 	
-	<a href="/baesoeun/loginSuccess">뒤로 가기</a>
+	<a href="/login/loginSuccess">뒤로 가기</a>
 
 	
 		

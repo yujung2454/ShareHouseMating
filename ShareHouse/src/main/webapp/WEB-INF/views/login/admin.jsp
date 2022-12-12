@@ -25,6 +25,6 @@
 		
 		
 	</h2>
-	<a href="/baesoeun/loginSuccess">뒤로 가기</a></body>
+	<a href="/login/loginSuccess">뒤로 가기</a></body>
 </body>
 </html>

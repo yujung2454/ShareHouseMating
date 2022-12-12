@@ -16,60 +16,57 @@ public class SecurityController {
 	@Autowired
 	UserService service;
 	
-	@GetMapping("/baesoeun/index")
+	@GetMapping("/login/index")
 	public String index() {
 		System.out.println("index 요청입니다.");
-		return "/baesoeun/index";
+		return "/login/index";
 	}
-	@GetMapping("/baesoeun/member")
+	@GetMapping("/login/member")
 	public String forMember() {
 		System.out.println("Member 요청입니다.");
-		return "/baesoeun/member";
+		return "/login/member";
 		
 	}
-	@GetMapping("/baesoeun/manager")
+	@GetMapping("/login/manager")
 	public String formamger() {
 		System.out.println("Manager 요청입니다.");
-		return "/baesoeun/manager";
+		return "/login/manager";
 	}
 	
-	@GetMapping("/baesoeun/admin")
+	@GetMapping("/login/admin")
 	public String forAdmin(@AuthenticationPrincipal SecurityUser user) { // 세션에 저장된 정보 꺼내쓰기
 		System.out.println("user.getUsername() :" +user.getUsername());
 		System.out.println("Admin 요청입니다.");
-		return "/baesoeun/admin";
+		return "/login/admin";
 	}
 	
-	@GetMapping("/baesoeun/login")
+	@GetMapping("/login/login")
 	public String login() {
-		return "/baesoeun/login";
+		return "/login/login";
 		
 	}
-	@GetMapping("/baesoeun/loginSuccess")
+	@GetMapping("/login/loginSuccess")
 	public String loginSuccess() {
-		return "/baesoeun/loginSuccess";
+		return "/login/loginSuccess";
 	}
-	@GetMapping("/baesoeun/accessDenied")
+	@GetMapping("/login/accessDenied")
 	public String accessDenied() {	
-		return "/baesoeun/accessDenied";
+		return "/login/accessDenied";
 	}
 	
-	@GetMapping("/baesoeun/insert")
+	@GetMapping("/login/insert")
 	public String insert() {
-		return "/baesoeun/insert";
+		return "/login/insert";
 	}
-	@PostMapping("/baesoeun/insert")
+	@PostMapping("/login/insert")
 	public String insert(Users users) { //받아올 정보가 여러개니까 dto객체로 //오버로딩
 		service.insertUser(users);
-		return "redirect:baesoeun/index";
+		return "redirect:login/index";
 	}
-	@GetMapping("/baesoeun/find")
-	public String find() {
-		return "/baesoeun/find";
-	}
-	@GetMapping("/baesoeun/pwd_find")
+
+	@GetMapping("/login/pwd_find")
 	public String pwd_find() {
-		return "/baesoeun/pwd_find";
+		return "/login/pwd_find";
 	}
 
 }
