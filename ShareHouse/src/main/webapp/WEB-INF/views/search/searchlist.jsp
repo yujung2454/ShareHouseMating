@@ -12,26 +12,26 @@
 <body>
 <div class="fixed">
 <div id="uppernav">
-	<div id="main">
-		<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
-		<span id="home" class="to_main"><a href="/">우리집</a></span>
+		<div id="main">
+			<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
+			<span id="home" class="to_main"><a href="/">우리집</a></span>
+		</div>
+		<ul class="upper_frame">
+			<li class="upper_menu">쉐어하우스란?</li>
+			<li class="upper_menu"><a href="/search/searchlist">방 찾기</a></li>
+			<li class="upper_menu">매물 등록</li>
+			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
+			<li class="upper_menu">문의</li>
+		</ul>
+		<div id="p_info">
+			<span id="notification"><img src="/images/notification.png"></span>
+			<span id="login">로그인/회원정보</span>
+		</div>
 	</div>
-	<ul class="upper_frame">
-		<li class="upper_menu">쉐어하우스란?</li>
-		<li class="upper_menu">방 찾기</li>
-		<li class="upper_menu">매물 등록</li>
-		<li class="upper_menu">커뮤니티</li>
-		<li class="upper_menu">문의</li>
-	</ul>
-	<div id="p_info">
-		<span id="notification"><img src="/images/notification.png"></span>
-		<span id="login">로그인/회원정보</span>
-	</div>
-</div>
-<br>
-<form>
+	<br><br><br><br><br><br>
+<form id="search_btn" action="/search/searchlist">
 	<div id="search" >
-		<ul id="search_bar">
+		<ul>
 			<li><img src="/images/search.png"></li>
 			<li><input name="search" placeholder="지역명 또는 역이름" size="50"></li>
 			<li>
@@ -48,7 +48,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=lq4lt4kzb4"></script>
-<script src="/js/searchmap.js"></script>
+<script src="/javascript/searchmap.js"></script>
 
 </body>
 </html>

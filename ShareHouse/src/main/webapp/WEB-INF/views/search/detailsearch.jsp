@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="fixed">
-	<div id="uppernav">
+<div id="uppernav">
 		<div id="main">
 			<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
 			<span id="home" class="to_main"><a href="/">우리집</a></span>
@@ -21,7 +21,7 @@
 			<li class="upper_menu">쉐어하우스란?</li>
 			<li class="upper_menu"><a href="/search/searchlist">방 찾기</a></li>
 			<li class="upper_menu">매물 등록</li>
-			<li class="upper_menu">커뮤니티</li>
+			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
 			<li class="upper_menu">문의</li>
 		</ul>
 		<div id="p_info">
@@ -140,5 +140,5 @@
 </form>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="/js/selectchange.js"></script>
+<script src="/javascript/selectchange.js"></script>
 </html>
