@@ -29,10 +29,10 @@
   			</span>
   						
 			<input type="button" value="회원가입"
-			onclick="location.href='/login/insert'" />
+			onclick="location.href='/insert'" />
 			
 			<input type="button" value="아이디/비밀번호찾기"
-			onclick="location.href='/login/find'" />
+			onclick="location.href='/joinView'" />
 			
 
 		</td>
