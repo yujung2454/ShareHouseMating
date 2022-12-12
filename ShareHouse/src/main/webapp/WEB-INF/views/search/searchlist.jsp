@@ -1,12 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인화면</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>매물찾기</title>
 <link href="/css/uppernav.css" rel="stylesheet">
 </head>
 <body>
-
 <div class="fixed">
 <div id="uppernav">
 		<div id="main">
@@ -22,7 +25,7 @@
 		</ul>
 		<div id="p_info">
 			<span id="notification"><img src="/images/notification.png"></span>
-			<span id="login"><a href="/login/login">로그인</a></span>
+			<span id="login">로그인/회원정보</span>
 		</div>
 	</div>
 	<br><br><br><br><br><br>
@@ -41,8 +44,11 @@
 	</div>
 </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<div id="map"></div>
 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=lq4lt4kzb4"></script>
+<script src="/javascript/searchmap.js"></script>
 
 </body>
 </html>
