@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+
+.plus { 
+	font-size:20px;
+	margin-left:360px;
+	margin-right:10px;
+	margin-bottom:10px;
+	width:60px;
+	height:30px;
+	border-radius:5px;
+	float:left;
+	
+	
+}
+
+.plustext {
+		width:5%;
+		height:20px;
+		float:left;
+		margin-right:10px;
+}
+
+.imagebox {
+	clear:both;
+	font-size:15px;
+	border:3px solid black;
+	padding:100px 200px;
+	text-align:center;
+	width:10%;
+	margin:auto;
+	
+}
+
+.introduce {
+	font-size:20px; 
+	border:3px solid black;
+	margin-top:10px;
+	padding:100px; 
+	width:40%;
+	margin:auto;
+	}
+	
+.inputbox {
+	font-size:15px;
+	width:400px;
+	height:200px;
+	resize:none;
+	border:2px solid black;
+}
+
+.registration {
+	font-size:20px;
+	width:8%;
+	color:white;
+	background-color:deepskyblue;
+	border-radius: 12px;
+}
+
+.cancel {
+	font-size:20px; 
+	width:8%;
+	color:white; 
+	background-color:dimgrey;  
+	border-radius: 12px;
+	margin:10px;
+}
+
+.preview {
+	font-size:20px; 
+	width:8%;
+	border-radius:12px;
+}
+
+.table {
+	font-size:15px; 
+    width: 80%;
+    text-align:center;
+    border-collapse: collapse;
+    border: 1px solid #444444;
+    arrang : center;
+    margin-left:auto;
+	margin-right:auto;
+	
+  }
+  
+.btn {
+	text-align:center;
+}
+
+.application_button {
+	width:90%;
+	
+	background-color:red;  
+	color:white; 
+	border:0px;
+}

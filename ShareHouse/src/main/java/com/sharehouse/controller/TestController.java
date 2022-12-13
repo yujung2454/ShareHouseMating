@@ -10,4 +10,5 @@ public class TestController {
 	public String viewtest() {    
 		return "viewtest";
 	}
+
 }

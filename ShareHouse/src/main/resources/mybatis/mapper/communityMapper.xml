@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharehouse.dao.CommunityDao">
+
+	<insert id="insert" parameterType="com.sharehouse.dto.CommunityDto">
+		insert into comm ( Id, Comm_title, Comm_con, Comm_date)
+		values( #{Id}, #{Comm_title}, #{Comm_con}, now())
+	</insert>
+	
+	<update id="updatepost" parameterType="com.sharehouse.dto.CommunityDto">
+		update comm set Comm_title=#{Comm_title} , Comm_con=#{Comm_con}
+		where Comm_no=#{Comm_no}
+	</update>
+
+	<delete id="deletepost" parameterType="int">
+		delete from comm where Comm_no = #{Comm_no}
+	</delete>
+	
+	<select id="count" resultType="int">
+		select count(*) from comm
+	</select>
+		
+	<select id="viewpost" parameterType="int" 
+					resultType="com.sharehouse.dto.CommunityDto">
+		select * from comm where Comm_no = #{Comm_no}
+	</select>
+	
+	<select id="communityList" parameterType="map" resultType="com.sharehouse.dto.CommunityDto">
+		<![CDATA[select * from comm 
+		order by Comm_date desc limit #{start} , #{count}	
+		]]>	<!-- start와 count는 dto에 없음. -> map을 사용. -->
+	</select>
+</mapper>
