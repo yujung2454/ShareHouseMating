@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +24,14 @@
 		</ul>
 		<div id="p_info">
 			<span id="notification"><img src="/images/notification.png"></span>
-			<span id="login"><a href="/login/login">로그인</a></span>
+			<span id="login">
+				<c:if test="${user.user_img} == null">
+					<a href="/mypage/info"><img src="/images/profil.png"></a>
+				</c:if>
+				<c:if test="${user.user_img} != null">
+					<a href="/mypage/info"><img src="${user.user_img}"></a>
+				</c:if>
+			</span>
 		</div>
 	</div>
 	<br><br><br><br><br><br>
@@ -41,5 +51,6 @@
 </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 </body>
 </html>
