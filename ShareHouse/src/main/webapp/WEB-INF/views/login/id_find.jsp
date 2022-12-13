@@ -7,7 +7,7 @@
 <title>아이디/비밀번호 찾기</title>
 </head>
 <style>
-	#input , #result{ display: none;}
+
 </style>
 </head>
 <body>
@@ -53,6 +53,7 @@
 			let ck_num = $("#ck_num").val();
 			if(ck_num == num){
 				alert("인증에 성공했습니다.")
+				$("#result").append("<input type='hidden' id='ck' value='1'>");
 			}else{
 				alert("인증에 실패했습니다. 다시 확인하세요.")
 			}

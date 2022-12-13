@@ -77,8 +77,8 @@ public class SecurityController {
 		return "/login/pwd_find";
 	}
 
-	@GetMapping("/joinView")
-	public String joinView() {
-		return "/login/joinView";
+	@GetMapping("/id_find")
+	public String id_find() {
+		return "/login/id_find";
 	}
 }
