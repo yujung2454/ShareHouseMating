@@ -46,9 +46,9 @@ public class SecurityController {
 		return "/login/login";	
 	}
 	
-	@GetMapping("/main")
-	public String main(Model m, @AuthenticationPrincipal SecurityUser user){
-	    m.addAttribute("user", user.getUsers());
+	@GetMapping("/")
+	public String main(Model m){
+	    m.addAttribute("user");
 	    return "/main";
 	}
 	
