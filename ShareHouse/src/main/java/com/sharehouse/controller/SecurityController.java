@@ -1,5 +1,7 @@
 package com.sharehouse.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -7,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
 import com.sharehouse.config.SecurityUser;
 import com.sharehouse.domain.Users;
+import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.service.UserService;
 
 @Controller
@@ -46,9 +50,10 @@ public class SecurityController {
 		return "/login/login";	
 	}
 	
-	@GetMapping("/main")
-	public String main(Model m, @AuthenticationPrincipal SecurityUser user){
-	    m.addAttribute("user", user.getUsers());
+	@GetMapping("/")
+	public String main(Model m){
+		List<CommunityDto> dlist = service.comm();
+		m.addAttribute("user",dlist);
 	    return "/main";
 	}
 	
