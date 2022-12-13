@@ -25,11 +25,16 @@
 		<div id="p_info">
 			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
-				<c:if test="${user.user_img} == null">
-					<a href="/mypage/info"><img src="/images/profil.png"></a>
+				<c:if test="${user} == null">
+					<a href="/login">로그인</a>
 				</c:if>
-				<c:if test="${user.user_img} != null">
-					<a href="/mypage/info"><img src="${user.user_img}"></a>
+				<c:if test="${user} != null}">
+					<c:if test="${user.user_img} == null">
+						<a href="/mypage/info"><img src="/images/profil.png"></a>
+					</c:if>
+					<c:if test="${user.user_img} != null">
+						<a href="/mypage/info"><img src="${user.user_img}"></a>
+					</c:if>
 				</c:if>
 			</span>
 		</div>
@@ -50,7 +55,18 @@
 	</div>
 </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
+<div class="offering_lst">
+	<c:forEach var="offer" items="${offering}">
+		<div class="offer">
+			<div class="offer_title">
+				${offer.title}
+			</div>
+		</div>
+	</c:forEach>
+	
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/javascript/offeringlist"></script>
+
 </html>

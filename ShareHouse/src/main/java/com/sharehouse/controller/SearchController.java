@@ -18,6 +18,12 @@ public class SearchController {
 	@Autowired
 	AddressService aservice;
 	
+	@GetMapping("/")
+	public String first() {
+		return "/main";
+	}
+	
+	
 	@GetMapping("/search/detailsearch")
 	public String detailSearch() {
 		return "/search/detailsearch";
