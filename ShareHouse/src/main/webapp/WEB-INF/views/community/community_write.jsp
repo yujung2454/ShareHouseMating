@@ -58,7 +58,7 @@
 	<h1>커뮤니티</h1>
 </div>
 <form method="post" id="writeform" action="community_write">
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+ <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 	<table border="1">
 		<tr>
 			<td class="subject">제목 :
