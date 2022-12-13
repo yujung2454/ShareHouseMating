@@ -35,9 +35,9 @@
 	<!-- 조회수/최신순 정렬 -->
 	<div id = "sequence" align="right">
 		<!-- 여긴 모르겠으니 나중에 -->
-		<form action="community_sort">
-			<button type="submit" value="recent">최신순</button>
-			<button type="submit" value="viewcount">조회수 순</button>
+		<form id="sort" action="community_sort">
+		<button type="submit" id="recent" value="recent">최신순</button>
+		<button type="submit" id="viewcount" value="viewcount">조회수 순</button>
 		</form>
 	</div>
 	<div id = "board">
@@ -107,5 +107,8 @@
 <footer>
 </footer>
 
+<script>
+
+</script>
 </body>
 </html>

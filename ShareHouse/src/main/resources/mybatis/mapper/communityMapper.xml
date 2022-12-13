@@ -35,12 +35,8 @@
 	
 	<select id="communityListSearch" parameterType="map" resultType="com.sharehouse.dto.CommunityDto">
 		
-		select * from comm where comm_title like concat('%',#{search},'%') 
-		<choose>
-			<when test="sort == recent">order by comm_date desc limit #{start} , #{count}</when>
-			<when test="sort == viewcount">order by comm_v_count desc limit #{start} , #{count}</when>
-		</choose>
- 		
+		select * from comm where comm_title like concat('%',#{search},'%') order by comm_date desc limit #{start}, #{count}
+		
 	</select>
 	
 	<select id="countSearch" resultType="int" parameterType="map">
@@ -52,12 +48,11 @@
 	
 	<select id="communitySort" parameterType="map" resultType="com.sharehouse.dto.CommunityDto">
 
-		select * from comm 
-		
-			<choose>
-				<when test="sort == viewcount">order by comm_v_cnt desc</when>
-				<when test="sort == recent">order by comm_date desc</when>
-			</choose>
-		
+		select * from comm
+		<choose>
+		<when test="sort==recent"> order by comm_date desc limit #{start}, #{count} </when>
+		<when test="sort==viewcount"> order by comm_v_cnt desc limit #{start} , #{count} </when>
+		</choose>
+
 	</select>
 </mapper>

@@ -38,18 +38,16 @@ public class CommunityService {
 		return dao.deletePost(no);
 	}
 	
-	public List<CommunityDto> communityList(String sort, int start){
+	public List<CommunityDto> communityList(int start){
 		
 		Map<String, Object> m = new HashMap<String, Object>();
-		m.put("sort", sort);
 		m.put("start", start);
 		m.put("count", 10);
 		return dao.communityList(m);
 	}
 	
-	public List<CommunityDto> communityListSearch(String sort, String search,int start){
+	public List<CommunityDto> communityListSearch(String search,int start){
 		Map<String,Object> m = new HashMap<String, Object>();
-		m.put("sort", sort);
 		m.put("search", search);
 		m.put("start", start);
 		m.put("count", 10);
@@ -62,5 +60,12 @@ public class CommunityService {
 		return dao.countSearch(m);
 	}
 	
+	public List<CommunityDto> communitySort(String sort,int start){
+		Map<String,Object> m = new HashMap<String, Object>();
+		m.put("sort", sort);
+		m.put("start", start);
+		m.put("count", 10);
+		return dao.communitySort(m);
+	}
 
 }

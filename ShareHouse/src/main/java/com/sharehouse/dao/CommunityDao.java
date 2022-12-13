@@ -19,5 +19,7 @@ public interface CommunityDao {
 	List<CommunityDto> communityListSearch(Map<String, Object> m); //게시글 검색
 	int countSearch(Map<String, Object> m); // 전체 글 갯수
 	int addReadcount(int no); //조회수 증가
-	
+	List<CommunityDto> communitySort(Map<String, Object> m);
+
+
 }
