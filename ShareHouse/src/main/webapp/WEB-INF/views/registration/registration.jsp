@@ -2,13 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>매물등록-2</title>
-<link href="registration2.css" rel="stylesheet">
-<style>
-        #fileinput {
-            visibility: hidden;
-        }
-</style>
+<title>매물등록</title>
+<link href="registration.css" rel="stylesheet">
+
 <script>
         const add_textbox = () => {
             const box = document.getElementById("box");
@@ -44,6 +40,33 @@
         	return;
         	}
         
+        function onClickUpload() {
+            let myInput = document.getElementById("my-input");
+            myInput.click();
+        }
+        
+        function readImage(input) {
+        	  if (input.files && input.files[0]) {
+        		    var reader = new FileReader();
+        		    reader.onload = function(e) {
+        		      document.getElementById('preview1').src = e.target.result;
+        		    };
+        		    reader.readAsDataURL(input.files[0]);
+        		  } else {
+        		    document.getElementById('preview1').src = "";
+        		  }
+        		}
+        function readImage2(input) {
+      	  if (input.files && input.files[0]) {
+      		    var reader = new FileReader();
+      		    reader.onload = function(e) {
+      		      document.getElementById('preview2').src = e.target.result;
+      		    };
+      		    reader.readAsDataURL(input.files[0]);
+      		  } else {
+      		    document.getElementById('preview2').src = "";
+      		  }
+      		}
 
 </script>
 </head>
@@ -55,15 +78,10 @@
 </form>
 <form>
 <div class="imagebox">
-	<img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-PNG-Clipart-Background.png" style="width:100px; height:100px;" alt="이미지 업로드">
-	<input id="fileinput" multiple="multiple" type="file" name="filename[]">
-	<button id="my-button" onclick="onclickUpload();">이미지 업로드</button>
-		<script>
-        	function onclickUpload() {
-            	let myInput = document.getElementbyId("fileinput");
-            	myInput.click();
-	        	}
-		</script>
+	<input type=file name='file1' accept=".png, .jpg" onchange="readImage(this);" style='display: none;'> 
+	<input type='text' name='file2' id='file2' style='display: none;'> 
+	<img src="https://www.pngplay.com/wp-content/uploads/8/Upload-Icon-Logo-PNG-Clipart-Background.png" style="width:100px; height:100px;" border='0' onclick='document.all.file1.click(); document.all.file2.value=document.all.file1.value'> 
+	<img id="preview1"/>
 </div>	
 </form>
 
@@ -83,19 +101,19 @@
 	<textarea placeholder="내용을 입력해주세요" class="inputbox"></textarea>
 </form>
 <br><br>
-집 규칙, 유의사항<br><br>
+규칙 및 유의사항<br><br>
 <form>
 	<textarea placeholder="내용을 입력해주세요" class="inputbox"></textarea>
 </form>
 <br><br>	
-방정보<br><br>
-<form>
-	<textarea placeholder="내용을 입력해주세요" class="inputbox"></textarea>
-</form>
-<br><br>
+<b>방정보</b><br><br>
+
 내부도면<br><br>
-<input type="file" name="image" style="font-size:15px;">
-<br><br><br>
+  <input id="my-input" type="file" accept=".png, .jpg" onchange="readImage2(this);" multiple><br>
+        <button id="my-button" onclick="onClickUpload();" >사진 불러오기</button>
+        <img id="preview2"/>
+	
+<br><br><br><br>
 
 <table border="1" id="home_infor" class="table">	
 <thead>

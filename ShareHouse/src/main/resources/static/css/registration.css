@@ -10,8 +10,6 @@
 	height:30px;
 	border-radius:5px;
 	float:left;
-	
-	
 }
 
 .plustext {
@@ -47,6 +45,11 @@
 	height:200px;
 	resize:none;
 	border:2px solid black;
+}
+
+.fileupload {
+	
+	
 }
 
 .registration {
@@ -88,10 +91,6 @@
 	text-align:center;
 }
 
-.application_button {
-	width:90%;
-	
-	background-color:red;  
-	color:white; 
-	border:0px;
-}
+#my-input{
+            visibility: hidden;
+        }

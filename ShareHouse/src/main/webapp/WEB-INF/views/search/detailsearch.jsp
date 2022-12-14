@@ -18,7 +18,7 @@
 			<span id="home" class="to_main"><a href="/">우리집</a></span>
 		</div>
 		<ul class="upper_frame">
-			<li class="upper_menu">쉐어하우스란?</li>
+			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
 			<li class="upper_menu"><a href="/search/searchlist">방 찾기</a></li>
 			<li class="upper_menu">매물 등록</li>
 			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>

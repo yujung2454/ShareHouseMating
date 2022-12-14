@@ -22,9 +22,8 @@
 		select count(*) from comm
 	</select>
 		
-	<select id="viewpost" parameterType="int" 
-					resultType="com.sharehouse.dto.CommunityDto">
-		select * from comm where Comm_no = #{Comm_no}
+	<select id="viewPost" parameterType="int" resultType="com.sharehouse.dto.CommunityDto">
+		select Id, Comm_title, Comm_con, Comm_date, Comm_v_cnt from comm where Comm_no=${Comm_no}
 	</select>
 	
 	<select id="communityList" parameterType="map" resultType="com.sharehouse.dto.CommunityDto">

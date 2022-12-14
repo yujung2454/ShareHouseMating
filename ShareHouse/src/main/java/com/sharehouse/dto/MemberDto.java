@@ -15,5 +15,5 @@ public class MemberDto {
 	@NotEmpty(message="password is empty.")
 	private String password;
 	private String name;
-	
+	private String user_img=null;
 }

@@ -38,17 +38,17 @@
 <form id="viewpost">
 <table border="1" class="table">
 <tr>
-<td>제목 : ${comm.comm_title}</td>
+<td>제목 : ${dto.comm_title}</td>
 </tr>
 <tr>
 <td>
-<pre><b>작성자 : ${comm.id}							작성일 : ${comm.comm_date}		조회수 : ${comm.comm_v_cnt}</b>
+<pre><b>작성자 : ${dto.id}							작성일 : ${dto.comm_date}		조회수 : ${dto.comm_v_cnt}</b>
 </pre>
 </td>
 </tr>
 <tr height ="300">
 <td>
-${comm.comm_con}
+${dto.comm_con}
 </td>
 </tr>
 <tr>

@@ -14,7 +14,6 @@ public interface CommunityDao {
 	List<CommunityDto> communityList(Map<String, Object> m);
 	int count();	//전체 글 갯수
 	int updatePost(CommunityDto dto);
-	int deletePost(int no);
-	CommunityDto viewPost(int Comm_no);
+	int deletePost(int comm_no);
+	CommunityDto viewPost(int comm_no);
 }
-	

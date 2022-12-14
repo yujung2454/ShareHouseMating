@@ -34,8 +34,8 @@ public class CommunityService {
 		return dao.deletePost(no);
 	}
 	
-	public CommunityDto viewPost(int Comm_no) {
-		return dao.viewPost(Comm_no);
+	public CommunityDto viewPost(int comm_no) {
+		return dao.viewPost(comm_no);
 	}
 	
 	public List<CommunityDto> communityList(int start){

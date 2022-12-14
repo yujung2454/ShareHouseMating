@@ -1,6 +1,5 @@
 package com.sharehouse.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ public class CommunityController {
 	
 	@Autowired
 	CommunityService service;
-	CommunityService c_service;
 	
 	@ModelAttribute("user")
 	public MemberDto getDto() {
@@ -43,9 +41,9 @@ public class CommunityController {
 		return "redirect:community_list";
 	}
 	
-	@GetMapping("/community/community_view/{Comm_no}")
-	public String content(@ModelAttribute("user")MemberDto user, @PathVariable int Comm_no, Model m) {
-		CommunityDto dto = c_service.viewPost(Comm_no);
+	@GetMapping("/community/community_view/{comm_no}")
+	public String content(@ModelAttribute("user")MemberDto user, @PathVariable int comm_no, Model m) {
+		CommunityDto dto = service.viewPost(comm_no);
 		m.addAttribute("dto", dto);
 		return "community/community_view";
 	}

@@ -115,8 +115,8 @@
 						<c:if test="${count != 0}">
 							<c:forEach items="${cList}" var="comm">
 							<tr>
-								<td><a href="community_view">${comm.comm_no}</a></td>
-								<td><a href="community_view">${comm.comm_title}</a></td>
+								<td><a href="community_view/${comm.comm_no}">${comm.comm_no}</a></td>
+								<td><a href="community_view/${comm.comm_no}">${comm.comm_title}</a></td>
 								<td>${comm.id}</td>
 								<td><fmt:formatDate value="${comm.comm_date}" dateStyle="short" /></td>
 								<td>${comm.comm_v_cnt}</td>
