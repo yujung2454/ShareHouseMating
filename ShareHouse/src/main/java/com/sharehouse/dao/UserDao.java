@@ -1,6 +1,7 @@
 package com.sharehouse.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,8 +27,8 @@ int insertUser(Users user);
 ("select * from comm")
 List<CommunityDto> comm();
 
-/*
- * @Select ("select id from member where email = #{email}") List<String>
- * findByEmail(String email);
- */
+
+@Select("select email from user where name = #{name} and email = #{email}") 
+String findByEmail(Map<String, String> map); // 매개변수 성언 좀... 타입 변수명 외웁시다 실행 
+ 
 }
