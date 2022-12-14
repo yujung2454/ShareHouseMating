@@ -81,4 +81,9 @@ public class SecurityController {
 	public String id_find() {
 		return "/login/id_find";
 	}
+	
+	@GetMapping("/id_find2")
+	public String id_find2() {
+		return "/login/id_find2";
+	}
 }

@@ -32,7 +32,7 @@
 			onclick="location.href='/insert'" />
 			
 			<input type="button" value="아이디/비밀번호찾기"
-			onclick="location.href='/joinView'" />
+			onclick="location.href='/id_find'" />
 			
 
 		</td>

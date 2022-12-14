@@ -12,17 +12,18 @@
 </head>
 <body>
 <h1>아이디 찾기</h1>
-<form action="/manager" method="post" id="joinForm">
+<div id="pwd_find"><button type="button" onclick="location.href='/pwd_find'">비밀번호 찾기</button></div>
+<form action="/id_find2" method="post" id="joinForm">
 	<table >
 		<tr><td>name</td><td><input name="name" id="name">
 		<div id="name_msg"></div></td></tr>
 		<tr><td>email</td><td><input name="email" id="email">
 		<input type="button" id="mail_ck" value="메일 인증">
-		<div id="emailresult"></div>
-		<div id="input"><input name="certification" id="ck_num"> 
+		<div id="emailresult"></div></td></tr>
+		<tr><td><div id="input"><input name="certification" id="ck_num"> 
 		<input type="button" id="ck_b" value="인증 확인"></div>
-		<div id="result"></div>
 		</td></tr>
+		<div id="result"></div>
 		<tr><td colspan="2"><input type="submit" value="확인"></td></tr>
 	</table>
 	
@@ -34,10 +35,10 @@
 		 $("#mail_ck").click(function(){
 			 let email = $("#email").val();
 			if(!email){
-					$("#result").css("display","block").html("메일 주소를 입력하세요");	
-					return false;
-				}
-			
+				alert("이메일을 입력하세요.")
+				return false;
+			}
+		
 		 $.ajax({url:"/send",
 			 	data:"emailAddress="+email,
 				dataType:"json"}
@@ -45,12 +46,14 @@
 				if(eval(data[1])){
 					num = data[0];
 					alert("메일이 전송되었습니다. 인증번호를 입력하세요.")
-					$("#input,#result").css("display","block");
 				}
 			}); 
 		}) 
 		$("#ck_b").click(function(){
 			let ck_num = $("#ck_num").val();
+			if(ck_num == null){
+				alert("인증번호를 입력하세요.")
+			}
 			if(ck_num == num){
 				alert("인증에 성공했습니다.")
 				$("#result").append("<input type='hidden' id='ck' value='1'>");
