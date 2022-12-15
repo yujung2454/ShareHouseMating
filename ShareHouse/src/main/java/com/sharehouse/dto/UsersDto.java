@@ -1,10 +1,12 @@
-package com.sharehouse.domain;
+package com.sharehouse.dto;
 
+
+import com.sharehouse.domain.Role;
 
 import lombok.Data;
 
 @Data
-public class Users { 
+public class UsersDto { 
 	
 
 	private String id; 

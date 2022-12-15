@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â</title>
+<title>ì•„ì´ë”” ì°¾ê¸°</title>
 </head>
 <style>
 * {box-sizing: border-box;}
@@ -27,24 +26,24 @@
 <body>
 <div class="container">
 	<div class="title1">
-		<h1>¾ÆÀÌµğÃ£±â</h1>
-		<div id="pwd_find" class="btn_pw_find"><button type="button" onclick="location.href='/pwd_find'">ºñ¹Ğ¹øÈ£ Ã£±â</button></div>
+		<h1>ì•„ì´ë””ì°¾ê¸°</h1>
+		<div id="pwd_find" class="btn_pw_find"><button type="button" onclick="location.href='/pwd_find'">ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</button></div>
 	</div>
-	<form action="/id_find2" method="post" id="joinForm">
+	<form action="/id_find2/{}/{}" method="post" id="joinForm">
 		<div class="tbl_type1">
-			<p class="title2">ÀÌ¸ŞÀÏ·Î ÀÎÁõ</p>
+			<p class="title2">ì´ë©”ì¼ë¡œ ì¸ì¦</p>
 			<table>
 				<tr>
 					<td>
-						<input name="name" id="name" placeholder="ÀÌ¸§">
+						<input name="name" id="name" placeholder="ì´ë¦„">
 						<div id="name_msg"></div>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<div class="inp_bundle">
-							<input name="email" id="email" placeholder="ÀÌ¸ŞÀÏ ÁÖ¼Ò">
-							<input type="button" id="mail_ck" value="ÀÎÁõ">
+							<input name="email" id="email" placeholder="ì´ë©”ì¼ ì£¼ì†Œ">
+							<input type="button" id="mail_ck" value="ì¸ì¦">
 						</div>
 						<div id="emailresult"></div>
 					</td>
@@ -52,13 +51,13 @@
 				<tr>
 					<td>
 						<div id="input">
-							<input name="certification" id="ck_num" placeholder="ÀÎÁõ¹øÈ£"> 
+							<input name="certification" id="ck_num" placeholder="ì¸ì¦ë²ˆí˜¸"> 
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td> 
-						<input type="submit" id="ck_b" value="È®ÀÎ">
+						<input type="submit" id="ck_b" value="í™•ì¸">
 					</td>
 				</tr>
 			</table>
@@ -71,41 +70,57 @@
 	let num ="";
 	$(function(){
 		 $("#mail_ck").click(function(){
-			 let email = $("#email").val();
-			if(!email){
-				alert("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä.")
+			 let email = $("#email").val(); //í¼ì—ì„œ ì…ë ¥ ë°›ì•„ì™€ì•¼í•  ë°ì´í„°(email)
+			if(!email){ // í¼ì—ì„œ ì…ë ¥í•œ emailê°’ì´ ì—†ìœ¼ë©´
+				alert("ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”.")
 				return false;
 			}
 		
-			//name ¹Ş¾Æ¿À°í
-			// ÄÁÆ®·Ñ·¯ ¸¸µé¾î¼­ ¸ŞÀÏÁÖ¼Ò ¹Ş¾Æ¿Í¼­ ÀÖÀ¸¸é ¾Æ·¡ ºÎºĞ ½ÇÇàÇÏ°í ¾Æ´Ï¸é ¾Æ¹« µ¿ÀÛ ¾ø°Ô if·Î ¸¸µé¾î... 
+			let name = $("#name").val();	
+			if(!name){
+				alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.")
+				return false;
+			}
+			//name ë°›ì•„ì˜¤ê³ 
+			// ì»¨íŠ¸ë¡¤ëŸ¬ ë§Œë“¤ì–´ì„œ ë©”ì¼ì£¼ì†Œ ë°›ì•„ì™€ì„œ ìˆìœ¼ë©´ ì•„ë˜ ë¶€ë¶„ ì‹¤í–‰í•˜ê³  ì•„ë‹ˆë©´ ì•„ë¬´ ë™ì‘ ì—†ê²Œ ifë¡œ ë§Œë“¤ì–´... 
 			
-			
-		 $.ajax({url:"/send",
-			 	data:"emailAddress="+email,
-				dataType:"json"}
-			).done(function(data){
-				if(eval(data[1])){
-					num = data[0];
-					alert("¸ŞÀÏÀÌ Àü¼ÛµÇ¾ú½À´Ï´Ù. ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.")
-				}
-			}); 
-		}) 
 		
-		$("#ck_b").click(function(){
+		 	$.ajax({
+				url: "/id_find_email", //ìš”ì²­í•˜ë©´ ì´ urlì— ë§ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ì‘ë™
+				data: "emailAddress="+email+"&name="+name // ë°›ì•„ì˜¬ ë°ì´í„°
+			}).done(function(resp){ // --> ì „ë‹¬ë°›ì€ ë°ì´í„° ì‚¬ìš©
+				if(resp == ""){ // ì„œë²„ì—ì„œ nullê°’ì„ ë°›ì•„ì˜¬ ë•ŒëŠ” ë¹ˆë¬¸ìì—´ë¡œ ë°›ì•„ì˜´ (ì¼ë°˜ ë°ì´í„°ëŠ” ë¬¸ìì—´ë¡œ ë°›ì•„ì˜¤ëŠ”ë° nullì€ "null"ì´ ë˜ë©´ ì•ˆë¨)
+					alert("ì´ë¦„ í˜¹ì€ ë©”ì¼ ì£¼ì†Œ í‹€ë¦¼");
+				}else{
+					$.ajax({url:"/send",
+					 	data:"emailAddress="+email,
+						dataType:"json"}
+					).done(function(data){
+						if(eval(data[1])){
+							num = data[0];
+							alert("ë©”ì¼ì´ ì „ì†¡ë˜ì—ˆìŠµë‹ˆë‹¤. ì¸ì¦ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.")
+						}
+					}); 
+					
+				}
+			}) 
+		 }) 	
+			
+		$("#joinForm").submit(function(){ //submitë²„íŠ¼ì— ì´ë²¤íŠ¸ë¥¼ ë„£ì–´ ì¤„ ë•Œ
 			let ck_num = $("#ck_num").val();
 			if(!ck_num){
-				alert("ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.")
+				alert("ì¸ì¦ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.")
 				return false;
 			}
 			if(ck_num == num){
-				alert("ÀÎÁõ¿¡ ¼º°øÇß½À´Ï´Ù.")
-				$("#result").append("<input type='hidden' id='ck' value='1'>");
+				alert("ì¸ì¦ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.")
+				//$("#result").append("<input type='hidden' id='ck' value='1'>");
 			}else{
-				alert("ÀÎÁõ¿¡ ½ÇÆĞÇß½À´Ï´Ù. ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.")
+				alert("ì¸ì¦ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.")
+				return false;
 			}
-		})
 		
+		 }) 
 	})
 
 </script>
