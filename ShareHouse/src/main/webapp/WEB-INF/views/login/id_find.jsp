@@ -29,7 +29,7 @@
 		<h1>아이디찾기</h1>
 		<div id="pwd_find" class="btn_pw_find"><button type="button" onclick="location.href='/pwd_find'">비밀번호 찾기</button></div>
 	</div>
-	<form action="/id_find2/{}/{}" method="post" id="joinForm">
+	<form action="/id_find2" method="post" id="findId">
 		<div class="tbl_type1">
 			<p class="title2">이메일로 인증</p>
 			<table>
@@ -106,7 +106,7 @@
 			}) 
 		 }) 	
 			
-		$("#joinForm").submit(function(){ //submit버튼에 이벤트를 넣어 줄 때
+		$("#findId").submit(function(){ //submit버튼에 이벤트를 넣어 줄 때
 			let ck_num = $("#ck_num").val();
 			if(!ck_num){
 				alert("인증번호를 입력하세요.")
@@ -119,7 +119,7 @@
 				alert("인증에 실패했습니다. 다시 확인하세요.")
 				return false;
 			}
-		
+			
 		 }) 
 	})
 

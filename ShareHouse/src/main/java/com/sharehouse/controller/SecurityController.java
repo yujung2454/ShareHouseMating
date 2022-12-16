@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -68,23 +69,17 @@ public class SecurityController {
 	public String insert() {
 		return "/login/insert";
 	}
+	
 	@PostMapping("/insert")
 	public String insert(UsersDto users) { //받아올 정보가 여러개니까 dto객체로 //오버로딩
 		service.insertUser(users);
 		return "redirect:login/index";
 	}
-
-	@GetMapping("/pwd_find")
-	public String pwd_find() {
-		return "/login/pwd_find";
-	}
-
 	
-	@GetMapping("/id_find/{}/{}")
-	public String id_find() {@PathVariable String Id, .Id..
+	@GetMapping("/id_find")
+	public String id_find(){
 		return "/login/id_find";
 	}
-	
 	
 	@GetMapping("/id_find_email") //ajax에서 요청한 url
 	@ResponseBody // ajax에 view없이 데이터만 보낼거기 때문에
@@ -97,9 +92,34 @@ public class SecurityController {
 	}
 	
 	@PostMapping("/id_find2")
-	public String id_find2() {
+	public String id_find2(String name, String email, Model m) {
+		Map<String , String> map = new HashMap<>();
+		map.put("name", name); //생성한 map객체에 데이터 저장
+		map.put("email", email);
+		
+		String fbe2 = service.findByEmail2(map);
+
+		m.addAttribute("fbe2", fbe2);
 		return "/login/id_find2";
 	}
 	
+	@GetMapping("/pwd_find")
+	public String pwd_find() {
+		return "/login/pwd_find";
+	}
+
+	@GetMapping("/pwd_find_id")
+	@ResponseBody
+	public String findById(UsersDto user) {
+		String fbi = service.findById(user);
+		return fbi;
+	}
+	
+	@PostMapping("/pwd_find2")
+	public String pwd_find2(String id, Model m) {
+		String fbi2 = service.findById2(id);
+		m.addAttribute("fbi2", fbi2);
+		return "/login/pwd_find2";
+	}
 	
 }

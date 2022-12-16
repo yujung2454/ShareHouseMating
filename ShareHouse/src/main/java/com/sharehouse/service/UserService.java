@@ -46,4 +46,12 @@ public class UserService {
 	public String findByEmail2(Map<String, String> map) {
 		return dao.findByEmail2(map);
 	}
+	
+	public String findById2(String id) {
+		return dao.findById2(id);
+	}
+	
+	public String findById(UsersDto user) {
+		return dao.findById(user);
+	}
 }
