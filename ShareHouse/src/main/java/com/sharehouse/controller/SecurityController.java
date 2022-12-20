@@ -9,9 +9,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.CommunityDto;
@@ -19,38 +21,15 @@ import com.sharehouse.dto.UsersDto;
 import com.sharehouse.service.UserService;
 
 @Controller
+@SessionAttributes("user") //세션에 저장될 이름
 public class SecurityController {
 
 	@Autowired
 	UserService service;
 	
-	@GetMapping("/index")
-	public String index() {
-		System.out.println("index 요청입니다.");
-		return "/login/index";
-	}
-	@GetMapping("/member")
-	public String forMember() {
-		System.out.println("Member 요청입니다.");
-		return "/login/member";
-		
-	}
-	@GetMapping("/manager")
-	public String formamger() {
-		System.out.println("Manager 요청입니다.");
-		return "/login/manager";
-	}
-	
-	@GetMapping("/admin")
-	public String forAdmin(@AuthenticationPrincipal SecurityUser user) { // 세션에 저장된 정보 꺼내쓰기
-		System.out.println("user.getUsername() :" +user.getUsername());
-		System.out.println("Admin 요청입니다.");
-		return "/login/admin";
-	}
-	
-	@GetMapping("/login")
-	public String login() {
-		return "/login/login";	
+	@ModelAttribute("user")
+	public UsersDto getDto() { //리턴 타입: 세션에 저장할 객체 타입
+		return new UsersDto(); 
 	}
 	
 	@PostMapping("/")
@@ -60,20 +39,33 @@ public class SecurityController {
 	    return "/main";
 	}
 	
-	@GetMapping("/accessDenied")
-	public String accessDenied() {	
-		return "/login/accessDenied";
-	}
-	
 	@GetMapping("/insert")
-	public String insert() {
+	public String join() {
 		return "/login/insert";
 	}
 	
 	@PostMapping("/insert")
 	public String insert(UsersDto users) { //받아올 정보가 여러개니까 dto객체로 //오버로딩
 		service.insertUser(users);
-		return "redirect:login/index";
+		return "redirect:/login";
+	}
+	
+	@GetMapping("/idCheck")
+	@ResponseBody
+	public String idCheck(String id) {
+		String checkid = service.idCheck(id);
+		return checkid;
+	}
+	
+	@GetMapping("/login")
+	public String login(){
+		return "/login/login";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(SessionStatus status) {
+		status.setComplete();
+		return "redirect:/";
 	}
 	
 	@GetMapping("/id_find")

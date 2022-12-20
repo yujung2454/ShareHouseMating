@@ -18,8 +18,13 @@ public interface UserDao {
 ("select * from user where id = #{id}")
 UsersDto findById(String id);	
 
-@Insert("insert into user values(#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{gender}, #{user_add}, #{user_add2}, #{user_Img}, #{status})")
+@Insert
+("insert into user(id,pwd,name,email,tel,gender,user_add,user_add2,status) values(#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{gender}, #{user_add}, #{user_add2},'ROLE_MEMBER')")
 int insertUser(UsersDto users);
+
+@Select
+("select id from user where id =#{id}")
+String idCheck(String id);
 
 @Select
 ("select * from comm")

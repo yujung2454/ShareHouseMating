@@ -25,14 +25,15 @@ public class UserService {
 	public int insertUser(UsersDto users) { //Users : form에 입력한 값들 저장되어 있음
 		
 		//암호화(BCrypt 알고리즘 )
-		users.setPwd(encoder.encode(users.getPwd())); // 암호화된 pwd를 다시 set(저장)
+		//users.setPwd(encoder.encode(users.getPwd())); // 암호화된 pwd를 다시 set(저장)
 	
-		users.setStatus(Role.ROLE_MEMBER);
+		//users.setStatus(Role.ROLE_MEMBER);
 		
-		int i = dao.insertUser(users);
-		System.out.println(i);
-		
-		return i;
+		return dao.insertUser(users);
+	}
+	
+	public String idCheck(String id) {
+		return dao.idCheck(id);
 	}
 	
 	public List<CommunityDto> comm(){

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>시큐리티 테스트</title>
+	<title>로그인</title>
 </head>
 
 <style>
@@ -109,7 +109,7 @@ $(function(){
 	            setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
 	        }
 	    });
-
+	});
 	// 쿠키 저장하기 
 	// setCookie => saveid함수에서 넘겨준 시간이 현재시간과 비교해서 쿠키를 생성하고 지워주는 역할
 	function setCookie(cookieName, value, exdays) {

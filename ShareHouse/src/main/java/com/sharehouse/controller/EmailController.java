@@ -21,6 +21,7 @@ public class EmailController {
 
 	@RequestMapping("/send")
 	public String[] sendMail(String emailAddress) throws Exception {
+		
 
 		EmailVO email = new EmailVO();
 

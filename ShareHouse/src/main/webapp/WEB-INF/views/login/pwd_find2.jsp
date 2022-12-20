@@ -34,13 +34,13 @@
 				<tr>
 					<td>
 						<input type="hidden" name="id" value="${id }">
-						<input name="pwd" id="pwd" placeholder="새 비밀번호를 입력해주세요">
+						<input type="password" name="pwd" id="pwd" placeholder="새 비밀번호를 입력해주세요">
 						<div id="pwd_msg"></div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input name="pwd_c" id="pwd_c" placeholder="새 비밀번호 확인">
+						<input type="password" name="pwd_c" id="pwd_c" placeholder="새 비밀번호 확인">
 						<div id="c_msg"></div>
 					</td>
 				</tr>
