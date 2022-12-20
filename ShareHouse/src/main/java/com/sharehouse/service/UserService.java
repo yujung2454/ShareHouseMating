@@ -47,11 +47,11 @@ public class UserService {
 		return dao.findByEmail2(map);
 	}
 	
-	public String findById2(String id) {
-		return dao.findById2(id);
+	public String findById2(UsersDto users) {
+		return dao.findById2(users);
 	}
 	
-	public String findById(UsersDto user) {
-		return dao.findById(user);
+	public void updateUser(Map<String, String> map) {
+		 dao.updateUser(map);
 	}
 }

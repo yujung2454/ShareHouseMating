@@ -53,7 +53,7 @@ public class SecurityController {
 		return "/login/login";	
 	}
 	
-	@GetMapping("/")
+	@PostMapping("/")
 	public String main(Model m){
 		List<CommunityDto> dlist = service.comm();
 		m.addAttribute("user",dlist);
@@ -83,6 +83,7 @@ public class SecurityController {
 	
 	@GetMapping("/id_find_email") //ajax에서 요청한 url
 	@ResponseBody // ajax에 view없이 데이터만 보낼거기 때문에
+	//변수에 바로 저장 - 변수명 일치하게
 	public String findByEmail(String emailAddress, String name){
 		Map<String , String> map = new HashMap<>(); //map객체 생성
 		map.put("name", name); //생성한 map객체에 데이터 저장
@@ -110,16 +111,24 @@ public class SecurityController {
 
 	@GetMapping("/pwd_find_id")
 	@ResponseBody
-	public String findById(UsersDto user) {
-		String fbi = service.findById(user);
-		return fbi;
+	public String findById2(UsersDto users) {
+		String fbi2 = service.findById2(users);
+		return fbi2;
 	}
 	
 	@PostMapping("/pwd_find2")
-	public String pwd_find2(String id, Model m) {
-		String fbi2 = service.findById2(id);
-		m.addAttribute("fbi2", fbi2);
+	public String findById3(String id, String pwd, Model m) {
+		m.addAttribute("id", id);
 		return "/login/pwd_find2";
+	}
+
+	@PostMapping("/update_pwd")
+	public String update_pwd(String id, String pwd) {
+		Map<String , String> map = new HashMap<>();
+		map.put("id", id); //생성한 map객체에 데이터 저장
+		map.put("pwd", pwd);
+		service.updateUser(map);
+		return "redirect:/login";
 	}
 	
 }

@@ -22,7 +22,6 @@
 .tbl_type1 .inp_bundle input{ width: 80%;display: inline-block;}
 .tbl_type1 .inp_bundle input[type="button"]{ width: calc(20% - 6px);}
 </style>
-</head>
 <body>
 <div class="container">
 	<div class="title1">
@@ -75,34 +74,32 @@
 	let num ="";
 	$(function(){
 		 $("#mail_ck").click(function(){
-			let email = $("#email").val(); //폼에서 입력 받아와야할 데이터(email)
-			if(!email){ // 폼에서 입력한 email값이 없으면
-				alert("이메일을 입력하세요.")
+			let id = $("#id").val();	
+			if(!id){
+				alert("아이디를 입력하세요.")
 				return false;
 			}
-		
+			
 			let name = $("#name").val();	
 			if(!name){
 				alert("이름을 입력하세요.")
 				return false;
 			}
 			
-			let id = $("#id").val();	
-			if(!id){
-				alert("아이디를 입력하세요.")
+			let email = $("#email").val(); //폼에서 입력 받아와야할 데이터(email)
+			if(!email){ // 폼에서 입력한 email값이 없으면
+				alert("이메일을 입력하세요.")
 				return false;
 			}
 			//name 받아오고
 			// 컨트롤러 만들어서 메일주소 받아와서 있으면 아래 부분 실행하고 아니면 아무 동작 없게 if로 만들어... 
 			
-		
 		 	$.ajax({
 				url: "/pwd_find_id", //요청하면 이 url에 맞는 컨트롤러가 작동
-				data: "emailAddress="+email+"&name="+name+"&id="+id // 받아올 데이터
+				data: "email="+email+"&name="+name+"&id="+id // 받아올 데이터
 			}).done(function(resp){
 				//System.out.println("resp");// --> 전달받은 데이터 사용
 				if(resp == ""){ // 서버에서 null값을 받아올 때는 빈문자열로 받아옴 (일반 데이터는 문자열로 받아오는데 null은 "null"이 되면 안됨)
-				
 					alert("틀린 정보가 있는지 확인하세요."+resp);
 				}else{
 					$.ajax({url:"/send",

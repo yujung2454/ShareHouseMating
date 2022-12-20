@@ -26,19 +26,19 @@
 <body>
 <div class="container">
 	<div class="title1"><h1>로그인</h1></div>
-	<form method="post">
+	<form action="/" id="login" method="post">
 		<div class="tbl_type1">
 			<table align="center" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td>
 					아이디
-					<input type="text" name="username"/>
+					<input type="text" name="username" id="username"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					비밀번호
-					<input type="password" name="password"/>
+					<input type="password" name="password" id="password"/>
 				</td>
 			</tr>
 			<tr>
@@ -66,8 +66,25 @@
 	</form>
 </div>
 
-		<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>	
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(function(){
+	$("#login").submit(function(){ //submit버튼에 이벤트를 넣어 줄 때
+		let username = $("#username").val();
+		let password = $("#password").val();
+		if(!username){
+			alert("아이디를 입력하세요.")
+			return false;
+		}
+		
+		if(!password){
+			alert("비밀번호를 입력하세요.")
+			return false;
+		}
+	 })
+})
+
+
 	$(document).ready(function(){
 		// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
 	    var key = getCookie("key");

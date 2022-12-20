@@ -22,7 +22,6 @@
 .tbl_type1 .inp_bundle input{ width: 80%;display: inline-block;}
 .tbl_type1 .inp_bundle input[type="button"]{ width: calc(20% - 6px);}
 </style>
-</head>
 <body>
 <div class="container">
 	<div class="title1">
