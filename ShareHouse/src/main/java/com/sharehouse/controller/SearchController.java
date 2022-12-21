@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.sharehouse.service.AddressService;
+import com.sharehouse.service.ListService;
 
 @Controller
 public class SearchController {
@@ -18,9 +19,9 @@ public class SearchController {
 	@Autowired
 	AddressService aservice;
 	
-	@GetMapping("/")
-	public String first() {
-		return "/main";
+	@GetMapping("/search")
+	public String querysearch(Model m, String query) {
+		return "/search/searchlist";
 	}
 	
 	

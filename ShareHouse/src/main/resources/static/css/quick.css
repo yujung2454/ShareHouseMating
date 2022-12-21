@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.quick{
+	position:fixed;
+	left:90%;
+	top:60%;
+}
+
+.quick_shape{
+	border-radius:50%;
+	border:solid 1px;
+	box-shadow:2px 2px 2px;
+	margin: 10px;
+}
