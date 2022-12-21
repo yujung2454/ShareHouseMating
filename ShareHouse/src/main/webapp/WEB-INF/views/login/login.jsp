@@ -26,7 +26,7 @@
 <body>
 <div class="container">
 	<div class="title1"><h1>로그인</h1></div>
-	<form action="/" id="login" method="post">
+	<form action="/login" id="login" method="post">
 		<div class="tbl_type1">
 			<table align="center" border="0" cellpadding="0" cellspacing="0">
 			<tr>

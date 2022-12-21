@@ -9,11 +9,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 
@@ -22,7 +20,6 @@ import com.google.gson.Gson;
 
 import com.sharehouse.config.SecurityUser;
 
-import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.UsersDto;
 
 
@@ -65,21 +62,38 @@ public class SecurityController {
 		return "/login/login";	
 	}
 	
-	@GetMapping("/")
-	public String main(@AuthenticationPrincipal SecurityUser user,Model m){
-		if(user == null) {
-			m.addAttribute("user",null);
-		}else {
-			m.addAttribute("user",user.getUsers());
-		}
-		List<Map<String, Object>> offering = service.offering();
-		m.addAttribute("offering",offering);
-		Gson gson = new Gson();
-		m.addAttribute("offering2",gson.toJson(offering));
-
-	    return "/main";
-	}
+	/*
+	 * @GetMapping("/") public String main(Model m){
+	 * 
+	 * List<Map<String, Object>> offering = service.offering();
+	 * m.addAttribute("offering",offering); Gson gson = new Gson();
+	 * m.addAttribute("offering2",gson.toJson(offering));
+	 * 
+	 * return "/main"; }
+	 * 
+	 * @PostMapping("/") public String main(@AuthenticationPrincipal SecurityUser
+	 * user,Model m){ if(user == null) { m.addAttribute("user",null); }else {
+	 * m.addAttribute("user",user.getUsers()); } List<Map<String, Object>> offering
+	 * = service.offering(); m.addAttribute("offering",offering); Gson gson = new
+	 * Gson(); m.addAttribute("offering2",gson.toJson(offering));
+	 * 
+	 * return "/main"; }
+	 */
 	
+	 @GetMapping("/")
+	   public String main(@AuthenticationPrincipal SecurityUser user,Model m){
+		 System.out.println("test");
+	      if(user == null) {
+	         m.addAttribute("user",null);
+	      }else {
+	         m.addAttribute("user",user.getUsers());
+	      }
+	      List<Map<String, Object>> offering = service.offering();
+	      m.addAttribute("offering",offering);
+	      Gson gson = new Gson();
+	      m.addAttribute("offering2",gson.toJson(offering));
+	       return "/main";
+	   }
 	@GetMapping("/insert")
 	public String join() {
 		return "/login/insert";
