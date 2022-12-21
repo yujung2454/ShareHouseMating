@@ -5,9 +5,6 @@
 <title>회원 가입</title>
 </head>
 <style>
-#input , #result {
-	display : none;
-}
 	* {box-sizing: border-box;}
 	.container {margin: 0 auto; width: 700px;}
 	.title1 {position: relative;}
@@ -90,7 +87,7 @@
 			<tr>
 				<td>
 					휴대전화
-					<input name="tel" id="tel"/>
+					<input name="tel" maxlength="13" id="tel"/>
 				</td>
 			</tr>
 		</table>
@@ -129,12 +126,16 @@ $(function(){
 			if(eval(data[1])){
 				num = data[0];
 				alert("메일이 전송되었습니다. 인증번호를 입력하세요.")
-				$("#input,#result").css("display","block");
+				//$("#input,#result").css("display","block");
 			}
 		}); 
 	}) 
 	$("#ck_b").click(function(){
 		let ck_num = $("#ck_num").val();
+		if(!ck_num){
+			alert("인증번호를 입력하세요.")
+			return false;
+		}
 		if(ck_num == num){
 			$("#result").html("인증이 확인되었습니다.")
 			$("#result").append("<input type='hidden' id='ck' value='1'>");
@@ -160,13 +161,15 @@ $(function(){
 		})
 	});//아이디 중복 확인 click
 	
-	function tel(value) {
-		  value = value.replace(/[^0-9]/g, "");
-		  return value.replace(
-		    /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,
-		    "$1-$2-$3"
-		  );
-		}
+	$("#insert").submit(function(){
+		alert("가입이 완료되었습니다.")
+		
+	 })
+	
+})
+
+$(document).on("keyup", "#tel", function() {
+    $(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
 })
 </script>
 </body>

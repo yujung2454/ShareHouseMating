@@ -21,16 +21,10 @@ import com.sharehouse.dto.UsersDto;
 import com.sharehouse.service.UserService;
 
 @Controller
-@SessionAttributes("user") //세션에 저장될 이름
 public class SecurityController {
 
 	@Autowired
 	UserService service;
-	
-	@ModelAttribute("user")
-	public UsersDto getDto() { //리턴 타입: 세션에 저장할 객체 타입
-		return new UsersDto(); 
-	}
 	
 	@PostMapping("/")
 	public String main(Model m){
