@@ -11,12 +11,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.sharehouse.service.AddressService;
+import com.sharehouse.service.ListService;
 
 @Controller
 public class SearchController {
 
 	@Autowired
 	AddressService aservice;
+	
+	@GetMapping("/search")
+	public String querysearch(Model m, String query) {
+		return "/search/searchlist";
+	}
+	
 	
 	@GetMapping("/search/detailsearch")
 	public String detailSearch() {

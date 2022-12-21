@@ -27,8 +27,8 @@ int insertUser(UsersDto users);
 String idCheck(String id);
 
 @Select
-("select * from comm")
-List<CommunityDto> comm();
+("select o.title, o.offering_add, o.latitude, o.longitude, r.deposit, r.rental, r.square, o.thumbnail from offering o inner join room_info r on o.board_no = r.board_no order by o.v_cnt desc limit 20")
+List<Map<String, Object>> offering();
 
 @Select("select email from user where name = #{name} and email = #{email}") 
 String findByEmail(Map<String, String> map); 

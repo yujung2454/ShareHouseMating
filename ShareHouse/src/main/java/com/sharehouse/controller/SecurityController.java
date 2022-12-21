@@ -11,13 +11,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+
+
+import com.google.gson.Gson;
+
 import com.sharehouse.config.SecurityUser;
+
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.UsersDto;
+
+
 import com.sharehouse.service.UserService;
 
 @Controller
@@ -26,10 +34,49 @@ public class SecurityController {
 	@Autowired
 	UserService service;
 	
-	@PostMapping("/")
-	public String main(Model m){
-		List<CommunityDto> dlist = service.comm();
-		m.addAttribute("user",dlist);
+
+	
+	@GetMapping("/index")
+	public String index() {
+		System.out.println("index 요청입니다.");
+		return "/login/index";
+	}
+	@GetMapping("/member")
+	public String forMember() {
+		System.out.println("Member 요청입니다.");
+		return "/login/member";
+		
+	}
+	@GetMapping("/manager")
+	public String formamger() {
+		System.out.println("Manager 요청입니다.");
+		return "/login/manager";
+	}
+	
+	@GetMapping("/admin")
+	public String forAdmin(@AuthenticationPrincipal SecurityUser user) { // 세션에 저장된 정보 꺼내쓰기
+		System.out.println("user.getUsername() :" +user.getUsername());
+		System.out.println("Admin 요청입니다.");
+		return "/login/admin";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "/login/login";	
+	}
+	
+	@GetMapping("/")
+	public String main(@AuthenticationPrincipal SecurityUser user,Model m){
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
+		List<Map<String, Object>> offering = service.offering();
+		m.addAttribute("offering",offering);
+		Gson gson = new Gson();
+		m.addAttribute("offering2",gson.toJson(offering));
+
 	    return "/main";
 	}
 	
@@ -51,11 +98,7 @@ public class SecurityController {
 		return checkid;
 	}
 	
-	@GetMapping("/login")
-	public String login(){
-		return "/login/login";
-	}
-	
+
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();

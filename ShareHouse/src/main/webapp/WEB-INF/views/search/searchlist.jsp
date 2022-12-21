@@ -48,7 +48,7 @@
 <div id="map"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=lq4lt4kzb4"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0e94507c189370b7652c07b56d35fd&libraries=clusterer"></script>
 <script src="/javascript/searchmap.js"></script>
 
 </body>

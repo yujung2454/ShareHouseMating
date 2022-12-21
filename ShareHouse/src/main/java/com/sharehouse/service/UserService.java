@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
 import com.sharehouse.dao.UserDao;
 import com.sharehouse.domain.Role;
+
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.UsersDto;
+
 
 @Service
 public class UserService {
@@ -35,11 +36,7 @@ public class UserService {
 	public String idCheck(String id) {
 		return dao.idCheck(id);
 	}
-	
-	public List<CommunityDto> comm(){
-		return dao.comm();
-	}
-	
+		
 	public String findByEmail(Map<String, String> map) {
 		return dao.findByEmail(map);
 	}
@@ -54,5 +51,9 @@ public class UserService {
 	
 	public void updateUser(Map<String, String> map) {
 		 dao.updateUser(map);
+	}
+
+	public List<Map<String, Object>> offering(){
+		return dao.offering();
 	}
 }

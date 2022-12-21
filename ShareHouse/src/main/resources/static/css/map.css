@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 #map{
-	 width:400px;
-	 height:400px;
-	 top:50px;
+	 width:350px;
+	 height:350px;
+	 top:10%;
 	 left:20%;
 }
