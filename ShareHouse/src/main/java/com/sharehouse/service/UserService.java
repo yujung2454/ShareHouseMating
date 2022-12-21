@@ -1,16 +1,15 @@
 package com.sharehouse.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
 import com.sharehouse.dao.UserDao;
 import com.sharehouse.domain.Role;
 import com.sharehouse.domain.Users;
-import com.sharehouse.dto.CommunityDto;
 
 @Service
 public class UserService {
@@ -34,7 +33,7 @@ public class UserService {
 		return i;
 	}
 	
-	public List<CommunityDto> comm(){
-	return dao.comm();
+	public List<Map<String, Object>> offering(){
+		return dao.offering();
 	}
 }

@@ -1,14 +1,13 @@
 package com.sharehouse.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-
 import com.sharehouse.domain.Users;
-import com.sharehouse.dto.CommunityDto;
 
 
 
@@ -23,8 +22,8 @@ Users findById(String id);
 int insertUser(Users user);
 
 @Select
-("select * from comm")
-List<CommunityDto> comm();
+("select o.title, o.offering_add, o.latitude, o.longitude, r.deposit, r.rental, r.square, o.thumbnail from offering o inner join room_info r on o.board_no = r.board_no order by o.v_cnt desc limit 20")
+List<Map<String, Object>> offering();
 
 /*
  * @Select ("select id from member where email = #{email}") List<String>

@@ -127,7 +127,7 @@
 	</dd>
 </dl>
 </div>
-<div id="selected_loc">
+<div class="selected_loc">
 </div>
 <div class="roomtoilet">
 	<span>방 수</span><br>

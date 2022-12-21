@@ -28,7 +28,7 @@ public class SecurityConfig{
 		security.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN");
    
 		security.csrf().disable();
-		security.formLogin().loginPage("/login").defaultSuccessUrl("/main", true);
+		security.formLogin().loginPage("/login").defaultSuccessUrl("/", true);
 		security.exceptionHandling().accessDeniedPage("/accessDenied"); //403 오류 처리
 		security.logout().invalidateHttpSession(true).logoutSuccessUrl("/login"); //로그아웃 성공 시 로그인 페이지로 이동
 		

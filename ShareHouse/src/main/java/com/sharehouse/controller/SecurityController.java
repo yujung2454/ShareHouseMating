@@ -1,6 +1,7 @@
 package com.sharehouse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -9,10 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+import com.google.gson.Gson;
 import com.sharehouse.config.SecurityUser;
 import com.sharehouse.domain.Users;
-import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.service.UserService;
 
 @Controller
@@ -51,9 +51,16 @@ public class SecurityController {
 	}
 	
 	@GetMapping("/")
-	public String main(Model m){
-		List<CommunityDto> dlist = service.comm();
-		m.addAttribute("user",dlist);
+	public String main(@AuthenticationPrincipal SecurityUser user,Model m){
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
+		List<Map<String, Object>> offering = service.offering();
+		m.addAttribute("offering",offering);
+		Gson gson = new Gson();
+		m.addAttribute("offering2",gson.toJson(offering));
 	    return "/main";
 	}
 	
