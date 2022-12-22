@@ -35,9 +35,11 @@
 	<!-- 조회수/최신순 정렬 -->
 	<div id = "sequence" align="right">
 		<!-- 여긴 모르겠으니 나중에 -->
-		<form id="sort" action="community_sort">
-		<button type="submit" id="recent" value="recent">최신순</button>
-		<button type="submit" id="viewcount" value="viewcount">조회수 순</button>
+			<form action="community_sort">
+		<button type="submit" id="sort" name="sort" value="recent">최신순</button>
+		</form>
+		<form action="community_sort">
+		<button type="submit" id="sort" name="sort" value="viewcount">조회수</button>
 		</form>
 	</div>
 	<div id = "board">
@@ -68,8 +70,8 @@
 						<c:if test="${count != 0}">
 							<c:forEach items="${cList}" var="comm">
 							<tr>
-								<td><a href="">${comm.comm_no}</a></td>
-								<td><a href="">${comm.comm_title}</a></td>
+								<td><a href="community_view/${comm.comm_no}">${comm.comm_no}</a></td>
+								<td><a href="community_view/${comm.comm_no}">${comm.comm_title}</a></td>
 								<td>${user.user_img} ${comm.id}</td>
 								<td><fmt:formatDate value="${comm.comm_date}" dateStyle="short" /></td>
 								<td>${comm.comm_v_cnt}</td>
@@ -82,13 +84,13 @@
 
 		<div id="paging" align="center">
 			<c:if test="${begin > pageNum}">
-				<a href="community_search?p=${begin-1}&search=${search}&sort=${sort}">[이전]</a>
+				<a href="community_sort?p=${begin-1}&sort=${sort}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${begin}" end = "${end}" var='i'>
-				<a href="community_search?p=${i}&search=${search}&sort=${sort}" class="page">${i}</a>
+				<a href="community_sort?p=${i}&sort=${sort}" class="page">${i}</a>
 			</c:forEach>
 			<c:if test="${end < totalPages}">
-				<a href="community_search?p=${end+1}&search=${search}&sort=${sort}">[다음]</a>
+				<a href="community_sort?p=${end+1}&sort=${sort}">[다음]</a>
 			</c:if>
 		</div>
 	</div>	
