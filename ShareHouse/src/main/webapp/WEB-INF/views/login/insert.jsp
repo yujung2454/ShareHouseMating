@@ -9,16 +9,19 @@
 	.container {margin: 0 auto; width: 700px;}
 	.title1 {position: relative;}
 	.title1 h1 {font-size: 28px;font-weight: 800;}
-	.tbl_type1 {margin: 30px auto 0; width: 60%;}
+	.tbl_type1 {margin: 30px auto 0; width: 80%;}
 	.tbl_type1 table {width: 100%;}
 	.tbl_type1 td {padding: 8px 0;line-height: 30px;font-size: 14px;}
-	.tbl_type1 input:not([type="checkbox"]) {width: 100%; display: inline-block;border: 1px solid #ddd;padding: 10px;border-radius: 4px;font-size: 14px;background-color: #fff;}
 	.tbl_type1 input::placeholder {color: #555;}
-	.tbl_type1 .sub_bundle {padding-bottom: 50px;}
-	.tbl_type1 .sub_bundle >input { display: inline-block;width: auto;border: none;vertical-align: middle;text-align: center;color: #aaa;text-decoration: underline;}
-	.tbl_type1 .sub_bundle .input-wrap {vertical-align: middle;margin-right: 10%;}
-	.tbl_type1 .sub_bundle .input-wrap label {font-size: 14px;}
-	.tbl_type1 input.btn {background-color: #ddd;background-color: #ddd;font-size: 20px;font-weight: 700;}
+	.tbl_type1 .inp1 {width: 100%; display: block;border: 1px solid #ddd;padding: 10px;border-radius: 4px;font-size: 14px;background-color: #fff;min-height: 40px;}
+	.tbl_type1 .btn1 {width: 100%; display: block;border: 1px solid #ddd;background-color: #ddd;padding: 10px;border-radius: 4px;font-size: 14px;min-height: 40px;}
+	.tbl_type1 .btn2 {background-color: #ddd;font-size: 20px;font-weight: 700;width: 100%; display: inline-block;border: 1px solid #ddd;padding: 10px;border-radius: 4px;margin-top: 50px;}
+	.tbl_type1 .inp_type1 {overflow: hidden;clear: both;}
+	.tbl_type1 .inp_type1 .inp1 {width: 70%;float: left;}
+	.tbl_type1 .inp_type1 .btn1 {width: 29%; float: right;}
+	.tbl_type1 .inp_tit1 {font-size: 14px;margin: 0 0 10px;}
+
+	.mt_10 {margin-top: 5px;}
 </style>
 
 <body>
@@ -27,72 +30,82 @@
 	<form action="/insert" id="insert" method="post">
 		<div class="tbl_type1">
 			<table align="center" border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<td>
-					아이디
-					<input name="id" id="id"/>
-					<input type="button" id="id_check" value="중복확인">
-					<div id="id_msg"></div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					비밀번호
-					<input type="password" name="pwd" id="pwd"/>
-					비밀번호 확인
-					<input type="password" name="pwd_check" id="pwd_check"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					이름
-					<input name="name" id="name"/>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-					<div class="sub_bundle">
-						<span class="input-wrap">
-							<input type="radio" id="man" name="gender" value = "남성">                                         
-							<label for="man"><span>남성</span></label>
-							<input type="radio" id="woman" name="gender" value = "여성">                                         
-							<label for="woman"><span>여성</span></label>
-						</span>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					이메일
-					<input name="email" id="email"/>
-					<input type="button" id="mail_ck" value="인증">
-					<div id="input"><input id="ck_num"> <input type="button" id="ck_b" value="인증 확인"></div>
-					<div id="result"></div>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-					주소
-					<input name="user_add" id="address"/>
-					<input type="button" id="find_ad" value="주소 찾기" onclick = "addPost()">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input name="user_add2" id="user_add2" placeholder="상세주소를 입력하세요.">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					휴대전화
-					<input name="tel" maxlength="13" id="tel"/>
-				</td>
-			</tr>
-		</table>
-		<input type="submit" class="btn" value="가입하기"/>
-	</div>
+				<tr>
+					<td>
+						<p class="inp_tit1">아이디</p>
+						<div class="inp_type1">
+							<input name="id" id="id" class="inp1"/>
+							<input type="button" id="id_check" value="중복확인" class="btn1">
+						</div>
+						<div id="id_msg"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="inp_tit1">비밀번호</p>
+						<input type="password" name="pwd" id="pwd" class="inp1"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="inp_tit1">비밀번호 확인</p>
+						<input type="password" name="pwd_check" id="pwd_check" class="inp1"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="inp_tit1">이름</p>
+						<input name="name" id="name" class="inp1"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="inp_tit1">성별</p>
+						<div class="radio_bundle">
+							<span class="radio">
+								<input type="radio" id="man" name="gender" value = "남성">                                         
+								<label for="man"><span>남성</span></label>
+							</span>
+							<span class="radio">
+								<input type="radio" id="woman" name="gender" value = "여성">                                         
+								<label for="woman"><span>여성</span></label>
+							</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="inp_tit1">이메일</p>
+						<div class="inp_type1">
+							<input name="email" id="email" class="inp1"/>
+							<input type="button" id="mail_ck" value="인증 하기" class="btn1">
+						</div>
+						<div id="input" class="inp_type1 mt_10">
+							<input id="ck_num" placeholder="인증번호를 입력하세요." class="inp1"> 
+							<input type="button" id="ck_b" value="인증 확인" class="btn1">
+						</div>
+						<div id="result"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="inp_tit1">주소</p>
+						<div class="inp_type1">
+							<input name="user_add" id="address" class="inp1"/>
+							<input type="button" id="find_ad" value="주소 찾기" onclick = "addPost()" class="btn1">
+						</div>
+						<input name="user_add2" id="user_add2" placeholder="상세주소를 입력하세요." class="inp1 mt_10">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="inp_tit1">휴대전화</p>
+						<input name="tel" maxlength="13" id="tel" class="inp1"/>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" class="btn2" value="가입하기"/>
+		</div>
 	</form>
 </div>
 
