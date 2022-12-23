@@ -114,9 +114,8 @@ public class SecurityController {
 	
 
 	@GetMapping("/logout")
-	public String logout(SessionStatus status) {
-		status.setComplete();
-		return "redirect:/";
+	public String logout() {
+		return "/main";
 	}
 	
 	@GetMapping("/id_find")

@@ -31,10 +31,10 @@
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
 						<col style="width:10%;" />
-						<col style="width:40%"/>
-						<col style="width:20%;" />
-						<col style="width:20%;" />
-						<col style="width:20%;" />
+						<col style="width:20%" />
+						<col style="width:30%;" />
+						<col style="width:15%;" />
+						<col style="width:15%;" />
 						<col style="width:10%;" />
 					</colgroup>
 					<thead>

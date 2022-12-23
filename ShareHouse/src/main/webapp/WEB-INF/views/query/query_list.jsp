@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>문의 목록</title>
 
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
 </head>
@@ -31,10 +31,10 @@
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
 						<col style="width:10%;" />
-						<col style="width:40%"/>
-						<col style="width:20%;" />
-						<col style="width:20%;" />
-						<col style="width:20%;" />
+						<col style="width:20%" />
+						<col style="width:30%;" />
+						<col style="width:15%;" />
+						<col style="width:15%;" />
 						<col style="width:10%;" />
 					</colgroup>
 					<thead>
@@ -50,7 +50,7 @@
 					<tbody>
 						<c:if test="${count == 0}">
 							<tr>
-								<td colspan="5" id="none_post">게시판에 저장된 글이 없습니다.</td>
+								<td colspan="5" id="none_post">문의 페이지에 저장된 글이 없습니다.</td>
 							</tr>
 						</c:if>
 						<c:if test="${count != 0}">

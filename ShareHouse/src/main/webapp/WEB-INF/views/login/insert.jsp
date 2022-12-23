@@ -115,7 +115,22 @@
 function addPost(){
     new daum.Postcode({
         oncomplete: function(data) {
-            	document.querySelector("#address").value = data.address;
+        	
+        	if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+        	
+        	
+          /*   let roadAddr = data.roadAddress; // 도로명 주소 변수
+            let jibunAddr = data.jibunAddress; // 지번 주소 변수
+            alert(jibunAddr); */
+          
+            document.querySelector("#address").value = addr;
+            
+            	/* document.querySelector("#address").value = data.address; */
+            	/* document.querySelector("#address").value = data.jibunAddress; */
         }
     }).open();
 }    

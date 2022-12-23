@@ -5,8 +5,8 @@
 <mapper namespace="com.sharehouse.dao.QueryDao">
 
 	<insert id="insert" parameterType="com.sharehouse.dto.QueryDto">
-		insert into user_query_list ( id, query_title, query, query_date)
-		values( #{id}, #{query_title}, #{query}, now())
+		insert into user_query_list (id, query_title, query_state, query, query_date, category)
+		values(#{id}, #{query_title}, "대기", #{query}, now(), #{category})
 	</insert>
 	
 	<update id="updatepost" parameterType="com.sharehouse.dto.QueryDto">

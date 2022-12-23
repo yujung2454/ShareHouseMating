@@ -3,6 +3,7 @@ package com.sharehouse.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.QueryDto;
 import com.sharehouse.service.QueryService;
 
@@ -20,7 +22,8 @@ public class QueryController {
 	QueryService service;
 	
 	@GetMapping("/query/query_write")
-	public String wirteForm() {
+	public String wirteForm(@AuthenticationPrincipal SecurityUser user, Model m) {
+		m.addAttribute("user", user.getUsers());
 		return "query/query_write";
 	}
 	
