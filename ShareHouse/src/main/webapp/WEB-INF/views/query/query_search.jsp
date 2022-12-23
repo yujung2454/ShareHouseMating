@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>문의하기 검색창</title>
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
 
 </head>
@@ -16,28 +16,14 @@
 <div id="center">
 <!-- 게시글 리스트 테이블 -->
 <div id = "title">
-	<h1>커뮤니티</h1>
+	<h1>문의하기</h1>
 </div>
 	<!-- 검색창 -->
 	<div id = "search" align="left">
-		<form action="community_search">
+		<form action="query_search">
 		<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 			<input type="text" name="search" size="20" maxlength="225" placeholder = "검색어를 입력하세요">
 			<button type='submit' value="검색" class="search"></button>
-		</form>
-	</div>
-	<!-- 공지 숨김 여부 -->
-	<div id = "notice_hide" align="right">
-		<label>
-		<input type = "checkbox" name="notice" value="hide" onclick="getCheckboxValue()">
-		공지숨기기</label>
-	</div>
-	<!-- 조회수/최신순 정렬 -->
-	<div id = "sequence" align="right">
-		<!-- 여긴 모르겠으니 나중에 -->
-		<form id="sort" action="community_sort">
-		<button type="submit" id="recent" value="recent">최신순</button>
-		<button type="submit" id="viewcount" value="viewcount">조회수 순</button>
 		</form>
 	</div>
 	<div id = "board">
@@ -48,15 +34,17 @@
 						<col style="width:40%"/>
 						<col style="width:20%;" />
 						<col style="width:20%;" />
+						<col style="width:20%;" />
 						<col style="width:10%;" />
 					</colgroup>
 					<thead>
 						<tr>
 							<th scope="col">번호</th>
+							<th scope="col">카테고리</th>
 							<th scope="col">제목</th>
 							<th scope="col">작성자</th>
+							<th scope="col">처리현황</th>
 							<th scope="col">작성일</th>
-							<th scope="col">조회수</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -66,13 +54,14 @@
 							</tr>
 						</c:if>
 						<c:if test="${count != 0}">
-							<c:forEach items="${cList}" var="comm">
+							<c:forEach items="${qList}" var="query">
 							<tr>
-								<td><a href="">${comm.comm_no}</a></td>
-								<td><a href="">${comm.comm_title}</a></td>
-								<td>${comm.id}</td>
-								<td><fmt:formatDate value="${comm.comm_date}" dateStyle="short" /></td>
-								<td>${comm.comm_v_cnt}</td>
+								<td><a href="">${query.query_no}</a></td>
+								<td>${query.category}</td>
+								<td><a href="">${query.query_title}</a></td>
+								<td>${user.user_img} ${query.id}</td>
+								<td>${query.query_state}</td>
+								<td><fmt:formatDate value="${query.query_date}" dateStyle="short" /></td>
 							</tr>
 							</c:forEach>
 						</c:if>
@@ -82,19 +71,19 @@
 
 		<div id="paging" align="center">
 			<c:if test="${begin > pageNum}">
-				<a href="community_search?p=${begin-1}&search=${search}">[이전]</a>
+				<a href="query_search?p=${begin-1}&search=${search}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${begin}" end = "${end}" var='i'>
-				<a href="community_search?p=${i}&search=${search}" class="page">${i}</a>
+				<a href="query_search?p=${i}&search=${search}" class="page">${i}</a>
 			</c:forEach>
 			<c:if test="${end < totalPages}">
-				<a href="community_search?p=${end+1}&search=${search}">[다음]</a>
+				<a href="query_search?p=${end+1}&search=${search}">[다음]</a>
 			</c:if>
 		</div>
 		
 		<div id="write" align="right">
-			<button type = "button" class="community_write">
-				<a href="community_write" id="button" class="community_write">글 쓰기</a>
+			<button type = "button" class="query_write">
+				<a href="query_write" id="button" class="query_write">글 쓰기</a>
 			</button>
 		</div>
 	</div>
