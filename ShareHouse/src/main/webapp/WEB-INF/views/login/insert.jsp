@@ -20,7 +20,9 @@
 	.tbl_type1 .inp_type1 .inp1 {width: 70%;float: left;}
 	.tbl_type1 .inp_type1 .btn1 {width: 29%; float: right;}
 	.tbl_type1 .inp_tit1 {font-size: 14px;margin: 0 0 10px;}
-
+	button{
+		cursor : pointer;
+		}
 	.mt_10 {margin-top: 5px;}
 </style>
 
@@ -35,7 +37,7 @@
 						<p class="inp_tit1">아이디</p>
 						<div class="inp_type1">
 							<input name="id" id="id" class="inp1"/>
-							<input type="button" id="id_check" value="중복확인" class="btn1">
+							<button type="button" id="id_check" value="중복확인" class="btn1">중복확인</button>
 						</div>
 						<div id="id_msg"></div>
 					</td>
@@ -78,11 +80,11 @@
 						<p class="inp_tit1">이메일</p>
 						<div class="inp_type1">
 							<input name="email" id="email" class="inp1"/>
-							<input type="button" id="mail_ck" value="인증 하기" class="btn1">
+							<button type="button" id="mail_ck" value="인증 하기" class="btn1">인증 하기</button>
 						</div>
 						<div id="input" class="inp_type1 mt_10">
 							<input id="ck_num" placeholder="인증번호를 입력하세요." class="inp1"> 
-							<input type="button" id="ck_b" value="인증 확인" class="btn1">
+							<button type="button" id="ck_b" value="인증 확인" class="btn1">인증 확인</button>
 						</div>
 						<div id="result"></div>
 					</td>
@@ -92,7 +94,7 @@
 						<p class="inp_tit1">주소</p>
 						<div class="inp_type1">
 							<input name="user_add" id="address" class="inp1"/>
-							<input type="button" id="find_ad" value="주소 찾기" onclick = "addPost()" class="btn1">
+							<button type="button" id="find_ad" value="주소 찾기" onclick = "addPost()" class="btn1">주소 찾기</button>
 						</div>
 						<input name="user_add2" id="user_add2" placeholder="상세주소를 입력하세요." class="inp1 mt_10">
 					</td>
@@ -104,7 +106,7 @@
 					</td>
 				</tr>
 			</table>
-			<input type="submit" class="btn2" value="가입하기"/>
+			<button type="submit" class="btn2" value="가입하기">가입하기</button>
 		</div>
 	</form>
 </div>
