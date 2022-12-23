@@ -8,7 +8,7 @@ import com.sharehouse.dto.CommentDto;
 
 @Mapper
 public interface CommentDao {
-	List<CommentDto> selectComment(int comm_comment_no);
+	List<CommentDto> selectComment(int comm_no);
 	int insertComment(CommentDto dto);
-	int deleteComment(int comm_comment_no);
+	int deleteComment(int comment_no);
 }

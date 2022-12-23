@@ -16,7 +16,8 @@
 <div id="center">
 <!-- 게시글 리스트 테이블 -->
 <div id = "title">
-	<h1>커뮤니티</h1>
+<a href="/offerinfo/detail_info">ww</a>
+	<a href="community_list" class="community_list">커뮤니티</a> 	
 </div>
 	<!-- 검색창 -->
 	<div id = "search" align="left">
@@ -35,10 +36,22 @@
 	<!-- 조회수/최신순 정렬 -->
 	<div id = "sequence" align="right">
 		<!-- 여긴 모르겠으니 나중에 -->
-		<form id="sort" action="community_sort">
-		<button type="submit" id="recent" value="recent">최신순</button>
-		<button type="submit" id="viewcount" value="viewcount">조회수 순</button>
+		<form action="community_list">
+		<input type="hidden" name="sort" value="0">
+		<input type="submit" value="최신순" />
 		</form>
+		<form action="community_list">
+		<input type="hidden" name="sort" value="1">
+		<input type="submit" value="조회수 순" />
+		</form> 
+		
+		<!-- <form action="community_list">
+			<select name="sort">
+				<option value="0">최신순</option>
+				<option value="1">조회수순</option>
+			</select>
+			<input type="submit" value="검색" />
+		</form> -->
 	</div>
 	<div id = "board">
 		<table>
@@ -68,8 +81,8 @@
 						<c:if test="${count != 0}">
 							<c:forEach items="${cList}" var="comm">
 							<tr>
-								<td><a href="">${comm.comm_no}</a></td>
-								<td><a href="">${comm.comm_title}</a></td>
+								<td><a href="community_view/${comm.comm_no}">${comm.comm_no}</a></td>
+								<td><a href="community_view/${comm.comm_no}">${comm.comm_title}</a></td>
 								<td>${user.user_img} ${comm.id}</td>
 								<td><fmt:formatDate value="${comm.comm_date}" dateStyle="short" /></td>
 								<td>${comm.comm_v_cnt}</td>
@@ -82,13 +95,13 @@
 
 		<div id="paging" align="center">
 			<c:if test="${begin > pageNum}">
-				<a href="community_list?p=${begin-1}">[이전]</a>
+				<a href="community_list?p=${begin-1}&sort=${sort}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${begin}" end = "${end}" var='i'>
-				<a href="community_list?p=${i}" class="page">${i}</a>
+				<a href="community_list?p=${i}&sort=${sort}" class="page">${i}</a>
 			</c:forEach>
 			<c:if test="${end < totalPages}">
-				<a href="community_list?p=${end+1}">[다음]</a>
+				<a href="community_list?p=${end+1}&sort=${sort}">[다음]</a>
 			</c:if>
 		</div>
 	</div>	

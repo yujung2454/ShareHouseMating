@@ -17,17 +17,18 @@ public class CommentController {
 	@Autowired
 	CommentService service;
 	
-	@GetMapping("/comment/insert")
-	public String insertComment(CommentDto dto) {
-		service.insertComment(dto);
-		List<CommentDto> commentList = service.selectComment(dto.getComm_comment_no());
-		Gson gson = new Gson();
-		return gson.toJson(commentList);
-	}
 	
+	@GetMapping("/comment/insert") 
+	public String insertComment(CommentDto dto) {
+		service.insertComment(dto); 
+		List<CommentDto> commentList = service.selectComment(dto.getComm_no()); 
+		Gson gson = new Gson(); 
+		return gson.toJson(commentList); 
+	}
+		
 	@GetMapping("/comment/delete/{comm_comment_no}")
-	public String deleteComment(@PathVariable int comm_comment_no) {
-		int i = service.deleteComment(comm_comment_no);
+	public String deleteComment(@PathVariable int comment_no) {
+		int i = service.deleteComment(comment_no);
 		return i+"";
 	}
 }
