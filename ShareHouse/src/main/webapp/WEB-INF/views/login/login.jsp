@@ -21,6 +21,13 @@
 	.tbl_type1 .sub_bundle .input-wrap {vertical-align: middle;margin-right: 10%;}
 	.tbl_type1 .sub_bundle .input-wrap label {font-size: 14px;}
 	.tbl_type1 input.btn {background-color: #ddd;background-color: #ddd;font-size: 20px;font-weight: 700;}
+	.sub_bundle {cursor : pointer;}
+	.login {cursor : pointer;}
+	.insert {cursor : pointer;}
+	.find {cursor : pointer;}
+	label{
+	cursor : pointer;
+		}
 </style>
 
 <body>
@@ -50,14 +57,14 @@
 							<label for="checkId"><span>아이디 저장</span></label>
 						</span>
 						
-						<input type="button" value="회원가입"
+						<input class="insert" type="button" value="회원가입"
 						onclick="location.href='/insert'" />
 						
-						<input type="button" value="아이디/비밀번호찾기"
+						<input class="find" type="button" value="아이디/비밀번호찾기"
 						onclick="location.href='/id_find'" />
 					</div>
 					
-					<input type="submit" value="로그인"/>
+					<input class="login" type="submit" value="로그인"/>
 		
 				</td>
 			</tr>

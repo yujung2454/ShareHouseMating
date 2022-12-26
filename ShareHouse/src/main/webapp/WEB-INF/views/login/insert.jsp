@@ -20,9 +20,13 @@
 	.tbl_type1 .inp_type1 .inp1 {width: 70%;float: left;}
 	.tbl_type1 .inp_type1 .btn1 {width: 29%; float: right;}
 	.tbl_type1 .inp_tit1 {font-size: 14px;margin: 0 0 10px;}
+	.radio {cursor : pointer;}
 	button{
 		cursor : pointer;
 		}
+	label{
+	cursor : pointer;
+		}	
 	.mt_10 {margin-top: 5px;}
 </style>
 

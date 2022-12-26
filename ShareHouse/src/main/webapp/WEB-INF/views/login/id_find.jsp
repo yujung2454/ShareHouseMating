@@ -21,6 +21,11 @@
 .tbl_type1 input::placeholder {color: #555;}
 .tbl_type1 .inp_bundle input{ width: 80%;display: inline-block;}
 .tbl_type1 .inp_bundle input[type="button"]{ width: calc(20% - 6px);}
+.certif {cursor : pointer;}
+.confirm {cursor : pointer;}
+	button{
+		cursor : pointer;
+		}
 </style>
 <body>
 <div class="container">
@@ -42,7 +47,7 @@
 					<td>
 						<div class="inp_bundle">
 							<input name="email" id="email" placeholder="이메일 주소">
-							<input type="button" id="mail_ck" value="인증">
+							<input class="certif" type="button" id="mail_ck" value="인증">
 						</div>
 						<div id="emailresult"></div>
 					</td>
@@ -56,7 +61,7 @@
 				</tr>
 				<tr>
 					<td> 
-						<input type="submit" id="ck_b" value="확인">
+						<input class="confirm" type="submit" id="ck_b" value="확인">
 					</td>
 				</tr>
 			</table>

@@ -125,7 +125,6 @@ ${dto.comm_con}
 			
 		})//click
 	})//ready
-
 </script>
 </body>
 </html>

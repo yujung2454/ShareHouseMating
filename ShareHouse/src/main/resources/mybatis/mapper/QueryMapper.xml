@@ -9,18 +9,22 @@
 		values(#{id}, #{query_title}, "대기", #{query}, now(), #{category})
 	</insert>
 	
-	<update id="updatepost" parameterType="com.sharehouse.dto.QueryDto">
+	<update id="updatePost" parameterType="com.sharehouse.dto.QueryDto">
 		update user_query_list set query_title=#{query_title} , query=#{query}
 		where query_no=#{query_no}
 	</update>
 	
 
-	<delete id="deletepost" parameterType="int">
+	<delete id="deletePost" parameterType="int">
 		delete from user_query_list where query_no = #{query_no}
 	</delete>
 	
 	<select id="count" resultType="int">
 		select count(*) from user_query_list
+	</select>
+	
+	<select id="queryOne" parameterType="int" resultType="com.sharehouse.dto.QueryDto">
+		select * from user_query_list where query_no = #{query_no}
 	</select>
 	
 	<select id="queryList" parameterType="map" resultType="com.sharehouse.dto.QueryDto">

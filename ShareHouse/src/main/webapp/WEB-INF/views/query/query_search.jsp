@@ -56,9 +56,9 @@
 						<c:if test="${count != 0}">
 							<c:forEach items="${qList}" var="query">
 							<tr>
-								<td><a href="">${query.query_no}</a></td>
+								<td><a href="query_view/${query.query_no}">${query.query_no}</a></td>
 								<td>${query.category}</td>
-								<td><a href="">${query.query_title}</a></td>
+								<td><a href="query_view/${query.query_no}">${query.query_title}</a></td>
 								<td>${user.user_img} ${query.id}</td>
 								<td>${query.query_state}</td>
 								<td><fmt:formatDate value="${query.query_date}" dateStyle="short" /></td>

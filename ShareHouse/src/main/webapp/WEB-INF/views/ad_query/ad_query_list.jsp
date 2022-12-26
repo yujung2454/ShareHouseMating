@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문의 목록</title>
+<title>문의 리스트</title>
 
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
 </head>
@@ -16,7 +16,7 @@
 <div id="center">
 <!-- 게시글 리스트 테이블 -->
 <div id = "title">
-	<h1>문의하기</h1>
+	<h1>문의리스트</h1>
 </div>
 	<!-- 검색창 -->
 	<div id = "search" align="left">
@@ -31,20 +31,18 @@
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
 						<col style="width:10%;" />
-						<col style="width:20%" />
-						<col style="width:30%;" />
+						<col style="width:15%" />
 						<col style="width:15%;" />
+						<col style="width:45%;" />
 						<col style="width:15%;" />
-						<col style="width:10%;" />
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
+							<th scope="col"><input type="checkbox" id="cbx_chkAll"/>전체 선택</th>
+							<th scope="col">아이디</th>
 							<th scope="col">카테고리</th>
 							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
 							<th scope="col">처리현황</th>
-							<th scope="col">작성일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,13 +54,14 @@
 						<c:if test="${count != 0}">
 							<c:forEach items="${qList}" var="query">
 							<tr>
-								<td><a href="query_view/${query.query_no}">${query.query_no}</a></td>
+								<td>
+								<input type="checkbox" name="query_no" value="${query.query_no}">
+								<td>${user.user_img} ${query.id}</td>
 								<td>${query.category}</td>
 								<td><a href="query_view/${query.query_no}">${query.query_title}</a></td>
-								<td>${user.user_img} ${query.id}</td>
 								<td>${query.query_state}</td>
-								<td><fmt:formatDate value="${query.query_date}" dateStyle="short" /></td>
 							</tr>
+							
 							</c:forEach>
 						</c:if>
 						
@@ -82,9 +81,8 @@
 		</div>
 	</div>	
 		<div id="write" align="right">
-			<button type = "button" class="query_write">
-				<a href="query_write" class="query_write">글 쓰기</a>
-			</button>
+			<input type = "submit" class="query_write" id="del" value= " 삭제">
+
 		</div>
 	
 </div>
@@ -96,8 +94,39 @@
 <footer>
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+// 체크박스
+$(document).ready(function() {
+	$("#cbx_chkAll").click(function() {
+		if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
+		else $("input[name=chk]").prop("checked", false);
+	});
+	
+	$("input[name=chk]").click(function() {
+		var total = $("input[name=chk]").length;
+		var checked = $("input[name=chk]:checked").length;
+		
+		if(total != checked) $("#cbx_chkAll").prop("checked", false);
+		else $("#cbx_chkAll").prop("checked", true); 
+	});
+});
+// 문의 글 삭제
+$(function(){
+	$("#del").click(function(){
+		let query_no = $(".chk").val(); //..?히ㅏ핳
+		$.ajax({url:"/delete", 
+				data:"query_no="+query_no, 
+				method:"post"
+				}
+		).done(function(){
+			location.href="/ad_query_list";
+		})
+		return false;
+	})//click
+	
 
+})//ready
 </script>
 </body>
 </html>

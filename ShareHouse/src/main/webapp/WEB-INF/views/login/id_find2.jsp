@@ -13,6 +13,9 @@
 	.btn_wrap {margin-top: 50px;}
 	.btn_wrap .btn_type1 {background-color: #ddd;background-color: #ddd;font-size: 20px;font-weight: 700;display: inline-block;width: 100%;border: 1px solid #ddd;padding: 10px;border-radius: 4px;}
 	.btn_wrap .btn_type1:not(:first-child) {margin-top: 15px;}
+	button{
+		cursor : pointer;
+		}
 </style>
 
 <body>

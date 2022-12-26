@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.QueryDto;
 import com.sharehouse.dao.QueryDao;
 
@@ -24,6 +25,9 @@ public class QueryService {
 		return dao.count();
 	}
 	
+	public QueryDto queryOne(int query_no) {
+		return dao.queryOne(query_no);
+	}
 	
 	public int updatePost(QueryDto dto) {
 		return dao.updatePost(dto);
@@ -61,6 +65,10 @@ public class QueryService {
 		m.put("start", start);
 		m.put("count", 10);
 		return dao.querySort(m);
+	}
+	
+	public List<QueryDto> uql(QueryDto dto) {
+		return dao.uql(dto);
 	}
 
 }
