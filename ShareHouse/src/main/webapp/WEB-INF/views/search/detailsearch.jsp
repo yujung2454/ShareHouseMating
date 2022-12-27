@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta id="_csrf" name="_csrf" content="{{_csrf.token}}"/>
 <meta id="_csrf_header" name="_csrf_header" content="{{_csrf.headerName}}"/>
 <meta charset="UTF-8">
-<title>메인화면</title>
+<title>상세검색</title>
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/searchcontent.css" rel="stylesheet">
 </head>
@@ -26,20 +27,32 @@
 		</ul>
 		<div id="p_info">
 			<span id="notification"><img src="/images/notification.png"></span>
-			<span id="login"><a href="/login/login">로그인</a></span>
+			<span id="login">
+				<c:if test="${user == null}">
+					<a href="/login">로그인</a>
+				</c:if>
+				<c:if test="${user != null}">
+					<c:if test="${user.user_Img == null}">
+						<a href="/mypage/info"><img src="/images/profil.png"></a>
+					</c:if>
+					<c:if test="${user.user_Img != null}">
+						<a href="/mypage/info"><img src="${user.user_img}"></a>
+					</c:if>
+				</c:if>
+			</span>
 		</div>
 	</div>
 	<br><br><br><br><br><br>
-<form id="search_btn" action="/search/searchlist">
+<form id="search_btn" action="/search">
 	<div id="search" >
 		<ul>
 			<li><img src="/images/search.png"></li>
-			<li><input name="search" placeholder="지역명 또는 역이름" size="50"></li>
+			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="50"></li>
 			<li>
-				<button id="search_btn" name="search_btn" type="submit">검색</button>
+				<button type="submit">검색</button>
 			</li>
 			<li>
-				<a href="/search/detailsearch"><img src="/images/detailsearch.png" alt="상세검색"></a>
+				<a href="/detailsearch"><img src="/images/detailsearch.png" alt="상세검색" title="상세검색"></a>
 			</li>
 		</ul>
 	</div>
