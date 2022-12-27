@@ -15,3 +15,4 @@ public class QueryDto {
 	private String query; 
 	private String answer; 
 }
+   
