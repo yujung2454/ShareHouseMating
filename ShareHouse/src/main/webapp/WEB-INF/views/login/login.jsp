@@ -3,45 +3,95 @@
 <html>
 
 <head>
-	<title>시큐리티 테스트</title>
+	<title>로그인</title>
 </head>
 
-<body align="center">
-<h1>로그인</h1>
-<form method="post">
-<table align="center" border="1" cellpadding="0" cellspacing="0">
-	<tr>
-		<td bgcolor="cyan">아이디</td>
-		<td><input type="text" name="username"/></td>
-	</tr>
-	<tr>
-		<td bgcolor="cyan">비밀번호</td>
-		<td><input type="password" name="password"/></td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center">
-			<input type="submit" value="로그인"/>
-			
-			<span class="input-wrap">
-   			<input type="checkbox" id="checkId" name="checkId">                                         
-   			<label for="checkId"><span></span></label>
-   			 아이디 저장
-  			</span>
-  						
-			<input type="button" value="회원가입"
-			onclick="location.href='/insert'" />
-			
-			<input type="button" value="아이디/비밀번호찾기"
-			onclick="location.href='/joinView'" />
-			
+<style>
+	* {box-sizing: border-box;}
+	.container {margin: 0 auto; width: 700px;}
+	.title1 {position: relative;}
+	.title1 h1 {font-size: 28px;font-weight: 800;}
+	.tbl_type1 {margin: 30px auto 0; width: 60%;}
+	.tbl_type1 table {width: 100%;}
+	.tbl_type1 td {padding: 8px 0;line-height: 30px;font-size: 14px;}
+	.tbl_type1 input:not([type="checkbox"]) {width: 100%; display: inline-block;border: 1px solid #ddd;padding: 10px;border-radius: 4px;font-size: 14px;background-color: #fff;}
+	.tbl_type1 input::placeholder {color: #555;}
+	.tbl_type1 .sub_bundle {padding-bottom: 50px;}
+	.tbl_type1 .sub_bundle >input { display: inline-block;width: auto;border: none;vertical-align: middle;text-align: center;color: #aaa;text-decoration: underline;}
+	.tbl_type1 .sub_bundle .input-wrap {vertical-align: middle;margin-right: 10%;}
+	.tbl_type1 .sub_bundle .input-wrap label {font-size: 14px;}
+	.tbl_type1 input.btn {background-color: #ddd;background-color: #ddd;font-size: 20px;font-weight: 700;}
+	.sub_bundle {cursor : pointer;}
+	.login {cursor : pointer;}
+	.insert {cursor : pointer;}
+	.find {cursor : pointer;}
+	label{
+	cursor : pointer;
+		}
+</style>
 
-		</td>
-	</tr>
-</table>
-</form>
+<body>
+<div class="container">
+	<div class="title1"><h1>로그인</h1></div>
+	<form action="/login" id="login" method="post">
+		<div class="tbl_type1">
+			<table align="center" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					아이디
+					<input type="text" name="username" id="username"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					비밀번호
+					<input type="password" name="password" id="password"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					
+					<div class="sub_bundle">
+						<span class="input-wrap">
+							<input type="checkbox" id="checkId" name="checkId">                                         
+							<label for="checkId"><span>아이디 저장</span></label>
+						</span>
+						
+						<input class="insert" type="button" value="회원가입"
+						onclick="location.href='/insert'" />
+						
+						<input class="find" type="button" value="아이디/비밀번호찾기"
+						onclick="location.href='/id_find'" />
+					</div>
+					
+					<input class="login" type="submit" value="로그인"/>
+		
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+</div>
 
-		<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>	
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(function(){
+	$("#login").submit(function(){ //submit버튼에 이벤트를 넣어 줄 때
+		let username = $("#username").val();
+		let password = $("#password").val();
+		if(!username){
+			alert("아이디를 입력하세요.")
+			return false;
+		}
+		
+		if(!password){
+			alert("비밀번호를 입력하세요.")
+			return false;
+		}
+	 })
+})
+
+
 	$(document).ready(function(){
 		// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
 	    var key = getCookie("key");
@@ -66,7 +116,7 @@
 	            setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
 	        }
 	    });
-
+	});
 	// 쿠키 저장하기 
 	// setCookie => saveid함수에서 넘겨준 시간이 현재시간과 비교해서 쿠키를 생성하고 지워주는 역할
 	function setCookie(cookieName, value, exdays) {
