@@ -23,5 +23,5 @@ public interface QueryDao {
 	List<QueryDto> querySort(Map<String, Object> m);
 	
 	//관리자 dao
-	int delChecked(QueryDto dto);
+	int delChecked(int[] query_no);
 }

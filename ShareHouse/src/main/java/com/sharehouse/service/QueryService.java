@@ -69,7 +69,7 @@ public class QueryService {
 	}
 	
 	//관리자 service
-	public int delChecked(QueryDto dto) {
-		return dao.delChecked(dto);
+	public int delChecked(int[] query_no) {
+		return dao.delChecked(query_no);
 	}
 }
