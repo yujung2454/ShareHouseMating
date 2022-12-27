@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharehouse.dao.RegistrationDao">
+
+	<insert id="insert" parameterType="com.sharehouse.dto.RegistrationDto">
+		insert into room_info (Board_no, Room_no, Room_name, Img_loc)
+		values(#{board_no}, #{room_no}, #{room_name}, #{img_loc})
+	</insert> 
+	
+	<insert id="insert2" parameterType="com.sharehouse.dto.RegistrationDto">
+		insert into room_info (Deposit, Rental, Square, Mem_cnt, Img_loc)
+		values(#{deposit}, #{rental}, #{square}, #{mem_cnt}, ${img_loc})
+	</insert>
+	
+	<insert id="insert3" parameterType="com.sharehouse.dto.RegistrationDto">
+		insert into offering (Offering_info)
+		values(#{offering_info})
+	</insert>
+	
+	<select id="select" parameterType="int" resultType="com.sharehouse.dto.RegistrationDto">
+		select Room_name from room_info 
+	</select>
+</mapper>

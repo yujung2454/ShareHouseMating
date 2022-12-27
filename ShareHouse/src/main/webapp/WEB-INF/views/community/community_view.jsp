@@ -7,27 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시물 보기</title>
-<style>
-	#chooseFile {
-    	visibility: hidden;
-	}
-	table {
-		width: 800px;
-		height: 400px;
-		margin-left: 50px;
-	}
-	img-button {
-		width:20;
-		height:20;
-	
-	}
-	textarea {
-		width:100%;
-		height:100%;
-		border: 0;
-		resize: none;
-	}
-</style>
+<link href="/css/community_view.css" rel="stylesheet">
 </head>
 <body>
 
@@ -51,7 +31,6 @@
 ${dto.comm_con}
 </td>
 </tr>
-
 </table>
 </form>
 	<c:if test="${dto.id == user.id}">
