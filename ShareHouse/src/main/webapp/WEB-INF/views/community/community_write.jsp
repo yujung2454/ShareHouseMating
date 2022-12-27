@@ -66,7 +66,7 @@
 		</tr>
 		<tr>
 			<td class="user">작성자 : 
-			<input name="id" value="${user.user_img} ${user.id}"  ></td>	<!-- readonly -->
+			<input name="id" value="${user.id}"></td>	<!-- readonly -->
 		</tr>
 		<tr>
 			<td><textarea name="Comm_con" id="content" 

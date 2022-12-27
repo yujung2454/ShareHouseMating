@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+	#center{
+		width : 55%;
+		margin : auto;
+	}
+	#room_button_list{
+		margin-bottom : 2rem;
+	}
+
+	.main_slide{
+		padding-top:30rem; 
+		width : 650px !important;
+		background-position : center;
+		background : round;
+	}
+
+	#info_btn_list{
+		width:100%;
+		display : flex;
+		border : 1px solid gray;
+		position : sticky;
+		top:0px;
+		z-index : 10;
+	}
+	.info_btn{
+		width : 100%;
+		height : 50px;
+		flex:1;
+		cursor : pointer;
+	}
+	.info_btn.active {
+		background : pink;
+	}
+
+	#room_intro, #room_info, #room_FAQ{
+		clear : both;
+		padding:1.2rem;
+	}
+	#room_intro{
+		margin-top:100px;	
+	}
+	
+	#drawing , #map , #room_table{
+		margin-bottom:2rem;
+	}
+	table{
+		table-layout : fixed;
+		width:90%;
+		border-collapse : collapse;
+	}
+	table > thead{
+		text-align : center;
+		border-bottom : 1px solid black;
+		border-top : 1px solid black;
+		background-color : gray;
+	}
+	tbody > tr:hover {
+		background-color : #eeeeee;
+	}
+	table > tbody td{
+		text-align : center;
+		border-bottom : 1px solid black; 	
+	}
+	
+	.FAQ_button_list{
+		display : flex;
+		width : 90%; 
+	}
+	
+	#FAQ_button_living , #FAQ_button_cont {
+		flex:1;
+		width : 100%;
+		height : 50px;
+		cursor : pointer;
+		border:none;
+	}
+	#FAQ_button_living{
+		background-color : #c0d6e4;
+	}
+	.contract{
+		display : none;
+	}
+	ul{
+		padding:0;
+		margin:0;
+	}
+	li{
+		text-align : left;
+		list-style:none;
+		box-shadow: inset 0 0 0 1px #eee;
+		width : 90%;
+
+	}
+	.faq > .faq_question{
+		padding : 1.2rem;
+		cursor:pointer;
+	}
+	.faq > .faq_answer{
+		display : none;
+		padding : 2rem;
+		box-shadow: inset 0 0 0 1px #ddd;
+		background : #eeeeee;
+	}
+	
+	.faq.active > .faq_answer{
+		display : block;
+		position : relative;
+	}
+	
+	.FAQ_list{
+		width:100%;
+	}
+	.FAQ_con{
+		margin:0;
+		padding:0;
+	}
+	.FAQ_title{
+		font-size : 2rem;
+		padding : 2rem;
+	}
+	.tab_btn{
+		display : inline-block;
+		width : 9.9%;
+		height:3rem;
+		text-align : center;
+		line-height:3rem;
+		cursor : pointer;
+		margin-right : .1%;
+		margin-bottom:.1%;
+		background : #f0f0f0;
+	}
+	.tab_btn.active {
+		background : #c0d6e4;
+	}

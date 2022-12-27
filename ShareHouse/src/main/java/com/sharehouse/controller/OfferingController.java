@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class OfferingController {
 
-	@GetMapping("/offerinfo/detail_info")
+	@GetMapping("/offer/detail_info")
 	public String info() {    
-		return "/offerinfo/detail_info";
-}
+		return "/offer/detail_info";
+	}
+
+	//@GetMapping("/offer/detail_info/{board_no}")
+	//public String detail_info() {
+	//	return "offer/detail_info";
+	//}
 }

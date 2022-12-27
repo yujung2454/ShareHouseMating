@@ -54,9 +54,10 @@ ${dto.comm_con}
 
 </table>
 </form>
-
+	<c:if test="${dto.id == user.id}">
 		<a href="/community/community_update/${dto.comm_no}">글 수정 </a> 
 		<a id="${dto.comm_no}" href="#">글 삭제</a>
+	</c:if>
 		<button type="button" onclick="location.href='/community/community_list'">목록으로</button>
 <div>
 	<div id="comment">
