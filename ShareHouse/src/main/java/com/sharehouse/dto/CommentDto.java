@@ -6,9 +6,9 @@ import lombok.Data;
 
 @Data
 public class CommentDto {
-
-	private int comm_comment_no;
+	private int comm_no;
+	private int comment_no;
 	private String id;
-	private String comm_comment_con;
-	private Date comm_comment_date;
+	private String comment_con;
+	private Date comment_date;
 }

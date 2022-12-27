@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sharehouse.dao.UserDao;
-import com.sharehouse.domain.Users;
+import com.sharehouse.dto.UsersDto;
 
 
 @Service
@@ -18,7 +18,7 @@ public class BoardUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Users user = userDao.findById(username); //username에 id값을 저장하고 user에 저장
+		UsersDto user = userDao.findById(username); //username에 id값을 저장하고 user에 저장
 		if (user == null) {
 			throw new UsernameNotFoundException(username + " 사용자 없음");
 		} else {

@@ -6,27 +6,41 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
-import com.sharehouse.domain.Users;
-
-
+import com.sharehouse.dto.CommunityDto;
+import com.sharehouse.dto.UsersDto;
 
 @Mapper
 public interface UserDao {
 	
 @Select
 ("select * from user where id = #{id}")
-Users findById(String id);
+UsersDto findById(String id);	
 
-@Insert("insert into user values(#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{gender}, #{user_add}, #{user_add2}, #{user_Img}, #{status})")
-int insertUser(Users user);
+@Insert
+("insert into user(id,pwd,name,email,tel,gender,user_add,user_add2,status) values(#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{gender}, #{user_add}, #{user_add2},'ROLE_MEMBER')")
+int insertUser(UsersDto users);
+
+@Select
+("select id from user where id =#{id}")
+String idCheck(String id);
 
 @Select
 ("select o.title, o.offering_add, o.latitude, o.longitude, r.deposit, r.rental, r.square, o.thumbnail from offering o inner join room_info r on o.board_no = r.board_no order by o.v_cnt desc limit 20")
 List<Map<String, Object>> offering();
 
-/*
- * @Select ("select id from member where email = #{email}") List<String>
- * findByEmail(String email);
- */
+@Select("select email from user where name = #{name} and email = #{email}") 
+String findByEmail(Map<String, String> map); 
+ 
+@Select("select id from user where name = #{name} and email = #{email}")
+String findByEmail2(Map<String, String> map);
+
+@Select
+("select email from user where name = #{name} and email = #{email} and id = #{id}")
+String findById2(UsersDto users);
+
+@Update
+("update user set pwd = #{pwd} where id = #{id}")
+int updateUser(Map<String, String> map);
 }

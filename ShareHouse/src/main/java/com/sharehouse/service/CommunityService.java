@@ -24,9 +24,9 @@ public class CommunityService {
 		return dao.count();
 	}
 	
-	public CommunityDto communityOne(int no) {
-		dao.addReadcount(no);
-		return dao.communityOne(no);
+	public CommunityDto communityOne(int comm_no) {
+		dao.addReadcount(comm_no);
+		return dao.communityOne(comm_no);
 	}
 	
 	
@@ -34,20 +34,26 @@ public class CommunityService {
 		return dao.updatePost(dto);
 	}
 	
-	public int deletePost(int no) {
-		return dao.deletePost(no);
+	public int deletePost(int comm_no) {
+		return dao.deletePost(comm_no);
 	}
 	
-	public List<CommunityDto> communityList(int start){
+	public CommunityDto viewPost(int comm_no) {
+		return dao.viewPost(comm_no);
+	}
+	
+	public List<CommunityDto> communityList(String sort, int start){
 		
 		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("sort", sort);//
 		m.put("start", start);
 		m.put("count", 10);
 		return dao.communityList(m);
 	}
 	
-	public List<CommunityDto> communityListSearch(String search,int start){
+	public List<CommunityDto> communityListSearch(String sort, String search, int start){
 		Map<String,Object> m = new HashMap<String, Object>();
+		m.put("sort", sort);
 		m.put("search", search);
 		m.put("start", start);
 		m.put("count", 10);
@@ -60,12 +66,6 @@ public class CommunityService {
 		return dao.countSearch(m);
 	}
 	
-	public List<CommunityDto> communitySort(String sort,int start){
-		Map<String,Object> m = new HashMap<String, Object>();
-		m.put("sort", sort);
-		m.put("start", start);
-		m.put("count", 10);
-		return dao.communitySort(m);
-	}
+
 
 }

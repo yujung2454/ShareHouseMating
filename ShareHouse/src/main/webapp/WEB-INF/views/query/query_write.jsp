@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,21 +56,36 @@
 <div id="center">
 <!-- 게시글 리스트 테이블 -->
 <div id = "title">
-	<a href="community_list" class="community_list">커뮤니티</a> 	
+	<h1>문의하기</h1>
 </div>
-<form method="post" id="writeform" action="community_write">
+<form method="post" id="writeform" action="query_write">
  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 	<table border="1">
 		<tr>
-			<td class="subject">제목 :
-			<input name="Comm_title" placeholder="제목을 입력해주세요" size="90" maxlength="100" required="required"/></td>
+			<td class="subject">제목 : <input name="query_title" placeholder="제목을 입력해주세요" size="90" maxlength="100" required="required"/></td>
 		</tr>
 		<tr>
-			<td class="user">작성자 : 
-			<input name="id" value="${user.user_img} ${user.id}"  ></td>	<!-- readonly -->
+			<td class="user">작성자 : ${user.user_Img} ${user.id}
+			<input type = "hidden" name="id" value="${user.id}"  >
+			
+			<select name="category" id="sign1">
+			<option value = "매물 관련">매물 관련</option>
+			<option value = "계약 관련">계약 관련</option>
+			<option value = "커뮤니티 관련">커뮤니티 관련</option>
+			<option value = "기타">기타</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
-			<td><textarea name="Comm_con" id="content" 
+			<td class="user">휴대전화 : 
+			<input name="tel" value="${user.tel}"  ></td>
+		</tr>
+		<tr>
+			<td class="user">이메일 : 
+			<input name="email" value="${user.email}"  ></td>
+		</tr>
+		<tr>
+			<td><textarea name="query" id="query" 
 			rows="20" cols="10" 
 			placeholder="내용을 입력해주세요"
 			style="width : 700px" required="required"></textarea>
@@ -78,12 +94,11 @@
 	</table>
 	<div id="button" align="center">
 		<button type="submit" id="save" value="완료">완료</button>
-		<button type="button" id="cancel" value="취소" onclick="location.href='community_list'">취소</button>
-		<button type="button" id="list" value="목록으로" onclick="location.href='community_list'">목록으로</button>
+		<button type="button" id="cancel" value="취소" onclick="location.href='query_list'">취소</button>
+		<button type="button" id="list" value="목록으로" onclick="location.href='query_list'">목록으로</button>
 	</div>
 </form>
 </div>
-
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	//let title = $(#title).val();

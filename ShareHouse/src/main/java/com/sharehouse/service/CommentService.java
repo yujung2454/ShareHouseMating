@@ -14,15 +14,15 @@ public class CommentService {
 	@Autowired
 	CommentDao dao;
 	
-	public List<CommentDto> selectComment(int comm_comment_no){
-		return dao.selectComment(comm_comment_no);
+	public List<CommentDto> selectComment(int comm_no){
+		return dao.selectComment(comm_no);
 	}
 	
 	public int insertComment(CommentDto dto) {
 		return dao.insertComment(dto);
 	}
 	
-	public int deleteComment(int comm_comment_no) {
-		return dao.deleteComment(comm_comment_no);
+	public int deleteComment(int comment_no) {
+		return dao.deleteComment(comment_no);
 	}
 }
