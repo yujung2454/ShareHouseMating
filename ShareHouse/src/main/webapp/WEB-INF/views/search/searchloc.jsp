@@ -76,23 +76,55 @@
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&v=beta&libraries=marker,places&callback=initMap"></script>
 <script>
+var locations = [];
+
+$.ajax({
+	type:"get",
+	url:"/latlng",
+	dataType:"json",
+	data:{},
+	success:function(data){
+		$.each(data,function(index,item){
+			locations.push({lat: item.latitude, lng: item.longitude})
+		})
+	},
+	error:function(){
+		alert("error")
+	}
+})
+
 $(function(){
 	
 	var lat = ${lat}
 	var lng = ${lng}
+	locations.push({lat: lat, lng: lng})
 	function initMap(){
 		const latlng = {lat: lat, lng: lng};
 	    const map = new google.maps.Map(document.getElementById("map"), {
 	    center: latlng,
 	    zoom: 17,
 	    mapTypeControl: false,
-	  });
-	    new google.maps.Marker({
-		position:latlng,
-		map,
-	})}
+	  	});
+		const markers = locations.map((position,i) => {
+			var lat2 = Object.values(position)[0]
+			lat2 *= 1
+			var lng2 = Object.values(position)[1]
+			lng2 *= 1
+			const marker = new google.maps.Marker({
+				position: {lat: lat2, lng: lng2}
+			})
+			
+			marker.addListener("click",() => {
+				infoWindow.open(map,marker)
+			})
+			return marker;
+		})
+		
+		new markerClusterer.MarkerClusterer({markers,map});
+	}
 	window.initMap = initMap;
 	
 	var autocomplete;
