@@ -3,6 +3,7 @@ package com.sharehouse.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,15 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.service.CommentService;
 import com.sharehouse.service.CommunityService;
-
+@SessionAttributes("User")
 @Controller
 public class CommunityController {
 	
@@ -29,9 +31,10 @@ public class CommunityController {
 	CommentService c_service;
 	
 	@GetMapping("/community/community_write")
-	public String wirteForm() {
-		return "community/community_write";
-	}
+	   public String wirteForm(@AuthenticationPrincipal SecurityUser user, Model m) {
+	      m.addAttribute("user", user.getUsers());
+	      return "community/community_write";
+	   }
 	
 	@PostMapping("/community/community_write")
 	public String community_write(CommunityDto dto) {
@@ -40,7 +43,7 @@ public class CommunityController {
 	}
 	
 	@GetMapping("/community/community_view/{comm_no}")
-	public String content(@PathVariable int comm_no, Model m) {
+	public String content(@AuthenticationPrincipal SecurityUser user, @PathVariable int comm_no, Model m) {
 		CommunityDto dto = service.communityOne(comm_no);
 		m.addAttribute("dto", dto);
 		List<CommentDto> commentList = c_service.selectComment(comm_no);
