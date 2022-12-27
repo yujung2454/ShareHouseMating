@@ -35,24 +35,21 @@
 	
 	
 	<select id="queryListSearch" parameterType="map" resultType="com.sharehouse.dto.QueryDto">
-		
 		select * from user_query_list where query_title like concat('%',#{search},'%') order by query_date desc limit #{start}, #{count}
-		
 	</select>
 	
 	<select id="countSearch" resultType="int" parameterType="map">
 		select count(*) from user_query_list where query_title like concat('%',#{search},'%') 
-		
-			
-		
 	</select>
 	
 	<select id="querySort" parameterType="map" resultType="com.sharehouse.dto.QueryDto">
-
 		select * from user_query_list
 		<choose>
 		<when test="sort==recent"> order by query_date desc limit #{start}, #{count} </when>
 		</choose>
-
 	</select>
+	
+	<delete id="delChecked" parameterType="QueryDto">
+	delete from user_query_list where query_no in #{query_no}
+	</delete>
 </mapper>

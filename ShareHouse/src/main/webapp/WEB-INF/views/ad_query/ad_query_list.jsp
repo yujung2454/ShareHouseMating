@@ -55,7 +55,7 @@
 							<c:forEach items="${qList}" var="query">
 							<tr>
 								<td>
-								<input type="checkbox" name="query_no" value="${query.query_no}">
+								<input type="checkbox" name="query_no" value="${query.query_no}" class="chk">
 								<td>${user.user_img} ${query.id}</td>
 								<td>${query.category}</td>
 								<td><a href="query_view/${query.query_no}">${query.query_title}</a></td>
@@ -115,13 +115,14 @@ $(document).ready(function() {
 $(function(){
 	$("#del").click(function(){
 		let query_no = $(".chk").val(); //..?히ㅏ핳
-		$.ajax({url:"/delete", 
+		alert("query_no"+query_no)
+		/* $.ajax({url:"/delete", 
 				data:"query_no="+query_no, 
 				method:"post"
 				}
 		).done(function(){
 			location.href="/ad_query_list";
-		})
+		}) */
 		return false;
 	})//click
 	

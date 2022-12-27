@@ -11,6 +11,7 @@ import com.sharehouse.dto.QueryDto;
 
 @Mapper
 public interface QueryDao {
+	//유저 dao
 	int insert(QueryDto dto);	//글 작성
 	List<QueryDto> queryList(Map<String, Object> m);
 	int count();	//전체 글 갯수
@@ -20,8 +21,7 @@ public interface QueryDao {
 	List<QueryDto> queryListSearch(Map<String, Object> m); //게시글 검색
 	int countSearch(Map<String, Object> m); // 전체 글 갯수
 	List<QueryDto> querySort(Map<String, Object> m);
-
-@Select
-("select * from user_query_list")
-List<QueryDto> uql(QueryDto dto);
+	
+	//관리자 dao
+	int delChecked(QueryDto dto);
 }

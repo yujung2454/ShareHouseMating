@@ -17,6 +17,7 @@ public class QueryService {
 	@Autowired
 	QueryDao dao;
 	
+	//유저 service
 	public int insert (QueryDto dto) {
 		return dao.insert(dto);
 	}
@@ -67,8 +68,8 @@ public class QueryService {
 		return dao.querySort(m);
 	}
 	
-	public List<QueryDto> uql(QueryDto dto) {
-		return dao.uql(dto);
+	//관리자 service
+	public int delChecked(QueryDto dto) {
+		return dao.delChecked(dto);
 	}
-
 }

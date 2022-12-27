@@ -69,8 +69,8 @@ public class QueryController {
 	@PostMapping("/delete")
 	@ResponseBody
 	public String delete(int query_no) {
-		 service.deletePost(query_no);
-		return "/ad_query_list";
+		int i = service.deletePost(query_no);
+		return ""+i;
 	}
 	
 	@GetMapping("/query_list")
@@ -140,7 +140,7 @@ public class QueryController {
 	//관리자 컨트롤러
 	
 	@GetMapping("/ad_query_list")
-	public String query_list2(String sort, @RequestParam(name="p", defaultValue="1") int page, Model m, QueryDto dto) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
+	public String query_list2(String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
 		
 		//글이 있는지 체크
 		int count = service.count();
@@ -150,10 +150,8 @@ public class QueryController {
 			int perPage = 10; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage; //한 페이지의 첫 글 인덱스 번호
 			
-			List<QueryDto> Qdto = service.uql(dto);
 			List<QueryDto> queryList = service.queryList(startRow);
 			m.addAttribute("qList", queryList);
-			m.addAttribute("dto",Qdto);
 			int pageNum = 5;
 			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
 			
@@ -172,4 +170,9 @@ public class QueryController {
 		return "ad_query/ad_query_list";
 	}
 	
+	@PostMapping("/ad_query_list")
+	public String delChecked(QueryDto dto) {
+		service.delChecked(dto);
+		return "redirect:ad_query_list";
+	}
 }
