@@ -26,6 +26,7 @@
 			<button type='submit' value="검색" class="search"></button>
 		</form>
 	</div>
+		<form method="post" action="/ad_query_list">
 	<div id = "board">
 		<table>
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
@@ -79,12 +80,12 @@
 				<a href="query_list?p=${end+1}">[다음]</a>
 			</c:if>
 		</div>
-	</div>	
+	</div>
+		
 		<div id="write" align="right">
 			<input type = "submit" class="query_write" id="del" value= " 삭제">
-
 		</div>
-	
+	</form>
 </div>
 
 <div>
@@ -99,20 +100,20 @@
 // 체크박스
 $(document).ready(function() {
 	$("#cbx_chkAll").click(function() {
-		if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
-		else $("input[name=chk]").prop("checked", false);
+		if($("#cbx_chkAll").is(":checked")) $("input[name=query_no]").prop("checked", true);
+		else $("input[name=query_no]").prop("checked", false);
 	});
 	
-	$("input[name=chk]").click(function() {
-		var total = $("input[name=chk]").length;
-		var checked = $("input[name=chk]:checked").length;
+	$("input[name=query_no]").click(function() {
+		var total = $("input[name=query_no]").length;
+		var checked = $("input[name=query_no]:checked").length;
 		
 		if(total != checked) $("#cbx_chkAll").prop("checked", false);
 		else $("#cbx_chkAll").prop("checked", true); 
 	});
 });
 // 문의 글 삭제
-$(function(){
+/* $(function(){
 	$("#del").click(function(){
 		let query_no = $(".chk").val(); //..?히ㅏ핳
 		alert("query_no"+query_no)
@@ -127,7 +128,7 @@ $(function(){
 	})//click
 	
 
-})//ready
+})//ready */
 </script>
 </body>
 </html>

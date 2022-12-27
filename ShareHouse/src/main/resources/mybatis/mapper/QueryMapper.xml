@@ -49,7 +49,11 @@
 		</choose>
 	</select>
 	
-	<delete id="delChecked" parameterType="QueryDto">
-	delete from user_query_list where query_no in #{query_no}
+	<delete id="delChecked">
+	delete from user_query_list where query_no in 
+	<foreach item="no" index="index" collection="array"
+      open="(" separator="," close=")">
+        #{no} 
+  </foreach>
 	</delete>
 </mapper>
