@@ -55,10 +55,10 @@
 <div id="center">
 <!-- 게시글 리스트 테이블 -->
 <div id = "title">
-	<h1>커뮤니티</h1>
+	<a href="community_list" class="community_list">커뮤니티</a> 	
 </div>
 <form method="post" id="writeform" action="community_write">
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+ <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 	<table border="1">
 		<tr>
 			<td class="subject">제목 :
@@ -66,7 +66,7 @@
 		</tr>
 		<tr>
 			<td class="user">작성자 : 
-			<input name="id" value="${user.user_img} ${user.id}"  ></td>
+			<input name="id" value="${user.id}"></td>	<!-- readonly -->
 		</tr>
 		<tr>
 			<td><textarea name="Comm_con" id="content" 

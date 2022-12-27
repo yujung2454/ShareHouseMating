@@ -1,0 +1,42 @@
+@charset "UTF-8";
+.frame{
+	width:100%;
+	border-top:solid thin;
+	border-top-color: #d4d4d4;
+}
+.list_frame{
+	overflow:auto;
+	display:inline-block;
+	position:relative;
+	width:670px;
+	height:700px;
+	left:2%
+}
+
+.offer_list{
+	width:600px;
+	margin:10px 0 10px 5px;
+	border:solid thin #d4d4d4;
+	border-radius:1rem;
+	overflow:hidden;
+	height:148px;
+}
+
+
+.list_img{
+	display:inline-block;
+	width:210px;
+	height:148px;
+	border-radius:1rem;
+	overflow:hidden;
+}
+
+.img{
+	height:100%;
+}
+
+.list_con{
+	vertical-align:top;
+	width:350px;
+	display:inline-block;
+}

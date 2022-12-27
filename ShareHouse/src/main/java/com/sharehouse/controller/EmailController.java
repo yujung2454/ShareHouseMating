@@ -18,6 +18,7 @@ public class EmailController {
 
 	@RequestMapping("/send")
 	public String[] sendMail(String emailAddress) throws Exception {
+		
 
 		EmailVO email = new EmailVO();
 
@@ -35,7 +36,7 @@ public class EmailController {
 
 		Boolean result = emailService.sendMail(email);
 
-		return new String[] {content, result.toString()};
+		return new String[] {number, result.toString()};
 
 	}
 	

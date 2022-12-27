@@ -187,12 +187,33 @@ $(function(){
 	
 	$(".region_content2").off("click").on("click",".region_lst2",function(){
 		if ($(" span",this).attr("class") == undefined){
-			$(this).css({"color":"#39f", "font-weight":"bold"})
+			//$(this).css({"color":"#39f", "font-weight":"bold"})
 			$(this).append("<span class='ck'></span>")
+			var loc = $(this).text();
+			if(!$(this).hasClass("on")){
+				$(this).addClass("on")
+				$(".selected_loc").append("<div class='loc'><span class='"+loc+"'>"+loc+"</span><img class='close' src='/images/close.png'></div>")
+			}
 		} else {
-			$(this).css({"color":"#000", "font-weight":"normal"})
-			$(" span",this).remove();
+			if(!$(this).hasClass("on")){
+				$(this).css({"color":"#000", "font-weight":"normal"})
+				$(" span",this).remove();
+			}
 		}
 	})
+	
+	$(".selected_loc").on("click",".close",function(){
+		var temp = $(this)
+		$(".region_lst2").each(function(index, item){
+			if($(item).text() == temp.closest("div").text()){
+				$(item).css({"color":"#000", "font-weight":"normal"})
+				$(item).removeClass("on")
+				$(" span", item).remove();
+			}
+		})
+		
+		$(this).closest("div").remove()
+	})
+	
 	
 })

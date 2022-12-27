@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharehouse.dao.CommentDao">
+
+	<insert id="insertComment" parameterType="com.sharehouse.dto.CommentDto">
+		insert into comm_comment(id, comment_con, comment_date, comm_no) values(#{id}, #{comment_con}, now(), #{comm_no})
+	</insert>
+
+	<delete id="deleteComment" parameterType="int">
+		delete from comm_comment where comment_no = #{comment_no}
+	</delete>
+	
+	<select id="selectComment" parameterType="int" resultType="com.sharehouse.dto.CommentDto">
+		select * from comm_comment where comm_no = #{comm_no} order by comment_date asc
+	</select>
+</mapper>

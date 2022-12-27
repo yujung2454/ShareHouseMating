@@ -12,7 +12,7 @@
 <body>
 
 <div id = "title">
-	<h1>커뮤니티</h1>
+	<a href="/community/community_list" class="community_list">커뮤니티</a> 	
 </div>
 <hr>
 <form id="viewpost">
@@ -31,15 +31,80 @@
 ${dto.comm_con}
 </td>
 </tr>
-<tr>
-<td> <button type="button" class="img-button">
-<img src="https://w7.pngwing.com/pngs/6/367/png-transparent-comment-dots-regular-icon.png" width="20" height="20" alt="댓글">
-</button>
-댓글
-</td>
-</tr>
-
 </table>
 </form>
+	<c:if test="${dto.id == user.id}">
+		<a href="/community/community_update/${dto.comm_no}">글 수정 </a> 
+		<a id="${dto.comm_no}" href="#">글 삭제</a>
+	</c:if>
+		<button type="button" onclick="location.href='/community/community_list'">목록으로</button>
+<div>
+	<div id="comment">
+	<c:forEach items="${commentList}" var="comm">
+		<div>${dto.id} / <fmt:formatDate value="${dto.comment_date }" dateStyle="short"/></div>
+		<div>${dto.comment_con} 
+		<c:if test="${dto.id == user.id }">
+		<button class="dbtn" id="${dto.comment_no}">삭제</button>
+		</c:if>
+		</div>
+		<hr>
+	</c:forEach>
+	</div>
+	<input name="content" id="content"><button id="add">등록</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(function(){
+		$("a[id]").click(function(){
+			let comm_no = $(this).attr("id");
+			$.ajax({url:"/community/delete", 
+					data:"comm_no="+comm_no, 
+					method:"delete"
+					}
+			).done(function(){
+				location.href="/community/community_list";
+			})
+			return false;
+		})//click
+		
+		$("#add").click(function(){
+			let id = "${user.id}"; // 세션에 저장된 id값
+			let comment_con = $("#content").val();
+			let comm_no = ${dto.comm_no};
+			
+			$.ajax({url:"/comment/insert",
+					data:"comm_no="+comm_no+"&id="+id+"&comment_con="+comment_con,
+					method:"get",
+					dataType:"json"
+			}).done(function(resp){
+					//location.reload();
+					//console.log(resp);
+					let commentlist = "";
+					resp.forEach(function(comm_comment,index){
+						commentlist += "<div>"+comm_comment.id+" / "+new Date(comm_comment.comment_date).toLocaleDateString()
+						+"</div><div>"+comm_comment.comment_con;
+						if(id == comm_comment.id){
+							commentlist +='<button class="dbtn" id="'+comm_comment.comment_no+'">삭제</button>';
+						}
+						commentlist+="</div><hr>";
+					});
+					
+					$("#comment").html(commentlist);
+					$("#content").val("");
+				});
+			
+		})//click
+		$("#comment").on("click",".dbtn",function(){
+			let comment_no = $(this).attr("id");
+			$.ajax({url:"/comment/delete/"+comment_no,
+				method:"get"
+		}).done(function(){
+				location.reload();		
+			});
+			
+		})//click
+	})//ready
+</script>
 </body>
 </html>
