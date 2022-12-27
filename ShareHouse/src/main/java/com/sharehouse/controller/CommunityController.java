@@ -73,6 +73,7 @@ public class CommunityController {
 	
 	@GetMapping("community/community_list")
 	public String community_list(String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
+
 		
 		//글이 있는지 체크
 		int count = service.count();
@@ -136,5 +137,6 @@ public class CommunityController {
 		
 		return "community/community_search";
 	}
+
 	
 }

@@ -24,7 +24,7 @@
 	<select id="count" resultType="int">
 		select count(*) from comm
 	</select>
-	
+  
 	<select id="communityOne" parameterType="int" resultType="com.sharehouse.dto.CommunityDto">
 		select * from comm where comm_no = #{comm_no}
 	</select>
@@ -56,17 +56,13 @@
 			<when test="sort == 1"> order by comm_v_cnt desc</when>
 		</choose>
 			limit #{start} , #{count}
-		
 	</select>
-	
-	
+
 	<select id="countSearch" resultType="int" parameterType="map">
 	
 		select count(*) from comm where comm_title like concat('%',#{search},'%') 
 
 	</select>
-	
-	
 	
 	<select id="viewPost" parameterType="int" resultType="com.sharehouse.dto.CommunityDto">
 		select Id, Comm_title, Comm_con, Comm_date, Comm_v_cnt from comm where Comm_no=${Comm_no}
