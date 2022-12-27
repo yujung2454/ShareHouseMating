@@ -26,6 +26,7 @@
 			<button type='submit' value="검색" class="search"></button>
 		</form>
 	</div>
+		<form method="post" action="/ad_query_list">
 	<div id = "board">
 		<table>
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
@@ -79,12 +80,12 @@
 				<a href="query_list?p=${end+1}">[다음]</a>
 			</c:if>
 		</div>
-	</div>	
+	</div>
+		
 		<div id="write" align="right">
 			<input type = "submit" class="query_write" id="del" value= " 삭제">
-
 		</div>
-	
+	</form>
 </div>
 
 <div>
@@ -112,7 +113,7 @@ $(document).ready(function() {
 	});
 });
 // 문의 글 삭제
-$(function(){
+/* $(function(){
 	$("#del").click(function(){
 		let query_no = $(".chk").val(); //..?히ㅏ핳
 		alert("query_no"+query_no)
@@ -127,7 +128,7 @@ $(function(){
 	})//click
 	
 
-})//ready
+})//ready */
 </script>
 </body>
 </html>

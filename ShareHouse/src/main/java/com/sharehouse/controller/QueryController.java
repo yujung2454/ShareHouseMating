@@ -1,23 +1,21 @@
 package com.sharehouse.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sharehouse.config.SecurityUser;
-import com.sharehouse.dto.CommentDto;
-import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.QueryDto;
 import com.sharehouse.service.QueryService;
 
@@ -171,8 +169,14 @@ public class QueryController {
 	}
 	
 	@PostMapping("/ad_query_list")
-	public String delChecked(QueryDto dto) {
-		service.delChecked(dto);
-		return "redirect:ad_query_list";
+	public String delChecked(int[] query_no) {
+		System.out.println(query_no);
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		for(int i=0; i<query_no.length; i++) {
+			queryMap.put("no", query_no[i]);
+		}
+		System.out.println(queryMap);
+		service.delChecked(query_no);
+		return "redirect:/ad_query_list";
 	}
 }
