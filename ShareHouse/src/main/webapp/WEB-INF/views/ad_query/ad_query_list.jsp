@@ -100,13 +100,13 @@
 // 체크박스
 $(document).ready(function() {
 	$("#cbx_chkAll").click(function() {
-		if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
-		else $("input[name=chk]").prop("checked", false);
+		if($("#cbx_chkAll").is(":checked")) $("input[name=query_no]").prop("checked", true);
+		else $("input[name=query_no]").prop("checked", false);
 	});
 	
-	$("input[name=chk]").click(function() {
-		var total = $("input[name=chk]").length;
-		var checked = $("input[name=chk]:checked").length;
+	$("input[name=query_no]").click(function() {
+		var total = $("input[name=query_no]").length;
+		var checked = $("input[name=query_no]:checked").length;
 		
 		if(total != checked) $("#cbx_chkAll").prop("checked", false);
 		else $("#cbx_chkAll").prop("checked", true); 

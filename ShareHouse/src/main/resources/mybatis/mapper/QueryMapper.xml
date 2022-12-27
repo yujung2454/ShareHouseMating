@@ -53,7 +53,7 @@
 	delete from user_query_list where query_no in 
 	<foreach item="no" index="index" collection="array"
       open="(" separator="," close=")">
-        #{no}
+        #{no} 
   </foreach>
 	</delete>
 </mapper>
