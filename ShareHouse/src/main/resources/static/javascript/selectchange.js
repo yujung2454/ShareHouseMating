@@ -203,18 +203,9 @@ $(function(){
 	})
 	
 	$(".selected_loc").on("click",".close",function(){
-		//var lst = $(".region_lst2")
-		//console.log(lst);
-		/*for(var i=0;i<lst.length;i++){
-			
-			if(lst[i].text() == $(this).closest("div").text()){
-				lst[i].removeClass("on")
-				lst[i].css({"color":"#000", "font-weight":"normal"})
-			}
-			
-		}*/
+		var temp = $(this)
 		$(".region_lst2").each(function(index, item){
-			if($(item).text() == $(this).text()){
+			if($(item).text() == temp.closest("div").text()){
 				$(item).css({"color":"#000", "font-weight":"normal"})
 				$(item).removeClass("on")
 				$(" span", item).remove();

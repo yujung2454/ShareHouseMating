@@ -1,6 +1,68 @@
+var latitude = null;
+var longitude = null;
+var locations = [];
+	
+$.ajax({
+	type:"get",
+	url:"/latlng",
+	dataType:"json",
+	data:{},
+	success:function(data){
+		$.each(data,function(index,item){
+			locations.push({lat: item.latitude, lng: item.longitude})
+		})
+	},
+	error:function(){
+		alert("error")
+	}
+})
+
 navigator.geolocation.getCurrentPosition(function(pos) {
-    var latitude = pos.coords.latitude;
-    var longitude = pos.coords.longitude;
+    latitude = pos.coords.latitude;
+    longitude = pos.coords.longitude;
+	
+	function initMap(){
+		const myLatLng = {lat: latitude, lng: longitude};
+	    const map = new google.maps.Map(document.getElementById("map"), {
+	    center: myLatLng,
+	    zoom: 12,
+	    mapTypeControl: false,
+	  	});
+	  
+		const infoWindow = new google.maps.InfoWindow({
+		content:"",
+		disableAutoPan: true,
+		});
+	
+		const markers = locations.map((position,i) => {
+			var lat2 = Object.values(position)[0]
+			lat2 *= 1
+			var lng2 = Object.values(position)[1]
+			lng2 *= 1
+			const marker = new google.maps.Marker({
+				position: {lat: lat2, lng: lng2}
+			})
+			
+			marker.addListener("click",() => {
+				infoWindow.open(map,marker)
+			})
+			return marker;
+		})
+		
+		new markerClusterer.MarkerClusterer({markers,map});
+			  
+
+	}
+
+		
+	
+	
+	window.initMap = initMap;
+})
+	/*if (latitude == null & longitude == null){
+	    latitude = pos.coords.latitude;
+	    longitude = pos.coords.longitude;
+	}
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
@@ -35,4 +97,4 @@ navigator.geolocation.getCurrentPosition(function(pos) {
 	    markers.setPosition(latLng);
 	});
 
-})
+})*/

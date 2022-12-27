@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>우리집</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>매물찾기</title>
 <link href="/css/uppernav.css" rel="stylesheet">
-<link href="/css/offerlist.css" rel="stylesheet">
-<link href="/css/quick.css" rel="stylesheet">
+<link href="/css/map.css" rel="stylesheet">
+<link href="/css/searchlist.css" rel="stylesheet">
 </head>
 <body>
 <div class="fixed">
@@ -58,51 +60,41 @@
 	<input id="latlng" name="latlng" type="hidden">
 </form>
 </div>
-<div style="position:absolute; width:60%; left:19%;">
-	<div class="offering_lst">
+<div class="frame">
+	<div id="map"></div>
+	<div class="list_frame">
 		<c:forEach var="offer" items="${offering}">
-			<div class="offer">
-				<div class="offer_frame" style="cursor:pointer" onclick="locatioin.href='/offerinfo/detail_info'">
-					<div class="offer_img_frame">
-						<img class="offer_img" src="${offer.thumbnail}">
-					</div>
-					<div class="offer_info">
-						<p class="offer_title">${offer.title}</p>
-						<p>보증금 : <span>${offer.deposit}</span> 월세 : <span>${offer.rental}</span></p>
-						<p class="loc"></p>
-					</div>
+			<div class="offer_list">
+				<div class="list_img">
+					<img class="img" src="${offer.thumbnail}">
+				</div>
+				<div class="list_con">
+					<p> ${offer.title}
 				</div>
 			</div>
 		</c:forEach>
-	</div>
 </div>
-<div class="quick">
-	<div class="quick_shape">
-		<a href="/search/searchlist">
-			<img src="/images/search.png" title="검색">
-		</a>
-	</div>
-	<div class="quick_shape">
-		<a href="">
-			<img src="images/like.png" title="찜">
-		</a>
-	</div>
-	<div class="quick_shape">
-		<a href="">
-			<img src="images/chat.png" title="채팅">
-		</a>
-	</div>
 </div>
-</body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<!-- <script src="/javascript/offeringlist"></script> -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0e94507c189370b7652c07b56d35fd&libraries=services"></script>
-<script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&v=beta&libraries=marker,places&callback=initMap"></script>
 <script>
-
 $(function(){
+	
+	var lat = ${lat}
+	var lng = ${lng}
+	function initMap(){
+		const latlng = {lat: lat, lng: lng};
+	    const map = new google.maps.Map(document.getElementById("map"), {
+	    center: latlng,
+	    zoom: 17,
+	    mapTypeControl: false,
+	  });
+	    new google.maps.Marker({
+		position:latlng,
+		map,
+	})}
+	window.initMap = initMap;
+	
 	var autocomplete;
 	var Id = 'location';
 	geocoder = new google.maps.Geocoder();
@@ -151,35 +143,11 @@ $(function(){
 		if($("#location").val() == ""){
 			return false;
 		}
-	})
+	}
+	)
 })
 
 
-
-
-
-
-var offer_lst = [];
-
-let offer = ${offering2};
-
-$(".loc").each(function(j,jitem){
-	let ploc = $(this);
-	let lat = offer[j].latitude;
-	let lng = offer[j].longitude;
-	
-	let geocoder = new kakao.maps.services.Geocoder();
-
-    let coord = new kakao.maps.LatLng(lat, lng);
-    let callback = function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-        	let words = result[0].address.address_name.split(' ')
-        	ploc.text( words[2]);
-        }	
-    }
-    geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-	
-})
 </script>
-
+</body>
 </html>
