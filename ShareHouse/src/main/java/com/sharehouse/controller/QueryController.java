@@ -146,7 +146,7 @@ public class QueryController {
 		if(count > 0) {
 			
 			int perPage = 10; // 한 페이지에 보일 글의 갯수
-			int startRow = (page - 1) * perPage; //한 페이지의 첫 글 인덱스 번호
+			int startRow = (page - 1) * perPage;//한 페이지의 첫 글 인덱스 번호
 			
 			List<QueryDto> queryList = service.queryList(startRow);
 			m.addAttribute("qList", queryList);
@@ -170,13 +170,19 @@ public class QueryController {
 	
 	@PostMapping("/ad_query_list")
 	public String delChecked(int[] query_no) {
-		System.out.println(query_no);
-		Map<String, Object> queryMap = new HashMap<String, Object>();
-		for(int i=0; i<query_no.length; i++) {
-			queryMap.put("no", query_no[i]);
-		}
-		System.out.println(queryMap);
 		service.delChecked(query_no);
 		return "redirect:/ad_query_list";
+	}
+	
+	@GetMapping("/ad_query_view/{query_no}")
+	public String content2(@AuthenticationPrincipal SecurityUser user, @PathVariable int query_no, Model m) {
+		QueryDto dto = service.queryOne(query_no);
+		m.addAttribute("user", user.getUsers());
+		m.addAttribute("dto", dto);
+		/*
+		 * List<CommentDto> commentList = c_service.selectComment(comm_no);
+		 * m.addAttribute("commentList", commentList);
+		 */
+		return "ad_query/ad_query_view";
 	}
 }

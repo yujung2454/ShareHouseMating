@@ -54,6 +54,6 @@
 	<foreach item="no" index="index" collection="array"
       open="(" separator="," close=")">
         #{no} 
-  </foreach>
+  	</foreach>
 	</delete>
 </mapper>
