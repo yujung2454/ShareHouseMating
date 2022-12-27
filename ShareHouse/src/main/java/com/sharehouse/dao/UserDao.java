@@ -15,7 +15,8 @@ public interface UserDao {
 ("select * from user where id = #{id}")
 Users findById(String id);
 
-@Insert("insert into user values(#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{gender}, #{user_add}, #{user_add2}, #{user_Img}, #{status})")
+@Insert
+("insert into user values(#{id}, #{pwd}, #{name}, #{email}, #{tel}, #{gender}, #{user_add}, #{user_add2}, #{user_Img}, #{status})")
 int insertUser(Users user);
 
 /*

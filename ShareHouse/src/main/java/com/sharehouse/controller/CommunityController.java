@@ -6,29 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.sharehouse.dto.CommunityDto;
-import com.sharehouse.dto.MemberDto;
 import com.sharehouse.service.CommunityService;
 
-@SessionAttributes("user")
 @Controller
 public class CommunityController {
 	
 	@Autowired
 	CommunityService service;
 	
-	@ModelAttribute("user")
-	public MemberDto getDto() {
-		return new MemberDto();
-	}
-
 	
 	@GetMapping("/community/community_write")
 	public String wirteForm() {
@@ -42,7 +33,7 @@ public class CommunityController {
 	}
 	
 	@GetMapping("/community/community_view/{comm_no}")
-	public String content(@ModelAttribute("user")MemberDto user, @PathVariable int comm_no, Model m) {
+	public String content(@PathVariable int comm_no, Model m) {
 		CommunityDto dto = service.viewPost(comm_no);
 		m.addAttribute("dto", dto);
 		return "community/community_view";

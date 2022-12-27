@@ -12,7 +12,7 @@
 <div style="text-align:center;">
 <img src="https://50plus.or.kr/upload/im/2020/07/316fc829-17be-4d65-b498-9630199d9c3a.png"><br>
 거침없이 치솟는 집값, 부담이 되는 보증금, 늘어나는 1인 가구<br>
-그런 여러분들을 위해 만들었습니다.
+여러분들을 위해 만들었습니다.
 </div>
 <div style="text-align:left; margin-left:200px; margin-top:20px;">
 <pre><b>
