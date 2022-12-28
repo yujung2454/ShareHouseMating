@@ -18,7 +18,7 @@
 <div id = "title">
 	<h1>문의리스트</h1>
 </div>
-		<form method="post" action="/ad_query_list">
+		<form method="post" action="/admin/ad_query_list">
 	<div id = "board">
 		<table>
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
@@ -51,7 +51,7 @@
 								<input type="checkbox" name="query_no" value="${query.query_no}">
 								<td>${user.user_img} ${query.id}</td>
 								<td>${query.category}</td>
-								<td><a href="ad_query_view/${query.query_no}">${query.query_title}</a></td>
+								<td><a href="/admin/ad_query_view/${query.query_no}">${query.query_title}</a></td>
 								<td>${query.query_state}</td>
 							</tr>
 							

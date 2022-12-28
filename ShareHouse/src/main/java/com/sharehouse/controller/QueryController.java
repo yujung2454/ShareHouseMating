@@ -137,7 +137,7 @@ public class QueryController {
 	
 	//관리자 컨트롤러
 	
-	@GetMapping("/ad_query_list")
+	@GetMapping("/admin/ad_query_list")
 	public String query_list2(String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
 		
 		//글이 있는지 체크
@@ -168,13 +168,13 @@ public class QueryController {
 		return "admin/ad_query/ad_query_list";
 	}
 	
-	@PostMapping("/ad_query_list")
+	@PostMapping("/admin/ad_query_list")
 	public String delChecked(int[] query_no) {
 		service.delChecked(query_no);
-		return "redirect:/ad_query_list";
+		return "redirect:/admin/ad_query_list";
 	}
 	
-	@GetMapping("/ad_query_view/{query_no}")
+	@GetMapping("/admin/ad_query_view/{query_no}")
 	public String content2(@AuthenticationPrincipal SecurityUser user, @PathVariable int query_no, Model m) {
 		QueryDto dto = service.queryOne(query_no);
 		m.addAttribute("user", user.getUsers());

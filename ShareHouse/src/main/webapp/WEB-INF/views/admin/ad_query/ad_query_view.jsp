@@ -58,7 +58,7 @@ ${dto.query}
 		<a href="/query_update/${dto.query_no}">글 수정 </a> 
 		<a id="${dto.query_no}" href="#">글 삭제</a>
 		</c:if>
-		<button type="button" onclick="location.href='/query_list'">취소</button>
+		<button type="button" onclick="location.href='admin/ad_query_list'">취소</button>
 <%-- <div>
 	<div id="comment">
 	<c:forEach items="${commentList}" var="comm">
