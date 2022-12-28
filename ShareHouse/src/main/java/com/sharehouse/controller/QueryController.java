@@ -165,7 +165,7 @@ public class QueryController {
 			}
 		//글이 없을 시
 		m.addAttribute("count", count);
-		return "ad_query/ad_query_list";
+		return "admin/ad_query/ad_query_list";
 	}
 	
 	@PostMapping("/ad_query_list")
@@ -183,6 +183,6 @@ public class QueryController {
 		 * List<CommentDto> commentList = c_service.selectComment(comm_no);
 		 * m.addAttribute("commentList", commentList);
 		 */
-		return "ad_query/ad_query_view";
+		return "admin/ad_query/ad_query_view";
 	}
 }
