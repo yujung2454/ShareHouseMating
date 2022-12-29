@@ -58,7 +58,6 @@
 	<a href="community_list" class="community_list">커뮤니티</a> 	
 </div>
 <form method="post" id="writeform" action="community_write">
- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 	<table border="1">
 		<tr>
 			<td class="subject">제목 :
@@ -69,10 +68,11 @@
 			<input name="id" value="${user.id}"></td>	<!-- readonly -->
 		</tr>
 		<tr>
-			<td><textarea name="Comm_con" id="content" 
+			<td>
+			<div class="smarteditor"><textarea name="Comm_con" id="content" 
 			rows="20" cols="10" 
 			placeholder="내용을 입력해주세요"
-			style="width : 700px" required="required"></textarea>
+			 required="required" style="width:100%"></textarea></div>
 			</td>
 		</tr>
 	</table>
@@ -83,6 +83,40 @@
 	</div>
 </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script>
+     let oEditors = []
+
+    smartEditor = function() {
+    	 
+      console.log("Naver SmartEditor")
+      nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "content",
+        sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+      })
+    } 
+
+    $(document).ready(function() {
+  
+      smartEditor() 
+      
+      $("#save").click(function(){
+    	  oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+    	  $("#writeform").submit();
+      });
+      
+    })
+    
+    
+
+ 
+  </script>
+ 
+
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	//let title = $(#title).val();
@@ -103,6 +137,7 @@
 	})
 </script>
  -->
+
 <footer>
 </footer>
 

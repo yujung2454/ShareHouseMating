@@ -10,11 +10,21 @@
 
 	.main_slide{
 		padding-top:30rem; 
-		width : 650px !important;
+		width : 650px;
 		background-position : center;
 		background : round;
 	}
-
+	
+	.bx-pager > a{
+		float:left;
+	}
+	
+	.report{
+		width : 4.5rem;
+		height : 1.5rem;
+		margin-bottom : 2rem;
+		float : right;	
+	}
 	#info_btn_list{
 		width:100%;
 		display : flex;
