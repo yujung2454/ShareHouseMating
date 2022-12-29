@@ -10,7 +10,7 @@ import com.sharehouse.dto.OfferingDto;
 @Mapper
 public interface OfferingDao {
 	@Select
-	("select * from offering")
-	List<OfferingDto> selectNo();	
+	("select * from offering where board_no = #{board_no} ")
+	List<OfferingDto> selectNo(int board_no);	
 	
 }

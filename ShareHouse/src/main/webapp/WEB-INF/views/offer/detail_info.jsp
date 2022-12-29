@@ -74,7 +74,7 @@
 				
 				</div>
 			</div>
-			<form action="/offer/detail_info" method="post">
+			<form action="/offer/detail_info1/{board_no}" method="post">
 			<div class="report"><input type="hidden" name="board_no" value="${offeringdto.board_no }">
 			<input type="hidden" name="id" value="${offeringdto.id }">
 			<button class="report-button" type="submit">
@@ -82,7 +82,7 @@
 			</div>
 			</form>
 			<div class="favorite"><!-- 찜 --></div>
-			
+	
 		
 		
 	
