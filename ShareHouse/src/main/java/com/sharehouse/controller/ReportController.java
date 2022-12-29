@@ -27,6 +27,7 @@ public class ReportController {
 		dto.setReporter(Id);
 		service.insertReport(dto);
 		service.selectIdNo(board_no);
+		System.out.println(board_no);
 		return "/offer/detail_info";
 	}
 }
