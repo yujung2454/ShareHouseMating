@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sharehouse.dto.OfferingDto;
 import com.sharehouse.service.OfferingService;
@@ -18,12 +19,16 @@ public class OfferingController {
 	OfferingService service;
 	
 	@GetMapping("/offer/detail_info")
+	public String detail_info() {   
+		return "/offer/detail_info";
+	}
+	
+	@PostMapping("/offer/detail_info")
 	public String info(Model m) {   
 		List<OfferingDto> offeringdto = service.selectNo();
 		m.addAttribute(offeringdto);
 		return "/offer/detail_info";
 	}
-	
 	
 	//@GetMapping("/offer/detail_info/{board_no}")
 	//public String detail_info() {
