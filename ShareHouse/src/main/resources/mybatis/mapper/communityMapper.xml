@@ -72,17 +72,7 @@
 		select Id, Comm_title, Comm_con, Comm_date, Comm_v_cnt from comm where Comm_no=${Comm_no}
 	</select>
 	
-	<select id="communitySort" parameterType="map" resultType="com.sharehouse.dto.CommunityDto">
-	
-		select * from comm
-		
-		<choose>
-		
-		<when test="sort == recent"> order by comm_date desc limit #{start}, #{count} </when>
-		
-		<when test="sort == viewcount"> order by comm_v_cnt desc limit #{start} , #{count} </when>
-		
-		</choose>
-
-	</select> 
+	<select id="communityNotice" parameterType="map" resultType="com.sharehouse.dto.CommunityDto">
+		select * from comm where id = any(select id from user where status='ROLE_ADMIN') order by comm_date desc;
+	</select>
 </mapper>

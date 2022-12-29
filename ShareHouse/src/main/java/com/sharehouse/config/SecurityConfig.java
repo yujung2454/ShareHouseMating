@@ -32,6 +32,8 @@ public class SecurityConfig{
 		security.exceptionHandling().accessDeniedPage("/accessDenied"); //403 오류 처리
 		security.logout().invalidateHttpSession(true).logoutSuccessUrl("/login"); //로그아웃 성공 시 로그인 페이지로 이동
 		
+		security.headers().frameOptions().disable(); //스마트 에디터 사용
+
 		security.userDetailsService(boardUserDetailsService); // 주입받은 객체 넘겨줌 //db정보와 비교하면서 처리->로그인되면 로그인 페이지로 이동시켜줌
 		return security.build();
 
