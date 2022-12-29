@@ -14,7 +14,7 @@
 <div id = "title">
 	<h1>신고하기</h1>
 </div>
-<form method="post" id="writeform" action="report_maemul">
+<form method="post" id="writeform" action="/report_maemul1">
 	<table border="1">
 		<tr>
 			<td class="report">
@@ -36,7 +36,7 @@
 	</table>
 	<div id="button" align="center">
 		<input type="hidden" name="id">
-		<input type="hidden" name="board_no">
+		<input type="hidden" name="board_no" value="${board_no}">
 		<button type="submit" id="save" value="제출">제출</button>
 		<button type="button" id="cancel" value="취소" onclick="location.href='/offer/detail_info'">취소</button>
 	</div>
