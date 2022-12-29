@@ -1,5 +1,7 @@
 package com.sharehouse.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ public class OfferingService {
 	@Autowired
 	OfferingDao dao;
 	
-	public OfferingDto selectNo() {
+	public List<OfferingDto> selectNo() {
 		return dao.selectNo();
 	}
 }
