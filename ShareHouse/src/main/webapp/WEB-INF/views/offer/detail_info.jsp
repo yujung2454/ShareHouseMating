@@ -75,7 +75,8 @@
 				</div>
 			</div>
 			<form action="/offer/detail_info" method="post">
-			<div class="report"><input type="hidden" name="board_no">
+			<div class="report"><input type="hidden" name="board_no" value="${offeringdto.board_no }">
+			<input type="hidden" name="id" value="${offeringdto.id }">
 			<button class="report-button" type="submit">
 				<img src="/images/report.png">신고</button>
 			</div>
