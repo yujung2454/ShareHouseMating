@@ -28,8 +28,7 @@ public class CommunityService {
 		dao.addReadcount(comm_no);
 		return dao.communityOne(comm_no);
 	}
-	
-	
+
 	public int updatePost(CommunityDto dto) {
 		return dao.updatePost(dto);
 	}
@@ -73,3 +72,4 @@ public class CommunityService {
 	}
 
 }
+

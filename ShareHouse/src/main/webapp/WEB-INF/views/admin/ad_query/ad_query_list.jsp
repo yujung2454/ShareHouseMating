@@ -18,15 +18,7 @@
 <div id = "title">
 	<h1>문의리스트</h1>
 </div>
-	<!-- 검색창 -->
-	<div id = "search" align="left">
-		<form action="query_search">
-		<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> -->
-			<input type="text" name="search" size="20" maxlength="225" placeholder = "검색어를 입력하세요">
-			<button type='submit' value="검색" class="search"></button>
-		</form>
-	</div>
-		<form method="post" action="/ad_query_list">
+		<form method="post" action="/admin/ad_query_list">
 	<div id = "board">
 		<table>
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
@@ -56,10 +48,10 @@
 							<c:forEach items="${qList}" var="query">
 							<tr>
 								<td>
-								<input type="checkbox" name="query_no" value="${query.query_no}" class="chk">
+								<input type="checkbox" name="query_no" value="${query.query_no}">
 								<td>${user.user_img} ${query.id}</td>
 								<td>${query.category}</td>
-								<td><a href="query_view/${query.query_no}">${query.query_title}</a></td>
+								<td><a href="/admin/ad_query_view/${query.query_no}">${query.query_title}</a></td>
 								<td>${query.query_state}</td>
 							</tr>
 							
@@ -99,36 +91,19 @@
 <script>
 // 체크박스
 $(document).ready(function() {
-	$("#cbx_chkAll").click(function() {
-		if($("#cbx_chkAll").is(":checked")) $("input[name=query_no]").prop("checked", true);
-		else $("input[name=query_no]").prop("checked", false);
-	});
-	
-	$("input[name=query_no]").click(function() {
-		var total = $("input[name=query_no]").length;
-		var checked = $("input[name=query_no]:checked").length;
-		
-		if(total != checked) $("#cbx_chkAll").prop("checked", false);
-		else $("#cbx_chkAll").prop("checked", true); 
-	});
-});
-// 문의 글 삭제
-/* $(function(){
-	$("#del").click(function(){
-		let query_no = $(".chk").val(); //..?히ㅏ핳
-		alert("query_no"+query_no)
-		/* $.ajax({url:"/delete", 
-				data:"query_no="+query_no, 
-				method:"post"
-				}
-		).done(function(){
-			location.href="/ad_query_list";
-		}) */
-		return false;
-	})//click
-	
-
-})//ready */
+			$("#cbx_chkAll").click(function() {
+				if($("#cbx_chkAll").is(":checked")) $("input[name=query_no]").prop("checked", true);
+				else $("input[name=query_no]").prop("checked", false);
+			});
+			
+			$("input[name=query_no]").click(function() {
+				var total = $("input[name=query_no]").length;
+				var checked = $("input[name=query_no]:checked").length;
+				
+				if(total != checked) $("#cbx_chkAll").prop("checked", false);
+				else $("#cbx_chkAll").prop("checked", true); 
+			});
+		});
 </script>
 </body>
 </html>

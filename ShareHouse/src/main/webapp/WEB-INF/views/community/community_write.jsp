@@ -83,6 +83,7 @@
 	</div>
 </form>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script>
@@ -115,6 +116,28 @@
  
   </script>
  
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	//let title = $(#title).val();
+	$(document).onclick('#save', function(e){
+		const title = $("#title").val().trim();
+		const content = $("content").val().trim();
+		
+		if(title==""){
+			alert("제목을 입력해주세요");
+			return;
+		}
+		if(content=""){
+			alert("내용을 입력해주세요");
+			return;
+		}
+		
+		var 
+	})
+</script>
+ -->
+
 <footer>
 </footer>
 

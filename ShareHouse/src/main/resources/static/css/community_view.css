@@ -1,0 +1,23 @@
+@charset "EUC-KR";
+
+
+.table {
+	width: 800px;
+	height: 400px;
+	margin-left: 50px;
+}
+.img-button {
+	width:20;
+	height:20;
+	
+}
+.textarea {
+	width:100%;
+	height:100%;
+	border: 0;
+	resize: none;
+}
+
+#chooseFile {
+    visibility: hidden;
+}

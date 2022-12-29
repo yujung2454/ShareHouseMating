@@ -31,6 +31,8 @@
 		margin:auto;
 	}
 </style>
+
+<link href="/css/community_view.css" rel="stylesheet">
 </head>
 <body>
 
@@ -54,7 +56,6 @@
 ${dto.comm_con}
 </td>
 </tr>
-
 </table>
 
 	<c:if test="${ user.id == dto.id }">

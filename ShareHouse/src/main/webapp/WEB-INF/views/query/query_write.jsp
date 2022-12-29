@@ -77,12 +77,12 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="user">휴대전화 : 
-			<input name="tel" value="${user.tel}"  ></td>
+			<td class="user">휴대전화 : ${user.tel}
+			<input type = "hidden" name="tel" value="${user.tel}"  ></td>
 		</tr>
 		<tr>
-			<td class="user">이메일 : 
-			<input name="email" value="${user.email}"  ></td>
+			<td class="user">이메일 : ${user.email}
+			<input type = "hidden" name="email" value="${user.email}"  ></td>
 		</tr>
 		<tr>
 			<td><textarea name="query" id="query" 

@@ -12,4 +12,3 @@ public class CommunityDto {
 	private String id;
 	private Date comm_date;
 	private int comm_v_cnt;
-}

@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티</title>
-
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
+
 </head>
 <body>
 <header>
@@ -132,8 +132,6 @@
 
 <footer>
 </footer>
-
-
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -146,5 +144,6 @@
 		})
 	})
 </script>
+
 </body>
 </html>
