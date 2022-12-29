@@ -23,7 +23,9 @@
 		padding:10;
 		font-size : 14px;
 	}
-	
+	.sequence_sort{
+		display:inline-block;
+	}
 	.community_write{
 		background-color : #4CAF50;	
 		color : white;
@@ -51,8 +53,11 @@
 		border-bottom : 1px solid black;
 		background-color : darkgray;
 		color : white;
+		
 	}
-	
+	thead > th {
+		padding-left:1%;
+	}
 	tbody > tr:hover {
 		background-color : #eeeeee;
 	}
@@ -62,6 +67,7 @@
 		font-size : 14px;
 		text-align : left;
 		border-bottom : 1px solid black;
+		padding-left:1%;
 	}
 	
 	div > #write , #search , #board{
@@ -70,6 +76,7 @@
 	
 	a {
 		text-decoration-line : none;
+		color : black;
 	}
 	
 	#paging {
@@ -96,4 +103,11 @@
 	
 	#none_post{
 		text-align : center;
+	}
+	
+	.notice{
+		background-color : #7fffd4;
+	}
+	.notice:hover{
+		background-color : #afeeee;
 	}
