@@ -74,7 +74,7 @@
 				
 				</div>
 			</div>
-			<form action="/report_maemul" method="post">
+			<form action="/offer/detail_info" method="post">
 			<div class="report"><input type="hidden" name="board_no">
 			<button class="report-button" type="submit">
 				<img src="/images/report.png">신고</button>
