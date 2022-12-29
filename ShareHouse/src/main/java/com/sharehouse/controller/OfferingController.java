@@ -26,7 +26,7 @@ public class OfferingController {
 	@PostMapping("/offer/detail_info")
 	public String info(Model m) {   
 		List<OfferingDto> offeringdto = service.selectNo();
-		m.addAttribute(offeringdto);
+		m.addAttribute("offeringdto" , offeringdto);
 		return "/offer/detail_info";
 	}
 	
