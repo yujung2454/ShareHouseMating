@@ -22,7 +22,7 @@ public class SecurityConfig{
 	
 		
 		
-		security.authorizeRequests().antMatchers("/").permitAll();
+		security.authorizeRequests().antMatchers("/","/admin/ad_query_view/**").permitAll();
 		security.authorizeRequests().antMatchers("/member/**").authenticated();
 		security.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN");
    

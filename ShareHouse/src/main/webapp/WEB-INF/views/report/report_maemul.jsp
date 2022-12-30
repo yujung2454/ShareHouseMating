@@ -35,8 +35,8 @@
 		</tr>
 	</table>
 	<div id="button" align="center">
-		<input type="hidden" name="id">
-		<input type="hidden" name="board_no" value="${board_no}">
+		<input type="hidden" name="reported_id" value="${offeringdto.id}">
+		<input type="hidden" name="board_no" value="${offeringdto.board_no}">
 		<button type="submit" id="save" value="제출">제출</button>
 		<button type="button" id="cancel" value="취소" onclick="location.href='/offer/detail_info'">취소</button>
 	</div>

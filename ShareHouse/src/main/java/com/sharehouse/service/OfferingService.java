@@ -14,7 +14,7 @@ public class OfferingService {
 	@Autowired
 	OfferingDao dao;
 	
-	public List<OfferingDto> selectNo(int board_no) {
+	public OfferingDto selectNo(int board_no) {
 		return dao.selectNo(board_no);
 	}
 }

@@ -11,6 +11,6 @@ import com.sharehouse.dto.OfferingDto;
 public interface OfferingDao {
 	@Select
 	("select * from offering where board_no = #{board_no} ")
-	List<OfferingDto> selectNo(int board_no);	
+	OfferingDto selectNo(int board_no);	
 	
 }
