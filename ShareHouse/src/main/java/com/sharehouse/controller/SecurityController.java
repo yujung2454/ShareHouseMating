@@ -88,10 +88,15 @@ public class SecurityController {
 	      }else {
 	         m.addAttribute("user",user.getUsers());
 	      }
-	      List<Map<String, Object>> offering = service.offering();
-	      m.addAttribute("offering",offering);
+	      List<Map<String, Object>> olist = service.offering();
+	      for(Map<String,Object> offering : olist) {
+	    	  String add2 = (String)offering.get("offering_add2");
+	    	  String[] arr = add2.split(" ");
+	    	  offering.put("dong", arr[2]);
+	      }
+	      m.addAttribute("offering",olist);
 	      Gson gson = new Gson();
-	      m.addAttribute("offering2",gson.toJson(offering));
+	      m.addAttribute("offering2",gson.toJson(olist));
 	       return "/main";
 	   }
 	@GetMapping("/insert")

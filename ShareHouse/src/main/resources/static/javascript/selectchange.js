@@ -167,14 +167,6 @@ $(function(){
 		})		
 	})
 	
-	
-	$("#detail_search").submit(function(){
-		if($("#search_region").val()=="지역"){
-				alert("지역을 선택하세요")
-				return false;
-			}
-	})
-	
 	$(".region_content2").on("mouseover",".region_lst2",function(){
 		$(this).css({"color":"#39f", "font-weight":"bold"})
 	})
@@ -185,6 +177,7 @@ $(function(){
 		}
 	})
 	
+	var arr = []
 	$(".region_content2").off("click").on("click",".region_lst2",function(){
 		if ($(" span",this).attr("class") == undefined){
 			//$(this).css({"color":"#39f", "font-weight":"bold"})
@@ -193,6 +186,7 @@ $(function(){
 			if(!$(this).hasClass("on")){
 				$(this).addClass("on")
 				$(".selected_loc").append("<div class='loc'><span class='"+loc+"'>"+loc+"</span><img class='close' src='/images/close.png'></div>")
+				arr.push($(this).text())
 			}
 		} else {
 			if(!$(this).hasClass("on")){
@@ -208,12 +202,59 @@ $(function(){
 			if($(item).text() == temp.closest("div").text()){
 				$(item).css({"color":"#000", "font-weight":"normal"})
 				$(item).removeClass("on")
+				for(let i = 0; i < arr.length; i++){
+					if(arr[i] == $(item).text()){
+						arr.splice(i,1);
+					}
+				}
 				$(" span", item).remove();
 			}
+			
 		})
 		
 		$(this).closest("div").remove()
 	})
 	
+	$("#detail_search").submit(function(event){
+		event.preventDefault();
+		var search = arr.join(" ");
+		$("#selected_loc").val(search);
+		var checkboxes = $("input[type='checkbox']")
+		let len = 0;
+		$.each(checkboxes,function(index,checkbox){
+			if($(checkbox).prop("checked")){
+				len += 1;
+			}
+		})
+		
+		if(len == 0){
+			$("#detail_search").append("<input type='hidden' name='gender' value='n'>")
+		}
+		
+		if($("#selected_loc").val() == ""){
+			if($("#search_house").val() == "주거형태"){
+				if($("#search_contract").val() == "계약기간"){
+					if($("#search_pay").val() == "월세"){
+						if(len == 0){
+							alert("조건을 1개 이상 선택해주세요")
+							return false;
+						} else {
+							event.currentTarget.submit();
+						}
+					} else {
+						event.currentTarget.submit();
+					}
+				} else {
+					event.currentTarget.submit();
+				}
+			} else {
+				event.currentTarget.submit();
+			}
+		} else {
+			event.currentTarget.submit();
+		}
+		
+		
+	})
 	
 })

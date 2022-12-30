@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,10 +20,10 @@
 		</div>
 		<ul class="upper_frame">
 			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
-			<li class="upper_menu"><a href="/search/searchlist">방 찾기</a></li>
+			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
 			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
 			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
-			<li class="upper_menu">문의</li>
+			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
 			<span id="notification"><img src="/images/notification.png"></span>
@@ -37,6 +38,10 @@
 					<c:if test="${user.user_Img != null}">
 						<a href="/mypage/info"><img src="${user.user_img}"></a>
 					</c:if>
+					<a href="/logout" class="logout">로그아웃</a>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<a href="/admin/admin_main">관리자페이지</a>
+					</sec:authorize>
 				</c:if>
 			</span>
 		</div>
@@ -58,18 +63,19 @@
 	<input id="latlng" name="latlng" type="hidden">
 </form>
 </div>
+<jsp:include page="popup/popup.jsp"/>
 <div style="position:absolute; width:60%; left:19%;">
 	<div class="offering_lst">
 		<c:forEach var="offer" items="${offering}">
 			<div class="offer">
-				<div class="offer_frame" style="cursor:pointer" onclick="locatioin.href='/offerinfo/detail_info'">
+				<div class="offer_frame" style="cursor:pointer" onclick="location.href='/offer/detail_info'">
 					<div class="offer_img_frame">
 						<img class="offer_img" src="${offer.thumbnail}">
 					</div>
 					<div class="offer_info">
 						<p class="offer_title">${offer.title}</p>
-						<p>보증금 : <span>${offer.deposit}</span> 월세 : <span>${offer.rental}</span></p>
-						<p class="loc"></p>
+						<p>보증금:<span>${offer.deposit}</span> 월세:<span>${offer.rental}</span></p>
+						<p class="loc">${offer.dong }</p>
 					</div>
 				</div>
 			</div>
@@ -96,11 +102,19 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <!-- <script src="/javascript/offeringlist"></script> -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be0e94507c189370b7652c07b56d35fd&libraries=services"></script>
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
 </script>
 <script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
+
 
 $(function(){
 	var autocomplete;
@@ -123,7 +137,7 @@ $(function(){
 		$("#lat").val(lat);
 		$("#lng").val(lng);
 	})
-	
+	//geocode(data,result)
 	var geocoder;
 	$("#search_btn").submit(function(event){
 		event.preventDefault();
@@ -154,32 +168,6 @@ $(function(){
 	})
 })
 
-
-
-
-
-
-var offer_lst = [];
-
-let offer = ${offering2};
-
-$(".loc").each(function(j,jitem){
-	let ploc = $(this);
-	let lat = offer[j].latitude;
-	let lng = offer[j].longitude;
-	
-	let geocoder = new kakao.maps.services.Geocoder();
-
-    let coord = new kakao.maps.LatLng(lat, lng);
-    let callback = function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-        	let words = result[0].address.address_name.split(' ')
-        	ploc.text( words[2]);
-        }	
-    }
-    geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-	
-})
 </script>
 
 </html>
