@@ -43,11 +43,6 @@
 							<div class="main_slide"
 								style="background-image: url('/images/livingroom2.png');"></div>
 						</div>
-						<!-- <div class="bx-pager" style="float:left; width:100%;">
-					<a data-slide-index="0" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>
-					<a data-slide-index="1" href=""><img src="/images/livingroom2.png" style="width:100px; height:100px;" /></a>	
-				</div>
-				 -->
 					</div>
 					<div class="slide">
 						<div class="slide_main">
@@ -62,14 +57,6 @@
 							<div class="main_slide"
 								style="background-image: url('/images/livingroom.png');"></div>
 						</div>
-						<!-- <div class="bx-pager" style="float:left;">
-					<a data-slide-index="2" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>
-					<a data-slide-index="3" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>
-					<a data-slide-index="4" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>
-					<a data-slide-index="5" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>	
-					<a data-slide-index="6" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>					
-				</div> 
-				-->
 					</div>
 					<div class="slide">
 						<div class="slide_main">
