@@ -26,7 +26,7 @@ public class CommentController {
 		return gson.toJson(commentList); 
 	}
 		
-	@GetMapping("/comment/delete/{comm_comment_no}")
+	@GetMapping("/comment/delete/{comment_no}")
 	public String deleteComment(@PathVariable int comment_no) {
 		int i = service.deleteComment(comment_no);
 		return i+"";

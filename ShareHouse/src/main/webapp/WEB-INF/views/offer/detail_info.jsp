@@ -5,8 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>매물 상세정보</title>
 <link rel="stylesheet" type="text/css" href="/css/offerinfo.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
+<script>
+
+
+
+</script>
 </head>
 <body>
 
@@ -29,29 +36,31 @@
 			<div class="main_img"><!-- 화면에 나타날 이미지 -->
 				<div class="slide active">
 					<div class="slide_main">
-						<div class="main_slide" style="background-image: url('/경로1'); "></div>
-						<div class="main_slide" style="background-image: url('/경로2');"></div>
+						<div class="main_slide" style="background-image: url('/images/livingroom.png'); "></div>
+						<div class="main_slide" style="background-image: url('/images/livingroom2.png');"></div>
 					</div>
-				<div class="bx-pager" style="float:left;">
-					<a data-slide-index="0" href=""><img src="/경로1" style="width:100px; height:100px;" /></a>
-					<a data-slide-index="1" href=""><img src="/경로2" style="width:100px; height:100px;" /></a>	
-				</div> 
+				<!-- <div class="bx-pager" style="float:left; width:100%;">
+					<a data-slide-index="0" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>
+					<a data-slide-index="1" href=""><img src="/images/livingroom2.png" style="width:100px; height:100px;" /></a>	
+				</div>
+				 --> 
 				</div>
 				<div class="slide">
 					<div class="slide_main">
-						<div class="main_slide" style="background-image: url('/경로3');"></div>
-						<div class="main_slide" style="background-image: url('/경로4'); "></div>
-						<div class="main_slide" style="background-image: url('/경로5'); "></div>
-						<div class="main_slide" style="background-image: url('/경로6'); "></div>
-						<div class="main_slide" style="background-image: url('/경로7');"></div>
+						<div class="main_slide" style="background-image: url('/images/livingroom.png');"></div>
+						<div class="main_slide" style="background-image: url('/images/livingroom.png'); "></div>
+						<div class="main_slide" style="background-image: url('/images/livingroom.png'); "></div>
+						<div class="main_slide" style="background-image: url('/images/livingroom.png'); "></div>
+						<div class="main_slide" style="background-image: url('/images/livingroom.png');"></div>
 					</div>
-				<div class="bx-pager" style="float:left;">
-					<a data-slide-index="2" href=""><img src="/경로3" style="width:100px; height:100px;" /></a>
-					<a data-slide-index="3" href=""><img src="/경로4" style="width:100px; height:100px;" /></a>
-					<a data-slide-index="4" href=""><img src="/경로5" style="width:100px; height:100px;" /></a>
-					<a data-slide-index="5" href=""><img src="/경로6" style="width:100px; height:100px;" /></a>	
-					<a data-slide-index="6" href=""><img src="/경로7" style="width:100px; height:100px;" /></a>					
+				<!-- <div class="bx-pager" style="float:left;">
+					<a data-slide-index="2" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>
+					<a data-slide-index="3" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>
+					<a data-slide-index="4" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>
+					<a data-slide-index="5" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>	
+					<a data-slide-index="6" href=""><img src="/images/livingroom.png" style="width:100px; height:100px;" /></a>					
 				</div> 
+				-->
 				</div>
 				<div class="slide">
 					<div class="slide_main">
@@ -62,12 +71,18 @@
 				<div class="slide">g</div>
 				<div class="slide">h</div>
 				<div class="slide">j</div>
+				
 				</div>
 			</div>
-			
-			<div class="report"><!-- 신고 --></div>
+			<form action="/offer/detail_info" method="post">
+			<div class="report"><input type="hidden" name="board_no" value="${offeringdto.board_no }">
+			<input type="hidden" name="id" value="${offeringdto.id }">
+			<button class="report-button" type="submit">
+				<img src="/images/report.png">신고</button>
+			</div>
+			</form>
 			<div class="favorite"><!-- 찜 --></div>
-			<div class="chat"><!-- 채팅신청 --></div>
+			
 		
 		
 	
@@ -371,14 +386,15 @@
 
 
 
-</body>
+
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-   <script>
+   
+<script>
 
-    var tabBtn = $(".tab_btn");     //각각의 버튼을 변수에 저장
+    var tabBtn = $(".tab_btn");      //각각의 버튼을 변수에 저장
 	var tabCont = $(".slide");       //각각의 콘텐츠를 변수에 저장
 
 	//컨텐츠 내용을 숨겨주세요!
@@ -395,25 +411,23 @@
 	tabCont.eq(index).css("display","block");
 	});
 	
-  var Slider;
-  
-$(function(){
-	Slider=$('.slide_main').bxSlider({
-		auto:false,
-		slideWidth:650
+
+	$(document).ready(function(){
+		$('.slide_main').bxSlider({
+			auto:false,
+			slideWidth:650,
+			pager : false,
+		});
+		
 	});
-
-	  $('tabBtn').click(function(){
-		  Slider.reloadSlider();
-	  });
-})
- 
-
-
-  </script>
- 
-<script>
-
+	
+	
+	$('.report-button').on('click', function(){
+	      var url = "/report_maemul";
+	      var name = "CalPopup";
+	      var option = "width = 600, height = 600, left = 100, top = 50, location=no";
+	      window.open(url, name, option)
+	   });
 
 	function living() {
 	    $('.living').css('display' , 'block');
@@ -440,5 +454,5 @@ $(function(){
 
 	
 </script>
-
+</body>
 </html>
