@@ -21,9 +21,11 @@ public class OfferingController {
 	OfferingService service;
 	
 	@GetMapping("/offer/detail_info")
-	public String detail_info(Model m) {   
-		List<Map<String, Object>> offeringdto = service.SelectRoom();
-		m.addAttribute("offeringdto" , offeringdto);
+	public String detail_info(/*@PathVariable int board_no,*/ Model m) {   
+		/*
+		 * List<Map<String, Object>> offeringdto = service.SelectRoom();
+		 * m.addAttribute("offeringdto" , offeringdto);
+		 */
 		return "/offer/detail_info";
 	}
 	

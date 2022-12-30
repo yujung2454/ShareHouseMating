@@ -1,4 +1,4 @@
-<%-- <%@ page contentType="text/html; charset=UTF-8"%>
+ <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table{
+		width : 50%;
+		align : center;
+		border : 1px slide black;
+	}
+</style>
 </head>
 <body>
 	<header> </header>
@@ -14,16 +21,15 @@
 		<table>
 			<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
+				<col style="width: 5%;" />
+				<col style="width: 5%;" />
+				<col style="width: 20%;" />
+				<col style="width: 20%;" />
+				<col style="width: 5%;" />
 				<col style="width: 10%;" />
+				<col style="width: 20%;" />
 				<col style="width: 10%;" />
-				<col style="width: 10%;" />
-				<col style="width: 10%;" />
-				<col style="width: 10%;" />
-				<col style="width: 10%;" />
-				<col style="width: 10%;" />
-				<col style="width: 10%;" />
-				<col style="width: 10%;" />
-				<col style="width: 10%;" />
+				<col style="width: 5%;" />
 			</colgroup>
 			<thead>
 				<tr>
@@ -61,7 +67,18 @@
 				</c:if>
 			</tbody>
 		</table>
+		<div id="paging" align="center">
+			<c:if test="${begin > pageNum}">
+				<a href="user_manage?p=${begin-1}">[이전]</a>
+			</c:if>
+			<c:forEach begin="${begin}" end = "${end}" var='i'>
+				<a href="user_manage?p=${i}" class="page">${i}</a>
+			</c:forEach>
+			<c:if test="${end < totalPages}">
+				<a href="user_manage?p=${end+1}">[다음]</a>
+			</c:if>
+		</div>
 	</div>
 			<footer> </footer>
 </body>
-</html> --%>
+</html>

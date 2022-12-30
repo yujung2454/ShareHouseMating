@@ -18,8 +18,7 @@ public class OfferingService {
 	public OfferingDto selectNo(int board_no) {
 		return dao.selectNo(board_no);
 	}
-	
-	public List<Map<String, Object>> SelectRoom(){
-		return dao.selectRoom();
-	}
+	/*
+	 * public List<Map<String, Object>> SelectRoom(){ return dao.selectRoom(); }
+	 */
 }
