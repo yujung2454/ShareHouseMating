@@ -64,6 +64,7 @@
 <div class="frame">
 	<div id="map"></div>
 	<div class="list_frame">
+	<c:if test="${offering.size() != 0 }">
 		<c:forEach var="offer" items="${offering}">
 			<div class="offer_list" style="cursor:pointer" onclick="location.href='/offer/detail_info'">
 				<div class="list_img">
@@ -76,6 +77,12 @@
 				</div>
 			</div>
 		</c:forEach>
+	</c:if>
+	<c:if test="${offering.size() == 0 }">
+		<div>
+			<span>검색하신 조건의 매물은 0건입니다.</span>
+		</div>
+	</c:if>
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -117,7 +124,7 @@ $(function(){
 		const latlng = {lat: lat, lng: lng};
 	    const map = new google.maps.Map(document.getElementById("map"), {
 	    center: latlng,
-	    zoom: 17,
+	    zoom: 7,
 	    mapTypeControl: false,
 	  	});
 		const markers = locations.map((position,i) => {
@@ -193,5 +200,3 @@ $(function(){
 
 
 </script>
-</body>
-</html>

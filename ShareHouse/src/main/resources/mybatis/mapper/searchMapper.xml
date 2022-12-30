@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharehouse.dao.SearchOfferingDao">
+<select id="dresult" parameterType="map" resultType="map">
+	select o.title, o.offering_add, o.offering_add2, o.latitude, o.longitude, o.thumbnail, r.deposit, r.rental from offering o inner join room_info r on o.board_no = r.board_no  
+	<where>
+		<if test="region != ''"> o.offering_add2 like (select offering_add2 from offering where offering_add like concat('%',#{region},'%') or offering_add2 like concat('%',#{region},'%') limit 1) </if>
+		<if test="kind !='주거형태'"> and o.house_kind like #{kind}</if>
+		<if test="contract == 1"> and r.term between 1 and 2 </if>
+		<if test="contract == 3"> and r.term between 3 and 5 </if>
+		<if test="contract == 6"> and r.term between 6 and 11 </if>
+		<if test="contract == 12"> and r.term <![CDATA[>=]]> 12 </if>
+		<if test="pay == 30"> and r.rental between 0 and 30 </if>
+		<if test="pay == 60"> and r.rental between 30 and 60 </if>
+		<if test="pay == 100"> and r.rental between 60 and 100 </if>
+		<if test="pay == 101"> and r.rental <![CDATA[>=]]> 100 </if>
+		<if test="gen == m"> and o.offering_gender like 'm' </if>
+		<if test="gen == f"> and o.offering_gender like 'f' </if>
+		<if test="gen == a"> and o.offering_gender like 'm' or o.gender like'f'</if>
+	</where>
+	
+</select>
+</mapper>
