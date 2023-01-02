@@ -1,5 +1,7 @@
 package com.sharehouse.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -50,4 +52,9 @@ CommentDto selectNo3(int comment_no);
 @Select
 ("select id, comment_no from comm_comment where comment_no = #{comment_no}")
 CommentDto selectIdNo3(int comment_no);
+
+// 관리자
+@Select
+("select * from user_report_board")
+List<ReportDto> selectAll();
 }

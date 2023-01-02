@@ -1,5 +1,7 @@
 package com.sharehouse.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -52,10 +54,10 @@ public class ReportController {
 	public String report_maemul2(Model m,@PathVariable int comm_no) {
 		CommunityDto communitydto = service.selectNo2(comm_no);
 	      m.addAttribute("communitydto" , communitydto);
-		return "/report/report_maemul";
+		return "/report/report_maemul2";
 	}
 	
-	@PostMapping("/report_maemul")
+	@PostMapping("/report_maemul2")
 	public String insertMaemul2(@AuthenticationPrincipal SecurityUser user, ReportDto dto, int comm_no) {
 		String Id = user.getUsers().getId();
 		dto.setReporter(Id);
@@ -71,10 +73,10 @@ public class ReportController {
 	public String report_maemul3(Model m,@PathVariable int comment_no) {
 		CommentDto commentdto = service.selectNo3(comment_no);
 	      m.addAttribute("commentdto" , commentdto);
-		return "/report/report_maemul";
+		return "/report/report_maemul2";
 	}
 	
-	@PostMapping("/report_maemul")
+	@PostMapping("/report_maemul2")
 	public String insertMaemul3(@AuthenticationPrincipal SecurityUser user, ReportDto dto, int comment_no) {
 		String Id = user.getUsers().getId();
 		dto.setReporter(Id);
@@ -82,5 +84,13 @@ public class ReportController {
 		service.selectIdNo3(comment_no);
 		//System.out.println("board_no: "+board_no);
 		return "/popup/report_popup";
+	}
+	
+	// 관리자 신고리스트
+	@GetMapping("/admin/report_list")
+	public String report_list(Model m) {
+		List<ReportDto> rp = service.selectAll();
+		m.addAttribute("rp" , rp);
+		return "admin/ad_report/report_list";
 	}
 }

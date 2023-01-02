@@ -1,5 +1,7 @@
 package com.sharehouse.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +54,10 @@ public class ReportService {
 	
 	public CommentDto selectIdNo3(int comment_no) {
 		return dao.selectIdNo3(comment_no);
+	}
+	
+	// 관리자
+	public List<ReportDto> selectAll() {
+		return dao.selectAll();
 	}
 }
