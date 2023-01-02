@@ -51,7 +51,7 @@
 				<div class="report">
 					<input type="hidden" name="board_no"
 						value="${offeringdto.board_no}">
-					<button class="report-button" type="submit">
+					<button class="report-button" type="button">
 						<img src="/images/report.png">신고
 					</button>
 				</div>

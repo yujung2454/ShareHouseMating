@@ -17,27 +17,20 @@ public interface AdminDao {
 	("select * from user limit #{start} , #{count}")
 	List<UsersDto> userList(Map<String , Object> m);
 	
-	@Select
-	("select * from user where id like concat('%' , #{search} , '%' limit #{start} , #{count}")
-	List<UsersDto> userListSearch(Map<String , Object> m);
+
+	List<UsersDto> search(Map<String , Object> m);
 	
 	@Select
 	("select count(*) from user")
 	int count();
-	@Select
-	("select count(*) from user where id like concat('%' , #{search} , '%' limit #{start} , #{count}")
-	int countSearch();
-	
-//	@Update
-//	("update user set state='ROLE_STOP' where id = #{id}")
-//	List<UsersDto> stop_user();
 	
 	
-	@Update
-	("update user set status='ROLE_STOP' where id = #{id}")
-	int stop_user(String stop);
+	int countSearch(Map<String, Object> m);	
+
+	int stopUser(String[] id);
 	
-	@Delete
-	("delete from user where id = #{id}")
-	int del_user(String id);
+	int delCheck(String[] id);
+	
+	int release(String [] id);
+	
 }

@@ -21,5 +21,5 @@ public interface CommunityDao {
 	int addReadcount(int comm_no); //조회수 증가
 	List<CommunityDto> communityNotice(Map<String, Object> m);
 	CommunityDto viewPost(int comm_no);
-	
+	Map<String, Object> selectComm(int comm_no);
 }

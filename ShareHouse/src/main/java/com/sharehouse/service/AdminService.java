@@ -23,32 +23,31 @@ public class AdminService {
 		return dao.userList(m);
 	}
 	
-	public List<UsersDto> userListSearch(String search, int start){
+	public List<UsersDto> search(String search, int start){
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("search", search);
 		m.put("start", start);
 		m.put("count", 10);
-		return dao.userListSearch(m);
+		return dao.search(m);
 	}
 	
 	public int count() {
 		return dao.count();
 	}
-	public int countSearch() {
-		return dao.countSearch();
+	public int countSearch(String search) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("search", search);
+		return dao.countSearch(m);
 	}
-	
-//	public List<UsersDto> stop_user() {
-//		
-//		return dao.stop_user();
-//	}
-	
-	public void stop_user(String stop) {
-			dao.stop_user(stop);
+
+
+	public int stopUser(String[] id) {
+		return dao.stopUser(id);
 	}
-	public void del_user(List<String> delArray) {
-		for(int i=0; i<delArray.size(); i++) {
-			dao.del_user(delArray.get(i));
-		}
+	public int delCheck(String[] id) {
+		return dao.delCheck(id);
+	}
+	public int release(String[] id) {
+		return dao.release(id);
 	}
 }
