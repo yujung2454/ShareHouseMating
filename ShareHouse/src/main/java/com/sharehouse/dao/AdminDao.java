@@ -26,16 +26,13 @@ public interface AdminDao {
 	int count();
 	@Select
 	("select count(*) from user where id like concat('%' , #{search} , '%' limit #{start} , #{count}")
-	int countSearch();
-	
-//	@Update
-//	("update user set state='ROLE_STOP' where id = #{id}")
-//	List<UsersDto> stop_user();
-	
-	
+	int countSearch();	
 
 	int stopUser(String[] id);
 	
 	int delCheck(String[] id);
 	
+	int release(String [] id);
+	
+	List<UsersDto> search(Map<String, Object> m);
 }

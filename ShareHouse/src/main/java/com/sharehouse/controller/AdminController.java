@@ -95,35 +95,24 @@ public class AdminController {
 		return "/admin/user_search";
 	}
 
-//	@GetMapping("/admin/stop")
-//	public String stop() {
-//		List<UsersDto> userlist = service.stop_user();
-//		Gson gson = new Gson();
-//		return gson.toJson(userlist);
-//	}
-	
-//	@PostMapping("stop_user")
-//	public String stop_user(HttpServletRequest request) {
-//		
-//		String[] ajax = request.getParameterValues("valueArr");
-//		int size = ajax.length;
-//		for(int i=0; i<size; i++) {
-//			service.stop_user(ajax[i]);
-//		}
-//		return "redirect:admin_manage";
-//	}
-//
 
-	@PostMapping("/admin/user_manage")
-	public String delCheck(String[] user_select) {
+	@PostMapping("/admin/stopUser")
+	public String btn_stop(String[] user_select) {
+		 service.stopUser(user_select);
+		return "redirect:/admin/user_manage";
+	}
+	
+	@PostMapping("/admin/release")
+	public String btn_release(String[] user_select) {
+		service.release(user_select);
+		return "redirect:/admin/user_manage";
+	}
+	
+	@PostMapping("/admin/delCheck")
+	public String btn_delCheck(String[] user_select) {
 		service.delCheck(user_select);
 		return "redirect:/admin/user_manage";
 	}
-	
-	@PostMapping("/admin/user_manage")
-	public String stopUser(String[] user_select) {
-		service.stopUser(user_select);
-		return "redirect:/admin/user_manage";
-	}
+
 }
 

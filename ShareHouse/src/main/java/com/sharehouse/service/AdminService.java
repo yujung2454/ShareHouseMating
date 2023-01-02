@@ -37,16 +37,15 @@ public class AdminService {
 	public int countSearch() {
 		return dao.countSearch();
 	}
-	
-//	public List<UsersDto> stop_user() {
-//		
-//		return dao.stop_user();
-//	}
-	
+
+//	public List<UsersDto> search(String search, )
 	public int stopUser(String[] id) {
 		return dao.stopUser(id);
 	}
 	public int delCheck(String[] id) {
 		return dao.delCheck(id);
+	}
+	public int release(String[] id) {
+		return dao.release(id);
 	}
 }

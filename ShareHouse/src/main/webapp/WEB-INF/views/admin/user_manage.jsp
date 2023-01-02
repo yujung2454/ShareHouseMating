@@ -22,7 +22,7 @@
 		
 	</div>
 	
-	<form method="post" action="/admin/user_manage">
+	<form id="form" method="post" action="/admin/user_manage">
 	
 	
 	<div id="board">
@@ -89,9 +89,9 @@
 		</div>
 	</div>
 	<div class="btn_list">
-		<input type="submit" name="button" class="btn" id="stop" value="활동 정지" />
-		<button class="release_btn">정지 해제</button>
-		<input type = "submit" name="button" class="btn" id="del" value= "삭제" onclick/>
+		<input type="button" name="stopUser" class="btn" id="stopUser" value="활동 정지"  />
+		<input type="button" name="release" class="btn" id="release" value="정지 해제" />
+		<input type="button" name="delCheck" class="btn" id="delCheck" value="삭제" />
 	</div>
 	</form>
 			<footer> </footer>
@@ -115,6 +115,28 @@ $(document).ready(function() {
 	});
 });
 
+
+
+    document.getElementById('stopUser').onclick = function() {
+    	 document.getElementById('form').action = "/admin/stopUser";
+        document.getElementById('form').submit();
+        return false;
+
+};
+
+    document.getElementById('release').onclick = function() {
+    	document.getElementById('form').action = "/admin/release";
+        document.getElementById('form').submit();
+        return false;
+};
+
+    document.getElementById('delCheck').onclick = function() {
+    	document.getElementById('form').action = "/admin/delCheck";
+        document.getElementById('form').submit();
+        return false;
+  
+};
+ 
 
 
 </script>
