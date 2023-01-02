@@ -19,7 +19,7 @@
 	
 	
 	<div id="search">
-			<form action="/admin/user_manage_search">
+			<form action="/admin/user_search">
 			<input type="text" name="search" size="20" maxlength="225" placeholder = "검색어를 입력하세요">
 			<button type='submit' value="검색" class="search"></button>
 		</form>
@@ -64,12 +64,11 @@
 				</c:if>
 				<c:if test="${count != 0}">
 					<c:forEach items="${uList}" var="user">
-						<tr>
-						<c:if test="${user.status == 'ROLE_ADMIN' }">
+						<tr><c:if test="${user.status == 'ROLE_ADMIN' }">
 							<td></td>
 						</c:if>
 						<c:if test="${user.status != 'ROLE_ADMIN' }">
-						<td><input type="checkbox" name="user_select" value ="${user.id }" /></td>
+							<td><input type="checkbox" name="user_select" value ="${user.id }" /></td>
 						</c:if>
 							<td>${user.id}</td>
 							<td>${user.name}</td>
@@ -86,13 +85,13 @@
 		</table>
 		<div id="paging" align="center">
 			<c:if test="${begin > pageNum}">
-				<a href="user_manage?p=${begin-1}">[이전]</a>
+				<a href="user_manage?p=${begin-1}&search=${search}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${begin}" end = "${end}" var='i'>
-				<a href="user_manage?p=${i}" class="page">${i}</a>
+				<a href="user_manage?p=${i}&search=${search}" class="page">${i}</a>
 			</c:forEach>
 			<c:if test="${end < totalPages}">
-				<a href="user_manage?p=${end+1}">[다음]</a>
+				<a href="user_manage?p=${end+1}&search=${search}">[다음]</a>
 			</c:if>
 		</div>
 	</div>
