@@ -83,7 +83,7 @@
 						<c:if test="${count != 0}">
 							<c:forEach items="${nList}" var="comm" >
 								<tr class="notice">
-									<td><a href="community_view	/${comm.comm_no}">${comm.comm_no}</a></td>
+									<td><a href="community_view/${comm.comm_no}">${comm.comm_no}</a></td>
 									<td><a href="community_view/${comm.comm_no}">★${comm.comm_title}</a></td>
 									<td>${user.user_img} ${comm.id}</td>
 									<td><fmt:formatDate value="${comm.comm_date}" dateStyle="short" /></td>
