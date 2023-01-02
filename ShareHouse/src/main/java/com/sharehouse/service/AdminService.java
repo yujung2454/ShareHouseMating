@@ -23,22 +23,24 @@ public class AdminService {
 		return dao.userList(m);
 	}
 	
-	public List<UsersDto> userListSearch(String search, int start){
+	public List<UsersDto> search(String search, int start){
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("search", search);
 		m.put("start", start);
 		m.put("count", 10);
-		return dao.userListSearch(m);
+		return dao.search(m);
 	}
 	
 	public int count() {
 		return dao.count();
 	}
-	public int countSearch() {
-		return dao.countSearch();
+	public int countSearch(String search) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("search", search);
+		return dao.countSearch(m);
 	}
 
-//	public List<UsersDto> search(String search, )
+
 	public int stopUser(String[] id) {
 		return dao.stopUser(id);
 	}

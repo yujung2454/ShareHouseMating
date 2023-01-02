@@ -17,16 +17,15 @@ public interface AdminDao {
 	("select * from user limit #{start} , #{count}")
 	List<UsersDto> userList(Map<String , Object> m);
 	
-	@Select
-	("select * from user where id like concat('%' , #{search} , '%' limit #{start} , #{count}")
-	List<UsersDto> userListSearch(Map<String , Object> m);
+
+	List<UsersDto> search(Map<String , Object> m);
 	
 	@Select
 	("select count(*) from user")
 	int count();
-	@Select
-	("select count(*) from user where id like concat('%' , #{search} , '%' limit #{start} , #{count}")
-	int countSearch();	
+	
+	
+	int countSearch(Map<String, Object> m);	
 
 	int stopUser(String[] id);
 	
@@ -34,5 +33,4 @@ public interface AdminDao {
 	
 	int release(String [] id);
 	
-	List<UsersDto> search(Map<String, Object> m);
 }

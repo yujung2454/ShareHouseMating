@@ -33,6 +33,10 @@
 	</update>
 	
 	<select id="search" parameterType="map" resultType="com.sharehouse.dto.UsersDto">
-		select id from user like concat('%' , #{search}, '%') limit #{start} , #{count}
+		select * from user where id like concat('%',#{search},'%') limit #{start} , #{count}
+	</select>
+	
+	<select id="countSearch" parameterType="map" resultType="int">
+		select count(*) from user where id like concat('%' , #{search} , '%')
 	</select>
 </mapper>
