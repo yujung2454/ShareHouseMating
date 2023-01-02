@@ -46,8 +46,7 @@
 					
 				</div>
 			</div>
-			<form action="/offer/detail_info/${offeringdto.board_no}"
-				method="post">
+			<form>
 				<div class="report">
 					<input type="hidden" name="board_no"
 						value="${offeringdto.board_no}">
@@ -94,17 +93,13 @@
 								${offeringdto.longitude}),
 						level : 3
 					};
-
 					var map = new kakao.maps.Map(container, options);
-
 					var markerPosition = new kakao.maps.LatLng(${offeringdto.latitude},
 							${offeringdto.longitude});
-
 					// 마커를 생성합니다
 					var marker = new kakao.maps.Marker({
 						position : markerPosition
 					});
-
 					// 마커가 지도 위에 표시되도록 설정합니다
 					marker.setMap(map);
 				</script>
@@ -347,10 +342,8 @@
 	<script>
 		var tabBtn = $(".tab_btn"); //각각의 버튼을 변수에 저장
 		var tabCont = $(".slide"); //각각의 콘텐츠를 변수에 저장
-
 		//컨텐츠 내용을 숨겨주세요!
 		tabCont.hide().eq(0).show();
-
 		tabBtn.click(function() {
 			var target = $(this); //버튼의 타겟(순서)을 변수에 저장
 			var index = target.index(); //버튼의 순서를 변수에 저장
@@ -361,26 +354,22 @@
 			tabCont.eq(index).addClass("active");
 			tabCont.eq(index).css("display", "block");
 		});
-
 		$(document).ready(function() {
 			$('.slide_main').bxSlider({
 				auto : false,
 				slideWidth : 650,
 				pager : false,
 			});
-
 		});
-
 		$('.report-button')
 				.on(
 						'click',
 						function() {
-							var url = "/report_maemul";
+							var url = "/report_maemul/${offeringdto.board_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";
 							window.open(url, name, option)
 						});
-
 		function living() {
 			$('.living').css('display', 'block');
 			$('.contract').css('display', 'none');
@@ -393,7 +382,6 @@
 			$('#FAQ_button_cont').css('background-color', '#c0d6e4')
 			$('#FAQ_button_living').css('background-color', '#f0f0f0');
 		}
-
 		$(".faq").click(function() {
 			$(this).toggleClass("active");
 		})

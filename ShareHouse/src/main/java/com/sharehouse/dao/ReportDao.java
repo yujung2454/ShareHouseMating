@@ -15,6 +15,10 @@ public interface ReportDao {
 int insertReport(ReportDto dto);
 
 @Select
+("select * from offering where board_no = #{board_no} ")
+OfferingDto selectNo(int board_no);   
+
+@Select
 ("select id, board_no from offering where board_no = #{board_no}")
 OfferingDto selectIdNo(int board_no);	
 }
