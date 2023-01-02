@@ -13,6 +13,10 @@ public class ReportService {
 	@Autowired
 	ReportDao dao;
 	
+	public OfferingDto selectNo(int board_no) {
+		return dao.selectNo(board_no);
+	}
+	
 	public int insertReport(ReportDto dto) {
 		return dao.insertReport(dto);
 	}
