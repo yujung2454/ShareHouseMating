@@ -37,6 +37,10 @@
 	<div id="button" align="center">
 		<input type="hidden" name="reported_id" value="${offeringdto.id}">
 		<input type="hidden" name="board_no" value="${offeringdto.board_no}">
+		<input type="hidden" name="reported_id" value="${communitydto.id}">
+		<input type="hidden" name="board_no" value="${communitydto.comm_no}">
+		<input type="hidden" name="reported_id" value="${commentdto.id}">
+		<input type="hidden" name="board_no" value="${commentdto.comment_no}">
 		<button type="submit" id="save" value="제출">제출</button>
 		<button type="button" id="cancel" value="취소" onclick="location.href='/re_cancle_popup'">취소</button>
 	</div>
