@@ -62,6 +62,15 @@ ${dto.comm_con}
 		<a href="/community/community_update/${dto.comm_no}">글 수정 </a> 
 		<a id="${dto.comm_no}" href="#">글 삭제</a>
 	</c:if>
+	<form>
+				<div class="report">
+					<input type="hidden" name="comm_no"
+						value="${communitydto.comm_no}">
+					<button class="report-button" type="button">
+						<img src="/images/report.png">신고
+					</button>
+				</div>
+			</form>
 		<button type="button" onclick="location.href='/community/community_list'">목록으로</button>
 <div>
 	<div id="comment">
@@ -71,6 +80,15 @@ ${dto.comm_con}
 					<c:if test="${comm_comment.id == user.id }">
 						<button class="dbtn" id="${comm_comment.comment_no}">삭제</button>
 					</c:if>
+					<form>
+				<div class="report">
+					<input type="hidden" name="comment_no"
+						value="${commentList.comment_no}">
+					<button class="report-button" type="button">
+						<img src="/images/report.png">신고
+					</button>
+				</div>
+			</form>
 				</div>
 				<hr>
 		</c:forEach>

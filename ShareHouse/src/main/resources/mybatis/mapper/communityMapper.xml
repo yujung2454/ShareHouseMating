@@ -71,4 +71,8 @@
 	<select id="communityNotice" parameterType="map" resultType="com.sharehouse.dto.CommunityDto">
 		select * from comm where id = any(select id from user where status='ROLE_ADMIN') order by comm_date desc;
 	</select>
+	
+	<select id="selectComm" parameterType="map" resultType="com.sharehouse.dto.CommunityDto">
+		select * from comm where comm_no = ${comm_no}
+	</select>
 </mapper>
