@@ -23,51 +23,27 @@
 		<div id="detailinfo">
 			<!-- 몸통 내용 전부 -->
 			<div id="room_button_list">
-				<!-- Livingroom, Kitchen, roomA, roomB,... -->
-				<div class="tab_btn active">거실</div>
-				<div class="tab_btn">주방</div>
-				<div class="tab_btn">방A</div>
-				<div class="tab_btn">방B</div>
-				<div class="tab_btn">방C</div>
-				<div class="tab_btn">화장실</div>
-				<div class="tab_btn">베란다</div>
+			 	<c:forEach var="name" items="${rList}">
+					<div class="tab_btn">${name.room_name}</div>
+			 	</c:forEach> 
 			</div>
 
 			<div id="slide_img">
 				<div class="main_img">
-					<!-- 화면에 나타날 이미지 -->
-					<div class="slide active">
-						<div class="slide_main">
-							<div class="main_slide"
-								style="background-image: url('/images/livingroom.png');"></div>
-							<div class="main_slide"
-								style="background-image: url('/images/livingroom2.png');"></div>
-						</div>
-					</div>
+				<c:forEach var="name" items="${rList}">
 					<div class="slide">
 						<div class="slide_main">
+							
+							<c:forEach var="image" items="${iList}">
 							<div class="main_slide"
-								style="background-image: url('/images/livingroom.png');"></div>
-							<div class="main_slide"
-								style="background-image: url('/images/livingroom.png');"></div>
-							<div class="main_slide"
-								style="background-image: url('/images/livingroom.png');"></div>
-							<div class="main_slide"
-								style="background-image: url('/images/livingroom.png');"></div>
-							<div class="main_slide"
-								style="background-image: url('/images/livingroom.png');"></div>
+								<%-- style="background-image:url('${img_loc}')" --%>>${image.img_loc}
+							</div>
+							</c:forEach>
+							
 						</div>
 					</div>
-					<div class="slide">
-						<div class="slide_main">
-							<div class="main_slide" style="background-image: url('/경로');"></div>
-						</div>
-					</div>
-					<div class="slide">f</div>
-					<div class="slide">g</div>
-					<div class="slide">h</div>
-					<div class="slide">j</div>
-
+					</c:forEach>
+					
 				</div>
 			</div>
 			<form action="/offer/detail_info/${offeringdto.board_no}"
@@ -105,24 +81,24 @@
 				</div>
 			</div>
 
-			<div id="room_intro">방 소개 머시기 머시기${offering.offering_info}</div>
+			<div id="room_intro">${offeringdto.offering_info}</div>
 			<div id="room_info">
-				<div id="drawing">여기 도면</div>
+				<div id="drawing">${offeringdto.thumbnail }</div>
 				<div id="map" style="width: 100%; padding-top: 55%;"></div>
 				<script type="text/javascript"
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=635426cbf37254c67dec93b601cd3c9c"></script>
 				<script>
 					var container = document.getElementById('map');
 					var options = {
-						center : new kakao.maps.LatLng(37.485976668992,
-								126.96013875644),
+						center : new kakao.maps.LatLng(${offeringdto.latitude},
+								${offeringdto.longitude}),
 						level : 3
 					};
 
 					var map = new kakao.maps.Map(container, options);
 
-					var markerPosition = new kakao.maps.LatLng(37.485976668992,
-							126.96013875644);
+					var markerPosition = new kakao.maps.LatLng(${offeringdto.latitude},
+							${offeringdto.longitude});
 
 					// 마커를 생성합니다
 					var marker = new kakao.maps.Marker({
@@ -143,62 +119,22 @@
 								<th>면적</th>
 								<th>보증금</th>
 								<th>월세</th>
-								<th>입주가능일</th>
 								<th>입주신청</th>
 							</tr>
 						</thead>
 						<tbody>
-							<%-- <c:forEach items="${oList}" var="offering"> --%>
-							<%-- <tr>
+							<c:forEach items="${oList}" var="offering">
+							<tr>
 								<td>${offering.title}</td>
-								<td>${offering.room_gender}</td>
+								<td>${offering.offering_gender}</td>
 								<td>${offering.house_kind}</td>
+								<td>${offering.square}</td>
 								<td>${offering.deposit}</td>
 								<td>${offering.rental}</td>
-								<td><fmt:formatDate value="${??}" dateStyle="short" /></td>
-								<td><a href=""><span>입주신청</span></a></td>
-							</tr> --%>
-							<tr>
-								<td>roomA</td>
-								<td>남자전용</td>
-								<td>1인실</td>
-								<td>8평</td>
-								<td>500000원</td>
-								<td>450000원</td>
-								<td>2023-01-19</td>
 								<td><a href=""><span>입주신청</span></a></td>
 							</tr>
-							<tr>
-								<td>roomA</td>
-								<td>남자전용</td>
-								<td>1인실</td>
-								<td>8평</td>
-								<td>500000원</td>
-								<td>450000원</td>
-								<td>2023-01-19</td>
-								<td><a href=""><span>입주신청</span></a></td>
-							</tr>
-							<tr>
-								<td>roomA</td>
-								<td>남자전용</td>
-								<td>1인실</td>
-								<td>8평</td>
-								<td>500000원</td>
-								<td>450000원</td>
-								<td>2023-01-19</td>
-								<td><a href=""><span>입주신청</span></a></td>
-							</tr>
-							<tr>
-								<td>roomA</td>
-								<td>남자전용</td>
-								<td>1인실</td>
-								<td>8평</td>
-								<td>500000원</td>
-								<td>450000원</td>
-								<td>2023-01-19</td>
-								<td><a href=""><span>입주신청</span></a></td>
-							</tr>
-							<%-- </c:forEach> --%>
+						
+							</c:forEach> 
 						</tbody>
 					</table>
 				</div>
