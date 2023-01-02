@@ -16,23 +16,35 @@
 </head>
 <body>
 	<header> </header>
-
+	
+	
+	<div id="search">
+		
+	</div>
+	
+	<div class="btn_list">
+		<button class="stop_btn" onclick="stop()">활동 정지</button>
+		<button class="release_btn">정지 해제</button>
+		<button class="del_btn" onclick="del_user()">강제 탈퇴</button>
+	</div>
 	<div id="board">
 		<table>
 			<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
 				<col style="width: 5%;" />
 				<col style="width: 5%;" />
+				<col style="width: 5%;" />
 				<col style="width: 20%;" />
 				<col style="width: 20%;" />
 				<col style="width: 5%;" />
 				<col style="width: 10%;" />
 				<col style="width: 20%;" />
 				<col style="width: 10%;" />
-				<col style="width: 5%;" />
+				
 			</colgroup>
 			<thead>
 				<tr>
+					<th scope="col"></th>
 					<th scope="col" style="padding-left: 1%;">ID</th>
 					<th scope="col" style="padding-left: 1%;">이름</th>
 					<th scope="col" style="padding-left: 1%;">Email</th>
@@ -41,18 +53,18 @@
 					<th scope="col" style="padding-left: 1%;">주소</th>
 					<th scope="col" style="padding-left: 1%;">상세주소</th>
 					<th scope="col">활동상태</th>
-					<th scope="col">추방</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="tbody">
 				<c:if test="${count == 0}">
 					<tr>
-						<td colspan="5" id="none_post">게시판에 저장된 글이 없습니다.</td>
+						<td colspan="5" id="none_post">회원이 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:if test="${count != 0}">
 					<c:forEach items="${uList}" var="user">
 						<tr>
+							<td><input type="checkbox" name="user_select" data-user ="${user.id }" /></td>
 							<td>${user.id}</td>
 							<td>${user.name}</td>
 							<td>${user.email}</td>
@@ -61,7 +73,6 @@
 							<td>${user.user_add}</td>
 							<td>${user.user_add2}</td>
 							<td>${user.status}</td>
-							<td><button class="drop_out"></button></td>
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -80,5 +91,53 @@
 		</div>
 	</div>
 			<footer> </footer>
+			
+			
+<form name="deleteFrom" method="post" action="/admin/del_user">
+	<input type="hidden" name="idList" />
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+function del_user(){
+	
+	var delArray = [];
+	var uri = '/admin/del_user';
+	var encoded = encodeURI(uri);
+	
+	$("input:checkbox[name='user_select']:checked").each(function(){
+		delArray.push($(this).val("${user.id}"));
+	});
+	
+	console.log(delArray);
+	
+	if(delArray == ""){
+		alert("삭제할 항목을 선택해주세요.");
+		return false;
+	}
+	
+	var confirmAlert = confirm('정말로 삭제하시겠습니까?');
+
+	if(confirmAlert){
+		
+		$.ajax({
+	        type : 'post'
+	       ,url : encoded
+	       ,dataType : 'json'
+	       ,data : JSON.stringify(delArray)
+	       ,success : function(result) {
+				alert("해당글이 정상적으로 삭제되었습니다.");
+				location.reload();
+	       },
+	       error: function(request, status, error) {
+	         
+	       }
+	   })	
+	}
+}
+
+
+
+</script>
 </body>
 </html>
