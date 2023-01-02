@@ -43,12 +43,10 @@ public class AdminService {
 //		return dao.stop_user();
 //	}
 	
-	public void stop_user(String stop) {
-			dao.stop_user(stop);
+	public int stopUser(String[] id) {
+		return dao.stopUser(id);
 	}
-	public void del_user(List<String> delArray) {
-		for(int i=0; i<delArray.size(); i++) {
-			dao.del_user(delArray.get(i));
-		}
+	public int delCheck(String[] id) {
+		return dao.delCheck(id);
 	}
 }

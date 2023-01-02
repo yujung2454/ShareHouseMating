@@ -114,10 +114,16 @@ public class AdminController {
 //	}
 //
 
-	@RequestMapping(method = RequestMethod.POST, value = "/admin/del_user")
-	public List<String> del(List<String> delArray) {
-		service.del_user(delArray);
-		return delArray;
+	@PostMapping("/admin/user_manage")
+	public String delCheck(String[] user_select) {
+		service.delCheck(user_select);
+		return "redirect:/admin/user_manage";
+	}
+	
+	@PostMapping("/admin/user_manage")
+	public String stopUser(String[] user_select) {
+		service.stopUser(user_select);
+		return "redirect:/admin/user_manage";
 	}
 }
 

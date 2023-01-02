@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharehouse.dao.AdminDao">
+
+	<delete id="delCheck">
+	delete from user where id in 
+	<foreach item="id" index="index" collection="array"
+      open="(" separator="," close=")">
+        #{id} 
+  	</foreach>
+	</delete>
+	
+	
+	<update id="stopUser">
+		update user set status='ROLE_STOP' where id in
+		<foreach item="id" index="index" collection="array"
+			open="(" separator="," close=")">
+			#{id}
+			</foreach>
+	</update>
+</mapper>

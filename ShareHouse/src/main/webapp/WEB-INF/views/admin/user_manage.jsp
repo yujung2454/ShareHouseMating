@@ -22,11 +22,9 @@
 		
 	</div>
 	
-	<div class="btn_list">
-		<button class="stop_btn" onclick="stop()">활동 정지</button>
-		<button class="release_btn">정지 해제</button>
-		<button class="del_btn" onclick="del_user()">강제 탈퇴</button>
-	</div>
+	<form method="post" action="/admin/user_manage">
+	
+	
 	<div id="board">
 		<table>
 			<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
@@ -44,7 +42,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th scope="col"></th>
+					<th scope="col"><input type="checkbox" id="cbx_chkAll"/>전체 선택</th>
 					<th scope="col" style="padding-left: 1%;">ID</th>
 					<th scope="col" style="padding-left: 1%;">이름</th>
 					<th scope="col" style="padding-left: 1%;">Email</th>
@@ -64,7 +62,7 @@
 				<c:if test="${count != 0}">
 					<c:forEach items="${uList}" var="user">
 						<tr>
-							<td><input type="checkbox" name="user_select" data-user ="${user.id }" /></td>
+							<td><input type="checkbox" name="user_select" value ="${user.id }" /></td>
 							<td>${user.id}</td>
 							<td>${user.name}</td>
 							<td>${user.email}</td>
@@ -90,51 +88,32 @@
 			</c:if>
 		</div>
 	</div>
+	<div class="btn_list">
+		<input type="submit" name="button" class="btn" id="stop" value="활동 정지" />
+		<button class="release_btn">정지 해제</button>
+		<input type = "submit" name="button" class="btn" id="del" value= "삭제" onclick/>
+	</div>
+	</form>
 			<footer> </footer>
 			
-			
-<form name="deleteFrom" method="post" action="/admin/del_user">
-	<input type="hidden" name="idList" />
-</form>
+		
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
-function del_user(){
-	
-	var delArray = [];
-	var uri = '/admin/del_user';
-	var encoded = encodeURI(uri);
-	
-	$("input:checkbox[name='user_select']:checked").each(function(){
-		delArray.push($(this).val("${user.id}"));
+$(document).ready(function() {
+	$("#cbx_chkAll").click(function() {
+		if($("#cbx_chkAll").is(":checked")) $("input[name=user_select]").prop("checked", true);
+		else $("input[name=user_select]").prop("checked", false);
 	});
 	
-	console.log(delArray);
-	
-	if(delArray == ""){
-		alert("삭제할 항목을 선택해주세요.");
-		return false;
-	}
-	
-	var confirmAlert = confirm('정말로 삭제하시겠습니까?');
-
-	if(confirmAlert){
+	$("input[name=user_select]").click(function() {
+		var total = $("input[name=user_select]").length;
+		var checked = $("input[name=user_select]:checked").length;
 		
-		$.ajax({
-	        type : 'post'
-	       ,url : encoded
-	       ,dataType : 'json'
-	       ,data : JSON.stringify(delArray)
-	       ,success : function(result) {
-				alert("해당글이 정상적으로 삭제되었습니다.");
-				location.reload();
-	       },
-	       error: function(request, status, error) {
-	         
-	       }
-	   })	
-	}
-}
+		if(total != checked) $("#cbx_chkAll").prop("checked", false);
+		else $("#cbx_chkAll").prop("checked", true); 
+	});
+});
 
 
 

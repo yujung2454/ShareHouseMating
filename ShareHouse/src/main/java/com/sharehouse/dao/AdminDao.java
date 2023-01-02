@@ -33,11 +33,9 @@ public interface AdminDao {
 //	List<UsersDto> stop_user();
 	
 	
-	@Update
-	("update user set status='ROLE_STOP' where id = #{id}")
-	int stop_user(String stop);
+
+	int stopUser(String[] id);
 	
-	@Delete
-	("delete from user where id = #{id}")
-	int del_user(String id);
+	int delCheck(String[] id);
+	
 }
