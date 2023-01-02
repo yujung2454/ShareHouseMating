@@ -106,7 +106,7 @@ public class CommunityController {
 		m.addAttribute("sort", sort);
 		m.addAttribute("count", count);
 		return "community/community_list";
-	}
+	} 
 	
 	@GetMapping("/community/community_search")
 	public String search(String notice, String sort, String search,@RequestParam(name="p", defaultValue = "1") int page, Model m) {

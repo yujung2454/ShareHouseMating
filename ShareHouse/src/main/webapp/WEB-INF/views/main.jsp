@@ -68,7 +68,7 @@
 	<div class="offering_lst">
 		<c:forEach var="offer" items="${offering}">
 			<div class="offer">
-				<div class="offer_frame" style="cursor:pointer" onclick="location.href='/offer/detail_info'">
+				<div class="offer_frame" style="cursor:pointer" onclick="location.href='/offer/detail_info/${offer.board_no}'">
 					<div class="offer_img_frame">
 						<img class="offer_img" src="${offer.thumbnail}">
 					</div>

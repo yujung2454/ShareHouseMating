@@ -46,8 +46,7 @@
 					
 				</div>
 			</div>
-			<form action="/offer/detail_info/${offeringdto.board_no}"
-				method="post">
+			<form>
 				<div class="report">
 					<input type="hidden" name="board_no"
 						value="${offeringdto.board_no}">
@@ -372,10 +371,8 @@
 		});
 
 		$('.report-button')
-				.on(
-						'click',
-						function() {
-							var url = "/report_maemul";
+				.on('click',function() {
+							var url = "/report_maemul/${offeringdto.board_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";
 							window.open(url, name, option)

@@ -35,16 +35,5 @@ public class OfferingController {
 		return "/offer/detail_info";
 	}
 	
-	@PostMapping("/offer/detail_info/{board_no}")
-	   public String info(Model m,@PathVariable int board_no) {   
-	      OfferingDto offeringdto = service.selectNo(board_no);
-	      m.addAttribute("offeringdto" , offeringdto);
-	      return "/offer/detail_info";
-	   }
-	
-	/*
-	 * @GetMapping("/offer/detail_info/{board_no}") public String
-	 * detail_info(@PathVariable int board_no, Model m) { return
-	 * "offer/detail_info"; }
-	 */
+
 }

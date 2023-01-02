@@ -37,4 +37,18 @@ public class AdminService {
 	public int countSearch() {
 		return dao.countSearch();
 	}
+	
+//	public List<UsersDto> stop_user() {
+//		
+//		return dao.stop_user();
+//	}
+	
+	public void stop_user(String stop) {
+			dao.stop_user(stop);
+	}
+	public void del_user(List<String> delArray) {
+		for(int i=0; i<delArray.size(); i++) {
+			dao.del_user(delArray.get(i));
+		}
+	}
 }
