@@ -11,10 +11,10 @@ import com.sharehouse.dto.ReportDto;
 public interface ReportDao {
 
 @Insert
-("insert into user_report_board(reporter, reported_id, category, report_con, board_no) values(#{reporter}, #{reported_id}, #{category}, #{report_con}, #{board_no})")
+("insert into user_report_board(reporter, reported_id, category, report_con, board_no) values(#{reporter}, #{reported_id}, #{category}, #{report_con}, 1)")//#{board_no}
 int insertReport(ReportDto dto);
 
 @Select
-("select id, board_no from offering where board_no = #{board_no}")
-OfferingDto selectIdNo(int board_no);	
+("select id, board_no from offering where board_no = 1") //#{board_no}
+OfferingDto selectIdNo();	//int board_no
 }

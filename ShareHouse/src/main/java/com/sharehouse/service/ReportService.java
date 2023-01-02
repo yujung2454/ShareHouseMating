@@ -17,7 +17,7 @@ public class ReportService {
 		return dao.insertReport(dto);
 	}
 	
-	public OfferingDto selectIdNo(int board_no) {
-		return dao.selectIdNo(board_no);
+	public OfferingDto selectIdNo() { //int board_no
+		return dao.selectIdNo(); //board_no
 	}
 }

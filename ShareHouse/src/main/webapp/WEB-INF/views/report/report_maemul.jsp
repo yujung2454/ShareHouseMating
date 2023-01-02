@@ -14,7 +14,7 @@
 <div id = "title">
 	<h1>신고하기</h1>
 </div>
-<form method="post" id="writeform" action="/report_maemul1">
+<form method="post" id="writeform" action="/report_maemul">
 	<table border="1">
 		<tr>
 			<td class="report">

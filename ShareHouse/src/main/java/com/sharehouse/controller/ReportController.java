@@ -21,12 +21,12 @@ public class ReportController {
 		return "/report/report_maemul";
 	}
 	
-	@PostMapping("/report_maemul1")
-	public String insertMaemul(@AuthenticationPrincipal SecurityUser user, ReportDto dto, int board_no) {
+	@PostMapping("/report_maemul")
+	public String insertMaemul(@AuthenticationPrincipal SecurityUser user, ReportDto dto) { //, int board_no
 		String Id = user.getUsers().getId();
 		dto.setReporter(Id);
 		service.insertReport(dto);
-		service.selectIdNo(board_no);
+		service.selectIdNo(); //board_no
 		//System.out.println("board_no: "+board_no);
 		return "/offer/detail_info";
 	}
