@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface AddressDao {
 
-	@Select("select add3 from address where add1 = #{add1} and add2 like concat(#{add2},'%')")
+	@Select("select add3 from address where add1 = #{add1} and add2 like concat(#{add2},'%') order by add3 asc")
 	List<String> address(Map<String, String> map);
 }
