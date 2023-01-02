@@ -114,8 +114,6 @@ function s_location(){
 	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
 	})
 }
-
-
 $(function(){
 	var autocomplete;
 	var Id = 'location';
@@ -167,7 +165,6 @@ $(function(){
 		}
 	})
 })
-
 </script>
 
 </html>
