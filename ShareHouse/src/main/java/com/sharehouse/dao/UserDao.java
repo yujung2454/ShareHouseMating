@@ -27,7 +27,7 @@ int insertUser(UsersDto users);
 String idCheck(String id);
 
 @Select
-("select o.title, o.offering_add, o.offering_add2, o.latitude, o.longitude, r.deposit, r.rental, r.square, o.thumbnail from offering o inner join room_info r on o.board_no = r.board_no group by o.board_no order by o.v_cnt desc limit 20")
+("select o.board_no, o.title, o.offering_add, o.offering_add2, o.latitude, o.longitude, r.deposit, r.rental, r.square, o.thumbnail from offering o inner join room_info r on o.board_no = r.board_no group by o.board_no order by o.v_cnt desc limit 20")
 List<Map<String, Object>> offering();
 
 @Select("select email from user where name = #{name} and email = #{email}") 
