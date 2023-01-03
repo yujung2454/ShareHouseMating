@@ -35,7 +35,7 @@ public class AdminController {
 		//글이 한 개라도 있을 시
 		if(count > 0) {
 			
-			int perPage = 10; // 한 페이지에 보일 글의 갯수
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage; //한 페이지의 첫 글 인덱스 번호
 			
 			List<UsersDto> userList = service.userList(startRow);
@@ -66,7 +66,7 @@ public class AdminController {
 		//글이 한 개라도 있을 시
 		if(count > 0) {
 			
-			int perPage = 10; // 한 페이지에 보일 글의 갯수
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage; //한 페이지의 첫 글 인덱스 번호
 			int endRow = page * perPage;
 			

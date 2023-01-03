@@ -47,8 +47,6 @@ public class CommunityController {
 	public String content(@AuthenticationPrincipal SecurityUser user, @PathVariable int comm_no, Model m) {
 		CommunityDto dto = service.communityOne(comm_no);
 		m.addAttribute("dto", dto);
-		Map<String, Object> communitydto = service.selectComm(comm_no);
-		m.addAttribute("communitydto", communitydto);
 		List<CommentDto> commentList = c_service.selectComment(comm_no);
 		m.addAttribute("commentList", commentList);
 		m.addAttribute("user", user.getUsers());
