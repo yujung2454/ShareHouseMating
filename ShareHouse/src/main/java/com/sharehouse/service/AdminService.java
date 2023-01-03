@@ -19,7 +19,7 @@ public class AdminService {
 	public List<UsersDto> userList(int start){
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
-		m.put("count", 10);
+		m.put("count", 5);
 		return dao.userList(m);
 	}
 	
@@ -27,7 +27,7 @@ public class AdminService {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("search", search);
 		m.put("start", start);
-		m.put("count", 10);
+		m.put("count", 5);
 		return dao.search(m);
 	}
 	

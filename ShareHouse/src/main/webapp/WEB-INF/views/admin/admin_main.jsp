@@ -4,54 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 홈페이지</title>
-<style>
-	html, body{
-		width : 100%;
-		height : 100%;
-		margin : 0;
-	}
-	main{
-		width : 100%;
-		height : 100%;
-	}
-	aside{
-		width : 20%;
-		height : 100%;
-		margin : 0;
-	}
-	nav{
-		background-color : #444444;
-		color : white;
-		height : 100%;	
-	}
-	ul{
-		padding:0;
-	}
-	ul > li{
-		list-style:none;
-		width : 100%;
-		height : 3rem;
-		line-height : 3rem;
-		text-align : center;
-		cursor:pointer;
-	}
-	li:hover{
-		background-color:#565656;
-	}
-	.logo{
-		position : relative;
-		display : inline-block;
-		width : 100%;
-		text-align:center;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="/css/admin_nav.css" />
 </head>
 <body>
 <header>
 </header>
 
 
-	<main>
+	
 		<aside>
 			<nav>
 			<div class="logo">
@@ -70,7 +30,8 @@
 				</ul>				
 			</nav>
 		</aside>
-	</main>
+		<main>
+		</main>
 
 
 

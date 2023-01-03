@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+table{
+	width : 60%;
+	align : center;
+	border : 1px slide black;
+	border-collapse : collapse;
+	margin:auto;
+}
+
+#search{
+	width : 60%;
+	margin : auto;
+	
+}
+.ID{
+	width : 50%;
+	height : 2.2rem;
+	margin-top : 5rem;
+
+	font-size : 1.1rem;
+}
+.search{
+		width:32px;
+		height:32px;
+		background:url("/images/search_zoom_icon.png") no-repeat;
+		border:none;
+		cursor : pointer;
+		padding : 10px;
+	}
+	
+.btn_list{
+    width: 60%;
+    height: 40px;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.btn{
+	width: 5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    border: none;
+    float:left;
+    margin-right:0.4rem;
+    cursor:pointer;
+}
+
+#release{
+	background-color : #66cdaa;
+}
+#stopUser{
+	background-color : #fff68f;
+}
+#delCheck{
+	background-color : #ff4040;
+}
+
+#paging {
+		margin-top : 20px;
+	}
+	
+	#paging > .page {
+		display: inline-block;
+  	  	width: 30px;
+  	  	vertical-align: top;
+    	color: #999;
+    	padding: 8px 0px 8px;
+    	border: 1px solid #e2e2e5;
+    	font-weight: bold;
+    	font-size: 12px;
+    	line-height: 12px;
+    	margin: 0 7px 0 0;
+    	border-radius: 2px;
+	}
+	
+	#paging > .page :hover {
+		text-decoration : underline;
+	}

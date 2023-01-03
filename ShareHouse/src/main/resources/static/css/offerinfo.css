@@ -28,7 +28,6 @@
 	#info_btn_list{
 		width:100%;
 		display : flex;
-		border : 1px solid gray;
 		position : sticky;
 		top:0px;
 		z-index : 10;
@@ -91,11 +90,11 @@
 	.contract{
 		display : none;
 	}
-	ul{
+	.living > ul , .contract > ul{
 		padding:0;
 		margin:0;
 	}
-	li{
+	.faq {
 		text-align : left;
 		list-style:none;
 		box-shadow: inset 0 0 0 1px #eee;

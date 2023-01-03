@@ -70,10 +70,7 @@ public class CommunityService {
 		m.put("notice", notice);
 		return dao.communityNotice(m);
 	}
-	
-	public Map<String, Object> selectComm(int comm_no){
-		return dao.selectComm(comm_no);
-	}
+
 
 }
 
