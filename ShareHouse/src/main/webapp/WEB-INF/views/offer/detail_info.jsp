@@ -154,6 +154,7 @@
 					marker.setMap(map);
 				</script>
 				<div id="room_table">
+				<form><input type="hidden" >
 					<table>
 						<thead>
 							<tr>
@@ -167,7 +168,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<form action="/offer/detail_info/{board_no}" >
+						
 							<c:forEach items="${oList}" var="offering">
 								<tr>
 									<td>${offering.title}</td>
@@ -180,9 +181,10 @@
 								</tr>
 						
 							</c:forEach>
-							</form>
+					
 						</tbody>
 					</table>
+					</form>
 				</div>
 			</div>
 			<div id="room_FAQ">

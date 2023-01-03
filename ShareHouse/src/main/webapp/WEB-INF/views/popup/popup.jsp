@@ -41,11 +41,11 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 <!-- layer popup content -->
 <div class="layerPopup" id="layer_popup" style="visibility: visible;">
     <div class="layerBox">
-        <h4 class="title">새해 첫 인사말</h4>
+        <h4 class="title"></h4>
         <div class="cont">
-            <p>
-             <img src="/images/newyear.jpg" width=350 height=500 alt="event page">
-            </p>
+            <!-- <p>
+             <img src="/images/newyear.jpg" width=350 alt="event page">
+            </p> -->
         </div>
           <form name="pop_form">
         <div id="check" ><input type="checkbox" name="chkbox" value="checkbox" id='chkbox' >
@@ -56,6 +56,11 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 </div>
 </body>
 <script>
+fetch('poutput')
+.then((response) => response.json())
+.then((data) => {document.querySelector('.title').innerHTML = data.pop_title;
+	document.querySelector('.cont').innerHTML = '<p><img src='+data.pop_img+' width=350 alt="event page"></p>'
+})
 //head 태그 안에 스크립트 선언
         function setCookie( name, value, expiredays ) {
             var todayDate = new Date();

@@ -25,9 +25,6 @@ li {
 	left:7%;
 }
 
-#notification{
-	
-}
 
 #login{
 	right: 10%;
@@ -47,6 +44,18 @@ li {
 	position: absolute;
 	top: 35px;
 	left:27%;
+}
+
+.user_profil_img{
+	width:60px;
+	border-radius:50%;
+	overflow:hidden;
+	display:inline-block;
+}
+
+.user_uimg{
+	overflow:hidden;
+	width:100%
 }
 
 #uppernav {

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.password_confirm{
+	left:40%;
+	top:40%;
+	position:absolute;
+	border:solid thin;
+	width:300px;
+	height:200px;
+	border-radius: 1rem;
+}
+
+.confirm{
+	text-align: center;
+}
+
+.password{
+	position:relative;
+	align-content: center;
+}
+
+.input_frame{
+	margin:0 auto;
+	position:relative;
+	display:block;
+}
