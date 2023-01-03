@@ -39,6 +39,9 @@ implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
 	
 	implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.7.3'
 	implementation 'org.springframework.boot:spring-boot-starter-mail:2.6.1'
+	
+	
+	
 }
 
 tasks.named('test') {

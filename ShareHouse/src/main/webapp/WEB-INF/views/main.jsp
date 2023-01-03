@@ -36,7 +36,9 @@
 						<a href="/mypage/info"><img src="/images/profil.png"></a>
 					</c:if>
 					<c:if test="${user.user_Img != null}">
-						<a href="/mypage/info"><img src="${user.user_img}"></a>
+						<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
 					</c:if>
 					<a href="/logout" class="logout">로그아웃</a>
 					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -68,7 +70,7 @@
 	<div class="offering_lst">
 		<c:forEach var="offer" items="${offering}">
 			<div class="offer">
-				<div class="offer_frame" style="cursor:pointer" onclick="location.href='/offer/detail_info'">
+				<div class="offer_frame" style="cursor:pointer" onclick="location.href='/offer/detail_info/${offer.board_no}'">
 					<div class="offer_img_frame">
 						<img class="offer_img" src="${offer.thumbnail}">
 					</div>

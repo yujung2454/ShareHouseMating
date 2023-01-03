@@ -26,6 +26,12 @@ public class SecurityUser extends User {
 	public UsersDto getUsers() { //저장한 정보를 꺼내씀
 		return users;
 	}
+
+	public void setUsers(UsersDto users) {
+		this.users = users;
+	}
+	
+	
 	
 	
 }
