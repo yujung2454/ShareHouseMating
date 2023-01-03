@@ -30,8 +30,6 @@ public class SecurityUser extends User {
 	public void setUsers(UsersDto users) {
 		this.users = users;
 	}
-	
-	
-	
+
 	
 }
