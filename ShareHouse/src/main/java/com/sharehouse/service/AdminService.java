@@ -50,4 +50,14 @@ public class AdminService {
 	public int release(String[] id) {
 		return dao.release(id);
 	}
+	
+	public int setVisitTotalCount() {
+		return dao.setVisitTotalCount();
+	}
+	public int getVisitTotalCount() {
+		return dao.getVisitTotalCount();
+	}
+	public int getVisitTodayCount() {
+		return dao.getVisitTodayCount();
+	}
 }

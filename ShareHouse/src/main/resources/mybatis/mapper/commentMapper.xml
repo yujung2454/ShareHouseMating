@@ -16,5 +16,7 @@
 		select * from comm_comment where comm_no = #{comm_no} order by comment_date asc
 	</select>
 	
-	
+	<select id="selectId" parameterType="int" resultType="com.sharehouse.dto.CommentDto">
+		select comment_no from comm_comment where comm_no = #{comm_no} 
+	</select>
 </mapper>

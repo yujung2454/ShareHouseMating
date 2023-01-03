@@ -42,16 +42,16 @@ public class MyPageService {
 		m.put("count", 5);
 		return dao.MyCommentList(m);
 	}
-//	public int comm_count() {
-//		return dao.comm_count();
-//	}
-//	public int comment_count() {
-//		return dao.comment_count();
-//	}
-//	public int offer_count() {
-//		return dao.offer_count();
-//	}
-	public int count(String id) {
-		return dao.count(id);
+	public int comm_count(String id) {
+		return dao.comm_count(id);
 	}
+	public int comment_count(String id) {
+		return dao.comment_count(id);
+	}
+	public int offer_count(String id) {
+		return dao.offer_count(id);
+	}
+//	public int count(String id) {
+//		return dao.count(id);
+//	}
 }

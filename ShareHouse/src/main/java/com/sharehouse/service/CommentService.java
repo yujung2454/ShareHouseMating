@@ -25,4 +25,8 @@ public class CommentService {
 	public int deleteComment(int comment_no) {
 		return dao.deleteComment(comment_no);
 	}
+	
+	public int selectId(int comm_no) {
+		return dao.selectId(comm_no);
+	}
 }
