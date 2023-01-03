@@ -29,10 +29,7 @@ public interface AdminDao {
 	
 	@Select
 	("select count(*) from user")
-	int count();
 	
-	
-	int countSearch(Map<String, Object> m);	
 
 	int stopUser(String[] id);
 	
