@@ -167,6 +167,7 @@
 							</tr>
 						</thead>
 						<tbody>
+						<form action="/offer/detail_info/{board_no}" >
 							<c:forEach items="${oList}" var="offering">
 								<tr>
 									<td>${offering.title}</td>
@@ -177,8 +178,9 @@
 									<td>${offering.rental}</td>
 									<td><a href=""><span>입주신청</span></a></td>
 								</tr>
-
+						
 							</c:forEach>
+							</form>
 						</tbody>
 					</table>
 				</div>

@@ -6,5 +6,5 @@ import lombok.Data;
 
 @Data
 public class AdminDto {
-	public Date v_date;
+	private Date v_date;
 }
