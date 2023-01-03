@@ -17,7 +17,9 @@ public class AdminService {
 	
 	@Autowired
 	AdminDao dao;
-	
+	public int count() {
+		return dao.count();
+	}
 	
 	public List<AdminDto> commviewlist(String sort, int start){
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -50,8 +52,8 @@ public class AdminService {
 		return dao.search(m);
 	}
 	
-	public int count() {
-		return dao.count();
+	public int countUser() {
+		return dao.countUser();
 	}
 
 	public int countSearch(String search) {

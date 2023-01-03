@@ -60,7 +60,7 @@ public class AdminController {
 
 	@GetMapping("/admin/user_manage")
 	public String userlist(@RequestParam(name = "p", defaultValue = "1") int page, Model m) {
-		int count = service.count();
+		int count = service.countUser();
 		//글이 한 개라도 있을 시
 		if(count > 0) {
 			
