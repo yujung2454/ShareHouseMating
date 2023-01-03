@@ -51,7 +51,7 @@
 								<input type="checkbox" name="query_no" value="${query.query_no}">
 								<td>${user.user_img} ${query.id}</td>
 								<td>${query.category}</td>
-								<td><a href="/admin/ad_query_view/${query.query_no}">${query.query_title}</a></td>
+								<td><a href="/query_view/${query.query_no}">${query.query_title}</a></td>
 								<td>${query.query_state}</td>
 							</tr>
 							

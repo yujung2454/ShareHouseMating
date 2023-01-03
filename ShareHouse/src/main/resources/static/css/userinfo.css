@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.mypage_title{
+	position:relative;
+}
+
+.user_info{
+	border:solid thin;
+	position:absolute;
+	width:30%;
+	left:15%;
+	height:50%;
+}
+
+.uimg{
+	border:solid thin;
+	position:relative;
+	width:30%;
+	height:40%;
+	float:left;
+}
+
+#uimg{
+	width:70%;
+}
+
+.uframe{
+	padding:15px 0;
+	position:relative;
+	width:65%;
+	float:left;
+	border-bottom: solid thin;
+}
+
+.uframe2{
+	float:left;
+}
+
+.modify{
+	position:absolute;
+	top:80%;
+	left:29%;
+	cursor:pointer;
+}

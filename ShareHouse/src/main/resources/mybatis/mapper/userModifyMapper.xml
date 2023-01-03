@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharehouse.dao.UserModifyDao">
+<update id="userModify" parameterType="com.sharehouse.dto.UsersDto">
+	update user
+	<set>
+		<if test="pwd != ''">Pwd = #{pwd},</if>
+		<if test="name != null">Name = #{name},</if>
+		<if test="email != null">Email = #{email},</if>
+		<if test="tel != null">Tel = #{tel},</if>
+		<if test="user_add != null">User_add = #{user_add},</if>
+		<if test="user_add2 != null">User_add2 = #{user_add2},</if>
+		<if test="user_Img != null">User_Img = #{user_Img}</if>
+	</set> 
+	where Id = #{id}
+</update>
+</mapper>

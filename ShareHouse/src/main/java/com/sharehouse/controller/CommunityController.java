@@ -1,6 +1,7 @@
 package com.sharehouse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,7 +21,7 @@ import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.service.CommentService;
 import com.sharehouse.service.CommunityService;
-@SessionAttributes("User")
+
 @Controller
 public class CommunityController {
 	
@@ -31,7 +32,7 @@ public class CommunityController {
 	CommentService c_service;
 	
 	@GetMapping("/community/community_write")
-	   public String wirteForm(@AuthenticationPrincipal SecurityUser user, Model m) {
+	   public String writeForm(@AuthenticationPrincipal SecurityUser user, Model m) {
 	      m.addAttribute("user", user.getUsers());
 	      return "community/community_write";
 	   }
@@ -48,6 +49,7 @@ public class CommunityController {
 		m.addAttribute("dto", dto);
 		List<CommentDto> commentList = c_service.selectComment(comm_no);
 		m.addAttribute("commentList", commentList);
+		m.addAttribute("user", user.getUsers());
 		return "community/community_view";
 	}
 	
@@ -72,7 +74,7 @@ public class CommunityController {
 	}
 	
 	@GetMapping("community/community_list")
-	public String community_list(String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
+	public String community_list(String notice, String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
 
 		//글이 있는지 체크
 		int count = service.count();
@@ -84,6 +86,8 @@ public class CommunityController {
 			
 			List<CommunityDto> communityList = service.communityList(sort, startRow);
 			m.addAttribute("cList", communityList);
+			List<CommunityDto> communityNotice = service.communityNotice(notice);
+			m.addAttribute("nList", communityNotice);
 
 			int pageNum = 5;
 			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
@@ -102,10 +106,10 @@ public class CommunityController {
 		m.addAttribute("sort", sort);
 		m.addAttribute("count", count);
 		return "community/community_list";
-	}
+	} 
 	
 	@GetMapping("/community/community_search")
-	public String search(String sort, String search,@RequestParam(name="p", defaultValue = "1") int page, Model m) {
+	public String search(String notice, String sort, String search,@RequestParam(name="p", defaultValue = "1") int page, Model m) {
 		int count = service.countSearch(search);
 		if(count > 0) {
 		
@@ -115,9 +119,11 @@ public class CommunityController {
 		
 		List<CommunityDto> communityList = service.communityListSearch(sort, search, startRow);
 		m.addAttribute("cList", communityList);
+		List<CommunityDto> communityNotice = service.communityNotice(notice);
+		m.addAttribute("nList", communityNotice);
 		
 
-		int pageNum = 5;
+		int pageNum = 5; 
 		int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
 		
 		int begin = (page - 1) / pageNum * pageNum + 1;

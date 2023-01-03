@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.sharehouse.config.SecurityUser;
+import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.QueryDto;
 import com.sharehouse.service.QueryService;
 
@@ -174,8 +176,14 @@ public class QueryController {
 		return "redirect:/admin/ad_query_list";
 	}
 	
-	@GetMapping("/admin/ad_query_view/{query_no}")
-	public String content2(@AuthenticationPrincipal SecurityUser user, @PathVariable int query_no, Model m) {
+	@PostMapping("/insert/answer/{query_no}") 
+	public String insertAnswer(QueryDto dto) {
+		service.insertAnswer(dto); 
+		return "redirect:/query_view/{query_no}";
+	}
+		
+	@GetMapping("/admin/ad_query_update/{query_no}")
+	public String content3(@AuthenticationPrincipal SecurityUser user, @PathVariable int query_no, Model m) {
 		QueryDto dto = service.queryOne(query_no);
 		m.addAttribute("user", user.getUsers());
 		m.addAttribute("dto", dto);
@@ -183,6 +191,11 @@ public class QueryController {
 		 * List<CommentDto> commentList = c_service.selectComment(comm_no);
 		 * m.addAttribute("commentList", commentList);
 		 */
-		return "admin/ad_query/ad_query_view";
+		return "/admin/ad_query/ad_query_update";
 	}
+	/*
+	 * @GetMapping("/comment/delete/{comment_no}") public String
+	 * deleteComment(@PathVariable int comment_no) { int i =
+	 * service.deleteComment(comment_no); return i+""; }
+	 */
 }

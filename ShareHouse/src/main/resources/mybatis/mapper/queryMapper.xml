@@ -56,4 +56,9 @@
         #{no} 
   	</foreach>
 	</delete>
+	
+	<insert id="insertAnswer" parameterType="com.sharehouse.dto.QueryDto">
+	update user_query_list set query_state = "답변완료", answer = #{answer}
+	where query_no=#{query_no}
+	</insert>
 </mapper>
