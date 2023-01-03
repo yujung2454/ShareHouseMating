@@ -32,7 +32,6 @@ public class MyPageController {
 		}else {
 			m.addAttribute("user",user.getUsers());
 		}
-		
 		return "/mypage/info";
 	}
 	
