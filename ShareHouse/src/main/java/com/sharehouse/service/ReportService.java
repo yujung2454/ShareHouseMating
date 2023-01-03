@@ -10,6 +10,7 @@ import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.OfferingDto;
 import com.sharehouse.dto.ReportDto;
+import com.sharehouse.dto.UsersDto;
 
 @Service
 public class ReportService {
@@ -59,5 +60,13 @@ public class ReportService {
 	// 관리자
 	public List<ReportDto> selectAll() {
 		return dao.selectAll();
+	}
+	
+	public int deleteuser(String reported_id) {
+		return dao.deleteuser(reported_id);
+	}
+	
+	public int updateuser(String reported_id) {
+		return dao.updateuser(reported_id);
 	}
 }

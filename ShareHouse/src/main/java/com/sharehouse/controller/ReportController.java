@@ -9,12 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.OfferingDto;
 import com.sharehouse.dto.ReportDto;
+import com.sharehouse.dto.UsersDto;
 import com.sharehouse.service.ReportService;
 
 @Controller
@@ -73,10 +75,10 @@ public class ReportController {
 	public String report_maemul3(Model m,@PathVariable int comment_no) {
 		CommentDto commentdto = service.selectNo3(comment_no);
 	      m.addAttribute("commentdto" , commentdto);
-		return "/report/report_maemul2";
+		return "/report/report_maemul3";
 	}
 	
-	@PostMapping("/report_maemul2")
+	@PostMapping("/report_maemul3")
 	public String insertMaemul3(@AuthenticationPrincipal SecurityUser user, ReportDto dto, int comment_no) {
 		String Id = user.getUsers().getId();
 		dto.setReporter(Id);
@@ -93,4 +95,20 @@ public class ReportController {
 		m.addAttribute("rp" , rp);
 		return "admin/ad_report/report_list";
 	}
-}
+	
+	@PostMapping("tae/delete")
+	@ResponseBody   
+	public String delete(String reported_id) {
+		System.out.println(reported_id);
+	     service.deleteuser(reported_id);
+	      return "/admin/ad_report/report_list";
+	   }
+	
+	@PostMapping("tae/update")
+	@ResponseBody   
+	public String update(String reported_id) {
+		System.out.println(reported_id);
+	     service.updateuser(reported_id);
+	      return "/admin/ad_report/report_list";
+	   }
+}   

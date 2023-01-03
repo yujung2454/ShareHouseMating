@@ -21,7 +21,8 @@
 <option value="commentview">댓글</option>
 </select>
 </div> -->
-		<table  border = "2" style = "    margin-left:auto; 
+<form method = "post" action = "/tae/delete">
+		<table  border = "1" style = "margin-left:auto; 
     margin-right:auto; text-align:center;">
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
@@ -42,24 +43,29 @@
 						
 					</thead>
 					<tbody>
-							<c:forEach items="${rp}" var="rp">
+					
+							<c:forEach items="${rp}" var="rprp">
 							<tr>
-								<td>${rp.reporter}</td>
-								<td>${rp.reported_id}</td>
-								<td>${rp.category}</td>
-								<td colspan = "2"><button>활동정지</button><button>강제탈퇴</button></td>
+								<td>${rprp.reporter}</td>
+								<td>${rprp.reported_id}</td>
+								 
+								<td>${rprp.category}</td>
+								<td colspan = "2"><button type="button" class="updateuser" itemid="${rprp.reported_id}">활동정지</button><button type="button" class="deleteuser" itemid="${rprp.reported_id}">강제탈퇴</button></td>
 
 							</tr>
 								
 							<tr>
 							
-								<td colspan = "3" id = "goodtd">신고 내용 : ${rp.report_con}</td>
+								<td colspan = "3" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
 							</tr>
 							</c:forEach>
-						
+					
 					</tbody>
 		</table>
-<!-- <script>
+		<input type = "hidden" value= "${rprp.reported_id}" name = "reported_id"/>
+		</form>	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>		
+<script>
 function change() {
 	   $("#select").change(function() {
 	      var select = $("#select option:selected").val();
@@ -81,6 +87,39 @@ function change() {
 	         }
 	   })
 	}
-</script> -->
+	
+$(function(){
+	$(".deleteuser").click(function(){
+		 let reported_id = $(this).attr("itemid");
+		
+		if (!confirm("정말로 탈퇴 시키겠습니까?")) {
+    			return false;
+			} else {
+				$.ajax({url:"/tae/delete",
+				 	data:"reported_id="+reported_id,
+				 	method:'post'
+				}).done( function(data){
+					alert("회원을 탈퇴시켰습니다.");
+					window.location.href = "/admin/report_list";
+				})
+			}//if
+	})//click
+	$(".updateuser").click(function(){
+		 let reported_id = $(this).attr("itemid");
+		
+		if (!confirm("정말로 중지 시키겠습니까?")) {
+   			return false;
+			} else {
+				$.ajax({url:"/tae/update",
+				 	data:"reported_id="+reported_id,
+				 	method:'post'
+				}).done( function(data){
+					alert("회원을 활동 중지시켰습니다.");
+					window.location.href = "/admin/report_list";
+				})
+			}//if
+	})//click
+})//ready
+</script>
 </body>
 </html>

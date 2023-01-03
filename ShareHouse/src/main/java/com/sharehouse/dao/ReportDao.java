@@ -2,14 +2,19 @@ package com.sharehouse.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.OfferingDto;
 import com.sharehouse.dto.ReportDto;
+import com.sharehouse.dto.UsersDto;
+
+import lombok.Delegate;
 
 @Mapper
 public interface ReportDao {
@@ -57,4 +62,12 @@ CommentDto selectIdNo3(int comment_no);
 @Select
 ("select * from user_report_board")
 List<ReportDto> selectAll();
+
+@Delete
+("delete from user where id = #{reported_id}")
+int deleteuser(String reported_id);
+
+@Update
+("update user set status = ROLE_STOP where id = #{reported_id}")
+int updateuser(String reported_id);
 }
