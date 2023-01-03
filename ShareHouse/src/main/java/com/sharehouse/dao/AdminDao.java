@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+
 import com.sharehouse.dto.UsersDto;
 import com.sharehouse.dto.AdminDto;
 
@@ -27,10 +28,11 @@ public interface AdminDao {
 	
 
 	List<UsersDto> search(Map<String , Object> m);
-	
+
 	@Select
 	("select count(*) from user")
 	int countUser();
+
 
 	int stopUser(String[] id);
 	
