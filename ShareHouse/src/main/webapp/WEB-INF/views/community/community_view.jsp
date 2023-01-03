@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>게시물 보기</title>
-
-
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/quick.css" rel="stylesheet">
@@ -123,6 +121,7 @@
 		</div>
 
 	</div>
+
 	<nav>
 		<div class="quick">
 			<div class="quick_shape">
@@ -177,6 +176,7 @@
 
 						$("#comment").html(commentlist);
 						$("#content").val("");
+
 					});
 
 				})//click

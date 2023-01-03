@@ -11,7 +11,8 @@ public interface RegistrationDao {
 	
 	int insert(RegistrationDto dto);
 	int insert2(RegistrationDto dto);
-	int insert3(RegistrationDto dto);
+	int update(RegistrationDto dto);
 	List<RegistrationDto> fileList();
-	RegistrationDto select(String room_name);
+	RegistrationDto select(int board_no);
+	
 }

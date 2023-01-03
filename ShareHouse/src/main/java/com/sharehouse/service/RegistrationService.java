@@ -18,16 +18,23 @@ public class RegistrationService {
 		return dao.insert(dto);
 	}
 	
-	public int insert2 (RegistrationDto dto) {
-		return dao.insert2(dto);
+	public int update (RegistrationDto dto) {
+		return dao.update(dto);
 	}
 	
-	public int insert3 (RegistrationDto dto) {
-		return dao.insert3(dto);
+	public RegistrationDto select (int board_no) {
+		return dao.select(board_no);
+	}
+	
+	public int insert2 (RegistrationDto dto) {
+		return dao.insert2(dto);
 	}
 	
 	public List<RegistrationDto> fileList(){
 		return dao.fileList();
 	}
+
+	
+
 
 }

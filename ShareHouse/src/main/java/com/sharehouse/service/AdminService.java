@@ -9,13 +9,32 @@ import org.springframework.stereotype.Service;
 
 import com.sharehouse.dao.AdminDao;
 import com.sharehouse.dto.UsersDto;
+import com.sharehouse.dto.AdminDto;
+
 
 @Service
 public class AdminService {
-
+	
 	@Autowired
 	AdminDao dao;
 	
+	
+	public List<AdminDto> commviewlist(String sort, int start){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 10);
+		m.put("sort", sort);
+		return dao.commviewlist(m);
+	}
+	
+	public List<AdminDto> boardviewlist(String sort, int start){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 10);
+		m.put("sort", sort);
+		return dao.boardviewlist(m);
+	}
+  
 	public List<UsersDto> userList(int start){
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
@@ -34,6 +53,7 @@ public class AdminService {
 	public int count() {
 		return dao.count();
 	}
+
 	public int countSearch(String search) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("search", search);

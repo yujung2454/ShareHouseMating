@@ -44,7 +44,7 @@
 			</tr>
 		</table>
 		<button type="button" id="cancel" value="취소" onclick="location.href='/'">취소</button>
-		<button type="submit" class="btn2" value="다음">다음</button>
+		<button type="submit" class="btn2" value="다음" >다음</button>
 	</div>
 	</form>
 </div>

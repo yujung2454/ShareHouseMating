@@ -50,6 +50,7 @@
 		</div>
 	</header>
 
+
 	<div id="center">
 		<!-- 게시글 리스트 테이블 -->
 		<div id="title">
