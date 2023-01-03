@@ -13,7 +13,7 @@
 <title>배소은을 신고하는 리스트</title>
 </head>
 <body>
-<div>
+<div align="center">
 <select id="select" name="select" onchange="change()">
 <option value="all">전체보기</option>
 <option value="commview">커뮤니티</option>
@@ -49,27 +49,68 @@
 						</tr>
 						
 					</thead>
-					<tbody>
-					
-							<c:forEach items="${rp}" var="rprp">
-							<tr>
+					<tbody id="tbody">
+						<c:if test="${count == 0}">
+					<tr>
+						<td colspan="5" id="none_post">접수된 신고가 없습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${count != 0}">
+					<c:forEach items="${rp}" var="rprp">
+						<c:if test="${rprp.board_no != null}">
+							<tr class="board">
 								<td><input type="checkbox" name="report_no" value="${rprp.report_no}"></td>
 								<td>${rprp.reporter}</td>
 								<td>${rprp.reported_id}</td>
 								<td>${rprp.category}</td>
 								<td>${status}</td>
 								<td colspan = "2"><button type="button" class="updateuser" itemid="${rprp.reported_id}">활동정지</button><button type="button" class="deleteuser" itemid="${rprp.reported_id}">강제탈퇴</button></td>
-
 							</tr>
-								
-							<tr>
-							
+							<tr class="board">
 								<td colspan = "5" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
 							</tr>
-							</c:forEach>
-					
-					</tbody>
+						</c:if>
+						<c:if test="${rprp.comm_no != null}">
+							<tr class="comm">
+								<td><input type="checkbox" name="report_no" value="${rprp.report_no}"></td>
+								<td>${rprp.reporter}</td>
+								<td>${rprp.reported_id}</td>
+								<td>${rprp.category}</td>
+								<td>${status}</td>
+								<td colspan = "2"><button type="button" class="updateuser" itemid="${rprp.reported_id}">활동정지</button><button type="button" class="deleteuser" itemid="${rprp.reported_id}">강제탈퇴</button></td>
+							</tr>
+							<tr class="comm">
+								<td colspan = "5" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
+							</tr>
+						</c:if>
+						<c:if test="${rprp.comment_no != null}">
+							<tr class="comment">
+								<td><input type="checkbox" name="report_no" value="${rprp.report_no}"></td>
+								<td>${rprp.reporter}</td>
+								<td>${rprp.reported_id}</td>
+								<td>${rprp.category}</td>
+								<td>${status}</td>
+								<td colspan = "2"><button type="button" class="updateuser" itemid="${rprp.reported_id}">활동정지</button><button type="button" class="deleteuser" itemid="${rprp.reported_id}">강제탈퇴</button></td>
+							</tr>
+							<tr class="comment">
+								<td colspan = "5" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
+							</tr>
+						</c:if>
+					</c:forEach>
+				</c:if>
+				</tbody>
 		</table>
+		<div id="paging" align="center">
+			<c:if test="${begin > pageNum}">
+				<a href="report_list?p=${begin-1}">[이전]</a>
+			</c:if>
+			<c:forEach begin="${begin}" end = "${end}" var='i'>
+				<a href="report_list?p=${i}" class="page">${i}</a>
+			</c:forEach>
+			<c:if test="${end < totalPages}">
+				<a href="report_list?p=${end+1}">[다음]</a>
+			</c:if>
+		</div>
 		<input type = "hidden" value= "${rprp.reported_id}" name = "reported_id"/>
 		</form>	
 		
@@ -97,20 +138,24 @@ function change() {
 	   $("#select").change(function() {
 	      var select = $("#select option:selected").val();
 	      if(select == "commview") {
-	         $('.boardline').hide();
-	         $('.commline').show();
+	         $('.board').hide();
+	         $('.comment').hide();
+	         $('.comm').show();
 	      }
 	      else if(select == "boardview") {
-	         $('.commline').hide();
-	         $('.boardline').show();
+	         $('.comm').hide();
+	         $('.comment').hide();
+	         $('.board').show();
 	      }
 	      else if(select == "commentview") {
-		         $('.commline').hide();
-		         $('.boardline').show();
+		         $('.board').hide();
+		         $('.comm').hide();
+		         $('.comment').show();
 		      }
 	      else{
-	         $('.commline').show();
-	         $('.boardline').show();
+	         $('.comm').show();
+	         $('.board').show();
+	         $('.comment').show();
 	         }
 	   })
 	}

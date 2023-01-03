@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -33,4 +34,16 @@ public interface AdminDao {
 	
 	int release(String [] id);
 	
+	@Insert
+	("insert into visit (v_date) values (now())")
+	int setVisitTotalCount();
+	
+	@Select
+	("select count(*) from visit")
+	int getVisitTotalCount();
+	
+	@Select
+	("select count(*) from visit where format(v_date, 'YYYY-MM-DD') = format(now(), 'YYYY-MM-DD')")
+	int getVisitTodayCount();
+
 }

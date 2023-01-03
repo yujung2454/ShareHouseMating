@@ -25,19 +25,19 @@ public interface MyPageDao {
 	("select * from comm_comment where id = #{id} limit #{start} , #{count}")
 	List<CommentDto> MyCommentList(Map<String, Object> m);
 	
-//	@Select
-//	("select count(*) from comm where id = #{id}")
-//	int comm_count();
-//	
-//	@Select
-//	("select count(*) from offering where id = #{id}")
-//	int offer_count();
-//	
-//	@Select
-//	("select count(*) from comm_comment where id = #{id}")
-//	int comment_count();
+	@Select
+	("select count(*) from comm where id = #{id}")
+	int comm_count(String id);
 	
 	@Select
-	("select((select count(*) from comm where id=#{id}) + (select count(*) from offering where id = #{id}))")
-	int count(String id);
+	("select count(*) from offering where id = #{id}")
+	int offer_count(String id);
+	
+	@Select
+	("select count(*) from comm_comment where id = #{id}")
+	int comment_count(String id);
+	
+//	@Select
+//	("select((select count(*) from comm where id=#{id}) + (select count(*) from offering where id = #{id}))")
+//	int count(String id);
 }

@@ -198,4 +198,42 @@ public class QueryController {
 	 * deleteComment(@PathVariable int comment_no) { int i =
 	 * service.deleteComment(comment_no); return i+""; }
 	 */
+	
+	// 마이페이지 문의 내역
+	@GetMapping("/query_history")
+	public String query_list3(String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
+		
+		//글이 있는지 체크
+		int count = service.count();
+		//글이 한 개라도 있을 시
+		if(count > 0) {
+			
+			int perPage = 10; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage;//한 페이지의 첫 글 인덱스 번호
+			
+			List<QueryDto> queryList = service.queryList(startRow);
+			m.addAttribute("qList", queryList);
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
+			
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum -1;
+			if(end > totalPages) {
+				end = totalPages;
+			}
+			 m.addAttribute("begin", begin);
+			 m.addAttribute("end", end);
+			 m.addAttribute("pageNum", pageNum);
+			 m.addAttribute("totalPages", totalPages);
+			}
+		//글이 없을 시
+		m.addAttribute("count", count);
+		return "/myPage/query_history";
+	}
+	
+	@PostMapping("/query_history")
+	public String delChecked2(int[] query_no) {
+		service.delChecked(query_no);
+		return "redirect:/query_history";
+	}
 }

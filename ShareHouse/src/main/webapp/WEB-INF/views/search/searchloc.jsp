@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +38,14 @@
 						<a href="/mypage/info"><img src="/images/profil.png"></a>
 					</c:if>
 					<c:if test="${user.user_Img != null}">
-						<a href="/mypage/info"><img src="${user.user_img}"></a>
+						<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
 					</c:if>
 					<a href="/logout" class="logout">로그아웃</a>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<a href="/admin/admin_main">관리자페이지</a>
+					</sec:authorize>
 				</c:if>
 			</span>
 		</div>
@@ -65,7 +71,7 @@
 	<div id="map"></div>
 	<div class="list_frame">
 		<c:forEach var="offer" items="${offering}">
-			<div class="offer_list" style="cursor:pointer" onclick="location.href='/offer/detail_info'">
+			<div class="offer_list" style="cursor:pointer" onclick="location.href='/offer/detail_info/${offer.board_no}'">
 				<div class="list_img">
 					<img class="img" src="${offer.thumbnail}">
 				</div>

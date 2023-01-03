@@ -1,6 +1,7 @@
 package com.sharehouse.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -77,4 +78,12 @@ int updateuser(String reported_id);
 String selectSta();
 
 int delChecked(int[] report_no);
+
+@Select
+("select * from user_report_board limit #{start} , #{count}")
+List<ReportDto> reportList(Map<String , Object> m);
+
+@Select
+("select count(*) from user_report_board")
+int count();
 }

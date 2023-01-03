@@ -148,8 +148,7 @@
 
 			<div id="write" align="right">
 				<button type="button" class="community_write">
-					<a href="community_write" id="button" class="community_write">글
-						쓰기</a>
+					<a href="community_write" id="button" class="community_write">글쓰기</a>
 				</button>
 			</div>
 		</div>

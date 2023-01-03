@@ -18,42 +18,43 @@ table {
 <link href="/css/quick.css" rel="stylesheet">
 </head>
 <body>
-<header>
-<div id="uppernav">
-		<div id="main">
-			<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
-			<span id="home" class="to_main"><a href="/">우리집</a></span>
-		</div>
-		<ul class="upper_frame">
-			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
-			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
-			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
-			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
-			<li class="upper_menu"><a href="/query_list">문의</a></li>
-		</ul>
-		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
-			<span id="login">
-				<c:if test="${user == null}">
-					<a href="/login">로그인</a>
-				</c:if>
-				<c:if test="${user != null}">
-					<c:if test="${user.user_Img == null}">
-						<a href="/mypage/info"><img src="/images/profil.png"></a>
+	<header>
+		<div id="uppernav">
+			<div id="main">
+				<span id="home_img" class="to_main"><a href="/"><img
+						src="/images/home.png"></a></span> <span id="home" class="to_main"><a
+					href="/">우리집</a></span>
+			</div>
+			<ul class="upper_frame">
+				<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
+				<li class="upper_menu" onclick="s_location()"
+					style="cursor: pointer">방 찾기</li>
+				<li class="upper_menu"><a
+					href="/registration/registration_first">매물 등록</a></li>
+				<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
+				<li class="upper_menu"><a href="/query_list">문의</a></li>
+			</ul>
+			<div id="p_info">
+				<span id="notification"><img src="/images/notification.png"></span>
+				<span id="login"> <c:if test="${user == null}">
+						<a href="/login">로그인</a>
+					</c:if> <c:if test="${user != null}">
+						<c:if test="${user.user_Img == null}">
+							<a href="/mypage/info"><img src="/images/profil.png"></a>
+						</c:if>
+						<c:if test="${user.user_Img != null}">
+							<a href="/mypage/info"><img src="${user.user_img}"></a>
+						</c:if>
+						<a href="/logout" class="logout">로그아웃</a>
+						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+							<a href="/admin/admin_main">관리자페이지</a>
+						</sec:authorize>
 					</c:if>
-					<c:if test="${user.user_Img != null}">
-						<a href="/mypage/info"><img src="${user.user_img}"></a>
-					</c:if>
-					<a href="/logout" class="logout">로그아웃</a>
-					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-						<a href="/admin/admin_main">관리자페이지</a>
-					</sec:authorize>
-				</c:if>
-			</span>
+				</span>
+			</div>
 		</div>
-	</div>
-</header>
-<input type="hidden" name = "id" value="${user.id }">
+	</header>
+	<input type="hidden" name="id" value="${user.id }">
 	<h1>내 게시물 보기</h1>
 	<div>
 		<select id="select" name="select" onchange="change()">
@@ -69,7 +70,8 @@ table {
 				<td colspan='4'>커뮤니티</td>
 			</tr>
 			<tr>
-				<th width="150px"><input type="checkbox" id="cbx_chkAll"/>전체 선택</th>
+				<th width="150px"><input type="checkbox" id="cbx_chkAll" />전체
+					선택</th>
 				<th width="150px">아이디</th>
 				<th width="150px">제목</th>
 				<th width="150px">조회수</th>
@@ -82,12 +84,14 @@ table {
 					<td>${comm.comm_v_cnt}</td>
 				</tr>
 			</c:forEach>
-
+		</table>
+		<table border="1">
 			<tr>
 				<td colspan='4'>매물</td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="user_select" value ="${user.id }" /></td>
+				<td><input type="checkbox" name="user_select"
+					value="${user.id }" /></td>
 				<td width="150px">아이디</td>
 				<td width="150px">제목</td>
 				<td width="150px">조회수</td>
@@ -100,22 +104,25 @@ table {
 					<td>${offering.v_cnt}</td>
 				</tr>
 			</c:forEach>
-			
+		</table>
+		<table border="1">
 			<tr>
 				<td colspan='4'>댓글</td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="user_select" value ="${user.id }" /></td>
+				<td><input type="checkbox" name="user_select"
+					value="${user.id }" /></td>
 				<td width="150px">아이디</td>
 				<td width="150px">제목</td>
 				<td width="150px">조회수</td>
 			</tr>
 			<c:forEach items="${cList}" var="board">
 				<tr class="comment">
-					<td><a href=" ${board.comment_no}">${board.comment_no}</a></td>    
+					<td><a href=" ${board.comment_no}">${board.comment_no}</a></td>
 					<td>${board.id}</td>
 					<td><a href=" ${board.comment_no}">${board.comment_con}</a></td>
-					<td><fmt:formatDate value="${board.comment_date}" pattern="mm/dd"/> </td>
+					<td><fmt:formatDate value="${board.comment_date}"
+							pattern="mm/dd" /></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -131,29 +138,26 @@ table {
 			<a href="myPage_community?p=${end+1}">[다음]</a>
 		</c:if>
 	</div>
-	
+
 	<nav>
-<div class="quick">
-	<div class="quick_shape">
-		<a href="/search/searchlist">
-			<img src="/images/search.png" title="검색">
-		</a>
-	</div>
-	<div class="quick_shape">
-		<a href="">
-			<img src="images/like.png" title="찜">
-		</a>
-	</div>
-	<div class="quick_shape">
-		<a href="">
-			<img src="images/chat.png" title="채팅">
-		</a>
-	</div>
-</div>
-</nav>
-<footer>
-</footer>
-	
+		<div class="quick">
+			<div class="quick_shape">
+				<a href="/search/searchlist"> <img src="/images/search.png"
+					title="검색">
+				</a>
+			</div>
+			<div class="quick_shape">
+				<a href=""> <img src="images/like.png" title="찜">
+				</a>
+			</div>
+			<div class="quick_shape">
+				<a href=""> <img src="images/chat.png" title="채팅">
+				</a>
+			</div>
+		</div>
+	</nav>
+	<footer> </footer>
+
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 	<script>
@@ -165,18 +169,17 @@ table {
 					$('.commline').show();
 					$('.comment').hide();
 					console.log('aaa');
-					
+
 				} else if (select == "boardview") {
 					$('.commline').hide();
 					$('.boardline').show();
 					$('.comment').hide();
-				} else if (select == "commentview"){
+				} else if (select == "commentview") {
 					$('.commline').hide();
 					$('.boardline').hide();
 					$('.comment').show();
-					
-				}
-				else{
+
+				} else {
 					$('.commline').show();
 					$('.boardline').show();
 					$('.comment').show();

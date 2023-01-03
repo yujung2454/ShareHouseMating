@@ -31,6 +31,10 @@
 			</nav>
 		</aside>
 		<main>
+		
+		전체 방문자 수: ${sessionScope.totalCount}
+
+		오늘의 방문자 수: ${sessionScope.todayCount}
 		</main>
 
 
