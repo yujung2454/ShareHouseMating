@@ -11,6 +11,7 @@ public class OfferingDto {
 	private String id;
 	private String title;
 	private String offering_add;
+	private String offering_add2;
 	private String latitude;
 	private String longitude;
 	private String house_kind;

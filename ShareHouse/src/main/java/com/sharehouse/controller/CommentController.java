@@ -3,6 +3,7 @@ package com.sharehouse.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,14 +20,16 @@ public class CommentController {
 	
 	
 	@GetMapping("/comment/insert") 
-	public String insertComment(CommentDto dto) {
+	public String insertComment(CommentDto dto, int comm_no, Model m) {
 		service.insertComment(dto); 
 		List<CommentDto> commentList = service.selectComment(dto.getComm_no()); 
 		Gson gson = new Gson(); 
+		int comment_no = service.selectId(comm_no);
+		m.addAttribute("comment_no", comment_no);
 		return gson.toJson(commentList); 
 	}
 		
-	@GetMapping("/comment/delete/{comm_comment_no}")
+	@GetMapping("/comment/delete/{comment_no}")
 	public String deleteComment(@PathVariable int comment_no) {
 		int i = service.deleteComment(comment_no);
 		return i+"";

@@ -65,6 +65,11 @@ public class CommunityService {
 		return dao.countSearch(m);
 	}
 	
+	public List<CommunityDto> communityNotice(String notice){
+		Map<String,Object> m = new HashMap<String, Object>();
+		m.put("notice", notice);
+		return dao.communityNotice(m);
+	}
 
 
 }
