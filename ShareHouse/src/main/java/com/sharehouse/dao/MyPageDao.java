@@ -3,15 +3,21 @@ package com.sharehouse.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.OfferingDto;
+import org.apache.ibatis.annotations.Mapper;
+
+import com.sharehouse.dto.MyPageDto;
 
 @Mapper
 public interface MyPageDao {
+	List<MyPageDto> apply(String id);
+	List<MyPageDto> room(String id);
+
+	int delete(String id);
 
 	@Select
 	("select * from comm where id = #{id} limit #{start} , #{count}")
@@ -40,4 +46,5 @@ public interface MyPageDao {
 //	@Select
 //	("select((select count(*) from comm where id=#{id}) + (select count(*) from offering where id = #{id}))")
 //	int count(String id);
+
 }
