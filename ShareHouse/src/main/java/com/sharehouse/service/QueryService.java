@@ -72,4 +72,8 @@ public class QueryService {
 	public int delChecked(int[] query_no) {
 		return dao.delChecked(query_no);
 	}
+	
+	public int insertAnswer(QueryDto dto) {
+		return dao.insertAnswer(dto);
+	}
 }

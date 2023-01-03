@@ -24,4 +24,5 @@ public interface QueryDao {
 	
 	//관리자 dao
 	int delChecked(int[] query_no);
+	int insertAnswer(QueryDto dto);
 }

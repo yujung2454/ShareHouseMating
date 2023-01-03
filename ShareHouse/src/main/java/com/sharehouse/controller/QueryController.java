@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.sharehouse.config.SecurityUser;
+import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.QueryDto;
 import com.sharehouse.service.QueryService;
 
@@ -137,7 +139,7 @@ public class QueryController {
 	
 	//관리자 컨트롤러
 	
-	@GetMapping("/ad_query_list")
+	@GetMapping("/admin/ad_query_list")
 	public String query_list2(String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
 		
 		//글이 있는지 체크
@@ -146,7 +148,7 @@ public class QueryController {
 		if(count > 0) {
 			
 			int perPage = 10; // 한 페이지에 보일 글의 갯수
-			int startRow = (page - 1) * perPage; //한 페이지의 첫 글 인덱스 번호
+			int startRow = (page - 1) * perPage;//한 페이지의 첫 글 인덱스 번호
 			
 			List<QueryDto> queryList = service.queryList(startRow);
 			m.addAttribute("qList", queryList);
@@ -165,18 +167,35 @@ public class QueryController {
 			}
 		//글이 없을 시
 		m.addAttribute("count", count);
-		return "ad_query/ad_query_list";
+		return "admin/ad_query/ad_query_list";
 	}
 	
-	@PostMapping("/ad_query_list")
+	@PostMapping("/admin/ad_query_list")
 	public String delChecked(int[] query_no) {
-		System.out.println(query_no);
-		Map<String, Object> queryMap = new HashMap<String, Object>();
-		for(int i=0; i<query_no.length; i++) {
-			queryMap.put("no", query_no[i]);
-		}
-		System.out.println(queryMap);
 		service.delChecked(query_no);
-		return "redirect:/ad_query_list";
+		return "redirect:/admin/ad_query_list";
 	}
+	
+	@PostMapping("/insert/answer/{query_no}") 
+	public String insertAnswer(QueryDto dto) {
+		service.insertAnswer(dto); 
+		return "redirect:/query_view/{query_no}";
+	}
+		
+	@GetMapping("/admin/ad_query_update/{query_no}")
+	public String content3(@AuthenticationPrincipal SecurityUser user, @PathVariable int query_no, Model m) {
+		QueryDto dto = service.queryOne(query_no);
+		m.addAttribute("user", user.getUsers());
+		m.addAttribute("dto", dto);
+		/*
+		 * List<CommentDto> commentList = c_service.selectComment(comm_no);
+		 * m.addAttribute("commentList", commentList);
+		 */
+		return "/admin/ad_query/ad_query_update";
+	}
+	/*
+	 * @GetMapping("/comment/delete/{comment_no}") public String
+	 * deleteComment(@PathVariable int comment_no) { int i =
+	 * service.deleteComment(comment_no); return i+""; }
+	 */
 }

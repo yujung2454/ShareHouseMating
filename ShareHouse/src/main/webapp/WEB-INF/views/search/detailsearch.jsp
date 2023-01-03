@@ -20,10 +20,10 @@
 		</div>
 		<ul class="upper_frame">
 			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
-			<li class="upper_menu"><a href="/search/searchlist">방 찾기</a></li>
-			<li class="upper_menu">매물 등록</li>
+			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
+			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
 			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
-			<li class="upper_menu">문의</li>
+			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
 			<span id="notification"><img src="/images/notification.png"></span>
@@ -38,6 +38,7 @@
 					<c:if test="${user.user_Img != null}">
 						<a href="/mypage/info"><img src="${user.user_img}"></a>
 					</c:if>
+					<a href="/logout" class="logout">로그아웃</a>
 				</c:if>
 			</span>
 		</div>
@@ -56,11 +57,12 @@
 			</li>
 		</ul>
 	</div>
+	<input id="latlng" name="latlng" type="hidden">
 </form>
 </div>
 <br>
 <hr>
-<form id="detail_search">
+<form id="detail_search" action="/detailresult">
 <div id="select_boxes">
 <select id="search_region" class="search_menu">
 	<option>지역</option>
@@ -81,43 +83,33 @@
 	<option value="15">강원도</option>
 	<option value="16">제주특별자치도</option>
 </select>
-<select id="search_house" class="search_menu">
+<select id="search_house" name="kind" class="search_menu">
 	<option>주거형태</option>
 	<option value="apt">아파트</option>
-	<option value="chouse">주택</option>
+	<option value="house">주택</option>
 	<option value="one">원룸</option>
 	<option value="two">투룸</option>
 	<option value="office">오피스텔</option>
 </select>
-<select id="search_contract" class="search_menu">
-	<option>계약기간</option>
+<select id="search_contract" name="contract" class="search_menu">
+	<option value="0">계약기간</option>
 	<option value="1">1개월</option>
 	<option value="3">3개월</option>
 	<option value="6">6개월</option>
 	<option value="12">1년</option>
-	<option value="24">2년</option>
 </select>
-<select id="search_count" class="search_menu">
-	<option>인원</option>
-	<option value="1">1명</option>
-	<option value="2">2명</option>
-	<option value="3">3명</option>
-	<option value="4">4명</option>
-	<option value="5">5명</option>
-	<option value="6">6명</option>
-</select>
-<select id="search_pay" class="search_menu">
-	<option>월세</option>
+<select id="search_pay" name="pay" class="search_menu">
+	<option value="0">월세</option>
 	<option value="30">30만원이하</option>
 	<option value="60">30~60만원</option>
 	<option value="100">60~100만원</option>
 	<option value="101">100만원이상</option>
 </select>
 <label>
-<input id="gender" name="gender" type="checkbox" value="m">
+<input id="male" name="gender" type="checkbox" value="m">
 남성</label>
 <label>
-<input id="gender" name="gender" type="checkbox" value="f">
+<input id="female" name="gender" type="checkbox" value="f">
 여성</label> <!-- 남성 여성 다 클릭하면 모든 값 허용  a값? -->
 </div>
 <hr>
@@ -135,7 +127,7 @@
 <dl class="detail_con">
 	<dd class="content_frame">
 		<div class="region_content2">
-			시/구를 선택해주세요
+			읍/면/리/가/동을(를) 선택해주세요
 		</div>
 	</dd>
 </dl>
@@ -143,10 +135,7 @@
 <div class="selected_loc">
 </div>
 <div class="roomtoilet">
-	<span>방 수</span><br>
-	<input id="room_cnt"><br>
-	<span>화장실 수</span><br>	
-	<input id="Broom_cnt">	
+	<input type="hidden" id="selected_loc" name="region">
 	<input type="submit" value="적용">
 </div>
 </div>
@@ -154,4 +143,69 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/javascript/selectchange.js"></script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
+</script>
+<script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
+
+$(function(){
+	var autocomplete;
+	var Id = 'location';
+	geocoder = new google.maps.Geocoder();
+	
+	autocomplete = new google.maps.places.Autocomplete((document.getElementById(Id)),{
+		types:['geocode','establishment'],
+		componentRestrictions: {country:"KR"}
+	})
+	
+	var place;
+	var lat;
+	var lng;
+	google.maps.event.addListener(autocomplete,'place_changed',function(){
+		
+		place = autocomplete.getPlace();
+		lat = place.geometry.location.lat();
+		lng = place.geometry.location.lng();
+		$("#lat").val(lat);
+		$("#lng").val(lng);
+	})
+	//geocode(data,result)
+	var geocoder;
+	$("#search_btn").submit(function(event){
+		event.preventDefault();
+		geocoder = new google.maps.Geocoder();
+		var address = document.getElementById('location').value;
+		geocoder.geocode({'address': address},function(results,status){
+			if(status == 'OK'){
+				$("#location").val(results[0].formatted_address)
+			} else {
+				alert('Geocode was not successful for the following reason: ' + status);
+			}
+		})
+		
+		if($("#latlng").val() == ""){
+			geocoder.geocode({'address' : address},function(results, status){
+				if(status == 'OK'){
+					$("#latlng").val(results[0].geometry.location)
+					event.currentTarget.submit();
+				} else {
+					alert('Geocode was not successful for the following reason: ' + status);
+				}
+			})
+		}
+		
+		if($("#location").val() == ""){
+			return false;
+		}
+	})
+})
+</script>
 </html>

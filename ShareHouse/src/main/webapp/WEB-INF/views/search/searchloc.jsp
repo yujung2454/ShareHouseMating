@@ -20,11 +20,11 @@
 			<span id="home" class="to_main"><a href="/">우리집</a></span>
 		</div>
 		<ul class="upper_frame">
-			<li class="upper_menu">쉐어하우스란?</li>
-			<li class="upper_menu"><a href="/search/searchlist">방 찾기</a></li>
-			<li class="upper_menu">매물 등록</li>
+			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
+			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
+			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
 			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
-			<li class="upper_menu">문의</li>
+			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
 			<span id="notification"><img src="/images/notification.png"></span>
@@ -39,6 +39,7 @@
 					<c:if test="${user.user_Img != null}">
 						<a href="/mypage/info"><img src="${user.user_img}"></a>
 					</c:if>
+					<a href="/logout" class="logout">로그아웃</a>
 				</c:if>
 			</span>
 		</div>
@@ -64,12 +65,14 @@
 	<div id="map"></div>
 	<div class="list_frame">
 		<c:forEach var="offer" items="${offering}">
-			<div class="offer_list">
+			<div class="offer_list" style="cursor:pointer" onclick="location.href='/offer/detail_info'">
 				<div class="list_img">
 					<img class="img" src="${offer.thumbnail}">
 				</div>
 				<div class="list_con">
 					<p> ${offer.title}
+					<p> 보증금:${offer.deposit} 월세:${offer.rental }
+					<p> ${offer.dong }
 				</div>
 			</div>
 		</c:forEach>
@@ -79,6 +82,15 @@
 <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&v=beta&libraries=marker,places&callback=initMap"></script>
 <script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
+
 var locations = [];
 
 $.ajax({
