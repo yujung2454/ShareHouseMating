@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.sharehouse.domain.Role;
 import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.OfferingDto;
@@ -68,6 +69,12 @@ List<ReportDto> selectAll();
 int deleteuser(String reported_id);
 
 @Update
-("update user set status = ROLE_STOP where id = #{reported_id}")
+("update user set status = 'ROLE_STOP' where id = #{reported_id}")
 int updateuser(String reported_id);
+
+@Select
+("select status from user u inner join user_report_board r on u.id = r.reported_id")
+String selectSta();
+
+int delChecked(int[] report_no);
 }

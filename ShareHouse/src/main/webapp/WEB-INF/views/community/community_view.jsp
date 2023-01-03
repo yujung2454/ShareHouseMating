@@ -196,7 +196,7 @@
 				.on(
 						'click',
 						function() {
-							var url = "/report_maemul/${dto.comm_no}";
+							var url = "/report_maemul2/${dto.comm_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";
 							window.open(url, name, option)
@@ -206,7 +206,7 @@
 				.on(
 						'click',
 						function() {
-							var url = "/report_maemul/${gson.comment_no}";
+							var url = "/report_maemul3/${gson.comment_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";
 							window.open(url, name, option)

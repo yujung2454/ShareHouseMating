@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sharehouse.dao.ReportDao;
+import com.sharehouse.domain.Role;
 import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.OfferingDto;
@@ -68,5 +69,13 @@ public class ReportService {
 	
 	public int updateuser(String reported_id) {
 		return dao.updateuser(reported_id);
+	}
+	
+	public String selectSta() {
+		return dao.selectSta();
+	}
+	
+	public int delChecked(int[] report_no) {
+		return dao.delChecked(report_no);
 	}
 }

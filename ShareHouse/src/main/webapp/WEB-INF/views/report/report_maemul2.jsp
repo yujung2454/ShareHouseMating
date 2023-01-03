@@ -20,7 +20,7 @@
 			<td class="report">
 			<select name="category" id="sign1">
 			<option value = "욕설&비방">욕설&비방</option>
-			<option value = "허위매물">허위매물</option>
+			<option value = "나쁜 사람">나쁜 사람</option>
 			<option value = "기타">기타</option>
 			</select>
 			</td>

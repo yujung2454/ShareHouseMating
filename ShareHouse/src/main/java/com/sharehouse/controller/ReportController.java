@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sharehouse.config.SecurityUser;
+import com.sharehouse.domain.Role;
 import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.OfferingDto;
@@ -52,7 +53,7 @@ public class ReportController {
 	
 	// 커뮤니티 신고
 	
-	@GetMapping("/report_maemul/{comm_no}")
+	@GetMapping("/report_maemul2/{comm_no}")
 	public String report_maemul2(Model m,@PathVariable int comm_no) {
 		CommunityDto communitydto = service.selectNo2(comm_no);
 	      m.addAttribute("communitydto" , communitydto);
@@ -71,7 +72,7 @@ public class ReportController {
 	
 	// 댓글 신고
 	
-	@GetMapping("/report_maemul/{comment_no}")
+	@GetMapping("/report_maemul3/{comment_no}")
 	public String report_maemul3(Model m,@PathVariable int comment_no) {
 		CommentDto commentdto = service.selectNo3(comment_no);
 	      m.addAttribute("commentdto" , commentdto);
@@ -90,10 +91,18 @@ public class ReportController {
 	
 	// 관리자 신고리스트
 	@GetMapping("/admin/report_list")
-	public String report_list(Model m) {
+	public String report_list(Model m, String reported_id) {
 		List<ReportDto> rp = service.selectAll();
+		String status = service.selectSta();
 		m.addAttribute("rp" , rp);
+		m.addAttribute("status" , status);
 		return "admin/ad_report/report_list";
+	}
+	
+	@PostMapping("/admin/report_list")
+	public String delChecked(int[] report_no) {
+		service.delChecked(report_no);
+		return "redirect:/admin/report_list";
 	}
 	
 	@PostMapping("tae/delete")
