@@ -8,7 +8,7 @@ public class IntroduceController {
 
 	@GetMapping("/introduce/introduce") 
 		public String introduce() {
-			return "/introduce/introduce";
+			return "introduce/introduce";
 		}
 	
 }

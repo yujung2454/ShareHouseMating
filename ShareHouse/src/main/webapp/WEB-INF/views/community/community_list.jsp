@@ -16,7 +16,6 @@
 <div id="center">
 <!-- 게시글 리스트 테이블 -->
 <div id = "title">
-<a href="/offer/detail_info">ww</a>
 	<a href="community_list" class="community_list">커뮤니티</a> 	
 </div>
 	<!-- 검색창 -->

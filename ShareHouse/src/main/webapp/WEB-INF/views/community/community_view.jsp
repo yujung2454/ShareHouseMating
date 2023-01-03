@@ -8,26 +8,32 @@
 <meta charset="UTF-8">
 <title>게시물 보기</title>
 <link href="/css/community_view.css" rel="stylesheet">
+
 </head>
 <body>
-
-<div id = "title">
-	<a href="/community/community_list" class="community_list">커뮤니티</a> 	
+<div id="center">
+<div id = "title" class="community_list">
+	커뮤니티
 </div>
 <hr>
 <form id="viewpost">
-<table border="1" class="table">
+<table style="width:100%; text-size:15px;">
 <tr>
-<td>제목 : ${dto.comm_title}</td>
+<td colspan='3' style= "border-bottom:1px solid black; height:30px;"> 제목 : ${dto.comm_title}</td>
 </tr>
 <tr>
-<td>
-<pre><b>작성자 : ${dto.id}							작성일 : ${dto.comm_date}		조회수 : ${dto.comm_v_cnt}</b>
-</pre>
+<td style="width:65%; border-bottom:1px solid black; height:40px;">
+작성자 : ${dto.id}					
+</td>
+<td style="width:20%; border-bottom:1px solid black; height:40px;">
+작성일 : <fmt:formatDate value="${dto.comm_date}" dateStyle="short" />
+</td>
+<td style="width:15%; border-bottom:1px solid black; height:40px;">
+조회수 : ${dto.comm_v_cnt}
 </td>
 </tr>
-<tr height ="300">
-<td>
+<tr>
+<td colspan='3' style="height:300px; text-align:left; border-bottom : 1px solid black; vertical-align:top;">
 ${dto.comm_con}
 </td>
 </tr>
@@ -37,7 +43,7 @@ ${dto.comm_con}
 		<a href="/community/community_update/${dto.comm_no}">글 수정 </a> 
 		<a id="${dto.comm_no}" href="#">글 삭제</a>
 	</c:if>
-		<button type="button" onclick="location.href='/community/community_list'">목록으로</button>
+		<button type="button" class="back" onclick="location.href='/community/community_list'">목록으로</button>
 <div>
 	<div id="comment">
 	<c:forEach items="${commentList}" var="comm">
@@ -51,6 +57,7 @@ ${dto.comm_con}
 	</c:forEach>
 	</div>
 	<input name="content" id="content"><button id="add">등록</button>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
