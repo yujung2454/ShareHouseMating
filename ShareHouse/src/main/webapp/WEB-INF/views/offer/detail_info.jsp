@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="/css/offerinfo.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link href="/css/uppernav.css" rel="stylesheet">
+<link href="/css/quick.css" rel="stylesheet">	
 
 <script>
 	
@@ -17,7 +19,41 @@
 </head>
 <body>
 
-	<header> </header>
+	<header> 
+	<div id="uppernav">
+		<div id="main">
+			<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
+			<span id="home" class="to_main"><a href="/">우리집</a></span>
+		</div>
+		<ul class="upper_frame">
+			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
+			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
+			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
+			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
+			<li class="upper_menu"><a href="/query_list">문의</a></li>
+		</ul>
+		<div id="p_info">
+			<span id="notification"><img src="/images/notification.png"></span>
+			<span id="login">
+				<c:if test="${user == null}">
+					<a href="/login">로그인</a>
+				</c:if>
+				<c:if test="${user != null}">
+					<c:if test="${user.user_Img == null}">
+						<a href="/mypage/info"><img src="/images/profil.png"></a>
+					</c:if>
+					<c:if test="${user.user_Img != null}">
+						<a href="/mypage/info"><img src="${user.user_img}"></a>
+					</c:if>
+					<a href="/logout" class="logout">로그아웃</a>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<a href="/admin/admin_main">관리자페이지</a>
+					</sec:authorize>
+				</c:if>
+			</span>
+		</div>
+	</div>
+	</header>
 
 	<div id="center" align="center">
 		<!-- 몸통 -->
@@ -34,10 +70,9 @@
 				<c:forEach var="name" items="${rList}">
 					<div class="slide">
 						<div class="slide_main">
-							
 							<c:forEach var="image" items="${iList}">
 							<div class="main_slide"
-								<%-- style="background-image:url('${img_loc}')" --%>>${image.img_loc}
+								style="background-image:url('/images/livingroom.png')">${image.img_loc}
 							</div>
 							</c:forEach>
 							
@@ -109,7 +144,6 @@
 					marker.setMap(map);
 				</script>
 				<div id="room_table">
-					여기 가격등등
 					<table>
 						<thead>
 							<tr>
@@ -331,7 +365,25 @@
 			</div>
 		</div>
 	</div>
-
+<nav>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="">
+			<img src="images/like.png" title="찜">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="">
+			<img src="images/chat.png" title="채팅">
+		</a>
+	</div>
+</div>
+</nav>
 	<footer> </footer>
 
 

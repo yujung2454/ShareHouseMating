@@ -7,39 +7,60 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	table{
-		width : 50%;
-		align : center;
-		border : 1px slide black;
-	}
+	
 </style>
+<link rel="stylesheet" type="text/css" href="/css/admin_nav.css" />
+<link rel="stylesheet" type="text/css" href="/css/admin_user.css" />
 </head>
 <body>
 	<header> </header>
-	
+	<aside>
+			<nav>
+			<div class="logo">
+			<span><img src="/images/home.png"></span><span style="text-align : center; line-height:3rem; font-size : 1.5rem;">우리 집</span>
+			</div>
+				<ul>
+					<li>통계</li>
+					<li>공지사항 관리</li>
+					<li>대기매물 승인</li>
+					<li><a href="/admin/user_manage">회원관리</a></li>
+					<li>신고리스트</li>
+					<li>문의리스트</li>
+					<li>모든 게시물 보기</li>
+					<li>꾸미기</li>
+					<li>사이트 설정</li>
+				</ul>				
+			</nav>
+		</aside>
+		<main>
+		
 	
 	<div id="search">
 			<form action="/admin/user_manage_search">
-			<input type="text" name="search" size="20" maxlength="225" placeholder = "검색어를 입력하세요">
+			<input type="text" name="search" size="20" maxlength="225" placeholder = "ID를 입력해주세요." class="ID">
 			<button type='submit' value="검색" class="search"></button>
 		</form>
 	</div>
-	
+	<div class="btn_list">
+		<input type="button" name="release" class="btn" id="release" value="정지 해제" />
+		<input type="button" name="stopUser" class="btn" id="stopUser" value="활동 정지"  />
+		<input type="button" name="delCheck" class="btn" id="delCheck" value="삭제" />
+	</div>
 	<form id="form" method="post" action="/admin/user_manage">
 	
 	
 	<div id="board">
-		<table>
+		<table border="1">
 			<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
-				<col style="width: 5%;" />
-				<col style="width: 5%;" />
-				<col style="width: 5%;" />
-				<col style="width: 20%;" />
-				<col style="width: 20%;" />
-				<col style="width: 5%;" />
 				<col style="width: 10%;" />
-				<col style="width: 20%;" />
+				<col style="width: 10%;" />
+				<col style="width: 10%;" />
+				<col style="width: 10%;" />
+				<col style="width: 10%;" />
+				<col style="width: 10%;" />
+				<col style="width: 15%;" />
+				<col style="width: 15%;" />
 				<col style="width: 10%;" />
 				
 			</colgroup>
@@ -96,12 +117,10 @@
 			</c:if>
 		</div>
 	</div>
-	<div class="btn_list">
-		<input type="button" name="stopUser" class="btn" id="stopUser" value="활동 정지"  />
-		<input type="button" name="release" class="btn" id="release" value="정지 해제" />
-		<input type="button" name="delCheck" class="btn" id="delCheck" value="삭제" />
-	</div>
+	
 	</form>
+	
+	</main>
 			<footer> </footer>
 			
 		

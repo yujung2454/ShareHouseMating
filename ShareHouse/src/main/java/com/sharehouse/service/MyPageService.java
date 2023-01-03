@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sharehouse.dao.MyPageDao;
+import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
+import com.sharehouse.dto.OfferingDto;
 
 @Service
 public class MyPageService {
@@ -21,11 +23,35 @@ public class MyPageService {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("id", id);
 		m.put("start", start);
-		m.put("count", 10);
+		m.put("count", 5);
 		return dao.MyCommunityList(m);
 	}
 	
-	public int count() {
-		return dao.count();
+	public List<OfferingDto> MyOfferingList(String id, int start){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("id", id);
+		m.put("start", start);
+		m.put("count", 5);
+		return dao.MyOfferingList(m);
+	}
+	
+	public List<CommentDto> MyCommentList(String id, int start){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("id", id);
+		m.put("start", start);
+		m.put("count", 5);
+		return dao.MyCommentList(m);
+	}
+//	public int comm_count() {
+//		return dao.comm_count();
+//	}
+//	public int comment_count() {
+//		return dao.comment_count();
+//	}
+//	public int offer_count() {
+//		return dao.offer_count();
+//	}
+	public int count(String id) {
+		return dao.count(id);
 	}
 }
