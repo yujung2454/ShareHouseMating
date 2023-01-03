@@ -11,4 +11,5 @@ public interface CommentDao {
 	List<CommentDto> selectComment(int comm_no);
 	int insertComment(CommentDto dto);
 	int deleteComment(int comment_no);
+	int selectId(int comm_no);
 }

@@ -88,7 +88,7 @@
 		<form>
 			<div class="report">
 				<input type="hidden" name="comm_no" value="${dto.comm_no}">
-				<button class="report-button" type="button">
+				<button class="report-comm" type="button">
 					<img src="/images/report.png">신고
 				</button>
 			</div>
@@ -103,8 +103,8 @@
 						<fmt:formatDate value="${comm_comment.comment_date }"
 							dateStyle="short" />
 						<div class="report">
-							<input type="hidden" name="comment_no" value="${gson.comment_no}">
-							<button class="report-button" type="button">
+							<input type="hidden" name="comment_no" value="${comment_no.comment_no}">
+							<button class="report-comment" type="button">
 								<img src="/images/report.png">신고
 							</button>
 						</div>
@@ -192,21 +192,18 @@
 			})//click
 		})//ready
 
-		$('.report-community')
-				.on(
-						'click',
-						function() {
-							var url = "/report_maemul2/${dto.comm_no}";
+
+		$('.report-comm')
+				.on('click',function() {
+							var url = "/report_maemul/${dto.comm_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";
 							window.open(url, name, option)
 						});
 
 		$('.report-comment')
-				.on(
-						'click',
-						function() {
-							var url = "/report_maemul3/${gson.comment_no}";
+				.on('click',function() {
+							var url = "/report_maemul/${comment_no.comment_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";
 							window.open(url, name, option)

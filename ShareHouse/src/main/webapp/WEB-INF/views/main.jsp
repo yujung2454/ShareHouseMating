@@ -36,7 +36,9 @@
 						<a href="/mypage/info"><img src="/images/profil.png"></a>
 					</c:if>
 					<c:if test="${user.user_Img != null}">
-						<a href="/mypage/info"><img src="${user.user_img}"></a>
+						<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
 					</c:if>
 					<a href="/logout" class="logout">로그아웃</a>
 					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -114,6 +116,8 @@ function s_location(){
 	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
 	})
 }
+
+
 $(function(){
 	var autocomplete;
 	var Id = 'location';
@@ -165,6 +169,6 @@ $(function(){
 		}
 	})
 })
-</script>
 
+</script>
 </html>
