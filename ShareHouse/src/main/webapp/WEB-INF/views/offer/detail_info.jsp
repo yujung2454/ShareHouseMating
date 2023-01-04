@@ -2,6 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +46,7 @@
 							<a href="/mypage/info"><img src="/images/profil.png"></a>
 						</c:if>
 						<c:if test="${user.user_Img != null}">
-							<a href="/mypage/info"><img src="${user.user_img}"></a>
+							<a href="/mypage/info"><img src="${user.user_Img}"></a>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
