@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>¸Å¹°µî·Ï-2</title>
+<meta charset="UTF-8">
+<title>ë§¤ë¬¼ë“±ë¡-2</title>
 <link href="/css/registration.css" rel="stylesheet">
 <style>
 #att_zone {
@@ -20,56 +21,70 @@
   color: #999;
   font-size: .9em;
   clear:both;
+  }
+
+[contenteditable="true"]:empty:before {
+   content: attr(placeholder);
 }
+
+
 </style>
 </head>
 <body>
 <form >
 	<div id="box" >
-		<input type="button" value="+" class="plus" onclick="textbox()">
-		<input type="hidden" value="${board_no}" name="${board_no}">
+		<input type="button" value="ë°© ì¶”ê°€" class="plus" onclick="textbox()">
 		
 	</div>
 </form>
-<form id="imgUpload" method="post" enctype="multipart/form-data">
-<div id='image_preview'>
-	<div id='att_zone' class='att_zone'
-	      data-placeholder='ÆÄÀÏÀ» Ã·ºÎ ÇÏ·Á¸é ÆÄÀÏ ¼±ÅÃ ¹öÆ°À» Å¬¸¯ÇÏ°Å³ª ÆÄÀÏÀ» µå·¡±×&µå¶ø ÇÏ¼¼¿ä'></div><br>
-	      <input type='file' id='btnAtt' multiple='multiple' style='margin-left:370px' name="file"/>
-	
+
+<form id="imgUpload" action="/upload" method="post" enctype="multipart/form-data" style="clear:both">
+<div id="hidden">
+<input type='hidden' value='${board_no}' name='board_no'>
+
 </div>
 
-<div class="btn">
-<button type="submit" value ="ÀúÀå" onclick="uploadfile()">ÀúÀå</button>
-<button type="button" value ="´ÙÀ½" onclick="location.href='registration_third'" class="registration">´ÙÀ½</button>
-<button type="button" value ="Ãë¼Ò" onclick="location.href='/'" class="cancel">Ãë¼Ò</button>
+<div id='image_preview'>
+<input type='file' id='btnAtt' multiple='multiple' name='file' style="margin-left:360px; margin-bottom:10px;"/>
+
+	<div id='att_zone' 
+	      data-placeholder="ë°© ì¶”ê°€ ë²„íŠ¼ì„ ëˆŒëŸ¬ ë°©ì´ë¦„ì„ ì •í•´ì£¼ì‹œê³  ë°©ì— í•´ë‹¹ë˜ëŠ” ì´ë¯¸ì§€ë¥¼ ë„£ì–´ì£¼ì„¸ìš”.
+	      					ì´ë¯¸ì§€ë¥¼ ì²¨ë¶€í•œ í›„ ì €ì¥ ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”."></div><br>
+</div>
+
+<div class="btnfunc">
+<button class="save_btn" type="button" value ="ì €ì¥" onclick="uploadfile()">ì €ì¥</button>
+<button type="button" value ="ë‹¤ìŒ" onclick="location.href='registration_third/'+${board_no}" class="registration">ë‹¤ìŒ</button>
+<button type="button" value ="ì·¨ì†Œ" onclick="location.href='/'" class="cancel">ì·¨ì†Œ</button>
 </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.placeholder.js"></script>
 <script>
 
 	function textbox() {
-        var room_name = prompt("¹æ ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+        var room_name = prompt("ë°© ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
         const box = document.getElementById("box");
       	const newP = document.createElement('p');
         newP.innerHTML = "<input type='button' class='plustext' value='"+room_name+"'>"
-        
-        				+"";
-        box.appendChild(newP);
-	}
+        box.appendChild(newP);			
+        $("#hidden").append("<input type='hidden' name='room_name' value='"+room_name+"' id='room_name'>")				
+      
+	} //ë°©ì¶”ê°€ ë²„íŠ¼
 	
-	( /* att_zone		 : ÀÌ¹ÌÁöµéÀÌ µé¾î°¥ À§Ä¡ id, btn : file tag id */
+	(
 			  imageView = function imageView(att_zone, btn){
 
 			    var attZone = document.getElementById(att_zone);
 			    var btnAtt = document.getElementById(btn)
 			    var sel_files = [];
 			    
-			    // ÀÌ¹ÌÁö¿Í Ã¼Å© ¹Ú½º¸¦ °¨½Î°í ÀÖ´Â div ¼Ó¼º
+			    // ì´ë¯¸ì§€ì™€ ì²´í¬ ë°•ìŠ¤ë¥¼ ê°ì‹¸ê³  ìˆëŠ” div ì†ì„±
 			    var div_style = 'display:inline-block;position:relative;'
 			                  + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1';
-			    // ¹Ì¸®º¸±â ÀÌ¹ÌÁö ¼Ó¼º
+			    // ë¯¸ë¦¬ë³´ê¸° ì´ë¯¸ì§€ ì†ì„±
 			    var img_style = 'width:100%;height:100%;z-index:none';
-			    // ÀÌ¹ÌÁö¾È¿¡ Ç¥½ÃµÇ´Â Ã¼Å©¹Ú½ºÀÇ ¼Ó¼º
+			    // ì´ë¯¸ì§€ì•ˆì— í‘œì‹œë˜ëŠ” ì²´í¬ë°•ìŠ¤ì˜ ì†ì„±
 			    var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
 			                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
 			  
@@ -81,18 +96,7 @@
 			      }
 			    }  
 			    
-			  
-			    // Å½»ö±â¿¡¼­ µå·¡±×¾Ø µå·Ó »ç¿ë
-			    attZone.addEventListener('dragenter', function(e){
-			      e.preventDefault();
-			      e.stopPropagation();
-			    }, false)
-			    
-			    attZone.addEventListener('dragover', function(e){
-			      e.preventDefault();
-			      e.stopPropagation();
-			      
-			    }, false)
+	
 			  
 			    attZone.addEventListener('drop', function(e){
 			      var files = {};
@@ -106,9 +110,7 @@
 			      
 			    }, false)
 			    
-
-			    
-			    /*Ã·ºÎµÈ ÀÌ¹ÌÁö¸¦ ¹è¿­¿¡ ³Ö°í ¹Ì¸®º¸±â */
+			    /*ì²¨ë¶€ëœ ì´ë¯¸ì§€ë¥¼ ë°°ì—´ì— ë„£ê³  ë¯¸ë¦¬ë³´ê¸° */
 			    imageLoader = function(file){
 			      sel_files.push(file);
 			      var reader = new FileReader();
@@ -122,10 +124,11 @@
 			      reader.readAsDataURL(file);
 			    }
 			    
-			    /*Ã·ºÎµÈ ÆÄÀÏÀÌ ÀÖ´Â °æ¿ì checkbox¿Í ÇÔ²² attZone¿¡ Ãß°¡ÇÒ div¸¦ ¸¸µé¾î ¹İÈ¯ */
+			    /*ì²¨ë¶€ëœ íŒŒì¼ì´ ìˆëŠ” ê²½ìš° checkboxì™€ í•¨ê»˜ attZoneì— ì¶”ê°€í•  divë¥¼ ë§Œë“¤ì–´ ë°˜í™˜ */
 			    makeDiv = function(img, file){
 			      var div = document.createElement('div')
 			      div.setAttribute('style', div_style)
+			      div.setAttribute('class','imgfile')
 			      
 			      var btn = document.createElement('input')
 			      btn.setAttribute('type', 'button')
@@ -155,30 +158,35 @@
 			      return div
 			    }
 			  }
-			)('att_zone', 'btnAtt')
-			
-			
+			)('att_zone', 'btnAtt') // ë‹¤ì¤‘ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸°
+		
+
 	function uploadfile() {
 	var form = $('#imgUpload')[0];
 	var formData = new FormData(form);
 	$.ajax({
 	type:"post",
 	enctype:'multipart/form-data',
-    url:'/upload', //ÄÁÆ®·Ñ·¯
+    url:'/upload', //ì»¨íŠ¸ë¡¤ëŸ¬
     data:formData,
     processData:false,
     contentType:false,
     cache:false,
     success:function(data){
     	console.log("success : ", data);
+    	
+    	$("#room_name").remove();
     },
     error:function(e){
         console.log("error : ", e);
     }
 		});//ajax
-	}
-	
+	}	
+	// ì—…ë¡œë“œ ê¸°ëŠ¥
 
+	$(".btnfunc").off("click").on("click",".save_btn",function(){
+    		$("#att_zone").empty()
+    	})
     
 
 </script>
