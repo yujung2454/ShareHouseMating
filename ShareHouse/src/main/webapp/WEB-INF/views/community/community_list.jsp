@@ -54,8 +54,7 @@
 	<div id="center">
 		<!-- 게시글 리스트 테이블 -->
 		<div id="title">
-			<a href="/myPage/myPage_community">ee</a> <a href="community_list"
-				class="community_list">커뮤니티</a>
+			<a href="community_list" class="community_list">커뮤니티</a>
 		</div>
 		<hr>
 		<!-- 검색창 -->

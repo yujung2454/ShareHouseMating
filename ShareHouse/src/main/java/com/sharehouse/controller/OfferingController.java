@@ -1,5 +1,6 @@
 package com.sharehouse.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.OfferingDto;
@@ -24,7 +27,7 @@ public class OfferingController {
 	OfferingService service;
 	
 	@GetMapping("/offer/detail_info/{board_no}")
-	public String detail_info(@AuthenticationPrincipal SecurityUser user, @PathVariable int board_no, String room_name, Model m) {   
+	public String detail_info(@AuthenticationPrincipal SecurityUser user, @PathVariable int board_no, Model m) {   
 		if(user == null) {
 			m.addAttribute("user",null);
 		}else {
@@ -36,21 +39,37 @@ public class OfferingController {
 		m.addAttribute("offeringdto" , offeringdto);
 		List<Map<String, Object>> oList = service.roominfoTable(board_no);
 		m.addAttribute("oList", oList);
-		List<RoomImgDto> rList = service.room_name(board_no);
+		List<String> rList = service.room_name(board_no);
 		m.addAttribute("rList" , rList);
-		List<Map<String, Object>> iList = service.img_loc(board_no);
-		m.addAttribute("iList", iList);
+		List<List<String>> imgLists = new ArrayList<>();
+		for (String room_name : rList ) {
+			System.out.println(board_no+"   "+ room_name);
+			List<String> iList = service.img_loc(board_no, room_name);
+			imgLists.add(iList);
+		}
+		System.out.println(imgLists);
+		m.addAttribute("imgLists", imgLists);
+		
 		return "/offer/detail_info";
 	}
 	@PostMapping("/offer/detail_info")
-	public String apply(@AuthenticationPrincipal SecurityUser user, Model m, int board_no, String room_name) {
+	public String apply(@AuthenticationPrincipal SecurityUser user, Model m, String id, int board_no, String room_name) {
 		if(user == null) {
 			m.addAttribute("user",null);
 		}else {
 			m.addAttribute("user",user.getUsers());
 		}
+		service.wish(board_no, user.getUsers().getId());
+		System.out.println();
 		service.apply(user.getUsers().getId(), board_no,room_name );
 		return "offer/detail_info";
+	}
+	
+	@DeleteMapping("/offer/delete")
+	@ResponseBody
+	public String delete_board(int board_no) {
+		int i = service.delete_board(board_no);
+		return ""+i;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.sharehouse.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -26,20 +27,26 @@ public interface OfferingDao {
 	 Map<String, Object> selectRoom(int board_no);
 	 
 	 @Select
-	 ("select o.board_no, o.title, o.offering_gender, o.house_kind, o.board_date, r.square, r.deposit, r.rental, r.room_name from offering o inner join room_info r on o.board_no = r.board_no")
-	 List<Map<String, Object>> roominfoTable();
+	 ("select distinct o.board_no, o.offering_gender, r.square, r.deposit, r.rental, r.mem_cnt , i.room_name from offering o inner join room_info r on o.board_no = r.board_no inner join room_info_1 i on r.board_no = i.board_no where o.board_no = #{board_no}")
+	 List<Map<String, Object>> roominfoTable(int board_no);
 	 
 	 @Select
-	 ("select room_name from room_info where board_no = #{board_no}")
-	 List<RoomImgDto> room_name(int board_no);
+	 ("select distinct room_name from room_info_1 where board_no = #{board_no}")
+	 List<String> room_name(int board_no);
 	 
 	 @Select
-	 ("select * from room_info_1 where board_no = #{board_no}")
-	 List<Map<String, Object>> img_loc(int board_no);
+	 ("select img_loc from room_info_1 where board_no = #{board_no} and room_name = #{room_name}")
+	 List<String> img_loc(Map<String, Object> map);
 	 
 	 @Insert
 	 ("insert into applyoffering (id, board_no , room_name) values (#{id} , #{board_no} , #{room_name})")
 	 int apply(Map<String, Object> map);
 	 
+	 @Delete
+	 ("delete from offering where board_no = #{board_no}")
+	 int delete_board(int board_no);
 	 
+	 @Insert
+	 ("insert into wish_info (id, board_no) values (#{id} , #{board_no}")
+	 int wish(Map<String, Object> map);
 }

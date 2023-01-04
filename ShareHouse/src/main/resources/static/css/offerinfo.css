@@ -9,8 +9,8 @@
 	}
 
 	.main_slide{
-		padding-top:30rem; 
 		width : 650px !important;
+		height : 400px !important;
 		background-position : center;
 		background : round;
 	}
