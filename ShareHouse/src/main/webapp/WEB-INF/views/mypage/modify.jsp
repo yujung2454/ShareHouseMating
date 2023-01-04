@@ -84,7 +84,6 @@ function passwordQuestion(){
 
 }
 
-<<<<<<< HEAD
 function passwordConfirm(){
 	var password = document.querySelector('.password').value;
 	
