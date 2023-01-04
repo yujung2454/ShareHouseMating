@@ -28,6 +28,7 @@ public class RegistrationController {
 
 	@Autowired
 	RegistrationService service;
+	
 
 	@GetMapping("/registration/registration_second")
 	public String registration_second() {
@@ -99,7 +100,7 @@ public class RegistrationController {
 		service.update(dto);
 		path = upload(img_loc_file, request);
 		dto.setImg_loc(path);
-		service.insert2(dto);
+		List<RegistrationDto> rlist = service.insert2();
 		System.out.println("저장 성공"); 
 		return "/main";
 	}

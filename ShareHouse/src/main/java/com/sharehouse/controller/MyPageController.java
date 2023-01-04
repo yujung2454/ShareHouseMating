@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.sharehouse.dto.MyPageDto;
@@ -33,26 +32,38 @@ public class MyPageController {
 	
 	@Autowired
 	MyPageService service;
-  @Autowired
+ 	@Autowired
 	UserModifyService sservice;
+  	
   
-	@RequestMapping(value= "/myPage/application", method = RequestMethod.GET)
+	@RequestMapping(value= "/mypage/application", method = RequestMethod.GET)
 	public String application(@AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		String id = user.getUsers().getId();
 		System.out.println(id);
 		List<MyPageDto> dto = service.apply(id);
-		m.addAttribute("dto", dto);
-		List<MyPageDto> room = service.room(id);
-		m.addAttribute("room", room);
-		return "/myPage/application";
+		m.addAttribute("cList", dto);
+		return "mypage/application";
+	}
+	//입주 거절
+	@GetMapping("/mypage/application/cancel")
+	public String deletepost(Model m, int myno) {
+		service.delete(myno);
+		return "redirect:/mypage/application";
 	}
 	
-	@DeleteMapping("/myPage/application")
-	@ResponseBody
-	public String deletepost(String id) {
-		service.delete(id);
-		return "myPage/application";
+	//입주 승인
+	@PostMapping("/mypage/application")
+	public String updatepost(Model m, int myno, int board_no, String room_name) {
+		service.state(room_name, board_no);
+		service.delete(myno);
+		return "redirect:/mypage/application";
 	}
+	
 
 	@GetMapping("/mypage/info")
 	public String mypageInfo(@AuthenticationPrincipal SecurityUser user,Model m) {
@@ -132,7 +143,7 @@ public class MyPageController {
 	
 
 
-	@GetMapping("/myPage/myPage_community")
+	@GetMapping("/mypage/myPage_community")
 	public String community(@AuthenticationPrincipal SecurityUser user, @RequestParam(name="p", defaultValue="1") int page, Model m) {
 		String id = user.getUsers().getId();
 		int comm_count = service.comm_count(id);
@@ -221,7 +232,7 @@ public class MyPageController {
 	m.addAttribute("id", id);
 	m.addAttribute("count", comment_count);
 		
-		return "myPage/myPage_community";
+		return "mypage/mypage_community";
 	}
 }
 

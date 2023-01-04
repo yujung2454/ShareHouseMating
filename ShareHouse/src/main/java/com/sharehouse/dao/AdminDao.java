@@ -15,19 +15,21 @@ public interface AdminDao {
 	
 	List<AdminDto> commviewlist(Map<String, Object> m);
 	List<AdminDto> boardviewlist(Map<String, Object> m);
-	int count();
 	int countSearch(Map<String, Object> m); // 전체 글 갯수
 	List<AdminDto> Sort(Map<String, Object> m);
+	int count();
+	
 	@Select
 	("select * from user limit #{start} , #{count}")
 	List<UsersDto> userList(Map<String , Object> m);
 	
 
 	List<UsersDto> search(Map<String , Object> m);
-	
+
 	@Select
 	("select count(*) from user")
-	
+	int countUser();
+
 
 	int stopUser(String[] id);
 	

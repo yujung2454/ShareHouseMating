@@ -26,8 +26,8 @@ public class RegistrationService {
 		return dao.select(board_no);
 	}
 	
-	public int insert2 (RegistrationDto dto) {
-		return dao.insert2(dto);
+	public List<RegistrationDto> insert2 () {
+		return dao.insert2();
 	}
 	
 	public List<RegistrationDto> fileList(){

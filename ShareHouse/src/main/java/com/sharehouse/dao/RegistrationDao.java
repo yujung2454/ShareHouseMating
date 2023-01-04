@@ -10,7 +10,7 @@ import com.sharehouse.dto.RegistrationDto;
 public interface RegistrationDao {
 	
 	int insert(RegistrationDto dto);
-	int insert2(RegistrationDto dto);
+	List<RegistrationDto> insert2();
 	int update(RegistrationDto dto);
 	List<RegistrationDto> fileList();
 	RegistrationDto select(int board_no);

@@ -1,17 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인정보확인</title>
+<title>입주신청목록</title>
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/offerlist.css" rel="stylesheet">
 <link href="/css/quick.css" rel="stylesheet">
 <link href="/css/mypage.css" rel="stylesheet">
 <link href="/css/userinfo.css" rel="stylesheet">
+<style>
+table {
+	width:800px;
+	height:30%;
+	text-align:center;
+	margin:auto;
+}  
+</style>
 </head>
 <body>
 <div class="fixed">
@@ -57,81 +64,65 @@
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
 		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
-		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
 		<li class="mypage_sidebar">문의 내역</li>
 	</ul>
 </nav>
 <div class="mypage_title">
-	<h3>개인정보확인</h3>
+<h1>입주신청목록</h1>
+<p>입주신청자명단</p>
 </div>
-<div class="user_info">
-	<div class="uimg">
-		<c:if test="${user.user_Img != null }">
-			<img id="uimg" src="${user.user_Img }">
-		</c:if>
-		<c:if test="${user.user_Img == null }">
-			<img id="uimg" src="/images/profil.png">
-		</c:if>
-	</div>
-	<div class="uframe">
-		<div class="uframe2">
-			이름 : 
-		</div>
-		<div id="uname">
-			${user.name }
-		</div>
-	</div>
-	<div class="uframe">
-		<div class="uframe2">
-			이메일 : 
-		</div>
-		<div id="uemail">
-			${user.email }
-		</div>
-	</div>
-	<div class="uframe">
-		<div class="uframe2">
-			전화번호 : 
-		</div>
-		<div id="utel">
-			${user.tel } 
-		</div>
-	</div>
-	<div class="uframe">
-		<div class="uframe2">
-			거주지 : 
-		</div>
-		<div id="uadd">
-			${user.user_add } ${user.user_add2 }
-		</div>
-	</div>
-</div>
-<button class="modify" onclick="passwordQuestion()">수정</button>
-</body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<table border="1">
+<tr>
+<td>입주신청자</td>
+<td>핸드폰</td>
+<td>이메일</td>
+<td>매물 제목</td>
+<td>신청한 룸</td>
+<td>입주승인/거절</td>
+</tr>
+<c:forEach items="${cList}" var="app">
+
+<tr>
+<td>${app.aid} (${app.name})</td>
+<td>${app.tel}</td>
+<td>${app.email}</td>
+<td>${app.title}</td>
+<td>${app.room_name}
+
+
+</td>
+<td>
+<form method="post" id="form" action="/mypage/application">
+<input type='hidden' value='${app.board_no}' name='board_no'>
+<input type='hidden' value='${app.myno}' name='myno'>
+
+<input type='hidden' value='${app.room_name}' name='room_name'>
+<button type="submit" onclick="ok()">승인</button>
+<button type="button" class="delete" onclick="no(${app.myno})">거절</button>
+</form>
+</td>
+</tr>
+
+</c:forEach>
+</table>
+
+
+
 <script>
-function passwordQuestion(){
-	var result = confirm("개인정보를 수정하시겠습니까?")
-	if(result){
-		location.href="/mypage/modify1";
-	} else {
-		return false;
-	}
+
+function ok() {
+	alert('신청자의 입주를 승인하셨습니다.');
 }
 
-$(function(){
-	$("#board").on("click",function(){
-		if(!$(this).hasClass("on")){
-			$(this).addClass("on")
-			$(this).css({"margin":"40px 0 20px 0"})
-			$(".under").css({"display":"inline-block"})
-		} else {
-			$(this).removeClass("on")
-			$(".under").css({"display":"none"})
-			$(this).css({"margin":"40px 0 40px 0"})
-		}
-	})
-})
+function no(myno) {
+	alert('신청자의 입주를 거절하셨습니다.');
+	location.href = "/mypage/application/cancel?myno="+myno;
+}
+
+
 </script>
+
+</body>
 </html>
