@@ -31,6 +31,11 @@ public class QueryController {
 	
 	@GetMapping("/query_write")
 	public String wirteForm(@AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+	         m.addAttribute("user",null);
+	      }else {
+	         m.addAttribute("user",user.getUsers());
+	      }
 		m.addAttribute("user", user.getUsers());
 		return "query/query_write";
 	}
@@ -43,6 +48,11 @@ public class QueryController {
 	
 	@GetMapping("/query_view/{query_no}")
 	public String content(@AuthenticationPrincipal SecurityUser user, @PathVariable int query_no, Model m) {
+		if(user == null) {
+	         m.addAttribute("user",null);
+	      }else {
+	         m.addAttribute("user",user.getUsers());
+	      }
 		QueryDto dto = service.queryOne(query_no);
 		m.addAttribute("user", user.getUsers());
 		m.addAttribute("dto", dto);
@@ -54,7 +64,12 @@ public class QueryController {
 	}
 	
 	@GetMapping("/query_update/{query_no}")
-	public String query_update(@PathVariable int query_no, Model m) {
+	public String query_update(@AuthenticationPrincipal SecurityUser user, @PathVariable int query_no, Model m) {
+		if(user == null) {
+	         m.addAttribute("user",null);
+	      }else {
+	         m.addAttribute("user",user.getUsers());
+	      }
 		QueryDto dto = service.queryOne(query_no);
 		m.addAttribute("dto", dto);
 		return "query/query_update";
@@ -74,8 +89,12 @@ public class QueryController {
 	}
 	
 	@GetMapping("/query_list")
-	public String query_list(String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
-		
+	public String query_list(String sort, @RequestParam(name="p", defaultValue="1") int page, @AuthenticationPrincipal SecurityUser user, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
+		if(user == null) {
+	         m.addAttribute("user",null);
+	      }else {
+	         m.addAttribute("user",user.getUsers());
+	      }
 		//글이 있는지 체크
 		int count = service.count();
 		//글이 한 개라도 있을 시
@@ -106,7 +125,12 @@ public class QueryController {
 	}
 	
 	@GetMapping("/query_search")
-	public String search(String search,@RequestParam(name="p", defaultValue = "1") int page, Model m) {
+	public String search(String search,@RequestParam(name="p", defaultValue = "1") int page, @AuthenticationPrincipal SecurityUser user,Model m) {
+		if(user == null) {
+	         m.addAttribute("user",null);
+	      }else {
+	         m.addAttribute("user",user.getUsers());
+	      }
 		int count = service.countSearch(search);
 		if(count > 0) {
 		

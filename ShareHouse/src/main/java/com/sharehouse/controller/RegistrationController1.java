@@ -19,6 +19,11 @@ public class RegistrationController1 {
 
 	@GetMapping("/registration/registration_first")
 	public String registration_first(@AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+	         m.addAttribute("user",null);
+	      }else {
+	         m.addAttribute("user",user.getUsers());
+	      }
 		m.addAttribute("user", user.getUsers());
 		return "/registration/registration_first";
 	}
