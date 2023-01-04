@@ -66,4 +66,16 @@ public class MyPageService {
 //	public int count(String id) {
 //		return dao.count(id);
 //	}
+	
+	public List<Map<String, Object>> mywish(String id, int start){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 5);
+		m.put("id", id);
+		return dao.mywish(m);
+	}
+	
+	public int mywishCount() {
+		return dao.mywishCount();
+	}
 }

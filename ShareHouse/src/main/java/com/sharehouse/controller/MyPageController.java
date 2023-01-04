@@ -3,26 +3,27 @@ package com.sharehouse.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import com.sharehouse.dto.MyPageDto;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.CommunityDto;
+import com.sharehouse.dto.MyPageDto;
 import com.sharehouse.dto.OfferingDto;
 import com.sharehouse.dto.UsersDto;
 import com.sharehouse.service.MyPageService;
@@ -227,6 +228,46 @@ public class MyPageController {
 	m.addAttribute("count", comment_count);
 		
 		return "mypage/myPage_community";
+	}
+	
+	@GetMapping("/mypage/mywish")
+	public String mywish(@AuthenticationPrincipal SecurityUser user, Model m,@RequestParam(name="p",defaultValue="1")int page) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		} else {
+			m.addAttribute("user", user.getUsers());
+		}
+		
+		String id = user.getUsers().getId();
+		int count = service.mywishCount();
+;		if(count > 0) {
+			int perPage = 5;
+			int startRow = (page - 1) * perPage;
+			List<Map<String, Object>> mywish = service.mywish(id, startRow);
+
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0);
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			System.out.println(begin);
+			int end = begin + pageNum - 1;
+			int index = 0;
+			for(Map<String, Object> record : mywish) {
+				record.put("index", begin + index);
+				index++;
+			}
+			m.addAttribute("mywish",mywish);
+			
+			if(end > totalPages) {
+				end = totalPages;
+			}
+			m.addAttribute("beggin",begin);
+			m.addAttribute("end", end);
+			m.addAttribute("pageNum",pageNum);
+			m.addAttribute("totalPages",totalPages);
+		}
+		m.addAttribute("count",count);
+		
+		return "/mypage/mywish";
 	}
 }
 
