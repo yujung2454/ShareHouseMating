@@ -96,36 +96,6 @@
 						</div>
 					</c:forEach>
 
-
-					<!-- <div class="slide">
-						<div class="slide_main">
-							<div class="main_slide">
-								<img src="/images/chat.png">
-							</div>
-							<div class="main_slide">
-								<img src="/images/home.png">
-							</div>
-							<div class="main_slide">
-								<img src="/images/report.png">
-							</div>
-						</div>
-					</div>
-					<div class="slide">
-						<div class="slide_main">
-							<div class="main_slide">
-								<img src="/images/search.png">
-							</div>
-							<div class="main_slide">
-								<img src="/images/livingroom.png">
-							</div>
-							<div class="main_slide">
-								<img src="/images/livingroom2.png">
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div> -->
 					<form>
 						<div class="report">
 							<input type="hidden" name="board_no"
@@ -137,12 +107,13 @@
 					</form>
 					<div class="favorite">
 						<!-- 찜 -->
-						
-						<input type="hidden" name="board_no" value="${offering.board_no}">
-						
-						<button class="move">
-								<span>찜</span>
-							</button>
+					<form id="form" method="post" action="/offer/wish">
+						<input type="hidden" name="board_no" value="${board_no}">
+
+						<button  id="wish">
+							<span>찜</span>
+						</button>
+						</form>
 					</div>
 
 
@@ -436,36 +407,49 @@
 					</div>
 				</div>
 			</div>
-			<nav>
-				<div class="quick">
-					<div class="quick_shape">
-						<a href="/search/searchlist"> <img src="/images/search.png"
-							title="검색">
-						</a>
-					</div>
-					<div class="quick_shape">
-						<a href=""> <img src="images/like.png" title="찜">
-						</a>
-					</div>
-					<div class="quick_shape">
-						<a href=""> <img src="images/chat.png" title="채팅">
-						</a>
-					</div>
-				</div>
-			</nav>
-			<footer> </footer>
+		</div>
+	</div>
+	<nav>
+		<div class="quick">
+			<div class="quick_shape">
+				<a href="/search/searchlist"> <img src="/images/search.png"
+					title="검색">
+				</a>
+			</div>
+			<div class="quick_shape">
+				<a href=""> <img src="images/like.png" title="찜">
+				</a>
+			</div>
+			<div class="quick_shape">
+				<a href=""> <img src="images/chat.png" title="채팅">
+				</a>
+			</div>
+		</div>
+	</nav>
+	<footer> </footer>
 
 
 
 
-			<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-			<script
-				src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
-			<script>
+	<script>
+	/* var board_no = ${board_no}
+	function jjim(){
+		fetch('/wish/'+board_no,{
+			method:'GET',
+			credentials:'include',
+		})
+		.then((response) => {response.json()})
+		.then((result) => {alert(result)})
+		.catch((error) => {alert(error)})
+	} */
+			
 	$(function() {
 		$("a[id]").click(function() {
 			let board_no = $(this).attr("id");

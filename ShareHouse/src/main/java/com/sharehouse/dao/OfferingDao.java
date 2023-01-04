@@ -47,6 +47,6 @@ public interface OfferingDao {
 	 int delete_board(int board_no);
 	 
 	 @Insert
-	 ("insert into wish_info (id, board_no) values (#{id} , #{board_no}")
+	 ("insert into wish_info (id, board_no) values (#{id} , #{board_no})")
 	 int wish(Map<String, Object> map);
 }

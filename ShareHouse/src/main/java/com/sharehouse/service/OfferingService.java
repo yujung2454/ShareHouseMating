@@ -58,7 +58,6 @@ public class OfferingService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("board_no", board_no);
 		map.put("id", id);
-		
 		return dao.wish(map);
 		
 	}

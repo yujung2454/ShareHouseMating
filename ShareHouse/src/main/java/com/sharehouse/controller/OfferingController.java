@@ -59,7 +59,7 @@ public class OfferingController {
 		}else {
 			m.addAttribute("user",user.getUsers());
 		}
-		service.wish(board_no, user.getUsers().getId());
+		
 		System.out.println();
 		service.apply(user.getUsers().getId(), board_no,room_name );
 		return "offer/detail_info";
@@ -72,4 +72,19 @@ public class OfferingController {
 		return ""+i;
 	}
 
+	@PostMapping("/offer/wish")
+	public String wish(@AuthenticationPrincipal SecurityUser user,int board_no) {
+		System.out.println(board_no);
+		service.wish(board_no, user.getUsers().getId());
+		return "redirect:/offer/detail_info/"+board_no;
+	}
+	
+	@GetMapping("/wish/{board_no}")
+	@ResponseBody
+	public int jjim(@AuthenticationPrincipal SecurityUser user, int board_no) {
+		String id = user.getUsers().getId();
+		System.out.println(board_no);
+		service.wish(board_no, id);
+		return 1;
+	}
 }
