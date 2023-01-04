@@ -28,7 +28,6 @@
 			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -58,6 +57,7 @@
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
 		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
 		<li class="mypage_sidebar">문의 내역</li>
 	</ul>
