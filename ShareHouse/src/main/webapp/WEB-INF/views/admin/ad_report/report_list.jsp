@@ -13,6 +13,9 @@
 <title>배소은을 신고하는 리스트</title>
 </head>
 <body>
+<div id = "title">
+	<h1>신고 리스트</h1>
+</div>
 <div align="center">
 <select id="select" name="select" onchange="change()">
 <option value="all">전체보기</option>
@@ -57,45 +60,56 @@
 				</c:if>
 				<c:if test="${count != 0}">
 					<c:forEach items="${rp}" var="rprp">
-						<c:if test="${rprp.board_no != null}">
 							<tr class="board">
+							<c:if test="${rprp.board_no != ''}">	
 								<td><input type="checkbox" name="report_no" value="${rprp.report_no}"></td>
 								<td>${rprp.reporter}</td>
 								<td>${rprp.reported_id}</td>
 								<td>${rprp.category}</td>
 								<td>${status}</td>
 								<td colspan = "2"><button type="button" class="updateuser" itemid="${rprp.reported_id}">활동정지</button><button type="button" class="deleteuser" itemid="${rprp.reported_id}">강제탈퇴</button></td>
+							</c:if>		
 							</tr>
 							<tr class="board">
-								<td colspan = "5" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
+							<c:if test="${rprp.board_no != ''}">
+								<td colspan = "6" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
+							</c:if>
 							</tr>
-						</c:if>
-						<c:if test="${rprp.comm_no != null}">
+						
+						
 							<tr class="comm">
+							<c:if test="${rprp.comm_no != ''}">
 								<td><input type="checkbox" name="report_no" value="${rprp.report_no}"></td>
 								<td>${rprp.reporter}</td>
 								<td>${rprp.reported_id}</td>
 								<td>${rprp.category}</td>
 								<td>${status}</td>
 								<td colspan = "2"><button type="button" class="updateuser" itemid="${rprp.reported_id}">활동정지</button><button type="button" class="deleteuser" itemid="${rprp.reported_id}">강제탈퇴</button></td>
+							</c:if>
 							</tr>
 							<tr class="comm">
-								<td colspan = "5" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
+							<c:if test="${rprp.comm_no != ''}">
+								<td colspan = "6" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
+							</c:if>
 							</tr>
-						</c:if>
-						<c:if test="${rprp.comment_no != null}">
+						
+						
 							<tr class="comment">
+							<c:if test="${rprp.comment_no != ''}">
 								<td><input type="checkbox" name="report_no" value="${rprp.report_no}"></td>
 								<td>${rprp.reporter}</td>
 								<td>${rprp.reported_id}</td>
 								<td>${rprp.category}</td>
 								<td>${status}</td>
 								<td colspan = "2"><button type="button" class="updateuser" itemid="${rprp.reported_id}">활동정지</button><button type="button" class="deleteuser" itemid="${rprp.reported_id}">강제탈퇴</button></td>
+							</c:if>
 							</tr>
 							<tr class="comment">
-								<td colspan = "5" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
+							<c:if test="${rprp.comment_no != ''}">
+								<td colspan = "6" id = "goodtd">신고 내용 : ${rprp.report_con}</td>
+							</c:if>
 							</tr>
-						</c:if>
+						
 					</c:forEach>
 				</c:if>
 				</tbody>

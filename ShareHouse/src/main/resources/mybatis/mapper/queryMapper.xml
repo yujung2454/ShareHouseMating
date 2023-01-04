@@ -23,16 +23,25 @@
 		select count(*) from user_query_list
 	</select>
 	
+	<select id="count2" parameterType="String" resultType="int">
+		select count(*) from user_query_list where id = #{id}
+	</select>
+	
 	<select id="queryOne" parameterType="int" resultType="com.sharehouse.dto.QueryDto">
 		select * from user_query_list where query_no = #{query_no}
 	</select>
 	
 	<select id="queryList" parameterType="map" resultType="com.sharehouse.dto.QueryDto">
-		<![CDATA[select * from user_query_list 
+		select * from user_query_list 
 		order by query_date desc limit #{start} , #{count}	
-		]]>	<!-- start와 count는 dto에 없음. -> map을 사용. -->
+			<!-- start와 count는 dto에 없음. -> map을 사용. -->
 	</select>
 	
+	<select id="queryList2" parameterType="map" resultType="com.sharehouse.dto.QueryDto">
+		select * from user_query_list where id = #{id}
+		order by query_date desc limit #{start} , #{count}	
+			<!-- start와 count는 dto에 없음. -> map을 사용. -->
+	</select>
 	
 	<select id="queryListSearch" parameterType="map" resultType="com.sharehouse.dto.QueryDto">
 		select * from user_query_list where query_title like concat('%',#{search},'%') order by query_date desc limit #{start}, #{count}

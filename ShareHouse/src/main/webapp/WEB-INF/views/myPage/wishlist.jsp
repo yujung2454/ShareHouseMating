@@ -18,6 +18,9 @@
 <div id = "title">
 	<h1>찜 내역</h1>
 </div>
+<div id = "title2">
+	<h2>찜${count}</h2>
+</div>
 		<form method="post" action="/wishlist">
 	<div id = "board">
 		<table>
@@ -33,6 +36,7 @@
 						</tr>
 					</thead>
 					<tbody>
+					
 						<c:if test="${count == 0}">
 							<tr>
 								<td colspan="5" id="none_post">찜 내역에 저장된 글이 없습니다.</td>
@@ -43,7 +47,7 @@
 							<tr>
 								<td>
 								<input type="checkbox" name="board_no" value="${wish.board_no}"></td>
-								<td><a href="/detail_info/${wish.board_no}">${title}</a></td>
+								<td><a href="/offer/detail_info/${wish.board_no}">${wish.title}</a></td>
 							</tr>
 							</c:forEach>
 						</c:if>
