@@ -101,5 +101,6 @@ function passwordConfirm(){
 	})
 	.catch((error) => alert('error',error))
 }
+
 </script>
 </html>

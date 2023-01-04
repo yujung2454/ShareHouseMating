@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인정보확인</title>
+<title>내 입주신청 목록</title>
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/offerlist.css" rel="stylesheet">
 <link href="/css/quick.css" rel="stylesheet">
 <link href="/css/mypage.css" rel="stylesheet">
-<link href="/css/userinfo.css" rel="stylesheet">
+<link href="/css/mywishtable.css" rel="stylesheet">
 </head>
 <body>
 <div class="fixed">
@@ -64,63 +64,44 @@
 	</ul>
 </nav>
 <div class="mypage_title">
-	<h3>개인정보확인</h3>
+	<h3>내 입주신청 목록</h3>
 </div>
-<div class="user_info">
-	<div class="uimg">
-		<c:if test="${user.user_Img != null }">
-			<img id="uimg" src="${user.user_Img }">
+<div class="mywish_table">
+	<table class="table_list">
+		<thead>
+			<tr><th>번호</th><th>매물이름</th><th>방이름</th></tr>
+		</thead>
+		<tbody>
+			<c:if test="count == 0">
+				<tr>
+					<td colspan="5" id="none_post">게시판에 저장된 글이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:if test="${count != 0 }">
+				<c:forEach items="${mywish }" var="wish">
+					<tr>
+						<td>${wish.index }</td>
+						<td><a href="/offer/detail_info/${wish.board_no }">${wish.title }</a></td>
+						<td><a href="/offer/detail_info/${wish.board_no }">${wish.room_name }</a></td>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</tbody>
+	</table>
+	<div id="paging" align="center">
+		<c:if test="${begin > pageNum }">
+			<a href="/mypage/mywish?p=${begin-1}">[이전]</a>
 		</c:if>
-		<c:if test="${user.user_Img == null }">
-			<img id="uimg" src="/images/profil.png">
+		<c:forEach begin="${begin+1 }" end="${end }" var="i">
+			<a href="/mypage/mywish?p=${i }" class="page">${i }</a>
+		</c:forEach>
+		<c:if test="${end < totalPages }">
+			<a href="/mypage/mywish?p=${end+1 }">[다음]</a>
 		</c:if>
-	</div>
-	<div class="uframe">
-		<div class="uframe2">
-			이름 : 
-		</div>
-		<div id="uname">
-			${user.name }
-		</div>
-	</div>
-	<div class="uframe">
-		<div class="uframe2">
-			이메일 : 
-		</div>
-		<div id="uemail">
-			${user.email }
-		</div>
-	</div>
-	<div class="uframe">
-		<div class="uframe2">
-			전화번호 : 
-		</div>
-		<div id="utel">
-			${user.tel } 
-		</div>
-	</div>
-	<div class="uframe">
-		<div class="uframe2">
-			거주지 : 
-		</div>
-		<div id="uadd">
-			${user.user_add } ${user.user_add2 }
-		</div>
 	</div>
 </div>
-<button class="modify" onclick="passwordQuestion()">수정</button>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-function passwordQuestion(){
-	var result = confirm("개인정보를 수정하시겠습니까?")
-	if(result){
-		location.href="/mypage/modify1";
-	} else {
-		return false;
-	}
-}
-
 $(function(){
 	$("#board").on("click",function(){
 		if(!$(this).hasClass("on")){
