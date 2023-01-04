@@ -32,7 +32,6 @@ public class RegistrationController1 {
 		}
 		service.insertMaemul(dto);
 		m.addAttribute("board_no", dto.getBoard_no());
-
 		return "/registration/registration_second";
 	}
 

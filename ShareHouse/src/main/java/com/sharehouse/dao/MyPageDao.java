@@ -43,6 +43,12 @@ public interface MyPageDao {
 	("select count(*) from comm_comment where id = #{id}")
 	int comment_count(String id);
 	
+	@Select("select a.id, a.board_no, o.title, a.room_name from applyoffering a inner join offering o on a.board_no = o.board_no where a.id = #{id} order by a.board_no limit #{start}, #{count}")
+	List<Map<String, Object>> mywish(Map<String, Object> m);
+	
+	@Select("select count(*) from applyoffering")
+	int mywishCount();
+	
 //	@Select
 //	("select((select count(*) from comm where id=#{id}) + (select count(*) from offering where id = #{id}))")
 //	int count(String id);

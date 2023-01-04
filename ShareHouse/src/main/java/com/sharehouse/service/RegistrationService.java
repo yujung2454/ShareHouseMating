@@ -22,7 +22,7 @@ public class RegistrationService {
 		return dao.update(dto);
 	}
 	
-	public RegistrationDto select (int board_no) {
+	public List<RegistrationDto> select (int board_no) {
 		return dao.select(board_no);
 	}
 	
@@ -34,7 +34,9 @@ public class RegistrationService {
 		return dao.fileList();
 	}
 
-	
+	public int selectBoardno(String id) {
+		return dao.selectBoardno(id);
+	}
 
 
 }

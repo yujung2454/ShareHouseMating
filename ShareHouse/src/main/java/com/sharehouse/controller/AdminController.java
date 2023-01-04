@@ -2,6 +2,7 @@ package com.sharehouse.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +11,19 @@ import com.sharehouse.dto.UsersDto;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sharehouse.service.AdminService;
+import com.sharehouse.service.CommunityService;
+import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.AdminDto;
+import com.sharehouse.dto.CommunityDto;
 
 @Controller
 public class AdminController {
 	
 	@Autowired
 	AdminService service;
+	
+	@Autowired
+	CommunityService c_service;
 	
 	@GetMapping("/admin/allboardview") 
 	public String allviewlist(Model m, @RequestParam(name="p", defaultValue = "1") int page, String sort) {
@@ -58,6 +65,15 @@ public class AdminController {
 		return "/admin/admin_main";
 	}
 
+	
+	@GetMapping("/admin/admin_notice")
+	public String admin_notice(@AuthenticationPrincipal SecurityUser user, String notice, Model m) {
+		List<CommunityDto> communityNotice = c_service.communityNotice(notice);
+		m.addAttribute("nList", communityNotice);
+		return "/admin/admin_notice";
+	}
+	
+	
 	@GetMapping("/admin/user_manage")
 	public String userlist(@RequestParam(name = "p", defaultValue = "1") int page, Model m) {
 		int count = service.countUser();

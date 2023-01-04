@@ -78,14 +78,14 @@
 </form>
 
 <form id="imgUpload" action="/upload" method="post" enctype="multipart/form-data" style="clear:both">
+<input type="hidden" name= "board_no" value="${board_no }">
+
 <div id="hidden">
-<input type='hidden' value='${board_no}' name='board_no'>
 
 </div>
 
 <div id='image_preview'>
 <input type='file' id='btnAtt' multiple='multiple' name='file' style="margin-left:360px; margin-bottom:10px;"/>
-
 	<div id='att_zone' 
 	      data-placeholder="방 추가 버튼을 눌러 방이름을 정해주시고 방에 해당되는 이미지를 넣어주세요.
 	      					이미지를 첨부한 후 저장 버튼을 눌러주세요."></div><br>
@@ -93,13 +93,13 @@
 
 <div class="btnfunc">
 <button class="save_btn" type="button" value ="저장" onclick="uploadfile()">저장</button>
-<button type="button" value ="다음" onclick="location.href='registration_third/'+${board_no}" class="registration">다음</button>
+<button type="button" value ="다음" onclick="location.href='registration_third/${board_no}'" class="registration">다음</button>
 <button type="button" value ="취소" onclick="location.href='/'" class="cancel">취소</button>
 </div>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="js/jquery.placeholder.js"></script>
 <script>
+<<<<<<< HEAD
 function s_location(){
 	navigator.geolocation.getCurrentPosition(function(pos) {
 	    var latitude = pos.coords.latitude;
@@ -108,6 +108,8 @@ function s_location(){
 	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
 	})
 }
+=======
+>>>>>>> refs/heads/master
 	function textbox() {
         var room_name = prompt("방 이름을 입력해주세요.");
         const box = document.getElementById("box");

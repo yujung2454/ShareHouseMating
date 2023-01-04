@@ -33,6 +33,11 @@ public class CommunityController {
 	
 	@GetMapping("/community/community_write")
 	   public String writeForm(@AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 	      m.addAttribute("user", user.getUsers());
 	      return "community/community_write";
 	   }
@@ -45,6 +50,11 @@ public class CommunityController {
 	
 	@GetMapping("/community/community_view/{comm_no}")
 	public String content(@AuthenticationPrincipal SecurityUser user, @PathVariable int comm_no, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		CommunityDto dto = service.communityOne(comm_no);
 		m.addAttribute("dto", dto);
 		List<CommentDto> commentList = c_service.selectComment(comm_no);
@@ -54,7 +64,12 @@ public class CommunityController {
 	}
 	
 	@GetMapping("/community/community_update/{comm_no}")
-	public String community_update(@PathVariable int comm_no, Model m) {
+	public String community_update(@AuthenticationPrincipal SecurityUser user, @PathVariable int comm_no, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		CommunityDto dto = service.communityOne(comm_no);
 		m.addAttribute("dto", dto);
 		return "community/community_update";
@@ -74,8 +89,13 @@ public class CommunityController {
 	}
 	
 	@GetMapping("community/community_list")
-	public String community_list(String notice, String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
+	public String community_list(@AuthenticationPrincipal SecurityUser user, String notice, String sort, @RequestParam(name="p", defaultValue="1") int page, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
 
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		//글이 있는지 체크
 		int count = service.count();
 		//글이 한 개라도 있을 시
@@ -109,7 +129,13 @@ public class CommunityController {
 	} 
 	
 	@GetMapping("/community/community_search")
-	public String search(String notice, String sort, String search,@RequestParam(name="p", defaultValue = "1") int page, Model m) {
+	public String search(@AuthenticationPrincipal SecurityUser user, String notice, String sort, String search,@RequestParam(name="p", defaultValue = "1") int page, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
+		
 		int count = service.countSearch(search);
 		if(count > 0) {
 		

@@ -38,6 +38,11 @@ public class RegistrationController {
 		}else {
 			m.addAttribute("user",user.getUsers());
 		}
+		String id = user.getUsers().getId();
+		int boardNo = service.selectBoardno(id);
+		m.addAttribute("board_no",boardNo);
+		System.out.println(boardNo);
+
 		return "/registration/registration_second";
 	}
 
@@ -49,13 +54,9 @@ public class RegistrationController {
 
 	@GetMapping("/registration/registration_third/{board_no}")
 	public String registration_third(@AuthenticationPrincipal SecurityUser user, @PathVariable int board_no, Model m) {
-		if(user == null) {
-			m.addAttribute("user",null);
-		}else {
-			m.addAttribute("user",user.getUsers());
-		}
-		RegistrationDto dto = service.select(board_no);
+		List<RegistrationDto> dto = service.select(board_no);
 		m.addAttribute("dto", dto);
+		m.addAttribute("board_no", board_no);
 		return "/registration/registration_third";
 	}
 	
@@ -75,7 +76,7 @@ public class RegistrationController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-		return fileName;
+		return "/room_images/"+fileName;
 	}
 
 
@@ -102,8 +103,12 @@ public class RegistrationController {
 	
 	
 	@PostMapping("/registration/third")
-	public String singlefileupload(RegistrationDto dto, MultipartFile update_file ,MultipartFile img_loc_file, HttpServletRequest request ) {
-		
+	public String singlefileupload(@AuthenticationPrincipal SecurityUser user,Model m, RegistrationDto dto, MultipartFile update_file ,MultipartFile img_loc_file, HttpServletRequest request ) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		//update 썸네일 where dto.getBoard_no
 		String path = upload(update_file, request);
 		dto.getBoard_no();
@@ -113,7 +118,7 @@ public class RegistrationController {
 		dto.setImg_loc(path);
 		List<RegistrationDto> rlist = service.insert2();
 		System.out.println("저장 성공"); 
-		return "/main";
+		return "redirect:/";
 	}
 	
 	 @RequestMapping(value = "/registration/third")
@@ -132,7 +137,7 @@ public class RegistrationController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-		return fileName;
+		return "/room_images/"+fileName;
 	}
 	
 	 

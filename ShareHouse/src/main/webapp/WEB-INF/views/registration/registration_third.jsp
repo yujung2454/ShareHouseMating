@@ -48,7 +48,7 @@
 		</div>
 	</div>
 <form method ="post" action = "/registration/third" enctype="multipart/form-data">
-<div id="hidden"><input type='hidden' value='${dto.board_no}' name='board_no'>
+<div id="hidden"><input type='hidden' value='${board_no}' name='board_no'>
 
 </div>
 <div class="introduce">
@@ -79,7 +79,13 @@
 <td>계약기간</td>
 </tr>
 <tr>
-<td><input type="text" name="room_name" size="1" style="border:0" maxlength=5></td>
+<td><!-- <input type="text" name="room_name" size="1" style="border:0" maxlength=5> -->
+	<select name="room_name">
+		<c:forEach items="${dto }" var="room">
+			<option value="${room.room_name }">${room.room_name }</option>
+		</c:forEach>
+	</select>
+</td>
 <td>
 <select name="offering_gender">
 	<option value="m">남자</option>
@@ -106,6 +112,7 @@
 </form>
 </body>
 <script>
+<<<<<<< HEAD
 function s_location(){
 	navigator.geolocation.getCurrentPosition(function(pos) {
 	    var latitude = pos.coords.latitude;
@@ -114,6 +121,13 @@ function s_location(){
 	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
 	})
 }
+=======
+var row = '	<select name="room_name">\n'+
+	'<c:forEach items="${dto }" var="room">\n'+
+'<option value="${room.room_name }">${room.room_name }</option>\n'+
+'</c:forEach>\n'+
+'</select>'
+>>>>>>> refs/heads/master
 	function add_row() {	
         	var table = document.getElementById('home_infor');
         	var row = table.insertRow(table.rows.length);
@@ -124,7 +138,7 @@ function s_location(){
         	var cell5 = row.insertCell(4);
         	var cell6 = row.insertCell(5);
         	var cell7 = row.insertCell(6);
-        	cell1.innerHTML='<input type="text" name="room_name" size="1" style="border:0" maxlength=5>';
+        	cell1.innerHTML='<select name="room_name">\n<c:forEach items="${dto }" var="room">\n<option value="${room.room_name }">${room.room_name }</option>\n</c:forEach>\n</select>'
         	cell2.innerHTML='<select name="offering_gender"><option value="남자">남자</option><option value="여자">여자</option><option value="혼성">혼성</option></select>';
         	cell3.innerHTML='<input type="text" name="mem_cnt" size="1" style="border:0" maxlength=1>인실';
         	cell4.innerHTML='<input type="text" name="square" size="1" style="border:0" maxlength=3>㎡';
