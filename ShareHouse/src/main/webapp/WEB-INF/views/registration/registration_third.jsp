@@ -5,9 +5,48 @@
 <head>
 <meta charset="UTF-8">
 <title>매물등록-3</title>
+<link href="/css/uppernav.css" rel="stylesheet">
+<link href="/css/offerlist.css" rel="stylesheet">
+<link href="/css/quick.css" rel="stylesheet">
 <link href="/css/registration.css" rel="stylesheet">
 </head>
 <body>
+<div class="fixed">
+<div id="uppernav">
+		<div id="main">
+			<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
+			<span id="home" class="to_main"><a href="/">우리집</a></span>
+		</div>
+		<ul class="upper_frame">
+			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
+			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
+			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
+			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
+			<li class="upper_menu"><a href="/query_list">문의</a></li>
+		</ul>
+		<div id="p_info">
+			<span id="notification"><img src="/images/notification.png"></span>
+			<span id="login">
+				<c:if test="${user == null}">
+					<a href="/login">로그인</a>
+				</c:if>
+				<c:if test="${user != null}">
+					<c:if test="${user.user_Img == null}">
+						<a href="/mypage/info"><img src="/images/profil.png"></a>
+					</c:if>
+					<c:if test="${user.user_Img != null}">
+						<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
+					</c:if>
+					<a href="/logout" class="logout">로그아웃</a>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<a href="/admin/admin_main">관리자페이지</a>
+					</sec:authorize>
+				</c:if>
+			</span>
+		</div>
+	</div>
 <form method ="post" action = "/registration/third" enctype="multipart/form-data">
 <div id="hidden"><input type='hidden' value='${dto.board_no}' name='board_no'>
 
@@ -50,8 +89,8 @@
 </td>
 <td><input type="text" name="mem_cnt" size="1" style="border:0" maxlength=1>인실</td>
 <td><input type="text" name="square" size="1" style="border:0" maxlength=3>㎡</td>
-<td><input type="text" name="deposit" size="3" style="border:0" maxlength=7>원</td>
-<td><input type="text" name="rental" size="3" style="border:0" maxlength=7>원</td>
+<td><input type="text" name="deposit" size="3" style="border:0" maxlength=7>만원</td>
+<td><input type="text" name="rental" size="3" style="border:0" maxlength=7>만원</td>
 <td><input type="text" name="term" size="1" style="border:0" maxlength=2>개월</td>
 </tr>
 </tbody>
@@ -67,6 +106,14 @@
 </form>
 </body>
 <script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
 	function add_row() {	
         	var table = document.getElementById('home_infor');
         	var row = table.insertRow(table.rows.length);
@@ -81,8 +128,8 @@
         	cell2.innerHTML='<select name="offering_gender"><option value="남자">남자</option><option value="여자">여자</option><option value="혼성">혼성</option></select>';
         	cell3.innerHTML='<input type="text" name="mem_cnt" size="1" style="border:0" maxlength=1>인실';
         	cell4.innerHTML='<input type="text" name="square" size="1" style="border:0" maxlength=3>㎡';
-        	cell5.innerHTML='<input type="text" name="deposit" size="3" style="border:0" maxlength=7>원';
-        	cell6.innerHTML='<input type="text" name="rental" size="3" style="border:0" maxlength=7>원';
+        	cell5.innerHTML='<input type="text" name="deposit" size="3" style="border:0" maxlength=7>만원';
+        	cell6.innerHTML='<input type="text" name="rental" size="3" style="border:0" maxlength=7>만원';
         	cell7.innerHTML='<input type="text" name="term" size="1" style="border:0" maxlength=2>개월';
         }
 

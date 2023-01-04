@@ -108,9 +108,15 @@ table {
 </c:forEach>
 </table>
 
-
-
 <script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
 
 function ok() {
 	alert('신청자의 입주를 승인하셨습니다.');

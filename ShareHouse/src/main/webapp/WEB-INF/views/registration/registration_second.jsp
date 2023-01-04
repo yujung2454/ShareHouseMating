@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>매물등록-2</title>
+<link href="/css/uppernav.css" rel="stylesheet">
+<link href="/css/offerlist.css" rel="stylesheet">
+<link href="/css/quick.css" rel="stylesheet">
 <link href="/css/registration.css" rel="stylesheet">
 <style>
 #att_zone {
@@ -31,6 +34,42 @@
 </style>
 </head>
 <body>
+<div class="fixed">
+<div id="uppernav">
+		<div id="main">
+			<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
+			<span id="home" class="to_main"><a href="/">우리집</a></span>
+		</div>
+		<ul class="upper_frame">
+			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
+			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
+			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
+			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
+			<li class="upper_menu"><a href="/query_list">문의</a></li>
+		</ul>
+		<div id="p_info">
+			<span id="notification"><img src="/images/notification.png"></span>
+			<span id="login">
+				<c:if test="${user == null}">
+					<a href="/login">로그인</a>
+				</c:if>
+				<c:if test="${user != null}">
+					<c:if test="${user.user_Img == null}">
+						<a href="/mypage/info"><img src="/images/profil.png"></a>
+					</c:if>
+					<c:if test="${user.user_Img != null}">
+						<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
+					</c:if>
+					<a href="/logout" class="logout">로그아웃</a>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<a href="/admin/admin_main">관리자페이지</a>
+					</sec:authorize>
+				</c:if>
+			</span>
+		</div>
+	</div>
 <form >
 	<div id="box" >
 		<input type="button" value="방 추가" class="plus" onclick="textbox()">
@@ -61,7 +100,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.placeholder.js"></script>
 <script>
-
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
 	function textbox() {
         var room_name = prompt("방 이름을 입력해주세요.");
         const box = document.getElementById("box");

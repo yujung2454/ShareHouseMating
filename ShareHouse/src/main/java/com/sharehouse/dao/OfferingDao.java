@@ -21,7 +21,7 @@ public interface OfferingDao {
 	 Map<String, Object> selectRoom(int board_no);
 	 
 	 @Select
-	 ("select o.title, o.offering_gender, o.house_kind, o.board_date, r.square, r.deposit, r.rental from offering o inner join room_info r on o.board_no = r.board_no")
+	 ("select o.title, o.offering_gender, r.mem_cnt , o.board_date, r.square, r.deposit, r.rental, r.state from offering o inner join room_info r on o.board_no = r.board_no where state='n';")
 	 List<Map<String, Object>> roominfoTable();
 	 
 	 @Select

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.RegistrationDto;
 import com.sharehouse.service.RegistrationService;
 
@@ -31,7 +32,12 @@ public class RegistrationController {
 	
 
 	@GetMapping("/registration/registration_second")
-	public String registration_second() {
+	public String registration_second(@AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		return "/registration/registration_second";
 	}
 
@@ -42,7 +48,12 @@ public class RegistrationController {
 	}
 
 	@GetMapping("/registration/registration_third/{board_no}")
-	public String registration_third(@PathVariable int board_no, Model m) {
+	public String registration_third(@AuthenticationPrincipal SecurityUser user, @PathVariable int board_no, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		RegistrationDto dto = service.select(board_no);
 		m.addAttribute("dto", dto);
 		return "/registration/registration_third";
