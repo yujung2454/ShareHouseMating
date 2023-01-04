@@ -192,6 +192,7 @@
 			})//click
 		})//ready
 
+
 		$('.report-comm')
 				.on('click',function() {
 							var url = "/report_maemul/${dto.comm_no}";
