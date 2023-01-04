@@ -81,7 +81,6 @@ function passwordQuestion(){
 	} else {
 		return false;
 	}
-
 }
 
 function passwordConfirm(){

@@ -9,8 +9,8 @@
 	}
 
 	.main_slide{
-		padding-top:30rem; 
 		width : 650px !important;
+		height : 400px !important;
 		background-position : center;
 		background : round;
 	}
@@ -52,6 +52,10 @@
 	
 	#drawing , #map , #room_table{
 		margin-bottom:2rem;
+	}
+	
+	.thumbnail{
+		width:100%;
 	}
 	table{
 		table-layout : fixed;

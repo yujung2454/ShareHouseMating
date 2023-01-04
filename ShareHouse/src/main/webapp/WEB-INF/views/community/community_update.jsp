@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +37,7 @@
 						<a href="/mypage/info"><img src="/images/profil.png"></a>
 					</c:if>
 					<c:if test="${user.user_Img != null}">
-						<a href="/mypage/info"><img src="${user.user_img}"></a>
+						<a href="/mypage/info"><img src="${user.user_Img}"></a>
 					</c:if>
 					<a href="/logout" class="logout">로그아웃</a>
 					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -65,7 +67,7 @@
 		
 		
 			<div class="user">작성자 : 
-			<input name="id" value="${user.user_img} ${dto.id}" readonly></div>
+			<input name="id" value="${user.user_Img} ${dto.id}" readonly></div>
 		
 		
 			<div class="content"><textarea name="Comm_con" id="content" 
@@ -76,7 +78,7 @@
 </div>
 	<div id="button" align="center">
 		<button type="submit" id="save" class="save" value="완료">완료</button>
-		<button type="button" class="cancel" value="취소" onclick="location.href='/community/community_list'">취소</button>
+		<button type="button" class="cancel" value="취소" sonclick="location.href='/community/community_list'">취소</button>
 	</div>
 </form>
 </div>

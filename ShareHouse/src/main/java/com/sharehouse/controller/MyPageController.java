@@ -45,14 +45,14 @@ public class MyPageController {
 		m.addAttribute("dto", dto);
 		List<MyPageDto> room = service.room(id);
 		m.addAttribute("room", room);
-		return "/myPage/application";
+		return "/mypage/application";
 	}
 	
 	@DeleteMapping("/myPage/application")
 	@ResponseBody
 	public String deletepost(String id) {
 		service.delete(id);
-		return "myPage/application";
+		return "mypage/application";
 	}
 
 	@GetMapping("/mypage/info")
@@ -135,6 +135,11 @@ public class MyPageController {
 
 	@GetMapping("/myPage/myPage_community")
 	public String community(@AuthenticationPrincipal SecurityUser user, @RequestParam(name="p", defaultValue="1") int page, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		String id = user.getUsers().getId();
 		int comm_count = service.comm_count(id);
 		m.addAttribute("user", user.getUsers());
@@ -222,7 +227,7 @@ public class MyPageController {
 	m.addAttribute("id", id);
 	m.addAttribute("count", comment_count);
 		
-		return "myPage/myPage_community";
+		return "mypage/myPage_community";
 	}
 	
 	@GetMapping("/mypage/mywish")
