@@ -55,7 +55,6 @@
 	<ul>
 		<li class="mypage_sidebar"><a href="/mypage/info">회원정보</a><br></li>
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
-<<<<<<< HEAD
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
 		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
@@ -162,99 +161,6 @@ $(function(){
 	})
 })
 
-=======
-		<li class="mypage_sidebar">내 게시글 보기<br></li>
-		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
-		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
-		<li class="mypage_sidebar">찜 내역<br></li>
-		<li class="mypage_sidebar">문의 내역</li>
-	</ul>
-</nav>
-<form class="userform" method="post" action="/mypage/infomodify" enctype="multipart/form-data">
-	<div class="mypage_title">
-		<h3>개인정보수정</h3>
-	</div>
-	<div class="user_info">
-		<div class="uimg">
-			<c:if test="${user.user_Img != null }">
-				<img id="uimg" src="${user.user_Img }">
-			</c:if>
-			<c:if test="${user.user_Img == null }">
-				<img id="uimg" src="/images/profil.png">
-			</c:if>
-		</div>
-		<input type="file" onchange="preview(this)" name="userimg" class="image_input">
-		<div class="uframe">
-			<div class="uframe2">
-				이름 : 
-			</div>
-			<div id="uname">
-				<input id="userid" name="name" value="${user.name }">
-			</div>
-		</div>
-		<div class="uframe">
-			<div class="uframe2">
-				새 비밀번호 : 
-			</div>
-			<div id="uname">
-				<input id="userpwd" type="password">
-			</div>
-		</div>
-		<div class="uframe">
-			<div class="uframe2">
-				새 비밀번호 확인 : 
-			</div>
-			<div id="uname">
-				<input id="userpwdconfirm" name="pwd" type="password">
-			</div>
-			<button type="button" onclick="passwordConfirm()">확인</button>
-		</div>
-		<div class="uframe">
-			<div class="uframe2">
-				이메일 : 
-			</div>
-			<div id="uemail">
-				<input id="useremail" name="email" value="${user.email }">
-			</div>
-		</div>
-		<div class="uframe">
-			<div class="uframe2">
-				전화번호 : 
-			</div>
-			<div id="utel">
-				<input id="usertel" name="tel" value="${user.tel }">
-			</div>
-		</div>
-		<div class="uframe addmodify">
-			<div class="uframe2">
-				거주지 : 
-			</div>
-			<div id="uadd">
-				${user.user_add } ${user.user_add2 }
-			</div>
-			<div class="addDisplay" style="display:none;width:100%">
-				<input type="text" id="sample4_postcode" placeholder="우편번호">
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="sample4_roadAddress" name="user_add" value="${user.user_add }" placeholder="도로명주소">
-				<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
-				<span id="guide" style="color:#999;display:none"></span>
-				<input type="text" id="sample4_detailAddress" name="user_add2" value="${user.user_add2 }" placeholder="상세주소">
-				<input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
-			</div>
-	
-			<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
-			<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-				<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-			</div>
-			<button type="button" class="add_modify">주소수정하기</button>
-		</div>
-	</div>
-	<input type="submit" class="add_confirm" value="수정하기">
-</form>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
->>>>>>> refs/heads/master
 function passwordConfirm(){
 	var password1 = document.getElementById('userpwd').value
 	var password2 = document.getElementById('userpwdconfirm').value
