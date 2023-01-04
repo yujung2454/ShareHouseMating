@@ -13,4 +13,5 @@ public class ReportDto {
 	private String report_con; 
 	private int comm_no; 
 	private int board_no; 
+	private int comment_no;
 }
