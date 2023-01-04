@@ -54,10 +54,38 @@
 	<ul>
 		<li class="mypage_sidebar"><a href="/mypage/info">회원정보</a><br></li>
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
+<<<<<<< HEAD
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
 		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar">찜 내역<br></li>
+		<li class="mypage_sidebar">문의 내역</li>
+	</ul>
+</nav>
+<div class="mypage_title">
+	<h3>비밀번호확인</h3>
+</div>
+<div class="password_confirm">
+	<h3 class="confirm">비밀번호확인</h3>
+	<div class="input_frame">
+		<input type="password" class="password" name="password" autofocus="autofocus" >
+	</div>
+	<button type="button" class="pass_btn" onclick="passwordConfirm()">확인</button>
+</div>
+</body>
+<script>
+function passwordQuestion(){
+	var result = confirm("개인정보를 수정하시겠습니까?")
+	if(result){
+		location.href="/mypage/modify1";
+	} else {
+		return false;
+	}
+=======
+		<li class="mypage_sidebar">내 게시글 보기<br></li>
+		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
 		<li class="mypage_sidebar">문의 내역</li>
 	</ul>
@@ -100,6 +128,27 @@ function passwordConfirm(){
 		}
 	})
 	.catch((error) => alert('error',error))
+>>>>>>> refs/heads/master
+}
+
+<<<<<<< HEAD
+function passwordConfirm(){
+	var password = document.querySelector('.password').value;
+	
+	fetch('/mypage/confirm/'+password,{
+		method:'POST',
+		credentials:'include',
+	})
+	.then((response) => response.json())
+	.then((result) => {
+		if (eval(result == true)){
+			location.href='/mypage/modify2'
+		} else {
+			alert('비밀번호를 다시 확인하세요')
+			return false;
+		}
+	})
+	.catch((error) => alert('error',error))
 }
 
 $(function(){
@@ -115,5 +164,7 @@ $(function(){
 		}
 	})
 })
+=======
+>>>>>>> refs/heads/master
 </script>
 </html>
