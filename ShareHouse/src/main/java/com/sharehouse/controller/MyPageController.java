@@ -134,6 +134,11 @@ public class MyPageController {
 
 	@GetMapping("/myPage/myPage_community")
 	public String community(@AuthenticationPrincipal SecurityUser user, @RequestParam(name="p", defaultValue="1") int page, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		String id = user.getUsers().getId();
 		int comm_count = service.comm_count(id);
 		m.addAttribute("user", user.getUsers());

@@ -17,7 +17,7 @@ public interface AdminDao {
 	
 	List<AdminDto> commviewlist(Map<String, Object> m);
 	List<AdminDto> boardviewlist(Map<String, Object> m);
-	int countSearch(Map<String, Object> m); // 전체 글 갯수
+	 // 전체 글 갯수
 	List<AdminDto> Sort(Map<String, Object> m);
 	int count();
 	
@@ -25,12 +25,17 @@ public interface AdminDao {
 	("select * from user limit #{start} , #{count}")
 	List<UsersDto> userList(Map<String , Object> m);
 	
-
+	@Select
+	("select * from user where id like concat('%' , #{search} , '%') limit #{start} , #{count}")
 	List<UsersDto> search(Map<String , Object> m);
 	
 	@Select
 	("select count(*) from user")
 	int countUser();
+	
+	@Select
+	("select count(*) from user where id like concat('%', #{search} , '%')")
+	int countSearch(Map<String, Object> m);
 
 	int stopUser(String[] id);
 	

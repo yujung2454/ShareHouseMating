@@ -80,11 +80,11 @@
 					<c:forEach var="name" items="${rList}">
 						<div class="slide">
 							<div class="slide_main">
-								<%-- <c:forEach var="image" items="${iList}"> --%>
-								<div class="main_slide"
-									style="background-image: url('/images/livingroom.png')">${image.img_loc}
+								<c:forEach var="image" items="${iList}">
+								<div class="main_slide">
+									<img src="/room_images/${image.img_loc}">
 								</div>
-								<%-- </c:forEach> --%>
+								</c:forEach>
 
 							</div>
 						</div>
@@ -128,7 +128,7 @@
 
 			<div id="room_intro">${offeringdto.offering_info}</div>
 			<div id="room_info">
-				<div id="drawing">${offeringdto.thumbnail }</div>
+				<div id="drawing"><img src="/room_images/${offeringdto.thumbnail }" class="thumbnail"></div>
 				<div id="map" style="width: 100%; padding-top: 55%;"></div>
 				<script type="text/javascript"
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=635426cbf37254c67dec93b601cd3c9c"></script>
@@ -154,7 +154,8 @@
 					marker.setMap(map);
 				</script>
 				<div id="room_table">
-				<form><input type="hidden" >
+				
+				<input type="hidden" value="${board_no}" name="board_no">
 					<table>
 						<thead>
 							<tr>
@@ -171,13 +172,18 @@
 						
 							<c:forEach items="${oList}" var="offering">
 								<tr>
+								<form action="/offer/detail_info" method="post" >
 									<td>${offering.title}</td>
 									<td>${offering.offering_gender}</td>
 									<td>${offering.house_kind}</td>
 									<td>${offering.square}</td>
 									<td>${offering.deposit}</td>
-									<td>${offering.rental}</td>
-									<td><a href=""><span>입주신청</span></a></td>
+									<td>${offering.rental}
+									<input type="hidden" name="board_no" value="${offering.board_no}">
+									<input type="hidden" name="room_name" value="${offering.room_name}">
+									</td>
+									<td><button class="move"><span>입주신청</span></button></td>
+								</form>
 								</tr>
 						
 							</c:forEach>

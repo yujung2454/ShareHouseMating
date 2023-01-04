@@ -18,6 +18,7 @@ public class OfferingService {
 	OfferingDao dao;
 	
 	public OfferingDto selectNo(int board_no) {
+		dao.addReadCount(board_no);
 		return dao.selectNo(board_no);
 	}
 	
@@ -29,11 +30,19 @@ public class OfferingService {
 		return dao.roominfoTable();
 	}
 	
-	public List<RoomImgDto> room_name(){
-		return dao.room_name();
+	public List<RoomImgDto> room_name(int board_no){
+		return dao.room_name(board_no);
 	}
 	
 	public List<Map<String, Object>> img_loc(int board_no){
-		return dao.img_loc();
+		return dao.img_loc(board_no);
+	}
+	
+	public int apply(String id, int board_no, String room_name) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("board_no", board_no);
+		map.put("room_name", room_name);
+		return dao.apply(map);
 	}
 }
