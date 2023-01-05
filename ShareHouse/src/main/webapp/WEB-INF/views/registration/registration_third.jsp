@@ -41,24 +41,24 @@
 </tr>
 <tr>
 <td><!-- <input type="text" name="room_name" size="1" style="border:0" maxlength=5> -->
-	<select name="room_name">
-		<c:forEach items="${dto }" var="room">
+	<select name="rinfo[0].room_name">
+		<c:forEach items="${dto}" var="room">
 			<option value="${room.room_name }">${room.room_name }</option>
 		</c:forEach>
 	</select>
 </td>
 <td>
-<select name="offering_gender">
+<select name="rinfo[0].offering_gender">
 	<option value="m">남자</option>
 	<option value="f">여자</option>
 	<option value="a">혼성</option>
 </select>
 </td>
-<td><input type="text" name="mem_cnt" size="1" style="border:0" maxlength=1>인실</td>
-<td><input type="text" name="square" size="1" style="border:0" maxlength=3>㎡</td>
-<td><input type="text" name="deposit" size="3" style="border:0" maxlength=7>원</td>
-<td><input type="text" name="rental" size="3" style="border:0" maxlength=7>원</td>
-<td><input type="text" name="term" size="1" style="border:0" maxlength=2>개월</td>
+<td><input type="text" name="rinfo[0].mem_cnt" size="1" style="border:0" maxlength=1>인실</td>
+<td><input type="text" name="rinfo[0].square" size="1" style="border:0" maxlength=3>㎡</td>
+<td><input type="text" name="rinfo[0].deposit" size="3" style="border:0" maxlength=7>원</td>
+<td><input type="text" name="rinfo[0].rental" size="3" style="border:0" maxlength=7>원</td>
+<td><input type="text" name="rinfo[0].term" size="1" style="border:0" maxlength=2>개월</td>
 </tr>
 </tbody>
 </table>
@@ -73,6 +73,7 @@
 </form>
 </body>
 <script>
+let num = 1;
 var row = '	<select name="room_name">\n'+
 	'<c:forEach items="${dto }" var="room">\n'+
 '<option value="${room.room_name }">${room.room_name }</option>\n'+
@@ -88,19 +89,21 @@ var row = '	<select name="room_name">\n'+
         	var cell5 = row.insertCell(4);
         	var cell6 = row.insertCell(5);
         	var cell7 = row.insertCell(6);
-        	cell1.innerHTML='<select name="room_name">\n<c:forEach items="${dto }" var="room">\n<option value="${room.room_name }">${room.room_name }</option>\n</c:forEach>\n</select>'
-        	cell2.innerHTML='<select name="offering_gender"><option value="남자">남자</option><option value="여자">여자</option><option value="혼성">혼성</option></select>';
-        	cell3.innerHTML='<input type="text" name="mem_cnt" size="1" style="border:0" maxlength=1>인실';
-        	cell4.innerHTML='<input type="text" name="square" size="1" style="border:0" maxlength=3>㎡';
-        	cell5.innerHTML='<input type="text" name="deposit" size="3" style="border:0" maxlength=7>원';
-        	cell6.innerHTML='<input type="text" name="rental" size="3" style="border:0" maxlength=7>원';
-        	cell7.innerHTML='<input type="text" name="term" size="1" style="border:0" maxlength=2>개월';
+        	cell1.innerHTML='<select name="rinfo['+num+'].room_name">\n<c:forEach items="${dto }" var="room">\n<option value="${room.room_name }">${room.room_name }</option>\n</c:forEach>\n</select>'
+        	cell2.innerHTML='<select name="rinfo['+num+'].offering_gender"><option value="남자">남자</option><option value="여자">여자</option><option value="혼성">혼성</option></select>';
+        	cell3.innerHTML='<input type="text" name="rinfo['+num+'].mem_cnt" size="1" style="border:0" maxlength=1>인실';
+        	cell4.innerHTML='<input type="text" name="rinfo['+num+'].square" size="1" style="border:0" maxlength=3>㎡';
+        	cell5.innerHTML='<input type="text" name="rinfo['+num+'].deposit" size="3" style="border:0" maxlength=7>원';
+        	cell6.innerHTML='<input type="text" name="rinfo['+num+'].rental" size="3" style="border:0" maxlength=7>원';
+        	cell7.innerHTML='<input type="text" name="rinfo['+num+'].term" size="1" style="border:0" maxlength=2>개월';
+        	num++;
         }
 
         function del_row() {
         	var table = document.getElementById('home_infor');
         	if(table.rows.length > 2) 
         		table.deleteRow(table.rows.length-1);
+        	num--;
         	return;
         	}
         
