@@ -53,7 +53,7 @@ public class WishController {
 		System.out.println("count"+count);
 		m.addAttribute("user", user.getUsers());
 		
-		return "/myPage/wishlist";
+		return "/mypage/wishlist";
 	}
 	
 	@PostMapping("/wishlist")

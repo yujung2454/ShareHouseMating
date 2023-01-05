@@ -92,7 +92,12 @@ public class ReportController {
 	
 	// 관리자 신고리스트
 	@GetMapping("/admin/report_list")
-	public String report_list(@RequestParam(name = "p", defaultValue = "1") int page, Model m) {
+	public String report_list(@RequestParam(name = "p", defaultValue = "1") int page, @AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		int count = service.count();
 		//글이 한 개라도 있을 시
 		if(count > 0) {

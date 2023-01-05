@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +12,31 @@
 }
 </style>
 <title>배소은을 신고하는 리스트</title>
+<link href="/css/uppernav.css" rel="stylesheet">
+<link href="/css/quick.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/admin_nav.css" />
 </head>
 <body>
+<aside>
+			<nav>
+			<div class="logo">
+			<span><img src="/images/home.png"></span><span style="text-align : center; line-height:3rem; font-size : 1.5rem;">우리 집</span>
+			</div>
+				<ul>
+					<li>통계</li>
+					<li>공지사항 관리</li>
+					<li>대기매물 승인</li>
+					<li><a href="/admin/user_manage">회원관리</a></li>
+					<li>신고리스트</li>
+					<li>문의리스트</li>
+					<li>모든 게시물 보기</li>
+					<li>꾸미기</li>
+					<li>사이트 설정</li>
+				</ul>				
+			</nav>
+		</aside>
+		
+
 <div id = "title">
 	<h1>신고 리스트</h1>
 </div>
@@ -127,10 +151,21 @@
 		</div>
 		<input type = "hidden" value= "${rprp.reported_id}" name = "reported_id"/>
 		</form>	
-		
+
 		
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>		
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
+</script>
 <script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
 //체크박스
 $(document).ready(function() {
 			$("#cbx_chkAll").click(function() {

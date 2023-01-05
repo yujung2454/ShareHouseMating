@@ -252,7 +252,7 @@ public class QueryController {
 			}
 		//글이 없을 시
 		m.addAttribute("count", count2);
-		return "/myPage/query_history";
+		return "/mypage/query_history";
 	}
 	
 	@PostMapping("/query_history")
