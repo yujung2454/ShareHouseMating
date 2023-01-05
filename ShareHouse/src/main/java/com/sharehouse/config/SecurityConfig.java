@@ -23,7 +23,7 @@ public class SecurityConfig{
 		
 		
 		security.authorizeRequests().antMatchers("/","/admin/ad_query_view/**").permitAll();
-		security.authorizeRequests().antMatchers("/member/**","/registration/**").authenticated();
+		security.authorizeRequests().antMatchers("/member/**","/registration/**","/mypage/**").authenticated();
 		security.authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN");
    
 		security.csrf().disable();

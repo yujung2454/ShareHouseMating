@@ -37,7 +37,9 @@
 							<a href="/mypage/info"><img src="/images/profil.png"></a>
 						</c:if>
 						<c:if test="${user.user_Img != null}">
-							<a href="/mypage/info"><img src="${user.user_Img}"></a>
+							<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -69,7 +71,7 @@
 
 
 				<div class="user">
-					작성자 : <input name="id" value="${user.user_Img} ${dto.id}" readonly>
+					작성자 : <input name="id" value="${dto.id}" readonly>
 				</div>
 
 

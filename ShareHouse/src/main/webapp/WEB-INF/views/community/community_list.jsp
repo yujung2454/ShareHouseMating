@@ -176,6 +176,14 @@
 	<footer> </footer>
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
+	function s_location(){
+		navigator.geolocation.getCurrentPosition(function(pos) {
+		    var latitude = pos.coords.latitude;
+		    var longitude = pos.coords.longitude;
+		
+		location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+		})
+	}
 		$(document).ready(function() {
 			$("input:checkbox[name='notice']").change(function() {
 				if ($("input:checkbox[name='notice']").is(":checked")) {
