@@ -11,6 +11,7 @@
 <title>상세검색</title>
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/searchcontent.css" rel="stylesheet">
+<link href="/css/quick.css" rel="stylesheet">
 </head>
 <body>
 <div class="fixed">
@@ -27,7 +28,6 @@
 			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -54,7 +54,7 @@
 	<div id="search" >
 		<ul>
 			<li><img src="/images/search.png"></li>
-			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="50"></li>
+			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="45" autofocus></li>
 			<li>
 				<button type="submit">검색</button>
 			</li>
@@ -146,6 +146,18 @@
 </div>
 </div>
 </form>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/javascript/selectchange.js"></script>

@@ -10,13 +10,9 @@
 	</insert> 
 	
 	<update id="update" parameterType="com.sharehouse.dto.RegistrationDto">
-		update offering set thumbnail = #{thumbnail}, offering_info = #{offering_info}, offering_gender = #{offering_gender} where board_no = #{board_no}
+		update offering set thumbnail = #{thumbnail}, offering_info = #{offering_info} where board_no = #{board_no}
 	</update>
 
-	<select id="select" parameterType="int" resultType="com.sharehouse.dto.RegistrationDto">
-		select distinct room_name, board_no from room_info_1 order by image_no desc limit 1
-	</select>
-	
 	<insert id="insert2" parameterType="com.sharehouse.dto.RegistrationDto">
 		insert into room_info(board_no, room_name, deposit, rental, square, mem_cnt, img_loc, term) 
 		values (#{board_no}, #{room_name}, #{deposit}, #{rental}, #{square}, #{mem_cnt}, #{img_loc}, #{term})

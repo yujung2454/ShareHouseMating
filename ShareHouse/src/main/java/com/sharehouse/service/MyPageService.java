@@ -23,13 +23,18 @@ public class MyPageService {
 		return dao.apply(id);
 	}
 	
-	public List<MyPageDto> room(String id) {
-		return dao.room(id);
+	
+	public int delete(int myno) {
+		return dao.delete(myno);
 	}
 	
-	public int delete(String id) {
-		return dao.delete(id);
+	public int state(String room_name, int board_no) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("board_no", board_no);
+		m.put("room_name", room_name);
+		return dao.state(m);
 	}
+	
 	
 	public List<CommunityDto> MyCommunityList(String id, int start){
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -66,4 +71,16 @@ public class MyPageService {
 //	public int count(String id) {
 //		return dao.count(id);
 //	}
+	
+	public List<Map<String, Object>> mywish(String id, int start){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 5);
+		m.put("id", id);
+		return dao.mywish(m);
+	}
+	
+	public int mywishCount() {
+		return dao.mywishCount();
+	}
 }

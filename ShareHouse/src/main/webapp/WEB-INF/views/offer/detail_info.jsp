@@ -91,7 +91,7 @@
 							<div class="slide_main">
 								<c:forEach var="image" items="${rilist}">
 									<div class="main_slide">
-										<img src="/room_images/${image}">
+										<img src="${image}">
 									</div>
 								</c:forEach>
 							</div>
@@ -142,7 +142,7 @@
 					<div id="room_intro">${offeringdto.offering_info}</div>
 					<div id="room_info">
 						<div id="drawing">
-							<img src="/room_images/${drawing }"
+							<img src="${drawing }"
 								class="thumbnail">
 						</div>
 						<div id="map" style="width: 100%; padding-top: 55%;"></div>

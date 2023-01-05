@@ -1,0 +1,78 @@
+@charset "UTF-8";
+.table_list{
+		width : 100%;
+		border : 1px solid black;
+		border-collapse : collapse;
+		border-left : 0;
+		border-right : 0;
+}
+
+.table_list{
+		width : 100%;
+		border : 1px solid black;
+		border-collapse : collapse;
+		border-left : 0;
+		border-right : 0;
+		margin-left:50px;
+}
+
+thead > th {
+		padding-left:1%;
+}
+
+tbody > tr:hover {
+	background-color : #eeeeee;
+}
+
+table > tbody td{
+	height : 30px;
+	font-size : 14px;
+	text-align : center;
+	border-bottom : 1px solid black;
+	padding-left:1%;
+}
+
+#board{
+	margin-top:20px;
+}
+
+#paging {
+		margin-top : 20px;
+}
+
+#paging > .page {
+	display: inline-block;
+ 	  	width: 30px;
+ 	  	vertical-align: top;
+   	color: #999;
+   	padding: 8px 0px 8px;
+   	border: 1px solid #e2e2e5;
+   	font-weight: bold;
+   	font-size: 12px;
+   	line-height: 12px;
+   	margin: 0 7px 0 0;
+   	border-radius: 2px;
+}
+
+#paging > .page :hover {
+	text-decoration : underline;
+}
+
+table{
+	width : 80%;
+	margin:auto;
+	border-collapse : collapse;
+}
+
+.mywish_table{
+	position:absolute;
+	top:40%;
+	left:17%;
+	width:50%;
+}
+
+.mypage_title{
+	position:relative;
+	margin-left:100px;
+	
+}

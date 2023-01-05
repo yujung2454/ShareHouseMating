@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.RegistrationDto;
+import com.sharehouse.dto.RoomInfoDto;
 import com.sharehouse.service.RegistrationService;
 
 @Controller
@@ -28,9 +30,20 @@ public class RegistrationController {
 
 	@Autowired
 	RegistrationService service;
+	
 
 	@GetMapping("/registration/registration_second")
-	public String registration_second() {
+	public String registration_second(@AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
+		String id = user.getUsers().getId();
+		int boardNo = service.selectBoardno(id);
+		m.addAttribute("board_no",boardNo);
+		System.out.println(boardNo);
+
 		return "/registration/registration_second";
 	}
 
@@ -41,9 +54,15 @@ public class RegistrationController {
 	}
 
 	@GetMapping("/registration/registration_third/{board_no}")
-	public String registration_third(@PathVariable int board_no, Model m) {
-		RegistrationDto dto = service.select(board_no);
+	public String registration_third(@AuthenticationPrincipal SecurityUser user, @PathVariable int board_no, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
+		List<RegistrationDto> dto = service.select(board_no);
 		m.addAttribute("dto", dto);
+		m.addAttribute("board_no", board_no);
 		return "/registration/registration_third";
 	}
 	
@@ -63,7 +82,7 @@ public class RegistrationController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-		return fileName;
+		return "/room_images/"+fileName;
 	}
 
 
@@ -90,18 +109,31 @@ public class RegistrationController {
 	
 	
 	@PostMapping("/registration/third")
-	public String singlefileupload(RegistrationDto dto, MultipartFile update_file ,MultipartFile img_loc_file, HttpServletRequest request ) {
-		
+	public String singlefileupload(@AuthenticationPrincipal SecurityUser user,Model m,  RoomInfoDto rinfo, RegistrationDto dto, MultipartFile update_file ,MultipartFile img_loc_file, HttpServletRequest request ) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
+		System.out.println(rinfo);
 		//update 썸네일 where dto.getBoard_no
+			
 		String path = upload(update_file, request);
-		dto.getBoard_no();
 		dto.setThumbnail(path);
 		service.update(dto);
 		path = upload(img_loc_file, request);
-		dto.setImg_loc(path);
-		service.insert2(dto);
-		System.out.println("저장 성공"); 
-		return "/main";
+		int boardNo = rinfo.getBoard_no();
+		int lsize = rinfo.getRinfo().size();
+		for (int i = 0; i < lsize; i++) {
+			RegistrationDto registration = rinfo.getRinfo().get(i);
+			registration.setBoard_no(boardNo);
+			registration.setImg_loc(path);
+			service.insert2(registration);
+		}
+		//service.insert2(dto); 
+		//System.out.println("저장 성공");
+ 
+		return "redirect:/";
 	}
 	
 	 @RequestMapping(value = "/registration/third")
@@ -120,7 +152,7 @@ public class RegistrationController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-		return fileName;
+		return "/room_images/"+fileName;
 	}
 	
 	 

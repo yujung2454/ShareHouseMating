@@ -29,7 +29,6 @@
 				<li class="upper_menu"><a href="/query_list">문의</a></li>
 			</ul>
 			<div id="p_info">
-				<span id="notification"><img src="/images/notification.png"></span>
 				<span id="login"> <c:if test="${user == null}">
 						<a href="/login">로그인</a>
 					</c:if> <c:if test="${user != null}">
@@ -154,56 +153,32 @@
 				return false;
 			})//click
 
-			$("#add")
-					.click(
-							function() {
-								let id = "${user.id}"; // 세션에 저장된 id값
-								let comment_con = $("#content").val();
-								let comm_no = $
-								{
-									dto.comm_no
+			$("#add").click(function() {
+				let id = "${user.id}"; // 세션에 저장된 id값
+				let comment_con = $("#content").val();
+				let comm_no = ${dto.comm_no};
+				$.ajax({
+					url : "/comment/insert",
+					data : "comm_no=" + comm_no	+ "&id=" + id + "&comment_con="	+ comment_con,
+					method : "get",
+					dataType : "json"
+				}).done(function(resp) {
+						let commentlist = "";
+						resp.forEach(function(comm_comment,	index) {
+							commentlist += "<div>"+ comm_comment.id	+ " / "	+ new Date(comm_comment.comment_date).toLocaleDateString()
+							+ "</div><div>"	+ comm_comment.comment_con;
+								if (id == comm_comment.id) {
+									commentlist += '<button class="dbtn" id="'+comm_comment.comment_no+'">삭제</button>';
 								}
-								;
+								commentlist += "</div><hr>";
+								});
 
-								$
-										.ajax(
-												{
-													url : "/comment/insert",
-													data : "comm_no=" + comm_no
-															+ "&id=" + id
-															+ "&comment_con="
-															+ comment_con,
-													method : "get",
-													dataType : "json"
-												})
-										.done(
-												function(resp) {
-													let commentlist = "";
-													resp
-															.forEach(function(
-																	comm_comment,
-																	index) {
-																commentlist += "<div>"
-																		+ comm_comment.id
-																		+ " / "
-																		+ new Date(
-																				comm_comment.comment_date)
-																				.toLocaleDateString()
-																		+ "</div><div>"
-																		+ comm_comment.comment_con;
-																if (id == comm_comment.id) {
-																	commentlist += '<button class="dbtn" id="'+comm_comment.comment_no+'">삭제</button>';
-																}
-																commentlist += "</div><hr>";
-															});
+								$("#comment").html(commentlist);
+								$("#content").val("");
+								location.reload();
+							});
 
-													$("#comment").html(
-															commentlist);
-													$("#content").val("");
-
-												});
-
-							})//click
+			})//click
 			$("#comment").on("click", ".dbtn", function() {
 				let comment_no = $(this).attr("id");
 				$.ajax({
@@ -230,7 +205,7 @@
 				.on(
 						'click',
 						function() {
-							var url = "/report_maemul/${comment_no.comment_no}";
+							var url = "/report_maemul/${commentdto.comment_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";
 							window.open(url, name, option)

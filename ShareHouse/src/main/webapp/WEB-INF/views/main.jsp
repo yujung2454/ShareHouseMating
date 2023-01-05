@@ -26,7 +26,6 @@
 			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -67,7 +66,7 @@
 </div><br>
 <hr><br>
 <jsp:include page="popup/popup.jsp"/>
-<div style="position:absolute; width:60%; left:19%;">
+<div style="position:relative; width:60%; margin : auto;">
 	<div class="offering_lst">
 		<c:forEach var="offer" items="${offering}">
 			<div class="offer">
@@ -94,11 +93,6 @@
 	<div class="quick_shape">
 		<a href="">
 			<img src="images/like.png" title="찜">
-		</a>
-	</div>
-	<div class="quick_shape">
-		<a href="">
-			<img src="images/chat.png" title="채팅">
 		</a>
 	</div>
 </div>

@@ -28,7 +28,6 @@
 			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -55,25 +54,38 @@
 	<ul>
 		<li class="mypage_sidebar"><a href="/mypage/info">회원정보</a><br></li>
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
-		<li class="mypage_sidebar">내 게시글 보기<br></li>
+		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
 		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
 		<li class="mypage_sidebar">문의 내역</li>
 	</ul>
 </nav>
 <div class="mypage_title">
-	<h3>비밀번호확인</h3>
+	<h3>개인정보수정</h3>
 </div>
 <div class="password_confirm">
-	<h3 class="confirm">비밀번호확인</h3>
+<div><br>
+	<h4 class="confirm">비밀번호확인</h4></div>
 	<div class="input_frame">
 		<input type="password" class="password" name="password" autofocus="autofocus" >
 	</div>
+	<div class="btn">
 	<button type="button" class="pass_btn" onclick="passwordConfirm()">확인</button>
+	</div>
 </div>
 </body>
 <script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
+
 function passwordQuestion(){
 	var result = confirm("개인정보를 수정하시겠습니까?")
 	if(result){
@@ -101,5 +113,21 @@ function passwordConfirm(){
 	})
 	.catch((error) => alert('error',error))
 }
+
+$(function(){
+	$("#board").on("click",function(){
+		if(!$(this).hasClass("on")){
+			$(this).addClass("on")
+			$(this).css({"margin":"40px 0 20px 0"})
+			$(".under").css({"display":"inline-block"})
+		} else {
+			$(this).removeClass("on")
+			$(".under").css({"display":"none"})
+			$(this).css({"margin":"40px 0 40px 0"})
+		}
+	})
+})
+
+
 </script>
 </html>

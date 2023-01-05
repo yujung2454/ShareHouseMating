@@ -33,6 +33,8 @@ public class OfferingController {
 		}else {
 			m.addAttribute("user",user.getUsers());
 		}
+		OfferingDto dto = service.selectNo(board_no);
+		m.addAttribute("dto",dto);
 		Map<String, Object> offeringdto = service.SelectRoom(board_no);
 		m.addAttribute("offeringdto" , offeringdto);
 		String drawing = service.drawing(board_no);

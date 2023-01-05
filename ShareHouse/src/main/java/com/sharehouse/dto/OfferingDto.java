@@ -20,4 +20,5 @@ public class OfferingDto {
 	private String offering_gender;
 	private int v_cnt;
 	private Date board_date;
+	private String state;
 }

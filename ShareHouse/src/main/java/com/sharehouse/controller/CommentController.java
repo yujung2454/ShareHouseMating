@@ -21,8 +21,8 @@ public class CommentController {
 	
 	@GetMapping("/comment/insert") 
 	public String insertComment(CommentDto dto, int comm_no, Model m) {
-		service.insertComment(dto); 
 		List<CommentDto> commentList = service.selectComment(dto.getComm_no()); 
+		service.insertComment(dto); 
 		Gson gson = new Gson(); 
 		/*
 		 * int comment_no = service.selectId(comm_no); m.addAttribute("comment_no",

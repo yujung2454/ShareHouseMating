@@ -27,7 +27,6 @@
 			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -54,7 +53,7 @@
 	<div id="search" >
 		<ul>
 			<li><img src="/images/search.png"></li>
-			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="50"></li>
+			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="45" autofocus></li>
 			<li>
 				<button type="submit">검색</button>
 			</li>
@@ -65,7 +64,7 @@
 	</div>
 	<input id="latlng" name="latlng" type="hidden">
 </form>
-</div>
+</div><br><hr><br>
 <div class="frame">
 	<div id="map"></div>
 	<div class="list_frame">
