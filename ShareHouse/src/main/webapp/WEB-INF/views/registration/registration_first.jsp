@@ -127,7 +127,22 @@
 	</div>
 	</form>
 </div>
+</div>
 
+<nav>
+		<div class="quick">
+			<div class="quick_shape">
+				<a href="/search/searchlist"> <img src="/images/search.png"
+					title="검색">
+				</a>
+			</div>
+			<div class="quick_shape">
+				<a href=""> <img src="images/like.png" title="찜">
+				</a>
+			</div>
+		</div>
+	</nav>
+	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script async
@@ -143,6 +158,7 @@ function s_location(){
 	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
 	})
 } 
+
 
 function addPost(){
     new daum.Postcode({

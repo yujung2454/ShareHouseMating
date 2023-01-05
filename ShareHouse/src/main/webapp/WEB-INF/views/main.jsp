@@ -94,6 +94,11 @@
 			<img src="/images/like.png" title="찜">
 		</a>
 	</div>
+	<div class="quick_shape">
+		<a href="">
+			<img src="images/chat.png" title="채팅">
+		</a>
+	</div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -110,8 +115,6 @@ function s_location(){
 	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
 	})
 }
-
-
 $(function(){
 	var autocomplete;
 	var Id = 'location';
@@ -163,6 +166,5 @@ $(function(){
 		}
 	})
 })
-
 </script>
 </html>

@@ -6,6 +6,33 @@
 <meta charset="UTF-8">
 <title>신고하기</title>
 </head>
+<style>
+	#save{
+		background-color : #4CAF50;	
+		color : white;
+		cursor : pointer;
+		border-radius : 12px;
+		width : 80px;
+		height : 40px;
+		border : none;
+		outline : none;
+		font-weight : bold;
+	}
+	#cancel{
+		background-color : #8c8c91;	
+		color : white;
+		cursor : pointer;
+		border-radius : 12px;
+		width : 80px;
+		height : 40px;
+		border : none;
+		outline : none;
+		font-weight : bold;
+	}
+	h1{
+	text-align : center;
+	}
+</style>
 <body>
 <header>
 </header>
@@ -37,8 +64,8 @@
 	<div id="button" align="center">
 		<input type="hidden" name="reported_id" value="${offeringdto.id}">
 		<input type="hidden" name="board_no" value="${offeringdto.board_no}">
-		<button type="submit" id="save" value="제출">제출</button>
 		<button type="button" id="cancel" value="취소" onclick="location.href='/re_cancle_popup'">취소</button>
+		<button type="submit" id="save" value="제출">제출</button>
 	</div>
 </form>
 </div>

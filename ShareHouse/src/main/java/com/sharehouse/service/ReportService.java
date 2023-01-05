@@ -1,12 +1,13 @@
 package com.sharehouse.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sharehouse.dao.ReportDao;
-import com.sharehouse.domain.Role;
 import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.OfferingDto;
@@ -77,5 +78,16 @@ public class ReportService {
 	
 	public int delChecked(int[] report_no) {
 		return dao.delChecked(report_no);
+	}
+	
+	public int count() {
+		return dao.count();
+	}
+	
+	public List<ReportDto> reportList(int start){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 5);
+		return dao.reportList(m);
 	}
 }

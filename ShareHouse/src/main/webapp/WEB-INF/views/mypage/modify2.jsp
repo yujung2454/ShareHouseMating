@@ -56,8 +56,8 @@
 		<li class="mypage_sidebar"><a href="/mypage/info">회원정보</a><br></li>
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
-		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
-		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/myPage_community">- 매물/게시글 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
 		<li class="mypage_sidebar">문의 내역</li>
@@ -76,11 +76,12 @@
 				<img id="uimg" src="/images/profil.png">
 			</c:if>
 		</div>
-		
-		<label for="userimg"></label>
-			<div class="btn-upload">이미지 변경</div>
-		<input type="file" onchange="preview(this)" name="userimg" class="image_input">
-		
+		<div>
+			<label class="userimg" for="userimg">
+			이미지 변경
+			</label>
+		<input type="file" onchange="preview(this)" id="userimg" name="userimg" class="image_input">
+		</div>
 		<div class="uframe">
 			<div class="uframe2">
 				&nbsp; 이름 :&nbsp; 
@@ -130,12 +131,12 @@
 				${user.user_add } ${user.user_add2 }
 			</div>
 			<div class="addDisplay" style="display:none;width:100%">
-				<input type="text" id="sample4_postcode" placeholder="우편번호">
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="sample4_roadAddress" name="user_add" value="${user.user_add }" placeholder="도로명주소">
+				<input type="text" id="sample4_postcode" placeholder="우편번호" readonly>
+				<input type="text" id="sample4_roadAddress" name="user_add" value="${user.user_add }" placeholder="도로명주소" readonly>
 				<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
 				<span id="guide" style="color:#999;display:none"></span>
 				<input type="text" id="sample4_detailAddress" name="user_add2" value="${user.user_add2 }" placeholder="상세주소">
+				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 				<input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
 			</div>
 	
@@ -143,8 +144,11 @@
 			<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 				<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 			</div>
+			<div>
 			<button type="button" class="add_modify">주소수정하기</button>
 		</div>
+		
+			</div>
 			<input type="submit" class="add_confirm" value="수정하기">
 	</div>
 </form>
@@ -174,7 +178,6 @@ $(function(){
 	})
 })
 
->>>>>>> refs/heads/master
 function passwordConfirm(){
 	var password1 = document.getElementById('userpwd').value
 	var password2 = document.getElementById('userpwdconfirm').value
@@ -211,9 +214,8 @@ $(".userform").submit(function(event){
 
 	$(".add_modify").click(function(){
 		$(".addDisplay").css({"display":"block"})
-		$(".uframe2").css({"display":"none"})
 		$("#uadd").css({"display":"none"});
-		$(".add_modify").css({"display":"none"})
+		$(".add_modify").css({"display":"none"})	
 		
 	})
 
