@@ -83,7 +83,7 @@ public class RegistrationController {
 	@PostMapping("/upload")
 	@ResponseBody
 	public String submit(RegistrationDto dto, List<MultipartFile> file, HttpServletRequest request) {
-		System.out.println(dto.getBoard_no()+ dto.getRoom_name());
+		System.out.println(dto.getBoard_no()+ dto.getRoom_name()+ file.size());
 		for (MultipartFile multipartfile : file) {
 			if (!multipartfile.isEmpty()) {
 				String path = upload(multipartfile, request);

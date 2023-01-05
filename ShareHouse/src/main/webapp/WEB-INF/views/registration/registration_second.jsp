@@ -47,6 +47,7 @@
 
 <div id='image_preview'>
 <input type='file' id='btnAtt' multiple='multiple' name='file' style="margin-left:360px; margin-bottom:10px;"/>
+
 	<div id='att_zone' 
 	      data-placeholder="방 추가 버튼을 눌러 방이름을 정해주시고 방에 해당되는 이미지를 넣어주세요.
 	      					이미지를 첨부한 후 저장 버튼을 눌러주세요."></div><br>
@@ -67,9 +68,9 @@
         newP.innerHTML = "<input type='button' class='plustext' value='"+room_name+"'>"
         box.appendChild(newP);			
         $("#hidden").append("<input type='hidden' name='room_name' value='"+room_name+"' id='room_name'>")				
-      
+      	$("#btnAtt").attr("disabled",false);
 	} //방추가 버튼
-	
+//	let arr_img = [];
 	(
 			  imageView = function imageView(att_zone, btn){
 
@@ -85,13 +86,16 @@
 			    // 이미지안에 표시되는 체크박스의 속성
 			    var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
 			                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
-			  
+				
+			    
 			    btnAtt.onchange = function(e){
+			      attZone.innerHTML ="";
 			      var files = e.target.files;
 			      var fileArr = Array.prototype.slice.call(files)
 			      for(f of fileArr){
 			        imageLoader(f);
 			      }
+			      
 			    }  
 			    
 	
@@ -158,10 +162,20 @@
 			  }
 			)('att_zone', 'btnAtt') // 다중이미지 미리보기
 		
+//file 값 변경시 		"<input type='file' id='btnAtt' multiple='multiple' name='file' style="margin-left:360px; margin-bottom:10px;"/>
+//" 추가
+			
 
 	function uploadfile() {
+	
+	/* if(document.getElementById('btnArr').value){
+		alert('방 하나당 업로드는 한번씩 가능합니다')
+		return false;
+	} */
+	
 	var form = $('#imgUpload')[0];
 	var formData = new FormData(form);
+
 	$.ajax({
 	type:"post",
 	enctype:'multipart/form-data',
@@ -173,7 +187,8 @@
     success:function(data){
     	console.log("success : ", data);
     	
-    	$("#room_name").remove();
+    	$("#room_name").remove()
+// input type='file' 두번쨰부터 삭제
     },
     error:function(e){
         console.log("error : ", e);
