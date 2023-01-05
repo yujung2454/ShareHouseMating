@@ -22,6 +22,9 @@ public interface QueryDao {
 	int countSearch(Map<String, Object> m); // 전체 글 갯수
 	List<QueryDto> querySort(Map<String, Object> m);
 	
+	int count2(String id);
+	List<QueryDto> queryList2(Map<String, Object> m);
+	
 	//관리자 dao
 	int delChecked(int[] query_no);
 	int insertAnswer(QueryDto dto);

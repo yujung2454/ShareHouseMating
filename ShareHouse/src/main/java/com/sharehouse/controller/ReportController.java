@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sharehouse.config.SecurityUser;
@@ -91,7 +92,38 @@ public class ReportController {
 	
 	// 관리자 신고리스트
 	@GetMapping("/admin/report_list")
-	public String report_list(Model m, String reported_id) {
+	public String report_list(@RequestParam(name = "p", defaultValue = "1") int page, @AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
+		int count = service.count();
+		//글이 한 개라도 있을 시
+		if(count > 0) {
+			
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage; //한 페이지의 첫 글 인덱스 번호
+			
+			List<ReportDto> reportList = service.reportList(startRow);
+			m.addAttribute("rList", reportList);
+
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
+			
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum -1;
+			if(end > totalPages) {
+				end = totalPages;
+			}
+			 m.addAttribute("begin", begin);
+			 m.addAttribute("end", end);
+			 m.addAttribute("pageNum", pageNum);
+			 m.addAttribute("totalPages", totalPages);
+			}
+		//글이 없을 시
+		m.addAttribute("count", count);
+		
 		List<ReportDto> rp = service.selectAll();
 		String status = service.selectSta();
 		m.addAttribute("rp" , rp);

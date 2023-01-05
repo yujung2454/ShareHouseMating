@@ -68,6 +68,18 @@ public class QueryService {
 		return dao.querySort(m);
 	}
 	
+	public int count2(String id) {
+		return dao.count2(id);
+	}
+	
+	public List<QueryDto> queryList2(int start, String id){
+		
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 10);
+		m.put("id", id);
+		return dao.queryList2(m);
+	}
 	//관리자 service
 	public int delChecked(int[] query_no) {
 		return dao.delChecked(query_no);
