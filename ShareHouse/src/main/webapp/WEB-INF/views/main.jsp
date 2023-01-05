@@ -52,9 +52,9 @@
 	<div id="search" >
 		<ul>
 			<li><img src="/images/search.png"></li>
-			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="50"></li>
+			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="45" autofocus></li>
 			<li>
-				<button type="submit">검색</button>
+				<button type="submit" class="submit">검색</button>
 			</li>
 			<li>
 				<a href="/detailsearch"><img src="/images/detailsearch.png" alt="상세검색" title="상세검색"></a>
@@ -63,9 +63,10 @@
 	</div>
 	<input id="latlng" name="latlng" type="hidden">
 </form>
-</div>
+</div><br>
+<hr><br>
 <jsp:include page="popup/popup.jsp"/>
-<div style="position:absolute; width:60%; left:19%;">
+<div style="position:relative; width:60%; margin : auto;">
 	<div class="offering_lst">
 		<c:forEach var="offer" items="${offering}">
 			<div class="offer">
@@ -75,7 +76,7 @@
 					</div>
 					<div class="offer_info">
 						<p class="offer_title">${offer.title}</p>
-						<p>보증금:<span>${offer.deposit}만원</span> 월세:<span>${offer.rental}만원</span></p>
+						<p>보증금:<span>${offer.deposit}</span> 월세:<span>${offer.rental}</span></p>
 						<p class="loc">${offer.dong }</p>
 					</div>
 				</div>
@@ -90,13 +91,8 @@
 		</a>
 	</div>
 	<div class="quick_shape">
-		<a href="/wishlist">
-			<img src="/images/like.png" title="찜">
-		</a>
-	</div>
-	<div class="quick_shape">
 		<a href="">
-			<img src="images/chat.png" title="채팅">
+			<img src="images/like.png" title="찜">
 		</a>
 	</div>
 </div>
@@ -115,6 +111,8 @@ function s_location(){
 	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
 	})
 }
+
+
 $(function(){
 	var autocomplete;
 	var Id = 'location';
@@ -166,5 +164,7 @@ $(function(){
 		}
 	})
 })
+
 </script>
+
 </html>

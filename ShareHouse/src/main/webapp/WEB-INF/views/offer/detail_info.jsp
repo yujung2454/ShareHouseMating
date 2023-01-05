@@ -91,7 +91,7 @@
 							<div class="slide_main">
 								<c:forEach var="image" items="${rilist}">
 									<div class="main_slide">
-										<img src="/room_images/${image}">
+										<img src="${image}">
 									</div>
 								</c:forEach>
 							</div>
@@ -112,8 +112,8 @@
 					<form id="form" method="post" action="/offer/wish">
 						<input type="hidden" name="board_no" value="${board_no}">
 
-						<button  id="wish">
-							<span>찜</span>
+						<button id="wish"><img src="/images/heart.png">
+							찜
 						</button>
 						</form>
 					</div>
@@ -142,7 +142,7 @@
 					<div id="room_intro">${offeringdto.offering_info}</div>
 					<div id="room_info">
 						<div id="drawing">
-							<img src="/room_images/${offeringdto.thumbnail }"
+							<img src="${drawing }"
 								class="thumbnail">
 						</div>
 						<div id="map" style="width: 100%; padding-top: 55%;"></div>
@@ -422,10 +422,6 @@
 				<a href=""> <img src="images/like.png" title="찜">
 				</a>
 			</div>
-			<div class="quick_shape">
-				<a href=""> <img src="images/chat.png" title="채팅">
-				</a>
-			</div>
 		</div>
 	</nav>
 	<footer> </footer>
@@ -441,17 +437,6 @@
 		src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
 	<script>
-	/* var board_no = ${board_no}
-	function jjim(){
-		fetch('/wish/'+board_no,{
-			method:'GET',
-			credentials:'include',
-		})
-		.then((response) => {response.json()})
-		.then((result) => {alert(result)})
-		.catch((error) => {alert(error)})
-	} */
-			
 	$(function() {
 		$("a[id]").click(function() {
 			let board_no = $(this).attr("id");

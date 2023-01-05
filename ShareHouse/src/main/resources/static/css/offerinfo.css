@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 	#center{
-		width : 55%;
+		width : 50%;
 		margin : auto;
 	}
 	#room_button_list{
@@ -10,7 +10,7 @@
 
 	.main_slide{
 		width : 650px !important;
-		height : 400px !important;
+		height : 400px !important; 
 		background-position : center;
 		background : round;
 	}
@@ -19,11 +19,18 @@
 		float:left;
 	}
 	
-	.report{
+	.report {
 		width : 4.5rem;
 		height : 1.5rem;
 		margin-bottom : 2rem;
 		float : right;	
+		border-radius:6px;
+	}
+	#wish{
+		width:4.5rem;
+		height:33.56px;
+		float:right;
+		border-radius:6px;
 	}
 	#info_btn_list{
 		width:100%;
@@ -145,4 +152,8 @@
 	}
 	.tab_btn.active {
 		background : #c0d6e4;
+	}
+	
+	footer{
+		height : 15rem;
 	}
