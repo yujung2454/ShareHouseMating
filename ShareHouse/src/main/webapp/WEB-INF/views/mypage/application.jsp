@@ -63,11 +63,11 @@
 	</div>
 </div>
 <nav class="mypagelist">
-	<ul>
+<ul>
 		<li class="mypage_sidebar"><a href="/mypage/info">회원정보</a><br></li>
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
-		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/myPage_community">- 매물/게시글 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
@@ -104,7 +104,7 @@
 <input type='hidden' value='${app.myno}' name='myno'>
 
 <input type='hidden' value='${app.room_name}' name='room_name'>
-<button type="submit" onclick="ok()">승인</button>
+<button type="submit" class="apply" onclick="ok()">승인</button>
 <button type="button" class="delete" onclick="no(${app.myno})">거절</button>
 </form>
 </td>
@@ -112,7 +112,7 @@
 
 </c:forEach>
 </table>
-
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 function s_location(){
 	navigator.geolocation.getCurrentPosition(function(pos) {
@@ -132,6 +132,19 @@ function no(myno) {
 	location.href = "/mypage/application/cancel?myno="+myno;
 }
 
+$(function(){
+	$("#board").on("click",function(){
+		if(!$(this).hasClass("on")){
+			$(this).addClass("on")
+			$(this).css({"margin":"40px 0 20px 0"})
+			$(".under").css({"display":"inline-block"})
+		} else {
+			$(this).removeClass("on")
+			$(".under").css({"display":"none"})
+			$(this).css({"margin":"40px 0 40px 0"})
+		}
+	})
+})
 
 </script>
 
