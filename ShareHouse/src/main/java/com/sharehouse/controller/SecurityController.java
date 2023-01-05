@@ -133,4 +133,8 @@ public class SecurityController {
 		return "redirect:/login";
 	}
 	
+	@GetMapping("/accessDenied")
+	public String denied() {
+		return "/accessDenied";
+	}
 }

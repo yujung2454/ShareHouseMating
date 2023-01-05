@@ -38,7 +38,6 @@
 				<li class="upper_menu"><a href="/query_list">문의</a></li>
 			</ul>
 			<div id="p_info">
-				<span id="notification"><img src="/images/notification.png"></span>
 				<span id="login"> <c:if test="${user == null}">
 						<a href="/login">로그인</a>
 					</c:if> <c:if test="${user != null}">
@@ -46,7 +45,9 @@
 							<a href="/mypage/info"><img src="/images/profil.png"></a>
 						</c:if>
 						<c:if test="${user.user_Img != null}">
-							<a href="/mypage/info"><img src="${user.user_Img}"></a>
+							<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
