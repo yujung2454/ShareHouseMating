@@ -75,7 +75,7 @@
 					</div>
 					<div class="offer_info">
 						<p class="offer_title">${offer.title}</p>
-						<p>보증금:<span>${offer.deposit}</span> 월세:<span>${offer.rental}</span></p>
+						<p>보증금:<span>${offer.deposit}만원</span> 월세:<span>${offer.rental}만원</span></p>
 						<p class="loc">${offer.dong }</p>
 					</div>
 				</div>
@@ -91,7 +91,7 @@
 	</div>
 	<div class="quick_shape">
 		<a href="/wishlist">
-			<img src="images/like.png" title="찜">
+			<img src="/images/like.png" title="찜">
 		</a>
 	</div>
 </div>
@@ -165,8 +165,4 @@ $(function(){
 })
 
 </script>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/heads/master
 </html>

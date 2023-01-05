@@ -12,6 +12,7 @@
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/map.css" rel="stylesheet">
 <link href="/css/searchlist.css" rel="stylesheet">
+<link href="/css/quick.css" rel="stylesheet">
 </head>
 <body>
 <div class="fixed">
@@ -76,12 +77,24 @@
 				</div>
 				<div class="list_con">
 					<p> ${offer.title}
-					<p> 보증금:${offer.deposit} 월세:${offer.rental }
+					<p> 보증금:${offer.deposit}만원 월세:${offer.rental }만원
 					<p> ${offer.dong }
 				</div>
 			</div>
 		</c:forEach>
 </div>
+</div>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
