@@ -101,6 +101,15 @@
 </div>
 </body>
 <script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
+
 $(function(){
 	$("#board").on("click",function(){
 		if(!$(this).hasClass("on")){
