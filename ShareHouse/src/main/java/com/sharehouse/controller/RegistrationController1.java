@@ -24,7 +24,7 @@ public class RegistrationController1 {
 	}
 
 	@PostMapping("/registration/registration_first")
-	public String insertMaemul(@AuthenticationPrincipal SecurityUser user,OfferingDto dto, Model m) {
+	public String insertMaemul(@AuthenticationPrincipal SecurityUser user, OfferingDto dto, Model m) {
 		if(user == null) {
 			m.addAttribute("user",null);
 		}else {

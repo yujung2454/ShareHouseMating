@@ -63,14 +63,17 @@
 	</ul>
 </nav>
 <div class="mypage_title">
-	<h3>비밀번호확인</h3>
+	<h3>개인정보수정</h3>
 </div>
 <div class="password_confirm">
-	<h3 class="confirm">비밀번호확인</h3>
+<div><br>
+	<h4 class="confirm">비밀번호확인</h4></div>
 	<div class="input_frame">
 		<input type="password" class="password" name="password" autofocus="autofocus" >
 	</div>
+	<div class="btn">
 	<button type="button" class="pass_btn" onclick="passwordConfirm()">확인</button>
+	</div>
 </div>
 </body>
 <script>
@@ -90,7 +93,6 @@ function passwordQuestion(){
 	} else {
 		return false;
 	}
-
 }
 
 function passwordConfirm(){
@@ -125,6 +127,7 @@ $(function(){
 		}
 	})
 })
+
 
 </script>
 </html>

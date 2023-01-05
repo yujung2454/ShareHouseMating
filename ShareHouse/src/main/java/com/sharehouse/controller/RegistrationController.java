@@ -30,6 +30,7 @@ public class RegistrationController {
 
 	@Autowired
 	RegistrationService service;
+	
 
 	@GetMapping("/registration/registration_second")
 	public String registration_second(@AuthenticationPrincipal SecurityUser user, Model m) {
@@ -42,6 +43,7 @@ public class RegistrationController {
 		int boardNo = service.selectBoardno(id);
 		m.addAttribute("board_no",boardNo);
 		System.out.println(boardNo);
+
 		return "/registration/registration_second";
 	}
 
@@ -53,7 +55,11 @@ public class RegistrationController {
 
 	@GetMapping("/registration/registration_third/{board_no}")
 	public String registration_third(@AuthenticationPrincipal SecurityUser user, @PathVariable int board_no, Model m) {
-		System.out.println(board_no);
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		List<RegistrationDto> dto = service.select(board_no);
 		m.addAttribute("dto", dto);
 		m.addAttribute("board_no", board_no);
@@ -116,7 +122,6 @@ public class RegistrationController {
 		dto.setThumbnail(path);
 		service.update(dto);
 		path = upload(img_loc_file, request);
-		
 		int boardNo = rinfo.getBoard_no();
 		int lsize = rinfo.getRinfo().size();
 		for (int i = 0; i < lsize; i++) {

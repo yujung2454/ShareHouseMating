@@ -1,6 +1,26 @@
 @charset "UTF-8";
 .add_confirm{
 	position:absolute;
-	top:70%;
+	top:90%;
 	left:40%;
+}
+
+.user_info{
+	width:40%;
+	height:80%;
+}
+
+.btn-upload{
+	display: inline-block;
+	 cursor: pointer;
+	
+}
+
+.userimg {
+ 	  position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }

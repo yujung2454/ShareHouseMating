@@ -1,6 +1,8 @@
 @charset "UTF-8";
 .mypage_title{
 	position:relative;
+	margin-left:100px;
+	
 }
 
 .user_info{
@@ -9,6 +11,7 @@
 	width:30%;
 	left:15%;
 	height:50%;
+	margin-left:100px;
 }
 
 .uimg{
@@ -37,7 +40,21 @@
 
 .modify{
 	position:absolute;
-	top:80%;
-	left:29%;
+	top:90%;
+	left:42%;
 	cursor:pointer;
+	font-size:12px;
+	width:15%;
+	color:white;
+	background-color:green;
+	border-radius: 6px;
+	border-style: solid;
+	border-width: thin;
 }
+
+.ok_btn{
+	margin-top:5px;
+	margin-left:280px;
+	
+}
+

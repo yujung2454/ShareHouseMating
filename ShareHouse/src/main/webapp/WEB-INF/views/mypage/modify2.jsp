@@ -76,10 +76,14 @@
 				<img id="uimg" src="/images/profil.png">
 			</c:if>
 		</div>
+		
+		<label for="userimg"></label>
+			<div class="btn-upload">이미지 변경</div>
 		<input type="file" onchange="preview(this)" name="userimg" class="image_input">
+		
 		<div class="uframe">
 			<div class="uframe2">
-				이름 : 
+				&nbsp; 이름 :&nbsp; 
 			</div>
 			<div id="uname">
 				<input id="userid" name="name" value="${user.name }">
@@ -87,7 +91,7 @@
 		</div>
 		<div class="uframe">
 			<div class="uframe2">
-				새 비밀번호 : 
+				&nbsp; 새 비밀번호 :&nbsp; 
 			</div>
 			<div id="uname">
 				<input id="userpwd" type="password">
@@ -95,16 +99,16 @@
 		</div>
 		<div class="uframe">
 			<div class="uframe2">
-				새 비밀번호 확인 : 
+			&nbsp; 	새 비밀번호 확인 :&nbsp; 
 			</div>
 			<div id="uname">
 				<input id="userpwdconfirm" name="pwd" type="password">
 			</div>
-			<button type="button" onclick="passwordConfirm()">확인</button>
+			<button type="button" class="ok_btn" onclick="passwordConfirm()">확인</button>
 		</div>
 		<div class="uframe">
 			<div class="uframe2">
-				이메일 : 
+				&nbsp; 이메일 :&nbsp; 
 			</div>
 			<div id="uemail">
 				<input id="useremail" name="email" value="${user.email }">
@@ -112,7 +116,7 @@
 		</div>
 		<div class="uframe">
 			<div class="uframe2">
-				전화번호 : 
+				&nbsp; 전화번호 :&nbsp; 
 			</div>
 			<div id="utel">
 				<input id="usertel" name="tel" value="${user.tel }">
@@ -120,7 +124,7 @@
 		</div>
 		<div class="uframe addmodify">
 			<div class="uframe2">
-				거주지 : 
+				&nbsp; 거주지 :&nbsp; 
 			</div>
 			<div id="uadd">
 				${user.user_add } ${user.user_add2 }
@@ -141,8 +145,8 @@
 			</div>
 			<button type="button" class="add_modify">주소수정하기</button>
 		</div>
+			<input type="submit" class="add_confirm" value="수정하기">
 	</div>
-	<input type="submit" class="add_confirm" value="수정하기">
 </form>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -170,6 +174,7 @@ $(function(){
 	})
 })
 
+>>>>>>> refs/heads/master
 function passwordConfirm(){
 	var password1 = document.getElementById('userpwd').value
 	var password2 = document.getElementById('userpwdconfirm').value

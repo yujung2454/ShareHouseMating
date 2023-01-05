@@ -4,18 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sharehouse.dao.MyPageDao">
 
-	<select id="apply" resultType="com.sharehouse.dto.MyPageDto">
-		select u.id, u.name, u.email, u.tel, o.title from applyoffering a inner join 
-		user u on a.id = u.id inner join offering o on a.id = o.id where u.id = #{id}
-	</select>
+	<update id="state" parameterType="map">
+		update room_info set state = 'y' where room_name = #{room_name} and board_no = #{board_no}
+	</update>
 		
-	<select id="room" resultType="com.sharehouse.dto.MyPageDto">
-		select a.id, r.room_name from room_info r inner join applyoffering a on r.board_no = a.board_no
-		where a.id = #{id}
+	<delete id="delete"  parameterType="int">
+		delete from applyoffering where myno = #{myno}
+	</delete>
+	
+	<select id="apply" parameterType="String" resultType="com.sharehouse.dto.MyPageDto">
+		select o.id as oid, a.id as aid, o.board_no, u.tel, u.email, a.room_name, o.title, u.name , a.myno
+		from offering o inner join room_info r on o.board_no = r.board_no 
+		inner join applyoffering a on a.room_name = r.room_name and a.board_no = r.board_no
+		inner join user u on a.id = u.id
+		where o.id = #{id}
 	</select>
 	
-	<delete id="delete"  parameterType="int">
-		delete from apply where id = #{id}
-	</delete>
+	<select id="wish" parameterType="String" resultType="com.sharehouse.dto.MyPageDto">
+		select w.id,w.board_no,o.title,o.offering_add,r.rental from offering o inner join room_info r on o.board_no = r.board_no
+		inner join wish_info w on r.board_no = w.board_no
+	</select>
+	
 	
 </mapper>

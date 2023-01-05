@@ -1,13 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>쉐어하우스란?</title>
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/offerlist.css" rel="stylesheet">
 <link href="/css/quick.css" rel="stylesheet">
 </head>
 <body>
+<div class="fixed">
 <div id="uppernav">
 		<div id="main">
 			<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
@@ -15,13 +19,12 @@
 		</div>
 		<ul class="upper_frame">
 			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
-			<li class="upper_menu"><a href="/search/searchlist">방 찾기</a></li>
+			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
 			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
 			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
-			<li class="upper_menu">문의</li>
+			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -31,12 +34,31 @@
 						<a href="/mypage/info"><img src="/images/profil.png"></a>
 					</c:if>
 					<c:if test="${user.user_Img != null}">
-						<a href="/mypage/info"><img src="${user.user_img}"></a>
+						<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
 					</c:if>
+					<a href="/logout" class="logout">로그아웃</a>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<a href="/admin/admin_main">관리자페이지</a>
+					</sec:authorize>
 				</c:if>
 			</span>
 		</div>
 	</div>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
+</div>
+
 <h1 style="margin-left:200px;">쉐어하우스란?</h1>
 <form>
 <div style="text-align:center;">
@@ -52,5 +74,16 @@
 </b></pre>
 </div>
 </form>
+<script>
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
+
+</script>
 </body>
 </html>

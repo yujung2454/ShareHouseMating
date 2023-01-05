@@ -38,7 +38,7 @@
 							<a href="/mypage/info"><img src="/images/profil.png"></a>
 						</c:if>
 						<c:if test="${user.user_Img != null}">
-							<a href="/mypage/info"><img src="${user.user_img}"></a>
+							<a href="/mypage/info"><img src="${user.user_Img}"></a>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -54,8 +54,7 @@
 	<div id="center">
 		<!-- 게시글 리스트 테이블 -->
 		<div id="title">
-			<a href="/myPage/myPage_community">ee</a> <a href="community_list"
-				class="community_list">커뮤니티</a>
+			<a href="community_list" class="community_list">커뮤니티</a>
 		</div>
 		<hr>
 		<!-- 검색창 -->
@@ -116,7 +115,7 @@
 							<tr class="notice">
 								<td><a href="community_view/${comm.comm_no}">${comm.comm_no}</a></td>
 								<td><a href="community_view/${comm.comm_no}">★${comm.comm_title}</a></td>
-								<td>${user.user_img}${comm.id}</td>
+								<td>${user.user_Img}${comm.id}</td>
 								<td><fmt:formatDate value="${comm.comm_date}"
 										dateStyle="short" /></td>
 								<td>${comm.comm_v_cnt}</td>
@@ -126,7 +125,7 @@
 							<tr>
 								<td><a href="community_view/${comm.comm_no}">${comm.comm_no}</a></td>
 								<td><a href="community_view/${comm.comm_no}">${comm.comm_title}</a></td>
-								<td>${user.user_img}${comm.id}</td>
+								<td>${user.user_Img}${comm.id}</td>
 								<td><fmt:formatDate value="${comm.comm_date}"
 										dateStyle="short" /></td>
 								<td>${comm.comm_v_cnt}</td>

@@ -13,6 +13,7 @@
 		border-collapse : collapse;
 		border-left : 0;
 		border-right : 0;
+		margin-left:50px;
 }
 
 thead > th {
@@ -68,4 +69,10 @@ table{
 	top:40%;
 	left:17%;
 	width:50%;
+}
+
+.mypage_title{
+	position:relative;
+	margin-left:100px;
+	
 }

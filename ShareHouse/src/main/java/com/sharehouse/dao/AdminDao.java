@@ -13,22 +13,34 @@ import com.sharehouse.dto.UsersDto;
 @Mapper
 public interface AdminDao {
 	
+	@Select
+	("select comm_no,id,comm_title,comm_v_cnt from comm limit #{start} , #{count}")
 	List<AdminDto> commviewlist(Map<String, Object> m);
+	
+	@Select
+	("select board_no,id,title,v_cnt from offering limit #{start} , #{count}")
 	List<AdminDto> boardviewlist(Map<String, Object> m);
-	int countSearch(Map<String, Object> m); // 전체 글 갯수
-	List<AdminDto> Sort(Map<String, Object> m);
+
+	
+	@Select
+	("select count(*) from comm c inner join offering o on c.id = o.id ")
 	int count();
 	
 	@Select
 	("select * from user limit #{start} , #{count}")
 	List<UsersDto> userList(Map<String , Object> m);
 	
-
+	@Select
+	("select * from user where id like concat('%' , #{search} , '%') limit #{start} , #{count}")
 	List<UsersDto> search(Map<String , Object> m);
 
 	@Select
 	("select count(*) from user")
 	int countUser();
+	
+	@Select
+	("select count(*) from user where id like concat('%', #{search} , '%')")
+	int countSearch(Map<String, Object> m);
 
 
 	int stopUser(String[] id);

@@ -21,19 +21,17 @@ public class AdminService {
 		return dao.count();
 	}
 	
-	public List<AdminDto> commviewlist(String sort, int start){
+	public List<AdminDto> commviewlist(int start){
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 10);
-		m.put("sort", sort);
 		return dao.commviewlist(m);
 	}
 	
-	public List<AdminDto> boardviewlist(String sort, int start){
+	public List<AdminDto> boardviewlist(int start){
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("count", 10);
-		m.put("sort", sort);
 		return dao.boardviewlist(m);
 	}
   

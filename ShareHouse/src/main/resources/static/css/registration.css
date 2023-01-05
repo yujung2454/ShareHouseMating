@@ -3,13 +3,17 @@
 
 .plus { 
 	
-	margin-left:360px;
+	margin-left:290px;
 	margin-right:10px;
 	margin-bottom:10px;
 	width:60px;
 	height:30px;
 	float:left;
 	clear:both;
+	background-color:yellow;
+	border-radius:8px;
+	border-style:solid;
+	border-width:thin;
 }
 
 .plustext {
@@ -95,6 +99,9 @@
 	
   }
   
+.img {
+	margin-left:290px; margin-bottom:10px;
+}
 .btnfunc {
 	text-align:center;
 }
@@ -107,3 +114,12 @@
             visibility: hidden;
         }
 
+.title1 {
+	margin-left:380px;
+}
+
+.table_1 {
+	width:500px;
+	height:250px;
+	
+}
