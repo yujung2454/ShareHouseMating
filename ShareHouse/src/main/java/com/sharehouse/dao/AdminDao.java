@@ -13,10 +13,17 @@ import com.sharehouse.dto.UsersDto;
 @Mapper
 public interface AdminDao {
 	
+	@Select
+	("select comm_no,id,comm_title,comm_v_cnt from comm limit #{start} , #{count}")
 	List<AdminDto> commviewlist(Map<String, Object> m);
+	
+	@Select
+	("select board_no,id,title,v_cnt from offering limit #{start} , #{count}")
 	List<AdminDto> boardviewlist(Map<String, Object> m);
-	 // 전체 글 갯수
-	List<AdminDto> Sort(Map<String, Object> m);
+
+	
+	@Select
+	("select count(*) from comm c inner join offering o on c.id = o.id ")
 	int count();
 	
 	@Select

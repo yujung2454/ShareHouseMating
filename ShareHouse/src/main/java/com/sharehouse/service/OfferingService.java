@@ -61,4 +61,6 @@ public class OfferingService {
 		return dao.wish(map);
 		
 	}
+	
+	
 }

@@ -15,9 +15,9 @@ import com.sharehouse.dto.MyPageDto;
 @Mapper
 public interface MyPageDao {
 	List<MyPageDto> apply(String id);
-	List<MyPageDto> room(String id);
 
-	int delete(String id);
+	int delete(int myno);
+	int state(Map<String, Object> m);
 
 	@Select
 	("select * from comm where id = #{id} limit #{start} , #{count}")

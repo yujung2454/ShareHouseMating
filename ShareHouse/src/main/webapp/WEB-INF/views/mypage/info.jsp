@@ -56,7 +56,7 @@
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
 		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
-		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
 		<li class="mypage_sidebar">문의 내역</li>
@@ -76,7 +76,7 @@
 	</div>
 	<div class="uframe">
 		<div class="uframe2">
-			이름 : 
+			&nbsp; 이름 :&nbsp;
 		</div>
 		<div id="uname">
 			${user.name }
@@ -84,7 +84,7 @@
 	</div>
 	<div class="uframe">
 		<div class="uframe2">
-			이메일 : 
+			&nbsp; 이메일 :&nbsp;
 		</div>
 		<div id="uemail">
 			${user.email }
@@ -92,7 +92,7 @@
 	</div>
 	<div class="uframe">
 		<div class="uframe2">
-			전화번호 : 
+			&nbsp; 전화번호 :&nbsp;
 		</div>
 		<div id="utel">
 			${user.tel } 
@@ -100,14 +100,15 @@
 	</div>
 	<div class="uframe">
 		<div class="uframe2">
-			거주지 : 
+			&nbsp; 거주지 :&nbsp;
 		</div>
 		<div id="uadd">
-			${user.user_add } ${user.user_add2 }
+			${user.user_add } <br>&nbsp; ${user.user_add2 }
 		</div>
 	</div>
+	<button class="modify" onclick="passwordQuestion()">수정</button>
 </div>
-<button class="modify" onclick="passwordQuestion()">수정</button>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>

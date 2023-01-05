@@ -18,7 +18,7 @@
 	}
 	a{
 		text-decoration : none;
-		color : white;
+		
 	}
 	nav{
 		background-color : #444444;
@@ -35,6 +35,9 @@
 		line-height : 3rem;
 		text-align : center;
 		cursor:pointer;
+	}
+	ul > li > a{
+		color : white;
 	}
 	li:hover{
 		background-color:#565656;
