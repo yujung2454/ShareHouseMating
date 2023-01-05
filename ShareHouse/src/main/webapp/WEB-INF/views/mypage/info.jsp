@@ -55,7 +55,7 @@
 		<li class="mypage_sidebar"><a href="/mypage/info">회원정보</a><br></li>
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
-		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/myPage_community">- 매물/게시글 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
@@ -100,10 +100,16 @@
 	</div>
 	<div class="uframe">
 		<div class="uframe2">
-			&nbsp; 거주지 :&nbsp;
+			&nbsp; 주소 :&nbsp;
 		</div>
 		<div id="uadd">
-			${user.user_add } <br>&nbsp; ${user.user_add2 }
+			${user.user_add }
+		</div>
+		<div class="uframe2">
+			&nbsp; 상세주소 :&nbsp;
+		</div>
+		<div id="uadd">
+		${user.user_add2 }
 		</div>
 	</div>
 	<button class="modify" onclick="passwordQuestion()">수정</button>

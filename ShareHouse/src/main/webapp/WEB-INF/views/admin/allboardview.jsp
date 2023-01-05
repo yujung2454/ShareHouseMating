@@ -15,28 +15,25 @@
 			<span><img src="/images/home.png"></span><span style="text-align : center; line-height:3rem; font-size : 1.5rem;">우리 집</span>
 			</div>
 				<ul>
-					<li>통계</li>
 					<li><a href="/admin/admin_notice">공지사항 관리</a></li>
-					<li>대기매물 승인</li>
 					<li><a href="/admin/user_manage">회원관리</a></li>
-					<li>신고리스트</li>
-					<li>문의리스트</li>
-					<li>모든 게시물 보기</li>
-					<li>꾸미기</li>
-					<li>사이트 설정</li>
+					<li><a href="/admin/report_list">신고리스트</a></li>
+					<li><a href="/admin/ad_query_list">문의리스트</a></li>
+					<li><a href="/admin/allboardview">모든 게시물 보기</a></li>
+					<li><a href="/popup">메인 팝업 관리</a></li>
 				</ul>				
 			</nav>
 		</aside>
-<h1 style="margin-left:200px;">모든 게시물 보기</h1>
+<h1 style="margin-left:400px;">모든 게시물 보기</h1>
 <div>
-<select id="select" name="select" onchange="change()" style="margin-left:200px; width:100px; height:30px">
+<select id="select" name="select" onchange="change()" style="margin-left:150px; margin-bottom:10px; width:100px; height:30px">
 <option value="all">전체보기</option>
 <option value="commview">커뮤니티</option>
 <option value="boardview">매물</option>
 </select>
 </div>
 <div id="view">
-<table class="table_list" border="1" >
+<table class="table_list" border="1" style="margin-left:400px;">
 <tr class="commline" bgcolor="#aaaaaa">
 <td colspan='4'> 커뮤니티 </td>
 </tr>

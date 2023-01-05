@@ -3,6 +3,12 @@
 	position:absolute;
 	top:90%;
 	left:40%;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color:#99ff00;
+	border-style:"solid";
+	border-width:thin;
+	
 }
 
 .user_info{
@@ -16,11 +22,22 @@
 	
 }
 
-.userimg {
+.image_input {
  	  position: absolute;
     width: 0;
     height: 0;
     padding: 0;
     overflow: hidden;
     border: 0;
+}
+
+.add_modify {
+	margin-left: 10px;
+}
+
+.userimg{
+  background-color:#FF6600;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
 }

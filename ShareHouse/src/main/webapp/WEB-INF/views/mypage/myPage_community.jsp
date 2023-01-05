@@ -57,6 +57,18 @@ table {
 			</div>
 		</div>
 	</header>
+	<nav class="mypagelist">
+<ul>
+		<li class="mypage_sidebar"><a href="/mypage/info">회원정보</a><br></li>
+		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
+		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/myPage_community">- 매물/게시글 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar">찜 내역<br></li>
+		<li class="mypage_sidebar">문의 내역</li>
+	</ul>
+</nav>
 	<input type="hidden" name="id" value="${user.id }">
 	<h1>내 게시물 보기</h1>
 	<div>
