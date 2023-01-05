@@ -93,15 +93,17 @@
 		</form>
 
 		<div>
+			<hr class="hr_community">
 			<div id="comment">
-			<hr class="hr_comment">
+				<hr class="hr_comment">
 				<c:forEach items="${commentList}" var="comm_comment">
 					<div>${comm_comment.id}
 						/
 						<fmt:formatDate value="${comm_comment.comment_date }"
 							dateStyle="short" />
 						<div class="report">
-							<input type="hidden" name="comment_no" value="${comment_no.comment_no}">
+							<input type="hidden" name="comment_no"
+								value="${comment_no.comment_no}">
 							<button class="report-comment" type="button">
 								<img src="/images/report.png">신고
 							</button>
@@ -109,7 +111,9 @@
 					</div>
 					<div>${comm_comment.comment_con}
 						<c:if test="${comm_comment.id == user.id }">
-							<button class="dbtn" id="${comm_comment.comment_no}"><img src="/images/del_btn.png"></button>
+							<button class="dbtn" id="${comm_comment.comment_no}">
+								<img src="/images/del_btn.png">
+							</button>
 						</c:if>
 						<form></form>
 					</div>
@@ -133,10 +137,6 @@
 				<a href=""> <img src="images/like.png" title="찜">
 				</a>
 			</div>
-			<div class="quick_shape">
-				<a href=""> <img src="images/chat.png" title="채팅">
-				</a>
-			</div>
 		</div>
 	</nav>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -154,32 +154,56 @@
 				return false;
 			})//click
 
-			$("#add").click(function() {
-				let id = "${user.id}"; // 세션에 저장된 id값
-				let comment_con = $("#content").val();
-				let comm_no = ${dto.comm_no};
+			$("#add")
+					.click(
+							function() {
+								let id = "${user.id}"; // 세션에 저장된 id값
+								let comment_con = $("#content").val();
+								let comm_no = $
+								{
+									dto.comm_no
+								}
+								;
 
-				$.ajax({url : "/comment/insert",
-						data : "comm_no=" + comm_no	+ "&id=" + id + "&comment_con=" + comment_con,
-						method : "get",
-						dataType : "json"
-				}).done(function(resp) {
-						let commentlist = "";
-						resp.forEach(function(comm_comment,index) {
-							commentlist += "<div>"+ comm_comment.id	+ " / "	+ new Date(comm_comment.comment_date).toLocaleDateString()
-							+ "</div><div>"+comm_comment.comment_con;
-							if (id == comm_comment.id) {
-								commentlist += '<button class="dbtn" id="'+comm_comment.comment_no+'">삭제</button>';
-							}
-							commentlist += "</div><hr>";
-						});
+								$
+										.ajax(
+												{
+													url : "/comment/insert",
+													data : "comm_no=" + comm_no
+															+ "&id=" + id
+															+ "&comment_con="
+															+ comment_con,
+													method : "get",
+													dataType : "json"
+												})
+										.done(
+												function(resp) {
+													let commentlist = "";
+													resp
+															.forEach(function(
+																	comm_comment,
+																	index) {
+																commentlist += "<div>"
+																		+ comm_comment.id
+																		+ " / "
+																		+ new Date(
+																				comm_comment.comment_date)
+																				.toLocaleDateString()
+																		+ "</div><div>"
+																		+ comm_comment.comment_con;
+																if (id == comm_comment.id) {
+																	commentlist += '<button class="dbtn" id="'+comm_comment.comment_no+'">삭제</button>';
+																}
+																commentlist += "</div><hr>";
+															});
 
-						$("#comment").html(commentlist);
-						$("#content").val("");
+													$("#comment").html(
+															commentlist);
+													$("#content").val("");
 
-					});
+												});
 
-				})//click
+							})//click
 			$("#comment").on("click", ".dbtn", function() {
 				let comment_no = $(this).attr("id");
 				$.ajax({
@@ -192,9 +216,10 @@
 			})//click
 		})//ready
 
-
 		$('.report-comm')
-				.on('click',function() {
+				.on(
+						'click',
+						function() {
 							var url = "/report_maemul/${dto.comm_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";
@@ -202,7 +227,9 @@
 						});
 
 		$('.report-comment')
-				.on('click',function() {
+				.on(
+						'click',
+						function() {
 							var url = "/report_maemul/${comment_no.comment_no}";
 							var name = "CalPopup";
 							var option = "width = 600, height = 600, left = 100, top = 50, location=no";

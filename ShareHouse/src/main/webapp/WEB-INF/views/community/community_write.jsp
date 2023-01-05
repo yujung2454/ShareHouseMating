@@ -98,11 +98,7 @@
 			<img src="images/like.png" title="찜">
 		</a>
 	</div>
-	<div class="quick_shape">
-		<a href="">
-			<img src="images/chat.png" title="채팅">
-		</a>
-	</div>
+	
 </div>
 </nav>
 <footer>

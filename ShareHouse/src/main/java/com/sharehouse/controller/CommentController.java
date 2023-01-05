@@ -24,9 +24,10 @@ public class CommentController {
 		service.insertComment(dto); 
 		List<CommentDto> commentList = service.selectComment(dto.getComm_no()); 
 		Gson gson = new Gson(); 
-		int comment_no = service.selectId(comm_no);
-		m.addAttribute("comment_no", comment_no);
-		return gson.toJson(commentList); 
+		/*
+		 * int comment_no = service.selectId(comm_no); m.addAttribute("comment_no",
+		 * comment_no);
+		 */return gson.toJson(commentList); 
 	}
 		
 	@GetMapping("/comment/delete/{comment_no}")

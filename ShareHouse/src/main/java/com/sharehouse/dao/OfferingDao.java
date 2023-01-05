@@ -27,7 +27,11 @@ public interface OfferingDao {
 	 Map<String, Object> selectRoom(int board_no);
 	 
 	 @Select
-	 ("select distinct o.board_no, o.offering_gender, r.square, r.deposit, r.rental, r.mem_cnt , i.room_name from offering o inner join room_info r on o.board_no = r.board_no inner join room_info_1 i on r.board_no = i.board_no where o.board_no = #{board_no}")
+	 ("select distinct img_loc from room_info where board_no = #{board_no}")
+	 String drawing(int board_no);
+	 
+	 @Select
+	 ("select distinct o.board_no, o.offering_gender, r.square, r.deposit, r.rental, r.mem_cnt , r.state, i.room_name from offering o inner join room_info r on o.board_no = r.board_no inner join room_info_1 i on r.board_no = i.board_no where o.board_no = #{board_no} and state = 'n'")
 	 List<Map<String, Object>> roominfoTable(int board_no);
 	 
 	 @Select

@@ -53,9 +53,9 @@
 	<div id="search" >
 		<ul>
 			<li><img src="/images/search.png"></li>
-			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="50"></li>
+			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="45" autofocus></li>
 			<li>
-				<button type="submit">검색</button>
+				<button type="submit" class="submit">검색</button>
 			</li>
 			<li>
 				<a href="/detailsearch"><img src="/images/detailsearch.png" alt="상세검색" title="상세검색"></a>
@@ -64,7 +64,8 @@
 	</div>
 	<input id="latlng" name="latlng" type="hidden">
 </form>
-</div>
+</div><br>
+<hr><br>
 <jsp:include page="popup/popup.jsp"/>
 <div style="position:absolute; width:60%; left:19%;">
 	<div class="offering_lst">

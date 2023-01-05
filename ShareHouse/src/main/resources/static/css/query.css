@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@charset "UTF-8";
+
 	#center{
 		width : 50%;
 		margin : auto;
@@ -9,7 +11,7 @@
 		height : 0.1rem;
 		background-color : black;
 	}
-	.community_list{
+	.query_list{
 		font-size : 40px;
 	}
 	
@@ -22,16 +24,13 @@
 		padding : 10px;
 	}
 	
-	#search_community input{
+	#search_query input{
 		height:32px;
 		padding-left:10px;
 		font-size : 1rem;
 		width : 35%;
 	}
-	.sequence_sort{
-		display:inline-block;
-	}
-	.community_write{
+	.query_write{
 		background-color : #4CAF50;	
 		color : white;
 		cursor : pointer;
@@ -137,12 +136,18 @@
 		width : 100%;
 		marging:auto;
 	}
-	.subject , .user  {
+	.subject {
 		border : 1px solid gray;
 		line-height : 2.5rem;
 		padding-left:1rem;
 		height : 40px;
 	}
+	 .user  {
+	 border : 1px solid gray;
+		line-height : 2.5rem;
+		padding-left:1rem;
+		height : 80px;
+	 }
 	.subject , .user , .content{
 		margin-top : 10px;
 		margin-bottom : 10px;
@@ -172,6 +177,7 @@
 	#list{
 		background-color : #555555;
 	}
+	
 	.content_info{
 		border : 1px solid gray;
 		line-height : 2.5rem;
@@ -190,12 +196,8 @@
 		min-height : 30rem;
 		font-size : 1.4rem;
 	}
-	.writer , .date , .view_count {
+	.writer , .date , .view_count , .category{
 		display : inline-block;
-	}
-	.report{
-		float : right;
-		line-height:3rem;
 	}
 	.update , .delete , .redirect{
 		background-color : #4CAF50;	
@@ -211,7 +213,34 @@
 	.btn{
 		text-align:center;
 	}
-	
+	.answer{
+		border:1px solid gray;
+		border-radius : 12px;
+	}
+	.answer_input{
+		border : none;
+		width : 100%;
+		outline-style : none;
+		padding-top:1rem;
+		padding-bottom : 1rem;
+		border-radius:12px;
+		background-color : lightgray;
+	}
+	.submit{
+		border : none;
+		text-align : right;
+		border-radius : 12px;
+		background-color : white;
+		font-weight : 700;
+		width : 100%;
+		cursor : pointer;
+	}
+	.answer_content{
+		text-align:center;
+	}
+	.answer_update{
+		text-align : right;
+	}
 	#comment{
 		margin-top : 5rem;
 		background-color : #f5f5f5;

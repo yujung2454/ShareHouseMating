@@ -33,10 +33,10 @@ public class OfferingController {
 		}else {
 			m.addAttribute("user",user.getUsers());
 		}
-		OfferingDto dto = service.selectNo(board_no);
-		m.addAttribute("dto",dto);
 		Map<String, Object> offeringdto = service.SelectRoom(board_no);
 		m.addAttribute("offeringdto" , offeringdto);
+		String drawing = service.drawing(board_no);
+		m.addAttribute("drawing", drawing);
 		List<Map<String, Object>> oList = service.roominfoTable(board_no);
 		m.addAttribute("oList", oList);
 		List<String> rList = service.room_name(board_no);
@@ -62,7 +62,7 @@ public class OfferingController {
 		
 		System.out.println();
 		service.apply(user.getUsers().getId(), board_no,room_name );
-		return "offer/detail_info";
+		return "redirect:/offer/detail_info/"+board_no;
 	}
 	
 	@DeleteMapping("/offer/delete")

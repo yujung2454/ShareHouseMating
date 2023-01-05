@@ -66,7 +66,35 @@ li {
 
 #search{
 	position:absolute;
-	left: 30%;
+	width : 100%;
+	text-align : center;
 	top: 20%;
 }
-
+#search > ul{
+	list-style-type: none;
+    width: 55%;
+    margin: auto;
+    padding: 0;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+#search > ul > li{
+	line-height:3;
+	height :3.5rem;
+	display : inline-block;
+	padding : 12px;
+}
+#location{
+	font-size:1.6rem;
+	height:3rem;
+	border:none;
+	outline-style:none;
+}
+.submit{
+	height : 3rem;	
+	width : 4.8rem;
+	border-radius : 30px;
+	cursor : pointer;
+	border:none;
+	background-color : 
+}
