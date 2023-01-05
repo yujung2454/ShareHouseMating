@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +49,6 @@
 			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -70,6 +70,18 @@
 			</span>
 		</div>
 	</div>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
+</div>
 <form >
 	<div id="box" >
 		<input type="button" value="방 추가" class="plus" onclick="textbox()">
@@ -85,10 +97,11 @@
 </div>
 
 <div id='image_preview'>
-<input type='file' id='btnAtt' multiple='multiple' name='file' style="margin-left:360px; margin-bottom:10px;"/>
+<input type='file' id='btnAtt' multiple='multiple' name='file' class="img"/>
 	<div id='att_zone' 
-	      data-placeholder="방 추가 버튼을 눌러 방이름을 정해주시고 방에 해당되는 이미지를 넣어주세요.
-	      					이미지를 첨부한 후 저장 버튼을 눌러주세요."></div><br>
+	      data-placeholder="방 추가 버튼을 눌러 방이름을 정해주시고 방에 해당되는
+	      					이미지를 첨부한 후 저장 버튼을 눌러주세요.
+	      					(최대 8장)"></div><br>
 </div>
 
 <div class="btnfunc">
@@ -99,7 +112,6 @@
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-<<<<<<< HEAD
 function s_location(){
 	navigator.geolocation.getCurrentPosition(function(pos) {
 	    var latitude = pos.coords.latitude;
@@ -108,8 +120,7 @@ function s_location(){
 	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
 	})
 }
-=======
->>>>>>> refs/heads/master
+
 	function textbox() {
         var room_name = prompt("방 이름을 입력해주세요.");
         const box = document.getElementById("box");

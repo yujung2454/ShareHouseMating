@@ -11,7 +11,7 @@ import com.sharehouse.dto.RegistrationDto;
 public interface RegistrationDao {
 	
 	int insert(RegistrationDto dto);
-	List<RegistrationDto> insert2();
+	int insert2(RegistrationDto dto);
 	int update(RegistrationDto dto);
 	List<RegistrationDto> fileList();
 	@Select("select distinct room_name, board_no from room_info_1 where board_no = #{board_no} order by image_no desc")

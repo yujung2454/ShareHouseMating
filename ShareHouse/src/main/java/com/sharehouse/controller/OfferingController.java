@@ -62,7 +62,7 @@ public class OfferingController {
 		
 		System.out.println();
 		service.apply(user.getUsers().getId(), board_no,room_name );
-		return "offer/detail_info";
+		return "redirect:/offer/detail_info/"+board_no;
 	}
 	
 	@DeleteMapping("/offer/delete")

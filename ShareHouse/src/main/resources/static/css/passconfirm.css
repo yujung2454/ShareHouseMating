@@ -2,7 +2,7 @@
 .password_confirm{
 	left:40%;
 	top:40%;
-	position:absolute;
+	margin:auto;
 	border:solid thin;
 	width:300px;
 	height:200px;
@@ -14,12 +14,28 @@
 }
 
 .password{
-	position:relative;
+	
 	align-content: center;
+	display: inline-block;
+	
 }
 
 .input_frame{
-	margin:0 auto;
+	
+	justify-content: center;
+	display: flex; 
+}
+
+
+
+.mypage_title{
 	position:relative;
-	display:block;
+	margin-left:300px;
+	
+}
+
+.btn{
+	margin-top:15px;
+	justify-content: center;
+	display: flex; 
 }

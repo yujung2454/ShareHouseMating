@@ -11,16 +11,10 @@
 <link href="/css/quick.css" rel="stylesheet">
 <link href="/css/mypage.css" rel="stylesheet">
 <link href="/css/userinfo.css" rel="stylesheet">
-<style>
-table {
-	width:800px;
-	height:30%;
-	text-align:center;
-	margin:auto;
-}  
-</style>
+<link href="/css/application.css" rel="stylesheet">
 </head>
 <body>
+
 <div class="fixed">
 <div id="uppernav">
 		<div id="main">
@@ -35,7 +29,6 @@ table {
 			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -57,6 +50,17 @@ table {
 			</span>
 		</div>
 	</div>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
 </div>
 <nav class="mypagelist">
 	<ul>
@@ -65,6 +69,7 @@ table {
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
 		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
 		<li class="mypage_sidebar">문의 내역</li>
 	</ul>
@@ -73,7 +78,7 @@ table {
 <h1>입주신청목록</h1>
 <p>입주신청자명단</p>
 </div>
-<table border="1">
+<table class="table_list">
 <tr>
 <td>입주신청자</td>
 <td>핸드폰</td>

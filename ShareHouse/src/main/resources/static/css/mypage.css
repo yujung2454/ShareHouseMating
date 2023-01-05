@@ -4,15 +4,17 @@
 	background-color:#eee;
 	border-right:1px solid #ddd;
 	position:fixed;
-	height:100%
+	margin-left:15px;
+	height:100%;
+	text-align:center;
 }
 
 .mypage_sidebar{
 	display:inline-block;
 	width:100%;
-	margin:20% 0;
+	margin:15% 0;
 	font-size: 15pt;
-	left: 7%;
+	
 	position:relative;
 	
 }

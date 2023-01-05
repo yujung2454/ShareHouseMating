@@ -165,8 +165,4 @@ $(function(){
 })
 
 </script>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/heads/master
 </html>

@@ -54,6 +54,11 @@ public class RegistrationController {
 
 	@GetMapping("/registration/registration_third/{board_no}")
 	public String registration_third(@AuthenticationPrincipal SecurityUser user, @PathVariable int board_no, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		List<RegistrationDto> dto = service.select(board_no);
 		m.addAttribute("dto", dto);
 		m.addAttribute("board_no", board_no);
@@ -116,7 +121,8 @@ public class RegistrationController {
 		service.update(dto);
 		path = upload(img_loc_file, request);
 		dto.setImg_loc(path);
-		List<RegistrationDto> rlist = service.insert2();
+		service.insert2(dto);
+		dto.getRoom_name();
 		System.out.println("저장 성공"); 
 		return "redirect:/";
 	}

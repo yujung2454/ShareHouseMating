@@ -49,4 +49,5 @@ public interface OfferingDao {
 	 @Insert
 	 ("insert into wish_info (id, board_no) values (#{id} , #{board_no})")
 	 int wish(Map<String, Object> map);
+	 
 }

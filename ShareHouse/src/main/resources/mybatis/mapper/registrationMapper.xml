@@ -10,7 +10,7 @@
 	</insert> 
 	
 	<update id="update" parameterType="com.sharehouse.dto.RegistrationDto">
-		update offering set thumbnail = #{thumbnail}, offering_info = #{offering_info}, offering_gender = #{offering_gender} where board_no = #{board_no}
+		update offering set thumbnail = #{thumbnail}, offering_info = #{offering_info} where board_no = #{board_no}
 	</update>
 
 	<insert id="insert2" parameterType="com.sharehouse.dto.RegistrationDto">

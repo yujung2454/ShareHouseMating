@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호확인</title>
+<title>개인정보확인</title>
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/offerlist.css" rel="stylesheet">
 <link href="/css/quick.css" rel="stylesheet">
 <link href="/css/mypage.css" rel="stylesheet">
-<link href="/css/passconfirm.css" rel="stylesheet">
+<link href="/css/userinfo.css" rel="stylesheet">
 </head>
 <body>
 <div class="fixed">
@@ -56,23 +56,61 @@
 		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
 		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
 		<li class="mypage_sidebar under">- 매물/게시글 목록<br></li>
-		<li class="mypage_sidebar under"><a href="/mypage/application/${user.id }">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar">찜 내역<br></li>
 		<li class="mypage_sidebar">문의 내역</li>
 	</ul>
 </nav>
 <div class="mypage_title">
-	<h3>비밀번호확인</h3>
+	<h3>개인정보확인</h3>
 </div>
-<div class="password_confirm">
-	<h3 class="confirm">비밀번호확인</h3>
-	<div class="input_frame">
-		<input type="password" class="password" name="password" autofocus="autofocus" >
+<div class="user_info">
+	<div class="uimg">
+		<c:if test="${user.user_Img != null }">
+			<img id="uimg" src="${user.user_Img }">
+		</c:if>
+		<c:if test="${user.user_Img == null }">
+			<img id="uimg" src="/images/profil.png">
+		</c:if>
 	</div>
-	<button type="button" class="pass_btn" onclick="passwordConfirm()">확인</button>
+	<div class="uframe">
+		<div class="uframe2">
+			&nbsp; 이름 :&nbsp;
+		</div>
+		<div id="uname">
+			${user.name }
+		</div>
+	</div>
+	<div class="uframe">
+		<div class="uframe2">
+			&nbsp; 이메일 :&nbsp;
+		</div>
+		<div id="uemail">
+			${user.email }
+		</div>
+	</div>
+	<div class="uframe">
+		<div class="uframe2">
+			&nbsp; 전화번호 :&nbsp;
+		</div>
+		<div id="utel">
+			${user.tel } 
+		</div>
+	</div>
+	<div class="uframe">
+		<div class="uframe2">
+			&nbsp; 거주지 :&nbsp;
+		</div>
+		<div id="uadd">
+			${user.user_add } <br>&nbsp; ${user.user_add2 }
+		</div>
+	</div>
+	<button class="modify" onclick="passwordQuestion()">수정</button>
 </div>
+
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 function passwordQuestion(){
 	var result = confirm("개인정보를 수정하시겠습니까?")
@@ -81,25 +119,6 @@ function passwordQuestion(){
 	} else {
 		return false;
 	}
-}
-
-function passwordConfirm(){
-	var password = document.querySelector('.password').value;
-	
-	fetch('/mypage/confirm/'+password,{
-		method:'POST',
-		credentials:'include',
-	})
-	.then((response) => response.json())
-	.then((result) => {
-		if (eval(result == true)){
-			location.href='/mypage/modify2'
-		} else {
-			alert('비밀번호를 다시 확인하세요')
-			return false;
-		}
-	})
-	.catch((error) => alert('error',error))
 }
 
 $(function(){
@@ -115,7 +134,5 @@ $(function(){
 		}
 	})
 })
-
->>>>>>> refs/heads/master
 </script>
 </html>

@@ -36,8 +36,8 @@ public class AdminController {
 					int perPage = 10; // 한 페이지에 보일 글의 갯수
 					int startRow = (page - 1) * perPage; //한 페이지의 첫 글 인덱스 번호
 					
-					List<AdminDto> allviewlist1 = service.commviewlist(sort, startRow);
-					List<AdminDto> allviewlist2 = service.boardviewlist(sort, startRow);
+					List<AdminDto> allviewlist1 = service.commviewlist(startRow);
+					List<AdminDto> allviewlist2 = service.boardviewlist(startRow);
 					m.addAttribute("cList1", allviewlist1);
 					m.addAttribute("cList2", allviewlist2);
 
@@ -55,7 +55,6 @@ public class AdminController {
 					 m.addAttribute("totalPages", totalPages);
 					}
 				//글이 없을 시
-				m.addAttribute("sort", sort);
 				m.addAttribute("count", count);
 				return "admin/allboardview";
 			}
