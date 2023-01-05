@@ -11,6 +11,7 @@
 <title>상세검색</title>
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/searchcontent.css" rel="stylesheet">
+<link href="/css/quick.css" rel="stylesheet">
 </head>
 <body>
 <div class="fixed">
@@ -145,6 +146,18 @@
 </div>
 </div>
 </form>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/javascript/selectchange.js"></script>

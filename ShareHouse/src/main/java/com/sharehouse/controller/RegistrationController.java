@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sharehouse.config.SecurityUser;
 import com.sharehouse.dto.RegistrationDto;
+import com.sharehouse.dto.RoomInfoDto;
 import com.sharehouse.service.RegistrationService;
 
 @Controller
@@ -108,22 +109,30 @@ public class RegistrationController {
 	
 	
 	@PostMapping("/registration/third")
-	public String singlefileupload(@AuthenticationPrincipal SecurityUser user,Model m, RegistrationDto dto, MultipartFile update_file ,MultipartFile img_loc_file, HttpServletRequest request ) {
+	public String singlefileupload(@AuthenticationPrincipal SecurityUser user,Model m,  RoomInfoDto rinfo, RegistrationDto dto, MultipartFile update_file ,MultipartFile img_loc_file, HttpServletRequest request ) {
 		if(user == null) {
 			m.addAttribute("user",null);
 		}else {
 			m.addAttribute("user",user.getUsers());
 		}
+		System.out.println(rinfo);
 		//update 썸네일 where dto.getBoard_no
+			
 		String path = upload(update_file, request);
-		dto.getBoard_no();
 		dto.setThumbnail(path);
 		service.update(dto);
 		path = upload(img_loc_file, request);
-		dto.setImg_loc(path);
-		service.insert2(dto);
-		dto.getRoom_name();
-		System.out.println("저장 성공"); 
+		int boardNo = rinfo.getBoard_no();
+		int lsize = rinfo.getRinfo().size();
+		for (int i = 0; i < lsize; i++) {
+			RegistrationDto registration = rinfo.getRinfo().get(i);
+			registration.setBoard_no(boardNo);
+			registration.setImg_loc(path);
+			service.insert2(registration);
+		}
+		//service.insert2(dto); 
+		//System.out.println("저장 성공");
+ 
 		return "redirect:/";
 	}
 	
