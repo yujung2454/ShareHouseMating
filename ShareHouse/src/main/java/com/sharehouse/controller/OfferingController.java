@@ -37,6 +37,8 @@ public class OfferingController {
 		m.addAttribute("dto",dto);
 		Map<String, Object> offeringdto = service.SelectRoom(board_no);
 		m.addAttribute("offeringdto" , offeringdto);
+		String drawing = service.drawing(board_no);
+		m.addAttribute("drawing", drawing);
 		List<Map<String, Object>> oList = service.roominfoTable(board_no);
 		m.addAttribute("oList", oList);
 		List<String> rList = service.room_name(board_no);

@@ -53,7 +53,7 @@
 	<div id="search" >
 		<ul>
 			<li><img src="/images/search.png"></li>
-			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="50"></li>
+			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="45" autofocus></li>
 			<li>
 				<button type="submit">검색</button>
 			</li>
@@ -64,7 +64,7 @@
 	</div>
 	<input id="latlng" name="latlng" type="hidden">
 </form>
-</div>
+</div><br><hr><br>
 <div class="frame">
 	<div id="map"></div>
 	<div class="list_frame">

@@ -25,6 +25,10 @@ public class OfferingService {
 	public Map<String, Object> SelectRoom(int board_no){ 
 		return dao.selectRoom(board_no); 
 	}
+	
+	public String drawing(int board_no){
+		return dao.drawing(board_no);
+	}
 	 
 	public List<Map<String, Object>> roominfoTable(int board_no){
 		return dao.roominfoTable(board_no);

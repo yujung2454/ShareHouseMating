@@ -60,13 +60,23 @@ public class AdminController {
 			}
 
 	@GetMapping("/admin/admin_main")
-	public String admin_main() {
+	public String admin_main(@AuthenticationPrincipal SecurityUser user, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		return "/admin/admin_main";
 	}
 
 	
 	@GetMapping("/admin/admin_notice")
 	public String admin_notice(@AuthenticationPrincipal SecurityUser user, String notice, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		List<CommunityDto> communityNotice = c_service.communityNotice(notice);
 		m.addAttribute("nList", communityNotice);
 		return "/admin/admin_notice";
@@ -74,7 +84,12 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin/user_manage")
-	public String userlist(@RequestParam(name = "p", defaultValue = "1") int page, Model m) {
+	public String userlist(@AuthenticationPrincipal SecurityUser user, @RequestParam(name = "p", defaultValue = "1") int page, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		int count = service.countUser();
 		//글이 한 개라도 있을 시
 		if(count > 0) {
@@ -105,7 +120,12 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/user_manage_search")
-	public String usersearch(String search, @RequestParam(name = "p", defaultValue = "1") int page, Model m) {
+	public String usersearch(@AuthenticationPrincipal SecurityUser user, String search, @RequestParam(name = "p", defaultValue = "1") int page, Model m) {
+		if(user == null) {
+			m.addAttribute("user",null);
+		}else {
+			m.addAttribute("user",user.getUsers());
+		}
 		int count = service.countSearch(search);
 		//글이 한 개라도 있을 시
 		if(count > 0) {

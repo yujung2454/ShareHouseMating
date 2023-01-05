@@ -26,7 +26,6 @@
 			<li class="upper_menu"><a href="/query_list">문의</a></li>
 		</ul>
 		<div id="p_info">
-			<span id="notification"><img src="/images/notification.png"></span>
 			<span id="login">
 				<c:if test="${user == null}">
 					<a href="/login">로그인</a>
@@ -112,7 +111,7 @@
 							<tr class="notice">	
 								<td><a href="community_view	/${comm.comm_no}">${comm.comm_no}</a></td>
 								<td><a href="community_view/${comm.comm_no}">★${comm.comm_title}</a></td>
-								<td>${user.user_Img}${comm.id}</td>
+								<td>${comm.id}</td>
 								<td><fmt:formatDate value="${comm.comm_date}"
 										dateStyle="short" /></td>
 								<td>${comm.comm_v_cnt}</td>
