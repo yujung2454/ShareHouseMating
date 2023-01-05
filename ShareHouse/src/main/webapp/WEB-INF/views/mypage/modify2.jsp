@@ -80,7 +80,7 @@
 			<label class="userimg" for="userimg">
 			이미지 변경
 			</label>
-		<input type="file" onchange="preview(this)" id="userimg" class="image_input">
+		<input type="file" onchange="preview(this)" id="userimg" name="userimg" class="image_input">
 		</div>
 		<div class="uframe">
 			<div class="uframe2">
@@ -131,12 +131,12 @@
 				${user.user_add } ${user.user_add2 }
 			</div>
 			<div class="addDisplay" style="display:none;width:100%">
-				<input type="text" id="sample4_postcode" placeholder="우편번호">
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="sample4_roadAddress" name="user_add" value="${user.user_add }" placeholder="도로명주소">
+				<input type="text" id="sample4_postcode" placeholder="우편번호" readonly>
+				<input type="text" id="sample4_roadAddress" name="user_add" value="${user.user_add }" placeholder="도로명주소" readonly>
 				<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
 				<span id="guide" style="color:#999;display:none"></span>
 				<input type="text" id="sample4_detailAddress" name="user_add2" value="${user.user_add2 }" placeholder="상세주소">
+				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 				<input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
 			</div>
 	
@@ -147,7 +147,8 @@
 			<div>
 			<button type="button" class="add_modify">주소수정하기</button>
 		</div>
-		</div>
+		
+			</div>
 			<input type="submit" class="add_confirm" value="수정하기">
 	</div>
 </form>
@@ -213,7 +214,6 @@ $(".userform").submit(function(event){
 
 	$(".add_modify").click(function(){
 		$(".addDisplay").css({"display":"block"})
-		$(".uframe2").css({"display":"none"})
 		$("#uadd").css({"display":"none"});
 		$(".add_modify").css({"display":"none"})	
 		
