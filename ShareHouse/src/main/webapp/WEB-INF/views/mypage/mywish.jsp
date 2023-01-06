@@ -100,6 +100,8 @@
 	</div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 <script>
 function s_location(){
 	navigator.geolocation.getCurrentPosition(function(pos) {

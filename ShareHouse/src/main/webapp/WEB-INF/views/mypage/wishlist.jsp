@@ -133,7 +133,8 @@
 <footer>
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 <script>
 // 체크박스
 $(document).ready(function() {

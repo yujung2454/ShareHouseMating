@@ -133,14 +133,14 @@
 	</div>
 
 	<nav>
-		<div class="quick">
+<div class="quick">
 	<div class="quick_shape">
-		<a href="/search/searchlist">
+		<a href="/detailsearch">
 			<img src="/images/search.png" title="검색">
 		</a>
 	</div>
 	<div class="quick_shape">
-		<a href="/wishlist">
+		<a href="/mypage/wishlist">
 			<img src="/images/like.png" title="찜">
 		</a>
 	</div>

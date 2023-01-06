@@ -91,17 +91,18 @@
 	</div>
 
 	<nav>
-		<div class="quick">
-			<div class="quick_shape">
-				<a href="/search/searchlist"> <img src="/images/search.png"
-					title="검색">
-				</a>
-			</div>
-			<div class="quick_shape">
-				<a href=""> <img src="images/like.png" title="찜">
-				</a>
-			</div>
-		</div>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/detailsearch">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/mypage/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
+</div>
 	</nav>
 	<footer> </footer>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
