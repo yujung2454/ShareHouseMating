@@ -72,7 +72,7 @@
 
 
 				<div class="user">
-					작성자 : <input name="id" value="${user.user_Img} ${dto.id}" readonly>
+					작성자 : <input name="id" value="${dto.id}" readonly>
 				</div>
 
 

@@ -46,6 +46,7 @@
 			</span>
 		</div>
 	</div>
+</div>
 <div class="quick">
 	<div class="quick_shape">
 		<a href="/search/searchlist">

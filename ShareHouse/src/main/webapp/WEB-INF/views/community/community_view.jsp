@@ -39,6 +39,7 @@
 								<a href="/mypage/info"><img class="user_uimg"
 									src="${user.user_Img}"></a>
 							</div>
+
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">

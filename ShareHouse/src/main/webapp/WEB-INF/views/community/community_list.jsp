@@ -38,9 +38,8 @@
 						</c:if>
 						<c:if test="${user.user_Img != null}">
 							<div class="user_profil_img">
-								<a href="/mypage/info"><img class="user_uimg"
-									src="${user.user_Img}"></a>
-							</div>
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -180,7 +179,6 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
 	</script>
 	<script>
-
 		function s_location() {
 			navigator.geolocation.getCurrentPosition(function(pos) {
 				var latitude = pos.coords.latitude;
@@ -190,6 +188,7 @@
 						+ "&longitude=" + longitude;
 			})
 		}
+    
 		$(document).ready(function() {
 			$("input:checkbox[name='notice']").change(function() {
 				if ($("input:checkbox[name='notice']").is(":checked")) {

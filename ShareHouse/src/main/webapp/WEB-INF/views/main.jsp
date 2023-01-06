@@ -91,8 +91,8 @@
 		</a>
 	</div>
 	<div class="quick_shape">
-		<a href="">
-			<img src="images/like.png" title="찜">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
 		</a>
 	</div>
 </div>
