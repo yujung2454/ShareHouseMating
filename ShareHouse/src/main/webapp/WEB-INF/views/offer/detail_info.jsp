@@ -73,6 +73,13 @@
 					<a id="${offeringdto.board_no}" href="#">글 삭제</a>
 				</button>
 			</c:if>
+			<c:if test="${user.id != offeringdto.id }">
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+				<button type="button" class="delete">
+					<a id="${offeringdto.board_no}" href="#">글 삭제</a>
+				</button>
+			</sec:authorize>
+			</c:if>
 		</div>
 		<hr>
 		<!-- 몸통 -->
