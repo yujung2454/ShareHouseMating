@@ -37,7 +37,10 @@
 							<a href="/mypage/info"><img src="/images/profil.png"></a>
 						</c:if>
 						<c:if test="${user.user_Img != null}">
-							<a href="/mypage/info"><img src="${user.user_Img}"></a>
+							<div class="user_profil_img">
+								<a href="/mypage/info"><img class="user_uimg"
+									src="${user.user_Img}"></a>
+							</div>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -69,7 +72,7 @@
 
 
 				<div class="user">
-					작성자 : <input name="id" value="${user.user_Img} ${dto.id}" readonly>
+					작성자 : <input name="id" value="${dto.id}" readonly>
 				</div>
 
 
@@ -104,7 +107,20 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"
 		charset="utf-8"></script>
+	<script async
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
+	</script>
 	<script>
+
+		function s_location() {
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				var latitude = pos.coords.latitude;
+				var longitude = pos.coords.longitude;
+
+				location.href = "/search/searchlist?latitude=" + latitude
+						+ "&longitude=" + longitude;
+			})
+		}
 		let oEditors = []
 
 		smartEditor = function() {

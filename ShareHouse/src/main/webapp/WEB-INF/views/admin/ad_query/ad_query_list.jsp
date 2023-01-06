@@ -6,21 +6,66 @@
 <head>
 <meta charset="UTF-8">
 <title>문의 리스트</title>
-
-<link rel="stylesheet" type="text/css" href="/css/list.css" />
+<link rel="stylesheet" type="text/css" href="/css/admin_nav.css" />
+<link rel="stylesheet" type="text/css" href="/css/admin_user.css" />
 </head>
 <body>
-<header>
-</header>
 
+	<header>
+		<div id="uppernav">
+			<div id="main">
+				<span id="home_img" class="to_main"><a href="/"><img
+						src="/images/home.png"></a></span> <span id="home" class="to_main"><a
+					href="/">우리집</a></span>
+			</div>
+			<ul class="upper_frame">
+				<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
+				<li class="upper_menu" onclick="s_location()"
+					style="cursor: pointer">방 찾기</li>
+				<li class="upper_menu"><a
+					href="/registration/registration_first">매물 등록</a></li>
+				<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
+				<li class="upper_menu"><a href="/query_list">문의</a></li>
+			</ul>
+			<div id="p_info">
+				<span id="login"> <c:if test="${user == null}">
+						<a href="/login">로그인</a>
+					</c:if> <c:if test="${user != null}">
+						<c:if test="${user.user_Img == null}">
+							<a href="/mypage/info"><img src="/images/profil.png"></a>
+						</c:if>
+						<c:if test="${user.user_Img != null}">
+							<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
+						</c:if>
+						<a href="/logout" class="logout">로그아웃</a>
+						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+							<a href="/admin/admin_main">관리자페이지</a>
+						</sec:authorize>
+					</c:if>
+				</span>
+			</div>
+		</div>
+	</header>
+	<aside>
+		<nav>
+			<ul>
+				<li><a href="/admin/admin_notice">공지사항 관리</a></li>
+				<li><a href="/admin/user_manage">회원관리</a></li>
+				<li><a href="/admin/report_list">신고리스트</a></li>
+				<li class="active"><a href="/admin/ad_query_list">문의리스트</a></li>
+				<li><a href="/admin/allboardview">모든 게시물 보기</a></li>
+				<li><a href="/popup">메인 팝업 관리</a></li>
+			</ul>
+		</nav>
+	</aside>
+<main>
 <div id="center">
 <!-- 게시글 리스트 테이블 -->
-<div id = "title">
-	<h1>문의리스트</h1>
-</div>
 		<form method="post" action="/admin/ad_query_list">
 	<div id = "board">
-		<table>
+		<table border="3">
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
 						<col style="width:10%;" />
@@ -74,12 +119,12 @@
 		</div>
 	</div>
 		
-		<div id="write" align="right">
+		<div id="write" style="width:60%; text-align:right; margin:auto;">
 			<input type = "submit" class="query_write" id="del" value= " 삭제">
 		</div>
 	</form>
 </div>
-
+</main>
 <div>
 <!-- 오른쪽 네비게이션 바 검색, 찜, 채팅 링크  -->
 </div>
@@ -104,6 +149,16 @@ $(document).ready(function() {
 				else $("#cbx_chkAll").prop("checked", true); 
 			});
 		});
+		
+function s_location() {
+	navigator.geolocation.getCurrentPosition(function(pos) {
+		var latitude = pos.coords.latitude;
+		var longitude = pos.coords.longitude;
+
+		location.href = "/search/searchlist?latitude=" + latitude
+				+ "&longitude=" + longitude;
+	})
+}
 </script>
 </body>
 </html>

@@ -32,7 +32,6 @@
 				<li class="upper_menu"><a href="/query_list">문의</a></li>
 			</ul>
 			<div id="p_info">
-				<span id="notification"><img src="/images/notification.png"></span>
 				<span id="login"> <c:if test="${user == null}">
 						<a href="/login">로그인</a>
 					</c:if> <c:if test="${user != null}">
@@ -67,12 +66,12 @@
 
 				<div class="content_info">
 
-					<div class="writer">작성자 : ${dto.id}</div>
+					<div class="writer">작성자 : ${dto.id}</div>&nbsp; &nbsp; &nbsp;
 					<div class="date">
 						작성일 :
-						<fmt:formatDate value="${dto.query_date }" dateStyle="short" />
+						<fmt:formatDate value="${dto.query_date }" dateStyle="short" /> &nbsp; &nbsp; &nbsp;
 					</div>
-					<div class="category">카테고리 : ${dto.category}</div>
+					<div class="category">카테고리 : ${dto.category}</div> &nbsp; &nbsp; &nbsp;
 
 
 				</div>
@@ -135,16 +134,17 @@
 
 	<nav>
 		<div class="quick">
-			<div class="quick_shape">
-				<a href="/search/searchlist"> <img src="/images/search.png"
-					title="검색">
-				</a>
-			</div>
-			<div class="quick_shape">
-				<a href=""> <img src="images/like.png" title="찜">
-				</a>
-			</div>
-		</div>
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
+</div>
 	</nav>
 
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>

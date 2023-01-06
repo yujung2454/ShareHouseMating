@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
 	<div id="search" >
 		<ul>
 			<li><img src="/images/search.png"></li>
-			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="45" autofocus></li>
+			<li><input id="location" name="loc" placeholder="지역명 또는 역이름" size="40" autofocus></li>
 			<li>
 				<button type="submit">검색</button>
 			</li>
@@ -88,6 +89,18 @@
 		</div>
 	</c:if>
 </div>
+</div>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/search/searchlist">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
