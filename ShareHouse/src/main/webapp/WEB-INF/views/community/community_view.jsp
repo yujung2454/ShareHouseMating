@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +35,10 @@
 							<a href="/mypage/info"><img src="/images/profil.png"></a>
 						</c:if>
 						<c:if test="${user.user_Img != null}">
-							<a href="/mypage/info"><img src="${user.user_Img}"></a>
+							<div class="user_profil_img">
+								<a href="/mypage/info"><img class="user_uimg"
+									src="${user.user_Img}"></a>
+							</div>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -58,11 +60,11 @@
 				<div class="subject">제목 : ${dto.comm_title}</div>
 				<div class="content_info">
 
-					<div class="writer">작성자 : ${dto.id}</div>
+					<div class="writer">작성자 : ${dto.id}</div>&nbsp; &nbsp; &nbsp;
 					<div class="date">
 						작성일 :
 						<fmt:formatDate value="${dto.comm_date }" dateStyle="short" />
-					</div>
+					</div>&nbsp; &nbsp; &nbsp;
 					<div class="view_count">조회수 : ${dto.comm_v_cnt}</div>
 
 
@@ -139,7 +141,20 @@
 		</div>
 	</nav>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script async
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
+	</script>
 	<script>
+
+		function s_location() {
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				var latitude = pos.coords.latitude;
+				var longitude = pos.coords.longitude;
+
+				location.href = "/search/searchlist?latitude=" + latitude
+						+ "&longitude=" + longitude;
+			})
+		}
 		$(function() {
 			$("a[id]").click(function() {
 				let comm_no = $(this).attr("id");

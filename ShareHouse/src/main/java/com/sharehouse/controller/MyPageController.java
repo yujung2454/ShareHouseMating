@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sharehouse.config.SecurityUser;
+import com.sharehouse.dto.CommentDto;
 import com.sharehouse.dto.CommunityDto;
 import com.sharehouse.dto.MyPageDto;
 import com.sharehouse.dto.OfferingDto;
@@ -221,7 +222,7 @@ public class MyPageController {
 		int perPage = 5;
 		int startRow = (page - 1) * perPage;
 		
-		List<OfferingDto> CommentList = service.MyOfferingList(id, startRow);
+		List<CommentDto> CommentList = service.MyCommentList(id, startRow);
 		m.addAttribute("cList", CommentList);
 		
 		int pageNum = 5;

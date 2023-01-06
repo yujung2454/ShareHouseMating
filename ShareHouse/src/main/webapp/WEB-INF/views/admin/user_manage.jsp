@@ -36,7 +36,10 @@
 							<a href="/mypage/info"><img src="/images/profil.png"></a>
 						</c:if>
 						<c:if test="${user.user_Img != null}">
-							<a href="/mypage/info"><img src="${user.user_Img}"></a>
+							<div class="user_profil_img">
+								<a href="/mypage/info"><img class="user_uimg"
+									src="${user.user_Img}"></a>
+							</div>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -50,15 +53,12 @@
 	<aside>
 		<nav>
 			<ul>
-				<li>통계</li>
 				<li><a href="/admin/admin_notice">공지사항 관리</a></li>
-				<li>대기매물 승인</li>
-				<li><a href="/admin/user_manage">회원관리</a></li>
-				<li>신고리스트</li>
-				<li>문의리스트</li>
-				<li>모든 게시물 보기</li>
-				<li>꾸미기</li>
-				<li>사이트 설정</li>
+				<li class="active"><a href="/admin/user_manage">회원관리</a></li>
+				<li><a href="/admin/report_list">신고리스트</a></li>
+				<li><a href="/admin/ad_query_list">문의리스트</a></li>
+				<li><a href="/admin/allboardview">모든 게시물 보기</a></li>
+				<li><a href="/popup">메인 팝업 관리</a></li>
 			</ul>
 		</nav>
 	</aside>
@@ -160,7 +160,20 @@
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script async
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
+	</script>
 	<script>
+
+		function s_location() {
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				var latitude = pos.coords.latitude;
+				var longitude = pos.coords.longitude;
+
+				location.href = "/search/searchlist?latitude=" + latitude
+						+ "&longitude=" + longitude;
+			})
+		}
 		$(document).ready(function() {
 			$("#cbx_chkAll").click(function() {
 				if ($("#cbx_chkAll").is(":checked"))

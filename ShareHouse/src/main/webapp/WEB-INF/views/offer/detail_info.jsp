@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -46,7 +45,9 @@
 							<a href="/mypage/info"><img src="/images/profil.png"></a>
 						</c:if>
 						<c:if test="${user.user_Img != null}">
-							<a href="/mypage/info"><img src="${user.user_Img}"></a>
+							<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
@@ -62,10 +63,12 @@
 
 		<hr>
 		<div>
-			작성자 ${offeringdto.id} 조회수 ${offeringdto.v_cnt} 작성일
+			작성자 ${offeringdto.id} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			조회수 ${offeringdto.v_cnt} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			작성일
 			<fmt:parseDate value='${offeringdto.board_date}' var="date"
 				pattern="yyyy-MM-dd'T'HH:mm" />
-			<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" />
+			<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 			<c:if test="${ user.id == offeringdto.id }">
 				<button type="button" class="delete">
 					<a id="${offeringdto.board_no}" href="#">글 삭제</a>
@@ -91,7 +94,7 @@
 							<div class="slide_main">
 								<c:forEach var="image" items="${rilist}">
 									<div class="main_slide">
-										<img src="${image}">
+										<img src="${image}" class="slide_images">
 									</div>
 								</c:forEach>
 							</div>
@@ -435,8 +438,20 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
+	<script async
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
+	</script>
 	<script>
+
+		function s_location() {
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				var latitude = pos.coords.latitude;
+				var longitude = pos.coords.longitude;
+
+				location.href = "/search/searchlist?latitude=" + latitude
+						+ "&longitude=" + longitude;
+			})
+		}
 	$(function() {
 		$("a[id]").click(function() {
 			let board_no = $(this).attr("id");
