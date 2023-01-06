@@ -7,13 +7,64 @@
 <head>
 <meta charset="UTF-8">
 <title>찜 내역</title>
-
+<link href="/css/uppernav.css" rel="stylesheet">
+<link href="/css/offerlist.css" rel="stylesheet">
+<link href="/css/quick.css" rel="stylesheet">
+<link href="/css/mypage.css" rel="stylesheet">
+<link href="/css/userinfo.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
 </head>
 <body>
 <header>
 </header>
-
+<div class="fixed">
+<div id="uppernav">
+		<div id="main">
+			<span id="home_img" class="to_main" ><a href="/"><img src="/images/home.png"></a></span>
+			<span id="home" class="to_main"><a href="/">우리집</a></span>
+		</div>
+		<ul class="upper_frame">
+			<li class="upper_menu"><a href="/introduce/introduce">쉐어하우스란?</a></li>
+			<li class="upper_menu" onclick="s_location()" style="cursor:pointer">방 찾기</li>
+			<li class="upper_menu"><a href="/registration/registration_first">매물 등록</a></li>
+			<li class="upper_menu"><a href="/community/community_list">커뮤니티</a></li>
+			<li class="upper_menu"><a href="/query_list">문의</a></li>
+		</ul>
+		<div id="p_info">
+			<span id="login">
+				<c:if test="${user == null}">
+					<a href="/login">로그인</a>
+				</c:if>
+				<c:if test="${user != null}">
+					<c:if test="${user.user_Img == null}">
+						<a href="/mypage/info"><img src="/images/profil.png"></a>
+					</c:if>
+					<c:if test="${user.user_Img != null}">
+						<div class="user_profil_img">
+							<a href="/mypage/info"><img class="user_uimg" src="${user.user_Img}"></a>
+						</div>
+					</c:if>
+					<a href="/logout" class="logout">로그아웃</a>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+						<a href="/admin/admin_main">관리자페이지</a>
+					</sec:authorize>
+				</c:if>
+			</span>
+		</div>
+	</div>
+</div>
+<nav class="mypagelist">
+<ul>
+		<li class="mypage_sidebar"><a href="/mypage/info">회원정보</a><br></li>
+		<li class="mypage_sidebar"><a href="javascript:passwordQuestion()">개인 정보 수정</a><br></li>
+		<li id="board" class="mypage_sidebar" style="cursor:pointer">내 게시글 보기<br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/myPage_community">- 매물/게시글 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
+		<li class="mypage_sidebar"><a href="/mypage/wishlist">찜 내역</a><br></li>
+		<li class="mypage_sidebar"><a href="/mypage/query_history">문의 내역</a></li>
+	</ul>
+	</nav>
 <div id="center">
 <!-- 게시글 리스트 테이블 -->
 <div id = "title">
@@ -22,18 +73,18 @@
 <div id = "title2">
 	<h2>찜${count}</h2>
 </div>
-		<form method="post" action="/wishlist">
+		<form method="post" action="/mypage/wishlist">
 	<div id = "board">
-		<table>
+		<table class="table_list">
 		<!-- 세로줄 없앨지, 세로 간격 의논해보기 -->
 			<colgroup>
-						<col style="width:10%;" />
-						<col style="width:90%;" />
+						<col style="width:20%;" />
+						<col style="width:80%;" />
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col"><input type="checkbox" id="cbx_chkAll"/>전체 선택</th>
-							<th scope="col">매물 제목</th>
+							<td scope="col" style="font-size:15px;"><input type="checkbox" id="cbx_chkAll"/>전체 선택</td>
+							<td scope="col" style="font-size:15px;">매물 제목</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -99,6 +150,29 @@ $(document).ready(function() {
 				else $("#cbx_chkAll").prop("checked", true); 
 			});
 		});
+		
+function s_location(){
+	navigator.geolocation.getCurrentPosition(function(pos) {
+	    var latitude = pos.coords.latitude;
+	    var longitude = pos.coords.longitude;
+	
+	location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+	})
+}
+
+$(function(){
+	$("#board").on("click",function(){
+		if(!$(this).hasClass("on")){
+			$(this).addClass("on")
+			$(this).css({"margin":"40px 0 20px 0"})
+			$(".under").css({"display":"inline-block"})
+		} else {
+			$(this).removeClass("on")
+			$(".under").css({"display":"none"})
+			$(this).css({"margin":"40px 0 40px 0"})
+		}
+	})
+})
 </script>
 </body>
 </html>

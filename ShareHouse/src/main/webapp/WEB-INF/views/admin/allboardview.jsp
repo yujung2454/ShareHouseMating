@@ -35,7 +35,7 @@
 <div id="view">
 <table class="table_list" border="1" style="margin-left:400px;">
 <tr class="commline" bgcolor="#aaaaaa">
-<td colspan='4'> 커뮤니티 </td>
+<th colspan='4' style="text-align:center; font-size:20px;"> 커뮤니티 </th>
 </tr>
 <tr class="commline" bgcolor="#dcdcdc">
 <td width="150px">게시물 번호</td>
@@ -59,7 +59,7 @@
 </c:forEach>
 </c:if>
 <tr class="boardline" bgcolor="#aaaaaa">
-<td colspan='4'> 매물 </td>
+<th colspan='4' style="text-align:center; font-size:20px;"> 매물 </th>
 </tr>
 <tr class="boardline" bgcolor="#dcdcdc">
 <td width="150px">게시물 번호</td>

@@ -21,7 +21,7 @@ public class WishController {
 	@Autowired
 	WishService service;
 	
-	@GetMapping("/wishlist")
+	@GetMapping("/mypage/wishlist")
 	public String query_list3(String sort, @RequestParam(name="p", defaultValue="1") int page, @AuthenticationPrincipal SecurityUser user, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
 		String id = user.getUsers().getId();
 		//글이 있는지 체크
@@ -56,9 +56,9 @@ public class WishController {
 		return "/mypage/wishlist";
 	}
 	
-	@PostMapping("/wishlist")
-	public String delChecked2(int[] query_no) {
-		service.delChecked(query_no);
-		return "redirect:/wishlist";
+	@PostMapping("/mypage/wishlist")
+	public String delChecked2(int[] board_no) {
+		service.delChecked(board_no);
+		return "redirect:/mypage/wishlist";
 	}
 }

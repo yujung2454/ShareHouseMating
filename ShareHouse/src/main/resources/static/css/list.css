@@ -254,3 +254,13 @@
 		cursor : pointer;
 		float :right;
 	}
+	
+	.wish{
+	border-radius: 4px;
+	cursor: pointer;
+	background-color:#ff0000;
+	border-style:"solid";
+	border-width:thin;
+	color:white;
+	}
+	

@@ -224,7 +224,7 @@ public class QueryController {
 	 */
 	
 	// 마이페이지 문의 내역
-	@GetMapping("/query_history")
+	@GetMapping("mypage/query_history")
 	public String query_list3(String sort, @RequestParam(name="p", defaultValue="1") int page, @AuthenticationPrincipal SecurityUser user, Model m) {	//p로 page받음. defaultValue="1" - page 번호가 없으면 1을 받아옴. 꺼내온 글을 view에 보내주기위해 model타입 생성
 		String id = user.getUsers().getId();
 		//글이 있는지 체크
@@ -255,9 +255,9 @@ public class QueryController {
 		return "/mypage/query_history";
 	}
 	
-	@PostMapping("/query_history")
+	@PostMapping("/mypage/query_history")
 	public String delChecked2(int[] query_no) {
 		service.delChecked(query_no);
-		return "redirect:/query_history";
+		return "redirect:/mypage/query_history";
 	}
 }

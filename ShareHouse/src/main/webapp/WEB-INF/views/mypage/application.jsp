@@ -70,8 +70,8 @@
 		<li class="mypage_sidebar under"><a href="/mypage/myPage_community">- 매물/게시글 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
-		<li class="mypage_sidebar">찜 내역<br></li>
-		<li class="mypage_sidebar">문의 내역</li>
+		<li class="mypage_sidebar"><a href="/mypage/wishlist">찜 내역</a><br></li>
+		<li class="mypage_sidebar"><a href="/mypage/query_history">문의 내역</a></li>
 	</ul>
 </nav>
 <div class="mypage_title">
