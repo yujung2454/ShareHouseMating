@@ -56,9 +56,9 @@ public class WishController {
 		return "/mypage/wishlist";
 	}
 	
-	@PostMapping("/wishlist")
-	public String delChecked2(int[] query_no) {
-		service.delChecked(query_no);
-		return "redirect:/wishlist";
+	@PostMapping("/mypage/wishlist")
+	public String delChecked2(int[] board_no) {
+		service.delChecked(board_no);
+		return "redirect:/mypage/wishlist";
 	}
 }

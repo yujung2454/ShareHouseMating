@@ -119,4 +119,9 @@ li {
 	height:5rem;
 	background-color : #444444;
 }
+
+.paging {
+	diplay:flex;
+	
+}
 	

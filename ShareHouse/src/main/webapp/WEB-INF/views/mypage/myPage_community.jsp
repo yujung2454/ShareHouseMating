@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+	<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
@@ -69,14 +69,14 @@ table {
 		<li class="mypage_sidebar under"><a href="/mypage/myPage_community">- 매물/게시글 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/application">- 입주 신청 목록</a><br></li>
 		<li class="mypage_sidebar under"><a href="/mypage/mywish">- 내 입주 신청 목록</a><br></li>
-		<li class="mypage_sidebar">찜 내역<br></li>
-		<li class="mypage_sidebar">문의 내역</li>
+		<li class="mypage_sidebar"><a href="/mypage/wishlist">찜 내역</a><br></li>
+		<li class="mypage_sidebar"><a href="/mypage/query_history">문의 내역</a></li>
 	</ul>
 </nav>	
 	<input type="hidden" name="id" value="${user.id }">
-	<h1>내 게시물 보기</h1>
+	<h1 style="margin-left:350px;">내 게시물 보기</h1>
 	<div>
-		<select id="select" name="select" onchange="change()">
+		<select id="select" name="select" onchange="change()" style="margin-left:3e50px; margin-bottom:10px; width:100px; height:30px">
 			<option value="all">전체보기</option>
 			<option value="commview">커뮤니티</option>
 			<option value="boardview">매물</option>
@@ -85,18 +85,18 @@ table {
 	</div>
 	<div id="view">
 		<table border="1" class="table_community">
-			<tr>
-				<td colspan='4'>커뮤니티</td>
+			<tr bgcolor="#aaaaaa">
+				<th colspan='4' style="text-align:center; font-size:20px;">커뮤니티</th>
 			</tr>
-			<tr>
-				<th width="150px">번호</th>
-				<th width="150px">아이디</th>
-				<th width="150px">제목</th>
-				<th width="150px">조회수</th>
+			<tr bgcolor="#dcdcdc">
+				<td width="150px">번호</td>
+				<td width="150px">아이디</td>
+				<td width="150px">제목</td>
+				<td width="150px">조회수</td>
 			</tr>
 			<c:forEach items="${mList}" var="comm">
 				<tr class="commline">
-					<td><input type="checkbox" name="user_select" /></td>
+					<td><a href="community_view/${comm.comm_no}">${comm.comm_no}</a></td>
 					<td>${user.id}</td>
 					<td><a href="community_view/${comm.comm_no}">${comm.comm_title}</a></td>
 					<td>${comm.comm_v_cnt}</td>
@@ -104,12 +104,11 @@ table {
 			</c:forEach>
 		</table>
 		<table border="1">
-			<tr>
-				<td colspan='4'>매물</td>
+			<tr bgcolor="#aaaaaa">
+				<th colspan='4' style="text-align:center; font-size:20px;">매물</th>
 			</tr>
-			<tr>
-				<td><input type="checkbox" name="user_select"
-					value="${user.id }" /></td>
+			<tr bgcolor="#dcdcdc">
+				<td width="150px">번호</td>
 				<td width="150px">아이디</td>
 				<td width="150px">제목</td>
 				<td width="150px">조회수</td>
@@ -124,15 +123,14 @@ table {
 			</c:forEach>
 		</table>
 		<table border="1">
-			<tr>
-				<td colspan='4'>댓글</td>
+			<tr bgcolor="#aaaaaa">
+				<th colspan='4' style="text-align:center; font-size:20px;">댓글</th>
 			</tr>
-			<tr>
-				<td><input type="checkbox" name="user_select"
-					value="${user.id }" /></td>
+			<tr bgcolor="#dcdcdc">
+				<td width="150px">번호</td>
 				<td width="150px">아이디</td>
 				<td width="150px">제목</td>
-				<td width="150px">조회수</td>
+				<td width="150px">날짜</td>
 			</tr>
 			<c:forEach items="${cList}" var="board">
 				<tr class="comment">
@@ -145,7 +143,7 @@ table {
 			</c:forEach>
 		</table>
 	</div>
-	<div id="paging" align="center">
+	<div id="paging" class="paging" align="center">
 		<c:if test="${begin > pageNum}">
 			<a href="myPage_community?p=${begin-1}">[이전]</a>
 		</c:if>
@@ -179,6 +177,15 @@ table {
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 	<script>
+	function s_location(){
+		navigator.geolocation.getCurrentPosition(function(pos) {
+		    var latitude = pos.coords.latitude;
+		    var longitude = pos.coords.longitude;
+		
+		location.href="/search/searchlist?latitude="+latitude+"&longitude="+longitude;
+		})
+	}
+
 		function change() {
 			$("#select").change(function() {
 				var select = $("#select option:selected").val();
@@ -204,6 +211,19 @@ table {
 				}
 			})
 		}
+		$(function(){
+			$("#board").on("click",function(){
+				if(!$(this).hasClass("on")){
+					$(this).addClass("on")
+					$(this).css({"margin":"40px 0 20px 0"})
+					$(".under").css({"display":"inline-block"})
+				} else {
+					$(this).removeClass("on")
+					$(".under").css({"display":"none"})
+					$(this).css({"margin":"40px 0 40px 0"})
+				}
+			})
+		})
 	</script>
 </body>
 </html>
