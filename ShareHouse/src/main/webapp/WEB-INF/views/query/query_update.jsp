@@ -45,7 +45,7 @@
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-							<a href="/admin/admin_main">관리자페이지</a>
+							  <a href="/admin/admin_notice">관리자페이지</a>
 						</sec:authorize>
 					</c:if>
 				</span>
@@ -99,14 +99,14 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<nav>
-		<div class="quick">
+<div class="quick">
 	<div class="quick_shape">
-		<a href="/search/searchlist">
+		<a href="/detailsearch">
 			<img src="/images/search.png" title="검색">
 		</a>
 	</div>
 	<div class="quick_shape">
-		<a href="/wishlist">
+		<a href="/mypage/wishlist">
 			<img src="/images/like.png" title="찜">
 		</a>
 	</div>

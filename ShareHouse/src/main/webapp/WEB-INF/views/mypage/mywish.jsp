@@ -43,7 +43,7 @@
 					</c:if>
 					<a href="/logout" class="logout">로그아웃</a>
 					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-						<a href="/admin/admin_main">관리자페이지</a>
+						  <a href="/admin/admin_notice">관리자페이지</a>
 					</sec:authorize>
 				</c:if>
 			</span>
@@ -100,6 +100,8 @@
 	</div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 <script>
 function s_location(){
 	navigator.geolocation.getCurrentPosition(function(pos) {

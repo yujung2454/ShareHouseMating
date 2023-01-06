@@ -40,7 +40,6 @@ table {
 				<li class="upper_menu"><a href="/query_list">문의</a></li>
 			</ul>
 			<div id="p_info">
-				<span id="notification"><img src="/images/notification.png"></span>
 				<span id="login"> <c:if test="${user == null}">
 						<a href="/login">로그인</a>
 					</c:if> <c:if test="${user != null}">
@@ -53,7 +52,7 @@ table {
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-							<a href="/admin/admin_main">관리자페이지</a>
+							  <a href="/admin/admin_notice">관리자페이지</a>
 						</sec:authorize>
 					</c:if>
 				</span>
@@ -96,9 +95,9 @@ table {
 			</tr>
 			<c:forEach items="${mList}" var="comm">
 				<tr class="commline">
-					<td><a href="community_view/${comm.comm_no}">${comm.comm_no}</a></td>
+					<td><a href="/community/community_view/${comm.comm_no}">${comm.comm_no}</a></td>
 					<td>${user.id}</td>
-					<td><a href="community_view/${comm.comm_no}">${comm.comm_title}</a></td>
+					<td><a href="/community/community_view/${comm.comm_no}">${comm.comm_title}</a></td>
 					<td>${comm.comm_v_cnt}</td>
 				</tr>
 			</c:forEach>
@@ -115,9 +114,9 @@ table {
 			</tr>
 			<c:forEach items="${oList}" var="offering">
 				<tr class="boardline">
-					<td><a href=" ${offering.board_no}">${offering.board_no}</a></td>
+					<td><a href="/offer/detail_info/${offering.board_no}">${offering.board_no}</a></td>
 					<td>${offering.id}</td>
-					<td><a href=" ${offering.board_no}">${offering.title}</a></td>
+					<td><a href="/offer/detail_info/${offering.board_no}">${offering.title}</a></td>
 					<td>${offering.v_cnt}</td>
 				</tr>
 			</c:forEach>
@@ -134,9 +133,9 @@ table {
 			</tr>
 			<c:forEach items="${cList}" var="board">
 				<tr class="comment">
-					<td><a href=" ${board.comment_no}">${board.comment_no}</a></td>
+					<td><a href="/community/community_view/${board.comm_no}">${board.comment_no}</a></td>
 					<td>${board.id}</td>
-					<td><a href=" ${board.comment_no}">${board.comment_con}</a></td>
+					<td><a href="/community/community_view/${board.comm_no}">${board.comment_con}</a></td>
 					<td><fmt:formatDate value="${board.comment_date}"
 							pattern="mm/dd" /></td>
 				</tr>
@@ -155,23 +154,6 @@ table {
 		</c:if>
 	</div>
 
-	<nav>
-		<div class="quick">
-			<div class="quick_shape">
-				<a href="/search/searchlist"> <img src="/images/search.png"
-					title="검색">
-				</a>
-			</div>
-			<div class="quick_shape">
-				<a href=""> <img src="images/like.png" title="찜">
-				</a>
-			</div>
-			<div class="quick_shape">
-				<a href=""> <img src="images/chat.png" title="채팅">
-				</a>
-			</div>
-		</div>
-	</nav>
 	<footer> </footer>
 
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>

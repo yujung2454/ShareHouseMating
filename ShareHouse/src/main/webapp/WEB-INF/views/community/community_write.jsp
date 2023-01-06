@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-							<a href="/admin/admin_main">관리자페이지</a>
+							  <a href="/admin/admin_notice">관리자페이지</a>
 						</sec:authorize>
 					</c:if>
 				</span>

@@ -50,7 +50,7 @@
 						</c:if>
 						<a href="/logout" class="logout">로그아웃</a>
 						<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-							<a href="/admin/admin_main">관리자페이지</a>
+							  <a href="/admin/admin_notice">관리자페이지</a>
 						</sec:authorize>
 					</c:if>
 				</span>
@@ -72,6 +72,13 @@
 				<button type="button" class="delete">
 					<a id="${offeringdto.board_no}" href="#">글 삭제</a>
 				</button>
+			</c:if>
+			<c:if test="${user.id != offeringdto.id }">
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+				<button type="button" class="delete">
+					<a id="${offeringdto.board_no}" href="#">글 삭제</a>
+				</button>
+			</sec:authorize>
 			</c:if>
 		</div>
 		<hr>

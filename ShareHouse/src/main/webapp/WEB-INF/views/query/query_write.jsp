@@ -46,7 +46,7 @@
 							</c:if>
 							<a href="/logout" class="logout">로그아웃</a>
 							<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-								<a href="/admin/admin_main">관리자페이지</a>
+								  <a href="/admin/admin_notice">관리자페이지</a>
 							</sec:authorize>
 						</c:if>
 					</span>
@@ -73,7 +73,7 @@
 					<%-- <input type="hidden" name="comm_no" value="${dto.comm_no}" />  --%>
 				</div>
 				<div class="user">
-					작성자 : ${user.user_Img} ${user.id} <input type="hidden" name="id"
+					작성자 : ${user.id} <input type="hidden" name="id"
 						value="${user.id}"> <select name="category" id="sign1">
 						<option value="매물 관련">매물 관련</option>
 						<option value="계약 관련">계약 관련</option>
@@ -97,17 +97,18 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<nav>
-		<div class="quick">
-			<div class="quick_shape">
-				<a href="/search/searchlist"> <img src="/images/search.png"
-					title="검색">
-				</a>
-			</div>
-			<div class="quick_shape">
-				<a href=""> <img src="images/like.png" title="찜">
-				</a>
-			</div>
-		</div>
+<div class="quick">
+	<div class="quick_shape">
+		<a href="/detailsearch">
+			<img src="/images/search.png" title="검색">
+		</a>
+	</div>
+	<div class="quick_shape">
+		<a href="/mypage/wishlist">
+			<img src="/images/like.png" title="찜">
+		</a>
+	</div>
+</div>
 	</nav>
 	<footer> </footer>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
