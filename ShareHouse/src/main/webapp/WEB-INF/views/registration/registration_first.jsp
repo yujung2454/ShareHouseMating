@@ -104,8 +104,8 @@
 				<td>
 					<p class="inp_tit1">매물 주소</p>
 						<div class="inp_type1">
-							<input name="offering_add" id="address" class="inp1"/>
-							<input name="offering_add2" id="address2" class="inp1"/>
+							<input name="offering_add" id="address" class="inp1" readonly/>
+							<input name="offering_add2" id="address2" class="inp1" readonly/>
 							<button type="button" id="find_ad" value="주소 찾기" onclick = "addPost()" class="btn1">주소 찾기</button>
 						</div>
 				</td>
