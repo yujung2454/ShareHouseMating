@@ -9,6 +9,7 @@
 		width : 80%;
 		height : 100%;
 		float:right;
+		background-color: #d6d6d6;
 	}
 	aside{
 		width : 20%;
@@ -31,10 +32,13 @@
 	nav > ul > li{
 		list-style:none;
 		width : 100%;
-		height : 3rem;
-		line-height : 3rem;
+		height : 4.5rem;
+		line-height : 4.5rem;
 		text-align : center;
 		cursor:pointer;
+	}
+	nav > ul > li.active{
+		background-color : #333333;
 	}
 	nav > ul > li > a{
 		text-decoration : none;

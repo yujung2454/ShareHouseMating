@@ -14,7 +14,12 @@
 		background-position : center;
 		background : round;
 	}
-	
+	.slide_images{
+		width : 100%;
+		height : 100%; 
+		background-position : center;
+		background : round;
+	}
 	.bx-pager > a{
 		float:left;
 	}
@@ -157,3 +162,4 @@
 	footer{
 		height : 15rem;
 	}
+.

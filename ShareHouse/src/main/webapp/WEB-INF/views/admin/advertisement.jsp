@@ -11,6 +11,7 @@
 <link href="/css/uppernav.css" rel="stylesheet">
 <link href="/css/offerlist.css" rel="stylesheet">
 <link href="/css/quick.css" rel="stylesheet">
+<link href="/css/admin_nav.css" rel="stylesheet">
 <style>
 /* p{
 margin: 10px 0px;
@@ -66,6 +67,7 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 </style>
 </head>
 <body>
+<header>
 <div class="fixed">
 <div id="uppernav">
 	<div id="main">
@@ -80,7 +82,6 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 		<li class="upper_menu"><a href="/query_list">문의</a></li>
 	</ul>
 	<div id="p_info">
-		<span id="notification"><img src="/images/notification.png"></span>
 		<span id="login">
 			<c:if test="${user == null}">
 				<a href="/login">로그인</a>
@@ -90,7 +91,10 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 					<a href="/mypage/info"><img src="/images/profil.png"></a>
 				</c:if>
 				<c:if test="${user.user_Img != null}">
-					<a href="/mypage/info"><img src="${user.user_img}"></a>
+					<div class="user_profil_img">
+								<a href="/mypage/info"><img class="user_uimg"
+									src="${user.user_Img}"></a>
+							</div>
 				</c:if>
 				<a href="/logout" class="logout">로그아웃</a>
 			</c:if>
@@ -98,6 +102,21 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 	</div>
 </div>
 </div>
+</header>
+<aside>
+		<nav>
+			<ul>
+				<li><a href="/admin/admin_notice">공지사항 관리</a></li>
+				<li><a href="/admin/user_manage">회원관리</a></li>
+				<li><a href="/admin/report_list">신고리스트</a></li>
+				<li><a href="/admin/ad_query_list">문의리스트</a></li>
+				<li><a href="/admin/allboardview">모든 게시물 보기</a></li>
+				<li class="active"><a href="/popup">메인 팝업 관리</a></li>
+			</ul>
+		</nav>
+	</aside>
+	<main>
+
 <!-- 광고팝업 관리자 툴 -->
 <!-- <div class="pop_administration">
 	<div class="pop_title">
@@ -130,9 +149,25 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 			<button type="button" onclick="pop_insert();" >적용</button>
 	</form>
 </div>
-
+</main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<script async
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGSDqIXNX_0lFHR9SYcXafO5963zn2x68&libraries=places">
+		
+	</script>
+	<script>
+
+		function s_location() {
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				var latitude = pos.coords.latitude;
+				var longitude = pos.coords.longitude;
+
+				location.href = "/search/searchlist?latitude=" + latitude
+						+ "&longitude=" + longitude;
+			})
+		}
+	</script>
 <script>
 function preview(input){
 	if(input.files && input.files[0]){

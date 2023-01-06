@@ -6,6 +6,7 @@ table{
 	border : 1px slide black;
 	border-collapse : collapse;
 	margin:auto;
+	margin-top:4rem;
 }
 
 #search{
@@ -44,6 +45,7 @@ table{
     float:left;
     margin-right:0.4rem;
     cursor:pointer;
+    font-weight : 500;
 }
 
 #release{
